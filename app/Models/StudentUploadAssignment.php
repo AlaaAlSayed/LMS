@@ -16,17 +16,17 @@ class StudentUploadAssignment extends Model
         'answer',
     ];
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class);
-    }
-    public function subject()
-    {
-        return $this->belongsTo(Subject::class);
-    }
-    public function assignment()
-    {
-        return $this->belongsTo(Assignment::class);
-    }
+    // public function student()
+    // {
+    //     return $this->belongsTo(Student::class);
+    // }
+    // public function subject()
+    // {
+    //     return $this->belongsTo(Subject::class);
+    // }
+    // public function assignment()
+    // {
+    //     return $this->belongsTo(Assignment::class);
+    // }
 
 }

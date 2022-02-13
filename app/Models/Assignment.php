@@ -11,4 +11,9 @@ class Assignment extends Model
     protected $fillable = [
         'name',
     ];
+
+    // public function assignmentUpload()
+    // {
+    //     return $this->hasMany(StudentUploadAssignment::class, 'id');
+    // }
 }

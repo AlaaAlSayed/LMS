@@ -20,6 +20,7 @@ class Subject extends Model
         return $this->belongsTo(Classroom::class,'id');
     }
 
+
     public function subjectMaterial()
     {
       return $this->hasMany(SubjectMaterial::class , 'subjectId');
@@ -33,5 +34,14 @@ class Subject extends Model
       return $this->hasMany(Exam::class , 'id');
     }
 
-
+    
+    public function examResult()
+    {
+        return $this->hasMany(StudentTakeExam::class, 'id');
+    }
+    
+    public function assignmentUpload()
+    {
+        return $this->hasMany(AssignmentUploadResource::class, 'id');
+    }
 }

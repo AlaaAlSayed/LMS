@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Resources\AssignmentResource;
+use App\Http\Resources\AssignmentUploadResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +14,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'email',
-        'phone' ,
+        'phone',
         'picture_path',
         'classroomId',
         'government',
@@ -21,11 +23,24 @@ class Student extends Model
     ];
 
 
-      public function classroom()
+    public function classroom()
     {
-        return $this->belongsTo(Classroom::class ,'id' );
+        return $this->belongsTo(Classroom::class, 'id');
     }
 
+    public function subject()
+    {
+        return $this->hasMany(Subject::class, 'id');
+    }
+
+    public function examResult()
+    {
+        return $this->hasMany(StudentTakeExam::class, 'id');
+    }
+
+  
+    
+    //********************************************************** */
     // public function transaction()
     // {
     //   return $this->hasMany(Transaction::class);
