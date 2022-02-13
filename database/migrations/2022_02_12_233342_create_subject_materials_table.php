@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('subject_materials', function (Blueprint $table) {
             //subjectID	material
             $table->id();
+            $table->timestamps();
             $table->foreignId('subjectId')->nullable()->constraint();
             $table->string('material_path');
 

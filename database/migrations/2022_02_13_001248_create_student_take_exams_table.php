@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('student_take_exams', function (Blueprint $table) {
             //studentID	subjectID	examID	result
             $table->id();
+            $table->timestamps();
             $table->foreignId('studentId')->nullable()->constraint();
             $table->foreignId('subjectId')->nullable()->constraint();
             $table->foreignId('examId')->nullable()->constraint();

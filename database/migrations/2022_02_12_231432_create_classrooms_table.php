@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             //classID	level	capacity	time-table
             $table->id();
+            $table->timestamps();
             $table->integer('level');
             $table->integer('capacity');
             $table->string('time_table');

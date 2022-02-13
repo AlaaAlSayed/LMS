@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('students_pay_transactions', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->foreignId('studentId')->nullable()->constraint();
             $table->foreignId('transactionId')->nullable()->constraint();
             $table->string('status');

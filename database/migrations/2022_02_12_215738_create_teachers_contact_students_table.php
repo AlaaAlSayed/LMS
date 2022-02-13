@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('teachers_contact_students', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->foreignId('studentId')->nullable()->constraint();
             $table->foreignId('teacherId')->nullable()->constraint();
             $table->text('message');

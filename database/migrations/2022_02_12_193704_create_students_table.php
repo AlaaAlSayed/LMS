@@ -17,9 +17,10 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             //studentID	name	email	address	phone	birthdate	level	picture	classID	
             $table->id();
+            $table->timestamps();
             $table->string('name');
             $table->string('email');
-            $table->integer('phone');
+            $table->string('phone');
            
             // $table-> integer('classID');
             // $table->foreign('classID')->References('id')->on('class');
