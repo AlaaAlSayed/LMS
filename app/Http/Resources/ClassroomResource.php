@@ -20,9 +20,8 @@ class ClassroomResource extends JsonResource
             'level'=> $this->level,
             'capacity'=> $this->capacity,
             'time_table' => $this->time_table,
+            // 'student' => StudentResource::collection($this->student),
             
-            // 'classroom' => new ClassroomResource($this->classroom),
-            // hasMany(Student::class);
             // hasMany(Subject::class);
         ];
     }

@@ -23,7 +23,7 @@ class StudentFactory extends Factory
             'picture_path'=> $this->faker->filePath(),
             'classroomId'=> Classroom::factory(),
             
-            'government'=> $this->faker->address(),
+            'government'=> $this->faker->country(),
             'city'=> $this->faker->city(),
             'street'=> $this->faker->streetName(),
          

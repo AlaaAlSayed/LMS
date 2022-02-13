@@ -20,7 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/alaa', function () {
+    return ('welcome to api Alaa');
+});
 
 Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
@@ -29,8 +31,12 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy'])->nam
 Route::get('/students/{student}', [StudentController::class, 'show'])->name('api.students.show');
 
 
-Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
-Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
-Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
-Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
-Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
+// Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
+// Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
+// Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
+// Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
+// Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
+
+
+
+

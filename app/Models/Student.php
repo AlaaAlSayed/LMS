@@ -20,13 +20,15 @@ class Student extends Model
         'street',
     ];
 
+
       public function classroom()
     {
         return $this->belongsTo(Classroom::class ,'id' );
     }
-    public function transaction()
-    {
-      return $this->hasMany(Transaction::class);
-    }
+
+    // public function transaction()
+    // {
+    //   return $this->hasMany(Transaction::class);
+    // }
 
 }

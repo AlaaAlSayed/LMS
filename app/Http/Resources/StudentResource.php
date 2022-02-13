@@ -25,6 +25,7 @@ class StudentResource extends JsonResource
             'government'=> $this->government,
             'city'=> $this->city,
             'street'=> $this->street,
+
             'classroom' => new ClassroomResource($this->classroom),
             
             //hasMany(Transaction::class);
