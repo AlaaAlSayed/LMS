@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\ClassroomController;
+use App\Http\Controllers\Api\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,10 @@ Route::get('/students/{student}', [StudentController::class, 'show'])->name('api
 // Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
 
 
+Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');
+Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
+Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
+Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
+Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 
 

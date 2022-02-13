@@ -11,6 +11,5 @@ class Exam extends Model
 
     protected $fillable = [
         'name',
-        
     ];
 }

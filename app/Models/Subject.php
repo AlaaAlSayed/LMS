@@ -17,12 +17,21 @@ class Subject extends Model
 
     public function classroom()
     {
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsTo(Classroom::class,'id');
     }
 
-    public function subjectMaterials()
+    public function subjectMaterial()
     {
-      return $this->hasMany(SubjectMaterial::class);
+      return $this->hasMany(SubjectMaterial::class , 'subjectId');
+    } 
+    public function assignment()
+    {
+      return $this->hasMany(Assignment::class , 'id');
     }
+    public function exam()
+    {
+      return $this->hasMany(Exam::class , 'id');
+    }
+
 
 }
