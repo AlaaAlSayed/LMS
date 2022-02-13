@@ -19,19 +19,19 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();;
             $table->string('phone');
            
             // $table-> integer('classID');
             // $table->foreign('classID')->References('id')->on('class');
             $table->foreignId('classroomId')->nullable()->constraint();
 
-            $table->string('picture_path');
+            $table->string('picture_path')->nullable();
 
             //address
-            $table->string('government');
-            $table->string('city');
-            $table->string('street');
+            $table->string('government')->default('Cairo');
+            $table->string('city')->default('Nasr City');
+            $table->string('street')->default('65 walt disney');
 
 
         });

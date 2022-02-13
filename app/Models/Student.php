@@ -13,20 +13,16 @@ class Student extends Model
         'name',
         'email',
         'phone' ,
-        
         'picture_path',
         'classroomId',
-
-        //address
         'government',
         'city',
         'street',
-     
     ];
 
-    public function classroom()
+      public function classroom()
     {
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsTo(Classroom::class ,'id' );
     }
     public function transaction()
     {
