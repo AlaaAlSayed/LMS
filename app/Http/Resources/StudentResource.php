@@ -21,16 +21,16 @@ class StudentResource extends JsonResource
             'phone' => $this->phone,
            
             'picture_path' => $this->picture_path,
-            'classroomId'=> $this->classroomId,
+            // 'classroomId'=> $this->classroomId,
             'government'=> $this->government,
             'city'=> $this->city,
             'street'=> $this->street,
 
             'classroom' => new ClassroomResource($this->classroom),
-            'subject' => SubjectResource::collection($this->subject),
+            'subjects' => SubjectResource::collection($this->subjects),
 
-            'subjectExam' => StudentTakeExamResource::collection($this->subjectExam),
-            'subjectAssignment' => StudentUploadAssignmentResource::collection($this->subjectAssignment),
+            // 'subjectExam' => StudentTakeExamResource::collection($this->subjectExam),
+            // 'subjectAssignment' => StudentUploadAssignmentResource::collection($this->subjectAssignment),
 
             
             //hasMany(Transaction::class);

@@ -17,11 +17,11 @@ class SubjectResource extends JsonResource
         return [
             'id' => $this->id,
             'name'=> $this->name,
-            // 'classroomId'=> $this->classroomId,
-            'classroom' => new ClassroomResource($this->classroom),
+         
+            //'classroom' => new ClassroomResource($this->classroom),
             'subjectMaterial' => SubjectMaterialResource::collection($this->subjectMaterial),
-            'assignment' => AssignmentResource::collection($this->assignment),
-            'exam' => ExamResource::collection($this->exam),
+            // 'assignment' => AssignmentResource::collection($this->assignment),
+            // 'exam' => ExamResource::collection($this->exam),
             
             'studentExam' => StudentTakeExamResource::collection($this->studentExam),
             'studentAssignment' => StudentUploadAssignmentResource::collection($this->studentAssignment),

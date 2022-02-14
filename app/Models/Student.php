@@ -28,26 +28,25 @@ class Student extends Model
         return $this->belongsTo(Classroom::class, 'id');
     }
 
-    public function subject()
+    public function subjects()
     {
-        return $this->hasMany(Subject::class, 'id');
+        return $this->hasMany(Subject::class, 'classroomId');
     }
+    // public function messages()
+    // {
+    //     return $this->hasMany(AdminNotifyStudent::class, 'studentId');
+    // }
 
-
-    public function subjectExam()
-    {
-        return $this->hasMany(StudentTakeExam::class, 'id');
-    }
-  
-    public function subjectAssignment()
-    {
-        return $this->hasMany(StudentUploadAssignment::class, 'id');//works for data retrieval
-    }
+    // public function subjectExam()
+    // {
+    //     return $this->hasMany(StudentTakeExam::class, 'id');
+    // }
   
     // public function subjectAssignment()
     // {
-    //     return $this->belongsToMany(StudentUploadAssignment::class,  'student_upload_assignments', 'studentId','subjectId','assignmentId','answer');
+    //     return $this->hasMany(StudentUploadAssignment::class, 'id');//works for data retrieval
     // }
+  
   
 
     
