@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AssignmentUploadResource extends JsonResource
+class StudentUploadAssignmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,6 +20,12 @@ class AssignmentUploadResource extends JsonResource
             'subjectId' => $this->subjectId ,
             'assignmentId'=> $this->assignmentId ,
             'answer'=> $this->answer ,
+
+
+            // 'student' => StudentUploadAssignmentResource::collection($this->student),
+            // 'assignment' => StudentUploadAssignmentResource::collection($this->assignment),
+            // 'subject' => StudentUploadAssignmentResource::collection($this->subject),
+
         ];
     }
 }

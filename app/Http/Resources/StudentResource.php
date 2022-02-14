@@ -28,8 +28,9 @@ class StudentResource extends JsonResource
 
             'classroom' => new ClassroomResource($this->classroom),
             'subject' => SubjectResource::collection($this->subject),
-            'examResult' => ExamResultResource::collection($this->examResult),
-            // 'assignmentUpload' => AssignmentUploadResource::collection($this->assignmentUpload),
+
+            'subjectExam' => StudentTakeExamResource::collection($this->subjectExam),
+            'subjectAssignment' => StudentUploadAssignmentResource::collection($this->subjectAssignment),
 
             
             //hasMany(Transaction::class);

@@ -18,15 +18,15 @@ class StudentUploadAssignment extends Model
 
     // public function student()
     // {
-    //     return $this->belongsTo(Student::class);
+    //     return $this->belongsTo(Student::class,'id');
     // }
     // public function subject()
     // {
-    //     return $this->belongsTo(Subject::class);
+    //     return $this->belongsTo(Subject::class,'id');
     // }
     // public function assignment()
     // {
-    //     return $this->belongsTo(Assignment::class);
+    //     return $this->belongsTo(Assignment::class,'id');
     // }
 
 }

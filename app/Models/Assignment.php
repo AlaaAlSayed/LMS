@@ -12,8 +12,4 @@ class Assignment extends Model
         'name',
     ];
 
-    // public function assignmentUpload()
-    // {
-    //     return $this->hasMany(StudentUploadAssignment::class, 'id');
-    // }
 }

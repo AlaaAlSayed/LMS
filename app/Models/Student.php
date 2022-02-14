@@ -33,11 +33,16 @@ class Student extends Model
         return $this->hasMany(Subject::class, 'id');
     }
 
-    public function examResult()
+
+    public function subjectExam()
     {
         return $this->hasMany(StudentTakeExam::class, 'id');
     }
-
+  
+    public function subjectAssignment()
+    {
+        return $this->hasMany(StudentUploadAssignment::class, 'id');
+    }
   
     
     //********************************************************** */

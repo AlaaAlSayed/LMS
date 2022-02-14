@@ -35,13 +35,13 @@ class Subject extends Model
     }
 
     
-    public function examResult()
+    public function studentExam()
     {
         return $this->hasMany(StudentTakeExam::class, 'id');
     }
     
-    public function assignmentUpload()
+    public function studentAssignment()
     {
-        return $this->hasMany(AssignmentUploadResource::class, 'id');
+        return $this->hasMany(StudentUploadAssignment::class, 'id');
     }
 }
