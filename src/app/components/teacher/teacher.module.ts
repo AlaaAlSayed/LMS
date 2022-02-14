@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 const routes: Routes = [
   {path:'header',component:TeacherHeaderComponent},
   {path:'home',component:TeacherHomeComponent},
-  {path:'profile',component:TeacherProfileComponent},
+  {path:'profile/:id',component:TeacherProfileComponent},
   {path:'',component:TeacherHomeComponent}
   ];
 

@@ -1,9 +1,23 @@
+import { Teacher } from './../../models/teacher';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherService {
 
-  constructor() { }
-}
+  constructor(private _httpClient:HttpClient) { }
+  get(): Observable<Teacher[]>
+  {
+    return this._httpClient.get<Teacher[]>(`${environment.APIURL}/api/teachers`);
+   }
+   getTeacherByID(id: number): Observable<Teacher>
+   {
+    return this._httpClient.get<Teacher>(`${environment.APIURL}/api/teachers/${id}`);
+
+   }}

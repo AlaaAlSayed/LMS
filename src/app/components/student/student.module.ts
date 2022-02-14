@@ -10,7 +10,7 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
 const routes: Routes = [
   {path:'header',component:StudentHeaderComponent},
   {path:'home',component:StudentHomeComponent},
-  {path:'profile',component:StudentProfileComponent},
+  {path:'profile/:id',component:StudentProfileComponent},
   {path:'',component:StudentHomeComponent}
   ];
 

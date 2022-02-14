@@ -1,21 +1,22 @@
-import { environment } from './../../environments/environment';
+import { Student } from './../../models/student';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Subject} from '../../models/subject';
+import { environment } from './../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
   constructor(private _httpClient:HttpClient) { }
-  get(): Observable<Subject[]>
+  get(): Observable<Student[]>
   {
-    return this._httpClient.get<Subject[]>(`${environment.APIURL}/subjects`);
+    return this._httpClient.get<Student[]>(`${environment.APIURL}/api/students`);
    }
-   getSubjectByID(subjectID: number): Observable<Subject>
+   getStudentByID(id: number): Observable<Student>
    {
-    return this._httpClient.get<Subject>(`${environment.APIURL}/subjects/${subjectID}`);
+    return this._httpClient.get<Student>(`${environment.APIURL}/api/students/${id}`);
 
    }
 }

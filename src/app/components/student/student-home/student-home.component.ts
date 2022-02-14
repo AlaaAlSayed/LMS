@@ -1,5 +1,5 @@
 import { Subject } from './../../../../models/subject';
-import { StudentService } from './../../../services/student.service';
+import { SubjectService } from '../../../services/subject.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class StudentHomeComponent implements OnInit {
  
    subjects:Subject[]=[];
-  constructor(private _studentService:StudentService) { }
+  constructor(private _subjectService:SubjectService) { }
 
   ngOnInit(): void {
-    this._studentService.get().subscribe (
+    this._subjectService.get().subscribe (
       subject=>this.subjects=subject
     )
 }
