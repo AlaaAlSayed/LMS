@@ -41,9 +41,15 @@ class Student extends Model
   
     public function subjectAssignment()
     {
-        return $this->hasMany(StudentUploadAssignment::class, 'id');
+        return $this->hasMany(StudentUploadAssignment::class, 'id');//works for data retrieval
     }
   
+    // public function subjectAssignment()
+    // {
+    //     return $this->belongsToMany(StudentUploadAssignment::class,  'student_upload_assignments', 'studentId','subjectId','assignmentId','answer');
+    // }
+  
+
     
     //********************************************************** */
     // public function transaction()

@@ -13,8 +13,13 @@ class Exam extends Model
         'name',
     ];
 
-    public function examResult()
+    // public function examResult()
+    // {
+    //     return $this->hasMany(StudentTakeExam::class, 'id');
+    // }
+    public function intakes()
     {
-        return $this->hasMany(StudentTakeExam::class, 'id');
+        return $this->hasMany(StudentTakeExam::class, 'examId');
     }
+    
 }

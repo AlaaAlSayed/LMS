@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Student;
-use App\Models\Classroom;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
@@ -49,7 +47,6 @@ class StudentController extends Controller
 
         $data = $request->all();
 
-
         $student = Student::where('id', $studentId)->update([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -59,6 +56,7 @@ class StudentController extends Controller
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
+
         ]);
 
         // $student = Student::find($studentId);

@@ -12,4 +12,8 @@ class Assignment extends Model
         'name',
     ];
 
+    public function uploads()
+    {
+        return $this->hasMany(StudentUploadAssignment::class, 'assignmentId');
+    }
 }

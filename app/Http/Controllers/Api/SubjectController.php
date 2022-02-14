@@ -50,8 +50,8 @@ class SubjectController extends Controller
           
         ]);
 
-        // $subject = Subject::find($subjectId);
-        // return new SubjectResource($subject);
+        $subject = Subject::find($subjectId);
+        return new SubjectResource($subject);
     }
 
     public function destroy($subjectId)

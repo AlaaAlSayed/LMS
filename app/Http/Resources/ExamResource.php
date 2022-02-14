@@ -17,8 +17,7 @@ class ExamResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'examResult' => ExamResultResource::collection($this->examResult),
-           
+            'intakes' => StudentTakeExamResource::collection($this->intakes),
         ];
     }
 }
