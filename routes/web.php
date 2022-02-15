@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LmsController;
 use App\Models\Classroom;
 use App\Models\Teacher;
