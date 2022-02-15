@@ -56,4 +56,15 @@ class Student extends Model
     //   return $this->hasMany(Transaction::class);
     // }
 
+
+/////////////////
+// public function transaction()
+//     {
+//         return $this->hasMany(Transaction::class);
+//     }
+
+// public function Admin()
+//     {
+//         return $this->belongsTo(Admin::class);
+//     }
 }

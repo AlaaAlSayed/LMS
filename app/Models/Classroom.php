@@ -22,6 +22,10 @@ public function student()
     return $this->hasMany(Student::class,'classroomId');
 }
 
+public function students()
+{
+    return $this->hasMany(Student::class);
+}
 public function subjects()
 {
     return $this->hasMany(Subject::class);

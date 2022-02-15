@@ -12,16 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('subject_materials', function (Blueprint $table) {
-            //subjectID	material
+    {//TeacherMakeExam	teacherId	subjectId	examId	time	date	min_score
+        Schema::create('teacher_makes_exams', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
+            $table->foreignId('teacherId')->nullable()->constraint();
             $table->foreignId('subjectId')->nullable()->constraint();
-            $table->string('material');
-
-
+            $table->foreignId('examId')->nullable()->constraint();
+            $table->time('time');
+            $table->date('date');
+            $table->float('min_score');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_materials');
+        Schema::dropIfExists('teacher_makes_exams');
     }
 };

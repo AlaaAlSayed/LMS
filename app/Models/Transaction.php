@@ -12,4 +12,5 @@ class Transaction extends Model
     protected $fillable = [
         'total',
     ];
+
 }

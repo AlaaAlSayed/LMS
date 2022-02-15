@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subject_materials', function (Blueprint $table) {
-            //subjectID	material
+        Schema::create('admin_notify_students', function (Blueprint $table) {
+          //  adminNotifyStudent	studentID	adminID	message
             $table->id();
-            $table->timestamps();
-
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->string('material');
-
-
+            $table->foreignId('adminID')->nullable()->constraint();
+            $table->foreignId('studentId')->nullable()->constraint();
+            $table->text('message');
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_materials');
+        Schema::dropIfExists('admin_notify_students');
     }
 };

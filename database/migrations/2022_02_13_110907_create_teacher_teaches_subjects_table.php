@@ -12,15 +12,12 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('subject_materials', function (Blueprint $table) {
-            //subjectID	material
+    {//TeacherTeachesSubject	teacherId	subjectId	classId
+        Schema::create('teacher_teaches_subjects', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
+            $table->foreignId('teacherId')->nullable()->constraint();
             $table->foreignId('subjectId')->nullable()->constraint();
-            $table->string('material');
-
+            $table->foreignId('classroomId')->nullable()->constraint();
 
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_materials');
+        Schema::dropIfExists('teacher_teaches_subjects');
     }
 };

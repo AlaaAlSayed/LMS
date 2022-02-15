@@ -12,16 +12,20 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('subject_materials', function (Blueprint $table) {
-            //subjectID	material
+    {  //teacher	teacherId	name	email	phone	government	city	street
+
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->string('material');
-
-
+            $table->string('name');
+            $table->string('email');
+            $table->integer('phone');
+            
+            //address
+            $table->string('government');
+            $table->string('city');
+            $table->string('street');
+  
         });
     }
 
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_materials');
+        Schema::dropIfExists('teachers');
     }
 };

@@ -30,7 +30,7 @@ class StudentResource extends JsonResource
             'subjects' => SubjectResource::collection($this->subjects),
 
             // 'subjectExam' => StudentTakeExamResource::collection($this->subjectExam),
-            // 'subjectAssignment' => StudentUploadAssignmentResource::collection($this->subjectAssignment),
+            'subjectAssignment' => StudentUploadAssignmentResource::collection($this->subjectAssignment),
 
             
             //hasMany(Transaction::class);

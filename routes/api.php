@@ -7,6 +7,9 @@ use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
+use App\Http\Controllers\Api\TeacherController;
+use App\Models\Teacher;
+use App\Models\Assignment;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,4 +66,9 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
 Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
 
+Route::get('teachers',[TeacherController::class,'index']);
+Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
+Route::post('teachers',[TeacherController::class,'store']);
+Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
+Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 

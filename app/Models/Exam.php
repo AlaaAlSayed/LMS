@@ -22,4 +22,6 @@ class Exam extends Model
         return $this->hasMany(StudentTakeExam::class, 'examId');
     }
     
+        
+    
 }
