@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TeacherController;
+use App\Models\Teacher;
+use App\Models\Assignment;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,5 +25,4 @@ Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
 Route::post('teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
-
 

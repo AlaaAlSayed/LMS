@@ -20,9 +20,13 @@ class Teacher extends Model
     ];
 
 
- public function subject()
-     {
-         return $this->hasMany(Subject::class);    
-         }
-}
+    public function assignments()
+    {
+          return $this->belongsToMany('App\Models\Assignment','teacher_attaches_assignments','teacherId','subjectId','assignmentId','id','id','id');
+      }
 
+      public function subjects()
+      {
+        return $this->belongsToMany('App\Models\Subject','teacher_attaches_assignments','teacherId','subjectId','assignmentId','id','id','id');
+    }
+    }

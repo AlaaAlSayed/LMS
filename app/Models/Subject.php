@@ -15,14 +15,15 @@ class Subject extends Model
         'classroomId',
     ];
 
-    public function classroom()
+    public function assignments()
     {
-        return $this->belongsTo(Classroom::class);
-    }
+          return $this->belongsToMany('App\Models\Assignment','teacher_attaches_assignments','teacherId','subjectId','assignmentId','id','id','id');
+      }
 
-    public function subjectMaterials()
-    {
-      return $this->hasMany(SubjectMaterial::class);
-    }
-
+      public function teachers()
+      {
+        
+          
+            return $this->belongsToMany('App\Models\Teacher','teacher_attaches_assignments','teacherId','subjectId','assignmentId','id','id','id');
+        }  
 }

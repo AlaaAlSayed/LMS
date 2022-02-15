@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use App\Models\Assignment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\Subject;
 
 class TeacherController extends Controller
 {
     public function show($teacherId)
-    {
+    { 
         $teacher= Teacher::find($teacherId);
-            // @dd($teacher);
-            return($teacher);
+            @dd( $teacher->subject);
+          //  return($teacher->assignment);
         
       
 
@@ -20,8 +21,8 @@ class TeacherController extends Controller
 
     public function index()
   {
-      $teachers=Teacher::all();
-    //   @dd($teachers);
+      $teachers=Teacher::find(1);
+      @dd(  $teachers -> subject);
     return($teachers);
 
    
@@ -56,7 +57,7 @@ public function update($teacherId){
            'street'=>$data['street'],  
      ]); 
     
-    @dd( $data);
+    // @dd( $data);
      return($teacher);
  
   }

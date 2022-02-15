@@ -3,7 +3,8 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LmsController;
 use App\Models\Classroom;
-
+use App\Models\Teacher;
+use App\Models\Assignment;
 
 
 /*
@@ -21,4 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('teachers/{teacherId}',function($teacherId)
+{$teachers=Teacher::find($teacherId);
+@dd($teachers->assignment);
+}
+);
