@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Models\Teacher;
 use App\Models\Assignment;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
