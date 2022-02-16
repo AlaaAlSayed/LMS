@@ -25,21 +25,10 @@ class Student extends Model
         'street',
      
     ];
+    public function classrooms()
+        {
+          return $this->belongsToMany('App\Models\Classroom','classroom','subjectId','classroomId');//,'teacherId','id','id','id');
+      }
+   
 
-    public function classroom()
-    {
-        // return $this->hasOne(Classroom::class);
-        return $this->belongsTo(Classroom::class);
-
-    }
-/////////////////
-// public function transaction()
-//     {
-//         return $this->hasMany(Transaction::class);
-//     }
-
-// public function Admin()
-//     {
-//         return $this->belongsTo(Admin::class);
-//     }
 }

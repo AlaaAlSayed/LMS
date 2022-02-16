@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('admin_notify_students', function (Blueprint $table) {
           //  adminNotifyStudent	studentID	adminID	message
             $table->id();
+            $table->timestamps();
+
             $table->foreignId('adminID')->nullable()->constraint();
             $table->foreignId('studentId')->nullable()->constraint();
             $table->text('message');

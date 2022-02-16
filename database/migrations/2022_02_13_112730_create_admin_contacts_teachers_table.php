@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {	//adminContactTeacher	teacherId	adminId	message
         Schema::create('admin_contacts_teachers', function (Blueprint $table) {
-            $table->id();
+            $table->id() ;      
+                 $table->timestamps();
+
+
             $table->foreignId('teacherId')->nullable()->constraint();
             $table->foreignId('adminId')->nullable()->constraint();
             $table->text('message');

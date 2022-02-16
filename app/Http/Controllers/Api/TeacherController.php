@@ -6,26 +6,33 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Subject;
+use App\Models\teacher_attaches_assignments;
 
 class TeacherController extends Controller
 {
     public function show($teacherId)
     { 
-        $teacher= Teacher::find($teacherId);
-            @dd( $teacher->subject);
-          //  return($teacher->assignment);
+        $teacher= teacher_attaches_assignments::find($teacherId);
         
+        // @dd(  $teachers);
+       @dd(  $teacher);
+    
+          // $assignment= Assignment::find($teacherId);
+          // @dd( $assignment->assignments);
       
+          // $subject= Subject::find($teacherId);
+          // @dd( $assignment->assignments);
 
     }
 
     public function index()
   {
-      $teachers=Teacher::find(1);
-      @dd(  $teachers -> subject);
-    return($teachers);
+      $teachers=Teacher::all();
+      // @dd(  $teachers);
+     @dd(  $teachers->assignments);
 
-   
+
+  
 }
 
  
