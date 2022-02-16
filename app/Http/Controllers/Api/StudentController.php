@@ -26,7 +26,7 @@ class StudentController extends Controller
     public function home($studentId)
     {
         $student = Student::find($studentId);
-        return  SubjectResource::collection( $student->subjects) ;
+        return   $student->subjects->all();
     }
 
     public function store(StoreStudentRequest $request)

@@ -14,7 +14,7 @@ class TeacherController extends Controller
   {
     $teacher = Teacher::find($teacherId);
     // return($teacher->subjects);
-     return($teacher->assignments);
+     return($teacher);
 
   }
 
