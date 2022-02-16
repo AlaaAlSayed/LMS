@@ -7,7 +7,7 @@ use App\Models\Student;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
-
+use App\Http\Resources\SubjectResource;
 class StudentController extends Controller
 {
     public function index()
@@ -21,6 +21,11 @@ class StudentController extends Controller
     {
         $student = Student::find($studentId);
         return new StudentResource($student);
+    }
+    public function home($studentId)
+    {
+        $student = Student::find($studentId);
+        return  SubjectResource::collection( $student->subjects) ;
     }
 
     public function store(StoreStudentRequest $request)

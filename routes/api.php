@@ -34,6 +34,7 @@ Route::get('/students', [StudentController::class, 'index'])->name('api.students
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
 Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
 Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
+Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 Route::get('/students/{student}', [StudentController::class, 'show'])->name('api.students.show');
 
 // to be re-checked on admin dashboard
