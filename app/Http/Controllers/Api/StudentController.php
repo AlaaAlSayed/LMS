@@ -20,7 +20,8 @@ class StudentController extends Controller
     public function show($studentId)
     {
         $student = Student::find($studentId);
-        return new StudentResource($student);
+        return $student ;
+        // return new StudentResource($student);
     }
     public function home($studentId)
     {
