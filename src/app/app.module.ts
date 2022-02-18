@@ -8,11 +8,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 // import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LayoutComponent,
+    AdminDashboardComponent,
     // FooterComponent,
    
   ],

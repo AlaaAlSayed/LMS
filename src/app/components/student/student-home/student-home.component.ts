@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-home.component.css']
 })
 export class StudentHomeComponent implements OnInit {
- 
    subjects:Subject[]=[];
   constructor(private _subjectService:SubjectService) { }
 
@@ -16,5 +15,5 @@ export class StudentHomeComponent implements OnInit {
     this._subjectService.get().subscribe (
       subject=>this.subjects=subject
     )
-}
+  }
 }

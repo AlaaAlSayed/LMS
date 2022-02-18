@@ -1,8 +1,10 @@
+import { SubjectService } from './subject.service';
 import { Student } from './../../models/student';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
+import {Subject} from '../../models/subject';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +21,5 @@ export class StudentService {
     return this._httpClient.get<Student>(`${environment.APIURL}/api/students/${id}`);
 
    }
+   
 }

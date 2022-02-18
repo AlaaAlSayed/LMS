@@ -1,3 +1,4 @@
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -7,6 +8,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 const routes: Routes = [
   {path: 'admin',
 
+  component:AdminDashboardComponent,
   loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
 },
 {
@@ -15,7 +17,7 @@ const routes: Routes = [
   loadChildren: () => import('./components/student/student.module').then(m => m.StudentModule)
 },
 {
-path: 'teacher', 
+  path: 'teacher', 
  
 loadChildren: () => import('./components/teacher/teacher.module').then(m => m.TeacherModule)
 },
