@@ -3,6 +3,7 @@ export class Student{
     name:string="";
     email:string="";
     phone:string="";
+    level:number=0;
     picture_path:string="";
     classroomId:number=0;
     government:string="";

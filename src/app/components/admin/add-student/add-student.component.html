@@ -1,51 +1,98 @@
 <h1 class="border-bottom mt-5"> Add Student Form: </h1>
+<div [formGroup]="formAdd" >
 <div class="row g-3">
     <div class="col-md-6">
-        <label for="inputID" class="form-label">ID</label>
-        <input type="number" class="form-control" id="inputID">
+        <label  class="form-label">ID</label>
+        <input type="number" class="form-control" >
       </div>
 
     <div class="col-md-6">
-        <label for="inputName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="inputName">
+        <label  class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="studentName" [class.is-invalid]="isInValidAndTouched('studentName')" [class.is-valid]="isValidControl('studentName')" >
+        <div *ngIf="isInValidAndTouched('studentName')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('studentName','required')" >required Name</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentName','minLength')" >min length is 3</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentName','maxLength')" >max length is 30</small>
+        </div>
       </div>
       <div class="col-md-6">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail">
+        <label  class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="studentEmail" [class.is-invalid]="isInValidAndTouched('studentEmail')" [class.is-valid]="isValidControl('studentEmail')" >
+        <div *ngIf="isInValidAndTouched('studentEmail')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('studentEmail','required')" >required Email</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentEmail','minLength')" >min length is 10</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentEmail','maxLength')" >max length is 30</small>
+        </div>
       </div>
     <div class="col-md-6">
-      <label for="inputPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword">
+      <label  class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="studentPassword" [class.is-invalid]="isInValidAndTouched('studentPassword')" [class.is-valid]="isValidControl('studentPassword')">
+      <div *ngIf="isInValidAndTouched('studentPassword')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('studentPassword','required')" >required Password</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','minLength')" >min length is 8</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','maxLength')" >max length is 20</small>
+      </div>
     </div>
     <div class="col-md-6">
-        <label for="inputPhone" class="form-label">Phone</label>
-        <input type="text" class="form-control" id="inputPhone">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" formControlName="studentPhone" [class.is-invalid]="isInValidAndTouched('studentPhone')" [class.is-valid]="isValidControl('studentPhone')">
+        <div *ngIf="isInValidAndTouched('studentPhone')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('studentPhone','required')" >required Phone Number</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentPhone','minLength')" >min length is 11</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('studentPhone','maxLength')" >max length is 11</small>
+        </div>
+      </div>
+     
+      <div class="col-md-6">
+        <label  class="form-label">Level</label>
+        <input type="number" class="form-control" formControlName="studentLevel" [class.is-invalid]="isInValidAndTouched('studentLevel')" [class.is-valid]="isValidControl('studentLevel')"  >
+        <div *ngIf="isInValidAndTouched('studentLevel')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('studentLevel','required')" >required Level</small>
+        </div>
       </div>
       <div class="col-md-6">
-        <label for="inputLevel" class="form-label">Level</label>
-        <input type="number" class="form-control" id="inputLevel">
-      </div>
-      <div class="col-md-6">
-        <label for="inputClass" class="form-label">ClassRoom ID</label>
-        <input type="number" class="form-control" id="inputClass">
+        <label  class="form-label">ClassRoom ID</label>
+        <input type="number" class="form-control" formControlName="studentClass" [class.is-invalid]="isInValidAndTouched('studentClass')" [class.is-valid]="isValidControl('studentClass')"  >
+        <div *ngIf="isInValidAndTouched('studentClass')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('studentClass','required')" >required Class ID</small>
+        </div>
       </div>
     <div class="col-md-6">
-      <label for="inputPicture" class="form-label">Picture</label>
-      <input type="file" class="form-control" id="inputPicture">
+      <label class="form-label">Picture</label>
+      <input type="file" class="form-control" formControlName="studentPicture" [class.is-invalid]="isInValidAndTouched('studentPicture')" [class.is-valid]="isValidControl('studentPicture')"  >
+      <div *ngIf="isInValidAndTouched('studentPicture')" >
+        <small class="form-text text-danger" *ngIf="isControlHasError('studentPicture','required')" >required Picture</small>
+      </div>
     </div>
     <div class="col-md-4">
-      <label for="inputGov" class="form-label">Government</label>
-      <input type="text" class="form-control" id="inputGov" >
+      <label class="form-label">Government</label>
+      <input type="text" class="form-control" formControlName="studentGov" [class.is-invalid]="isInValidAndTouched('studentGov')" [class.is-valid]="isValidControl('studentGov')" >
+      <div *ngIf="isInValidAndTouched('studentGov')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('studentGov','required')" >required Government</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentGov','minLength')" >min length is 4</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentGov','maxLength')" >max length is 10</small>
+      </div>
     </div>
     <div class="col-md-4">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label class="form-label">City</label>
+      <input type="text" class="form-control" formControlName="studentCity" [class.is-invalid]="isInValidAndTouched('studentCity')" [class.is-valid]="isValidControl('studentCity')" >
+      <div *ngIf="isInValidAndTouched('studentCity')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('studentCity','required')" >required Government</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentCity','minLength')" >min length is 4</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentCity','maxLength')" >max length is 10</small>
+      </div>
     </div>
     <div class="col-md-4">
-      <label for="inputStreet" class="form-label">Street</label>
-      <input type="text" class="form-control" id="inputStreet">
+      <label class="form-label">Street</label>
+      <input type="text" class="form-control" formControlName="studentStreet" [class.is-invalid]="isInValidAndTouched('studentStreet')" [class.is-valid]="isValidControl('studentStreet')">
+      <div *ngIf="isInValidAndTouched('studentStreet')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('studentStreet','required')" >required Street</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentStreet','minLength')" >min length is 2</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('studentStreet','maxLength')" >max length is 30</small>
+      </div>
     </div>
     <div class="col-12">
-      <button type="button" class="btn btn-primary">Add Student</button>
+      <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertStudent()">Add Student</button>
     </div>
+</div>
 </div>
