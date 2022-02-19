@@ -23,15 +23,29 @@ class Teacher extends Model
 
     public function assignments()
     {
-        return $this->belongsToMany('App\Models\Assignment', 'teacher_attaches_assignments', 'teacherId', 'assignmentId'); //,'assignmentId','id','id','id');
+        return $this->belongsToMany('App\Models\Assignment','teacher_attaches_assignments','teacherId','assignmentId');//,'subjectId','id','id','id');
     }
 
-    public function subjects()
-    {
-        return $this->belongsToMany('App\Models\Subject', 'teacher_teaches_subjects', 'teacherId', 'subjectId');
+      public function subjects()
+      {
+        return $this->belongsToMany('App\Models\Subject','teacher_attaches_assignments','teacherId','subjectId');//,'assignmentId','id','id','id');
     }
+
+    public function classrooms()
+    {
+      return $this->belongsToMany('App\Models\Classroom','teacher_teaches_subjects','teacherId','classroomId');//,'teacherId','id','id','id');
+  }
+
+      
+
     public function exams()
     {
-        return $this->belongsToMany('App\Models\Exam', 'teacher_makes_exams', 'teacherId', 'examId');
+      return $this->belongsToMany('App\Models\Exam','teacher_makes_exams','teacherId','examId');//,'teacherId','id','id','id');
+  }
+  public function subjectExam()
+  {
+    return $this->belongsToMany('App\Models\Subject','teacher_makes_exams','teacherId','subjectId');//,'assignmentId','id','id','id');
+}
+
     }
 }

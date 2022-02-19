@@ -15,9 +15,11 @@ return new class extends Migration
     {//TeacherMakeExam	teacherId	subjectId	examId	time	date	min_score
         Schema::create('teacher_makes_exams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacherId')->nullable()->constraint();
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->foreignId('examId')->nullable()->constraint();
+            $table->timestamps();
+            $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('examId')->references('id')->on('exams')->onDelete('cascade');
+           
             $table->time('time');
             $table->date('date');
             $table->float('min_score');

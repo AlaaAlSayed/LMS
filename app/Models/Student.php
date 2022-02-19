@@ -21,7 +21,13 @@ class Student extends Model
         'city',
         'street',
     ];
+    public function classrooms()
+        {
+          return $this->belongsToMany('App\Models\Classroom','classroom','subjectId','classroomId');//,'teacherId','id','id','id');
+      }
+   
 
+<<<<<<< HEAD
 
     public function classroom()
     {
@@ -67,4 +73,6 @@ class Student extends Model
 //     {
 //         return $this->belongsTo(Admin::class);
 //     }
+=======
+>>>>>>> 627264b68300cef2c8baea40c4762f024f5c435f
 }

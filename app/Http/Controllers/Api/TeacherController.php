@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Subject;
+use App\Models\teacher_attaches_assignments;
 
 class TeacherController extends Controller
 {

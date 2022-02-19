@@ -8,8 +8,16 @@ use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\TeacherController;
+<<<<<<< HEAD
 use App\Models\Teacher;
 use App\Models\Assignment;
+=======
+use App\Http\Controllers\Api\AssignmentController;
+use App\Http\Controllers\Api\ClassroomController;
+use App\Http\Controllers\Api\ExamController;
+use App\Http\Controllers\Api\UserAvatarController;
+use App\Http\Controllers\Api\FileController;
+>>>>>>> 627264b68300cef2c8baea40c4762f024f5c435f
 
 /*
 |--------------------------------------------------------------------------
@@ -52,21 +60,28 @@ Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->nam
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 
 
-Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
-Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.assignments.store');
-Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
-Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
-Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
-Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
+// Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
+// Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.assignments.store');
+// Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
+// Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
+// Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
+// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
 
 
 
-Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
-Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
-Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('api.exams.update');
-Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
-Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
-Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
+// Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
+// Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
+// Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('api.exams.update');
+// Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
+// Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
+// Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
+
+
+Route::get('assignments/{teacherId}',[AssignmentController::class,'index']);
+Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
+Route::post('assignments/{teacherId}/{deadline}',[AssignmentController::class,'store']);
+Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::class , 'update']);
+Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);
 
 Route::get('teachers',[TeacherController::class,'index']);
 Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
@@ -74,3 +89,17 @@ Route::post('teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
+
+Route::get('classrooms',[ClassroomController::class,'index']);
+Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
+
+
+Route::get('exams/{teacherId}',[ExamController::class,'index']);
+Route::get('exams/{teacherId}/{examId}',[ExamController::class,'show']);
+Route::post('exams/{teacherId}',[ExamController::class,'store']);
+Route::put('exams/{teacherId}/{examId}', [ExamController::class , 'update']);
+Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
+
+
+Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
+Route::post('uploadFiles', [FileController::class , 'store']);

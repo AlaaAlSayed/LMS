@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('level');
+            $table->string('code');
             $table->integer('capacity');
             $table->string('time_table');
         });

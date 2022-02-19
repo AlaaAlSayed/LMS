@@ -15,10 +15,10 @@ return new class extends Migration
     {//TeacherTeachesSubject	teacherId	subjectId	classId
         Schema::create('teacher_teaches_subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacherId')->nullable()->constraint();
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->foreignId('classroomId')->nullable()->constraint();
-
+            $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
+           
         });
     }
 

@@ -13,6 +13,7 @@ class Classroom extends Model
  protected $fillable = [
     'level',
     'capacity',
+    'code',
     'time_table' ,
     
 ];
@@ -22,12 +23,16 @@ public function student()
     return $this->hasMany(Student::class,'classroomId');
 }
 
-public function students()
+// public function students()
+public function teachers()
 {
-    return $this->hasMany(Student::class);
-}
-public function subjects()
-{
-    return $this->hasMany(Subject::class);
+  
+    
+      return $this->belongsToMany('App\Models\Teacher','teacher_teaches_subjects','classroomId','teacherId');//,'subjectId','id','id','id');
+  }      
+
+  public function subjects()
+  {
+    return $this->belongsToMany('App\Models\Subject','teacher_teaches_subjects','classroomId','subjectId');//,'teacherId','id','id','id');
 }
 }
