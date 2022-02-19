@@ -8,16 +8,11 @@ use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\TeacherController;
-<<<<<<< HEAD
 use App\Models\Teacher;
 use App\Models\Assignment;
-=======
-use App\Http\Controllers\Api\AssignmentController;
-use App\Http\Controllers\Api\ClassroomController;
-use App\Http\Controllers\Api\ExamController;
+;
 use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\FileController;
->>>>>>> 627264b68300cef2c8baea40c4762f024f5c435f
 
 /*
 |--------------------------------------------------------------------------
