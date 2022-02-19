@@ -8,7 +8,8 @@ use App\Models\Classroom;
 use App\Http\Resources\ClassroomResource;
 use App\Http\Requests\UpdateClassroomRequest;
 use App\Http\Requests\StoreClassroomRequest;
-
+use App\Models\teacher_teaches_subjects;
+use App\Models\Teacher;
 
 class ClassroomController extends Controller
 {
@@ -69,8 +70,7 @@ class ClassroomController extends Controller
         return($teachers->classrooms);
     }
     
-    // use App\Models\teacher_teaches_subjects;
-// use App\Models\Teacher;
+
 
 // class ClassroomController extends Controller
 // {

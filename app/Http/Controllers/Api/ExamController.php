@@ -10,6 +10,14 @@ use App\Http\Resources\ExamResource;
 use App\Http\Requests\UpdateExamRequest;
 use App\Http\Requests\StoreExamRequest;
 use App\Http\Resources\StudentTakeExamResource;
+use Illuminate\Http\Request;
+use App\Models\Assignment;
+
+use App\Models\Teacher;
+use App\Models\teacher_makes_exams;
+use App\Models\Subject;
+
+
 
 class ExamController extends Controller
 {
