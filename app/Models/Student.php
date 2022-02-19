@@ -22,12 +22,11 @@ class Student extends Model
         'street',
     ];
     public function classrooms()
-        {
-          return $this->belongsToMany('App\Models\Classroom','classroom','subjectId','classroomId');//,'teacherId','id','id','id');
-      }
-   
+    {
+        return $this->belongsToMany('App\Models\Classroom', 'classroom', 'subjectId', 'classroomId'); //,'teacherId','id','id','id');
+    }
 
-<<<<<<< HEAD
+
 
     public function classroom()
     {
@@ -47,15 +46,15 @@ class Student extends Model
     // {
     //     return $this->hasMany(StudentTakeExam::class, 'id');
     // }
-  
+
     // public function subjectAssignment()
     // {
     //     return $this->hasMany(StudentUploadAssignment::class, 'id');//works for data retrieval
     // }
-  
-  
 
-    
+
+
+
     //********************************************************** */
     // public function transaction()
     // {
@@ -63,16 +62,14 @@ class Student extends Model
     // }
 
 
-/////////////////
-// public function transaction()
-//     {
-//         return $this->hasMany(Transaction::class);
-//     }
+    /////////////////
+    // public function transaction()
+    //     {
+    //         return $this->hasMany(Transaction::class);
+    //     }
 
-// public function Admin()
-//     {
-//         return $this->belongsTo(Admin::class);
-//     }
-=======
->>>>>>> 627264b68300cef2c8baea40c4762f024f5c435f
+    // public function Admin()
+    //     {
+    //         return $this->belongsTo(Admin::class);
+    //     }
 }

@@ -75,6 +75,7 @@ Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api
 Route::get('assignments/{teacherId}',[AssignmentController::class,'index']);
 Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
 Route::post('assignments/{teacherId}/{deadline}',[AssignmentController::class,'store']);
+
 Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::class , 'update']);
 Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);
 
@@ -85,7 +86,7 @@ Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 
-Route::get('classrooms',[ClassroomController::class,'index']);
+// Route::get('classrooms',[ClassroomController::class,'index']);
 Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
 
 

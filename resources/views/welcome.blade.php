@@ -140,11 +140,9 @@
     <title>Document</title>
 </head>
 <body>
-    
-<form action="{{url('uploadfile')}}" method="post" enctype="multipart/form-data">
 
-
-<input type="file" name="file">
+<form action="{{url('api/assignments/2/2030-6-20')}}" method="post" enctype="multipart/form-data">
+<input type="file" name="input_image" id="input_image">
 <input type="submit">
 </form>
 </body>

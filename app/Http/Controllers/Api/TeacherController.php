@@ -21,7 +21,7 @@ class TeacherController extends Controller
 
   public function index()
   {
-    $teachers = Teacher::find(1);
+    $teachers = Teacher::all();
     // @dd(  $teachers -> subject);
     return ($teachers);
   }
@@ -43,22 +43,22 @@ class TeacherController extends Controller
     ]);
     return ($teacher);
   }
-  public function update($teacherId)
-  {
-    $data = request()->all();
-    //@dd( $data);
-    $teacher = Teacher::where('id', $teacherId)->update([
-      'name' => $data['name'],
-      'email' => $data['email'],
-      'phone' => $data['phone'],
-      'government' => $data['government'],
-      'city' => $data['city'],
-      'street' => $data['street'],
-    ]);
+  // public function update($teacherId)
+  // {
+  //   $data = request()->all();
+  //   //@dd( $data);
+  //   $teacher = Teacher::where('id', $teacherId)->update([
+  //     'name' => $data['name'],
+  //     'email' => $data['email'],
+  //     'phone' => $data['phone'],
+  //     'government' => $data['government'],
+  //     'city' => $data['city'],
+  //     'street' => $data['street'],
+  //   ]);
 
-    // @dd( $data);
-    return ($teacher);
-  }
+  //   // @dd( $data);
+  //   return ($teacher);
+  // }
 
   public function destroy($teacherId)
   {
@@ -69,13 +69,13 @@ class TeacherController extends Controller
 
 
 
-  //  public function update(Request $request, $teacherId)
-  //  {
-  //     $teacher= Teacher::where('id', '=', $teacherId)->first();
+   public function update(Request $request, $teacherId)
+   {
+      $teacher= Teacher::where('id', '=', $teacherId)->first();
 
-  //    $teacher->update($request->all());
-  //         return($teacher);
+     $teacher->update($request->all());
+          return($teacher);
 
-  //  }
+   }
 
 }
