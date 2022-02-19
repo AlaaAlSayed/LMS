@@ -13,6 +13,7 @@ class SubjectMaterial extends Model
       
        'subjectId',
        'material',
+       'name',
     ];
 
     public function subjects()
