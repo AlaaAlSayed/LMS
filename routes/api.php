@@ -6,8 +6,6 @@ use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ExamController;
-use App\Http\Controllers\Api\UserAvatarController;
-use App\Http\Controllers\Api\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('assignments/{teacherId}',[AssignmentController::class,'index']);
 Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
 Route::post('assignments/{teacherId}/{deadline}',[AssignmentController::class,'store']);
+
 Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::class , 'update']);
 Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);
 
@@ -37,7 +36,7 @@ Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 
-Route::get('classrooms',[ClassroomController::class,'index']);
+// Route::get('classrooms',[ClassroomController::class,'index']);
 Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
 
 
@@ -48,5 +47,3 @@ Route::put('exams/{teacherId}/{examId}', [ExamController::class , 'update']);
 Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
 
 
-Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
-Route::post('uploadFiles', [FileController::class , 'store']);

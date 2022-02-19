@@ -15,7 +15,10 @@ class AssignmentController extends Controller
     public function show($teacherId,$assignmentId)
     { 
         $teacher= Teacher::find($teacherId);
-        return($teacher->assignments[$assignmentId]);
+      @dd($teacher->assignments[$assignmentId]);
+        // return View('assignment', ['assignment_pdf' =>$teacher->assignments[$assignmentId]]);
+
+
       
     }
 
@@ -25,6 +28,7 @@ class AssignmentController extends Controller
       // @dd(  $teachers->assignments);
       // select('first_name','pic')->get();
       return($teachers->assignments);
+      
 }
 
  
@@ -44,16 +48,68 @@ class AssignmentController extends Controller
 // }
 
 
-
-  public function store($teacherId) {
+// public function store(Request $request) {
   
+//   // dd($request->file('image'));
+
+//  $data=request()->all();
+// //    @dd( $data);
+//  $subject= Subject::find($teacherId);
+// //  @dd( $subject->id);
+
+//   $assignment= Assignment::create([
+//     'name'=>$data['name']
+// ]); 
+
+// // @dd( $assignment->id);
+// $teacher_teaches_subjects=teacher_attaches_assignments::create([
+//   'teacherId'=>$teacherId,
+//   'subjectId'=>$subject->id,
+//   'assignmentId'=>$assignment->id,
+//   'deadline'=>$data['deadline']
+// ]); 
+// $teacher_teaches_subjects=teacher_attaches_assignments::all();
+// return ($teacher_teaches_subjects);
+
+
+// }
+
+
+  public function store($teacherId, Request $request) {   
+  
+   //dd($request->file('input_image'));//image name for input
+$request->validate([
+'input_image'=>'image|mimes:jpeg,pmb,png|max:88453'
+]);
+
+if($request->hasFile('input_image'))//if user choose file
+{
+
+  $file=$request->file('input_image');//store  uploaded file to variable $file to 
+      // dd($file);extract its data
+  
+  $extension= $file->getClientOriginalExtension();
+  $filename='image'.'_'.time().'.'.$extension;
+  $file->storeAs('public/assets',$filename);//make folder assets in public/storage/assets and put file
+  
+
+}
+else
+{
+  $filename='/home/fatma/Desktop/LMS/LMS/storage/app/public/assets/image_1645107020.jpeg';
+}
+
+
+
+
+
    $data=request()->all();
 //    @dd( $data);
    $subject= Subject::find($teacherId);
   //  @dd( $subject->id);
-
+  @dd( $data);
     $assignment= Assignment::create([
-      'name'=>$data['name']
+      'name'=>$filename
   ]); 
 
   // @dd( $assignment->id);

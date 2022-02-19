@@ -7,10 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    
+   <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="personal photo">
 
-<form action="{{url('api/assignments/2/2030-6-20')}}" method="post" enctype="multipart/form-data">
-<input type="file" name="input_image" id="input_image">
-<input type="submit">
-</form>
+
 </body>
 </html>
