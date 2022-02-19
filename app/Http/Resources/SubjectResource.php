@@ -18,7 +18,7 @@ class SubjectResource extends JsonResource
             'id' => $this->id,
             'name'=> $this->name,
          
-            //'classroom' => new ClassroomResource($this->classroom),
+            'classroom' => new ClassroomResource($this->classroom),
             'subjectMaterial' => SubjectMaterialResource::collection($this->subjectMaterial),
             // 'assignment' => AssignmentResource::collection($this->assignment),
             // 'exam' => ExamResource::collection($this->exam),
