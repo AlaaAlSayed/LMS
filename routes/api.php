@@ -77,7 +77,7 @@ Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentsh
 Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
 Route::get('assignments/{teacherId}',[AssignmentController::class,'teacherAssignments']);
 Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
-Route::post('assignments/{teacherId}/{deadline}',[AssignmentController::class,'store']);
+Route::post('/assignments/{teacherId}',[AssignmentController::class,'store']);
 
 Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::class , 'update']);
 Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);

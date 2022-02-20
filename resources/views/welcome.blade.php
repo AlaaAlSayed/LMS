@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="{{url('api/assignments/1/2030-6-20')}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/api/assignments/1')}}" method="post" enctype="multipart/form-data">
 <input type="file" name="input_file" id="input_file">
 
 <input type="submit">
