@@ -33,7 +33,7 @@ class Teacher extends Model
 
     public function classrooms()
     {
-        return $this->belongsToMany('App\Models\Classroom', 'teacher_teaches_subjects', 'teacherId', 'classroomId'); //,'teacherId','id','id','id');
+        return $this->belongsToMany('App\Models\Classroom', 'teacher_teaches_subjects', 'classroomId', 'teacherId'); //,'teacherId','id','id','id');
     }
 
 
