@@ -17,7 +17,8 @@ class SubjectMaterialResource extends JsonResource
         return [
             'id' => $this->id,
             'subjectId' => $this->subjectId,
-            'material_path'=> $this->material_path,
+            'name'=>$this->name,
+            'material'=> $this->material,
         ];
     }
 }

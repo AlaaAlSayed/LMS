@@ -10,7 +10,6 @@ use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Models\Teacher;
 use App\Models\Assignment;
-;
 use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\MaterialController;
@@ -29,12 +28,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//admin dashboard :
 Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
 Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
 Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
+
+//
+//student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
+//student dashboard - profile page :
 Route::get('/students/{student}', [StudentController::class, 'show'])->name('api.students.show');
 
 // to be re-checked on admin dashboard
@@ -49,6 +52,7 @@ Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects
 Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
 Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
 Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
+//student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 
 
@@ -97,9 +101,9 @@ Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
 // Route::post('uploadFiles', [FileController::class , 'store']);
 
 
-Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
-Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
-Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
-// Route::put('/materials/{material}/{student}/{subject}', [MaterialController::class, 'upload'])->name('api.materials.upload');
-Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
-Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
+// Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
+// Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
+// Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
+// // Route::put('/materials/{material}/{student}/{subject}', [MaterialController::class, 'upload'])->name('api.materials.upload');
+// Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
+// Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
