@@ -62,7 +62,7 @@ Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])
 Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
 Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
 // show assignment as pdf
-Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
+// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
 Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
 
 

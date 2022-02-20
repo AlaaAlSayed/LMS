@@ -81,8 +81,6 @@ class AssignmentController extends Controller
   // ]); 
   // $teacher_teaches_subjects=teacher_attaches_assignments::all();
   // return ($teacher_teaches_subjects);
-
-
   // }
 
 
