@@ -24,7 +24,8 @@ class AssignmentController extends Controller
   public function studentshow( $assignmentId)
   {
     $assignment = Assignment::find($assignmentId);
-    return  $assignment->name; 
+    // return  $assignment->name; 
+    return View('assignment', ['assignment_pdf' => $assignment->name]);
 
     // return View('assignment', ['assignment_pdf' => $assignment->name]); 
   }
