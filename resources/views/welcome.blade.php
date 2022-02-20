@@ -8,9 +8,11 @@
 </head>
 <body>
 
-<form action="{{url('api/assignments/2/2030-6-20')}}" method="post" enctype="multipart/form-data">
+<form action="{{url('api/assignments/1/2030-6-20')}}" method="post" enctype="multipart/form-data">
 <input type="file" name="input_image" id="input_image">
+
 <input type="submit">
+<a href="{{url('api/download/5')}}" >Download</a>
 </form>
 </body>
 </html>

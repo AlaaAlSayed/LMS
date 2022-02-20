@@ -9,7 +9,7 @@
 <body>
     
    <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="personal photo">
-
+<a href="{{route('files/download/1')}}" >Download</a>
 
 </body>
 </html>

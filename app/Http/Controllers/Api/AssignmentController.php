@@ -8,6 +8,8 @@ use App\Models\Assignment;
 use App\Models\Teacher;
 use App\Models\teacher_attaches_assignments;
 use App\Models\Subject;
+use Illuminate\Support\Facades\Storage;
+use Spatie\FlareClient\Http\Response;
 
 
 class AssignmentController extends Controller
@@ -15,12 +17,20 @@ class AssignmentController extends Controller
     public function show($teacherId,$assignmentId)
     { 
         $teacher= Teacher::find($teacherId);
-      @dd($teacher->assignments[$assignmentId]);
-        // return View('assignment', ['assignment_pdf' =>$teacher->assignments[$assignmentId]]);
+@dd($teacher->assignments);
+        return View('assignment', ['assignment_pdf' =>$teacher->assignments[$assignmentId]->name]);
 
 
       
     }
+
+    public function download($assignmentId)
+    { 
+        
+     $image = Assignment::find($assignmentId);
+    //  @dd($image->name);
+  return response()->download('storage/assets/'.$image->name);
+ }
 
     public function index($teacherId)
   {
@@ -104,10 +114,10 @@ else
 
 
    $data=request()->all();
-//    @dd( $data);
+   // @dd( $teacherId);
    $subject= Subject::find($teacherId);
-  //  @dd( $subject->id);
-  @dd( $data);
+  // @dd( $subject->id);
+  //@dd( $data);
     $assignment= Assignment::create([
       'name'=>$filename
   ]); 
