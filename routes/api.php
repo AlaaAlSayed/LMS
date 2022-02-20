@@ -80,6 +80,8 @@ Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::cla
 Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);
 
 Route::get('teachers',[TeacherController::class,'index']);
+
+//teacher dashboard  - profile page :
 Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
 Route::post('teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
@@ -87,6 +89,7 @@ Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 
 // Route::get('classrooms',[ClassroomController::class,'index']);
+//teacher dashboard  - home page :
 Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
 
 
