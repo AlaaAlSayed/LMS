@@ -46,7 +46,7 @@ class Subject extends Model
     }
     public function assignments()
     {
-        return $this->belongsToMany('App\Models\Assignment', 'teacher_attaches_assignments', 'subjectId', 'assignmentId');//'assignmentId', 'id', 'id', 'id');
+        return $this->belongsToMany('App\Models\Assignment', 'teacher_attaches_assignments', 'subjectId', 'assignmentId'); //'assignmentId', 'id', 'id', 'id');
     }
 
     public function teachers()
@@ -68,10 +68,10 @@ class Subject extends Model
     //       return $this->belongsToMany('App\Models\Classroom','teacher_teaches_subjects','subjectId','classroomId');//,'teacherId','id','id','id');
     //   }
 
-    //   public function exams()
-    //   {
-    //     return $this->belongsToMany('App\Models\Exam','teacher_makes_exams','subjectId','examtId');//,'teacherId','id','id','id');
-    // }
+    public function exams()
+    {
+        return $this->belongsToMany('App\Models\Exam', 'teacher_makes_exams', 'subjectId', 'examId'); //,'teacherId','id','id','id');
+    }
 
     // public function teacherExam()
     // {
