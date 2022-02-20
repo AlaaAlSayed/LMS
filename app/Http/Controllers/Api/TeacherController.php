@@ -20,7 +20,7 @@ class TeacherController extends Controller
   public function home($teacherId)
   {
       $teacher = Teacher::find($teacherId);
-      return   $teacher->classroom->all();
+      return   $teacher->classrooms->all();
   }
 
   public function index()
