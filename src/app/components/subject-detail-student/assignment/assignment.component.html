@@ -1,0 +1,54 @@
+
+
+
+
+
+
+<div class="row d-flex justify-content-center  mb-2">
+    <div class="col-12 text-center  rounded  text-dark">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="height: 300px;">
+            <img src="./assets/photos/backgroundschool.jpg" alt="pic2" style="  width: 100%;
+            height: auto;">
+            <div class="carousel-caption d-none d-md-block text-dark">
+              <h1>Assignments</h1>
+              <p>{{_subject.name}}</p>
+              <p>teacher</p>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="row d-flex justify-content-center m-3">
+    <div class="col-8  ">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name </th>
+        <th scope="col">Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mat of _assignment;let currentIndex=index;">
+            <th scope="row"> {{mat.id}}</th>
+            <td>
+                <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.answer}}</a> 
+            </td>
+            <td>
+                <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.answer}}</a> 
+            </td>
+    </tr>
+     
+    </tbody>
+  </table>
+  
+    </div>
+</div>
