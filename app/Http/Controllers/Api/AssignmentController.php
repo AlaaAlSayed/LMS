@@ -8,19 +8,31 @@ use App\Models\Assignment;
 use App\Models\Teacher;
 use App\Models\teacher_attaches_assignments;
 use App\Models\Subject;
+use Illuminate\Support\Facades\Storage;
+use Spatie\FlareClient\Http\Response;
 
 
 class AssignmentController extends Controller
 {
-  public function show($teacherId, $assignmentId)
-  {
-    $teacher = Teacher::find($teacherId);
-    // @dd($teacher->assignments->find($assignmentId)->name);
-    return View('assignment', ['assignment_pdf' =>$teacher->assignments->find($assignmentId)->name]);
+    public function show($teacherId,$assignmentId)
+    { 
+        $teacher= Teacher::find($teacherId);
+@dd($teacher->assignments);
+        return View('assignment', ['assignment_pdf' =>$teacher->assignments->find($assignmentId)->name]);
+
 
   }
 
-  public function index($teacherId)
+
+    public function download($assignmentId)
+    { 
+        
+     $image = Assignment::find($assignmentId);
+    //  @dd($image->name);
+  return response()->download('storage/assets/'.$image->name);
+ }
+
+    public function index($teacherId)
   {
     $teachers = Teacher::find($teacherId);
     // @dd(  $teachers->assignments);
@@ -94,6 +106,14 @@ class AssignmentController extends Controller
       $extension = $file->getClientOriginalExtension();
       $filename = 'image' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+   $data=request()->all();
+   // @dd( $teacherId);
+   $subject= Subject::find($teacherId);
+  // @dd( $subject->id);
+  //@dd( $data);
+    $assignment= Assignment::create([
+      'name'=>$filename
+  ]); 
 
 
     } else {

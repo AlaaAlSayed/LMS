@@ -67,6 +67,7 @@ Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->
 // Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
 
 
+Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
 Route::get('assignments/{teacherId}',[AssignmentController::class,'index']);
 Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
 Route::post('assignments/{teacherId}/{deadline}',[AssignmentController::class,'store']);
