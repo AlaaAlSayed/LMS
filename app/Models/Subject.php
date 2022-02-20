@@ -46,7 +46,7 @@ class Subject extends Model
     }
     public function assignments()
     {
-        return $this->belongsToMany('App\Models\Assignment', 'teacher_attaches_assignments', 'subjectId', 'teacherId');//'assignmentId', 'id', 'id', 'id');
+        return $this->belongsToMany('App\Models\Assignment', 'teacher_attaches_assignments', 'assignmentId', 'subjectId');//'assignmentId', 'id', 'id', 'id');
     }
 
     public function teachers()
