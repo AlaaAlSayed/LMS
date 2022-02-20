@@ -18,6 +18,7 @@ class AssignmentController extends Controller
   {
     $teacher = Teacher::find($teacherId);
     // @dd($teacher->assignments);
+    // return View('assignment'); 
     return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
   }
 
@@ -25,7 +26,9 @@ class AssignmentController extends Controller
   {
     $assignment = Assignment::find($assignmentId);
     // return  $assignment->name; 
-    return View('assignment', ['assignment_pdf' => $assignment->name]);
+  
+
+    return asset('storage/assets/'. $assignment->name);
 
     // return View('assignment', ['assignment_pdf' => $assignment->name]); 
   }
