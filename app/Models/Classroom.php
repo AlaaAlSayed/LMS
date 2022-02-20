@@ -24,10 +24,10 @@ class Classroom extends Model
     }
 
     // public function students()
-    public function teachers()
-    {
-        return $this->belongsToMany('App\Models\Teacher', 'teacher_teaches_subjects', 'classroomId', 'teacherId'); //,'subjectId','id','id','id');
-    }
+    // public function teachers()
+    // {
+    //     return $this->belongsToMany('App\Models\Teacher', 'teacher_teaches_subjects', 'classroomId', 'teacherId'); //,'subjectId','id','id','id');
+    // }
 
     public function subjects()
     {
