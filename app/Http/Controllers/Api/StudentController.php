@@ -31,18 +31,39 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
-        $data = $request->all();
+      
 
-        $student = Student::create([
+    $request->validate([
+        'picture_path' => 'image|mimes:jpeg,pmb,png|max:88453'
+      ]);
+  
+  
+      if ($request->hasFile('picture_path')) //if user choose file
+      {
+  
+        $file = $request->file('picture_path'); //store  uploaded file to variable $file to 
+  
+        $extension = $file->getClientOriginalExtension();
+        $filename = 'image' . '_' . time() . '.' . $extension;
+        $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+     
+      
+      } else {
+  
+        $filename = 'storage/app/public/assets/image_1645107020.jpeg';
+      }
+  
+      $data = request()->all();
+  
+      Student::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' => $data['picture_path'],
+            'picture_path' => $filename ,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
-
         ]);
 
         // return new StudentResource($student);

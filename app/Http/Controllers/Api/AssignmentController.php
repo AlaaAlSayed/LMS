@@ -10,35 +10,39 @@ use App\Models\teacher_attaches_assignments;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Storage;
 use Spatie\FlareClient\Http\Response;
-
+use App\Http\Resources\AssignmentResource;
 
 class AssignmentController extends Controller
 {
-    public function show($teacherId,$assignmentId)
-    { 
-        $teacher= Teacher::find($teacherId);
-@dd($teacher->assignments);
-        return View('assignment', ['assignment_pdf' =>$teacher->assignments->find($assignmentId)->name]);
-
-
+  public function show($teacherId, $assignmentId)
+  {
+    $teacher = Teacher::find($teacherId);
+    @dd($teacher->assignments);
+    return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
   }
 
 
-    public function download($assignmentId)
-    { 
-        
-     $image = Assignment::find($assignmentId);
-    //  @dd($image->name);
-  return response()->download('storage/assets/'.$image->name);
- }
+  public function download($assignmentId)
+  {
 
-    public function index($teacherId)
+    $image = Assignment::find($assignmentId);
+    //  @dd($image->name);
+    return response()->download('storage/assets/' . $image->name);
+  }
+
+  public function teacherAssignments($teacherId)
   {
     $teachers = Teacher::find($teacherId);
     // @dd(  $teachers->assignments);
     // select('first_name','pic')->get();
     return ($teachers->assignments);
   }
+
+  public function index()
+    {
+        $allAssignments= Assignment::all();
+        return  AssignmentResource::collection($allAssignments);
+    }
 
   //     public function index($teacherId)
   //   {
@@ -84,7 +88,7 @@ class AssignmentController extends Controller
     // ]);
 
     $request->validate([
-      "input_image" =>'required|mimes:pdf,docs,xlsx|max:10000'
+      "input_image" => 'required|mimes:pdf,docs,xlsx|max:10000'
     ]);
 
 
@@ -97,20 +101,18 @@ class AssignmentController extends Controller
       $extension = $file->getClientOriginalExtension();
       $filename = 'image' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-   $data=request()->all();
-   // @dd( $teacherId);
-   $subject= Subject::find($teacherId);
-  // @dd( $subject->id);
-  //@dd( $data);
-    $assignment= Assignment::create([
-      'name'=>$filename
-  ]); 
-
-
+      $data = request()->all();
+      // @dd( $teacherId);
+      $subject = Subject::find($teacherId);
+      // @dd( $subject->id);
+      //@dd( $data);
+      $assignment = Assignment::create([
+        'name' => $filename
+      ]);
     } else {
-     
+
       $filename = 'storage/app/public/assets/image_1645107020.jpeg';
-      dd( $filename );
+      dd($filename);
     }
 
     $data = request()->all();
@@ -127,7 +129,7 @@ class AssignmentController extends Controller
       'teacherId' => $teacherId,
       'subjectId' => $subject->id,
       'assignmentId' => $assignment->id,
-      'deadline' => '2020-02-02'//$data['deadline']
+      'deadline' => '2020-02-02' //$data['deadline']
     ]);
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);

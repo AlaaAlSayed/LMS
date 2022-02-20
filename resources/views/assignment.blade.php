@@ -10,7 +10,7 @@
     
 
    <embed src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="assignment pdf">
-    
+   <!-- //php artisan storage:link -->
    <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="personal photo">
 <a href="{{route('files/download/1')}}" >Download</a>
 
