@@ -17,10 +17,17 @@ class AssignmentController extends Controller
   public function show($teacherId, $assignmentId)
   {
     $teacher = Teacher::find($teacherId);
-    @dd($teacher->assignments);
+    // @dd($teacher->assignments);
     return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
   }
 
+  public function studentshow( $assignmentId)
+  {
+    $assignment = Assignment::find($assignmentId);
+    return  $assignment->name; 
+
+    // return View('assignment', ['assignment_pdf' => $assignment->name]); 
+  }
 
   public function download($assignmentId)
   {
@@ -88,18 +95,18 @@ class AssignmentController extends Controller
     // ]);
 
     $request->validate([
-      "input_image" => 'required|mimes:pdf,docs,xlsx|max:10000'
+      "input_file" => 'required|mimes:pdf,docs,xlsx|max:10000'
     ]);
 
 
-    if ($request->hasFile('input_image')) //if user choose file
+    if ($request->hasFile('input_file')) //if user choose file
     {
 
-      $file = $request->file('input_image'); //store  uploaded file to variable $file to 
+      $file = $request->file('input_file'); //store  uploaded file to variable $file to 
       // dd($file);extract its data
 
       $extension = $file->getClientOriginalExtension();
-      $filename = 'image' . '_' . time() . '.' . $extension;
+      $filename = 'file' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
       $data = request()->all();
       // @dd( $teacherId);

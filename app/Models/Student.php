@@ -37,6 +37,7 @@ class Student extends Model
     {
         return $this->hasMany(Subject::class, 'classroomId');
     }
+    
     // public function messages()
     // {
     //     return $this->hasMany(AdminNotifyStudent::class, 'studentId');

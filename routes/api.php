@@ -61,7 +61,10 @@ Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.a
 Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
 Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
 Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
+// show assignment as pdf
 Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
+Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+
 
 // Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
 // Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
