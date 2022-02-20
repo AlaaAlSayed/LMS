@@ -37,6 +37,10 @@ class Teacher extends Model
     }
 
 
+    public function classroom()
+    {
+        return $this->hasMany(teacher_teaches_subjects::class, 'classroomId');
+    }
 
     public function exams()
     {

@@ -17,6 +17,11 @@ class TeacherController extends Controller
      return($teacher);
 
   }
+  public function home($teacherId)
+  {
+      $teacher = Teacher::find($teacherId);
+      return   $teacher->classroom->all();
+  }
 
   public function index()
   {

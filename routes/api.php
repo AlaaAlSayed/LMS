@@ -93,6 +93,7 @@ Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 // Route::get('classrooms',[ClassroomController::class,'index']);
 //teacher dashboard  - home page :
+Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
 
 
