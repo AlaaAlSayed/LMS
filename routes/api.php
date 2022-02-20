@@ -29,9 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/alaa', function () {
-    return ('welcome to api Alaa');
-});
 
 Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
@@ -55,14 +52,12 @@ Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->nam
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 
 
-// Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
-// Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.assignments.store');
-// Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
-// Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
-// Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
-// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
-
-
+Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
+Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.assignments.store');
+Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
+Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
+Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
+Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
 
 // Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
 // Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
@@ -97,8 +92,8 @@ Route::put('exams/{teacherId}/{examId}', [ExamController::class , 'update']);
 Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
 
 
-Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
-Route::post('uploadFiles', [FileController::class , 'store']);
+// Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
+// Route::post('uploadFiles', [FileController::class , 'store']);
 
 
 Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');

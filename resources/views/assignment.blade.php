@@ -8,8 +8,8 @@
 </head>
 <body>
     
-   <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="personal photo">
-
-
+   <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="assignment pdf">
+   <embed src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="assignment pdf">
+    
 </body>
 </html>

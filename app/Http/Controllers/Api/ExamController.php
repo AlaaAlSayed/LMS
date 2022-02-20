@@ -106,10 +106,8 @@ class ExamController extends Controller
         // @dd($data['min_score']);
         // @dd( $assignment->id);
        
-         
-         
         // @dd( $assignment->id);
-        teacher_makes_exams::where('teacherId', $teacherId)->update([
+        teacher_makes_exams::where('teacherId', $teacherId)->create([
         'teacherId'=>$teacherId,
         'subjectId'=>$subject->id,
         'examId'=>$exam->id,
@@ -121,6 +119,7 @@ class ExamController extends Controller
         $teacher_makes_exams=teacher_makes_exams::all();
         return ($teacher_makes_exams);
     }
+    
     public function update($teacherId, $examId)
     {
         $data=request()->all();
