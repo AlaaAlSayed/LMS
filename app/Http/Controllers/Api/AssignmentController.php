@@ -40,15 +40,6 @@ class AssignmentController extends Controller
     return ($teachers->assignments);
   }
 
-
-
-
-
-
-
-
-
-
   //     public function index($teacherId)
   //   {
   //       $teachers=teacher_attaches_assignments::where('teacherId',$teacherId)->get();
