@@ -8,13 +8,18 @@ use App\Models\SubjectMaterial;
 
 class MaterialController extends Controller
 {
-    public function index()
+    public function index($subjectId)
     {
         $allMaterials =  SubjectMaterial::all();
         return  $allMaterials->all();
     }
 
-
+    public function subjectMaterials($subjectId)
+    {
+        $allMaterials = SubjectMaterial::find($subjectId)->all();
+        return  $allMaterials->all();
+    }
+    
     public function show($materialId)
     {
         $material = SubjectMaterial::find($materialId);
@@ -25,11 +30,13 @@ class MaterialController extends Controller
     {
         $data = request()->all();
 
-        $material = SubjectMaterial::create([
+        SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
             'material' => $data['material'],
             'name'=> $data['name'],
         ]);
+        $allMaterials = SubjectMaterial::all();
+        return $allMaterials->all();
      
     }
 
@@ -38,7 +45,7 @@ class MaterialController extends Controller
 
         $data = request()->all();
 
-        $material = SubjectMaterial::where('id', $materialId)->update([
+        SubjectMaterial::where('id', $materialId)->update([
             'subjectId' => $data['subjectId'],
             'material' => $data['material'],
             'name'=> $data['name'],
@@ -51,7 +58,7 @@ class MaterialController extends Controller
     public function destroy($materialId)
     {
         SubjectMaterial::where('id', $materialId)->delete();
-        // $allSubjectMaterials = SubjectMaterial::all();
-        // return  SubjectMaterialResource::collection($allMaterials);
+        $allMaterials = SubjectMaterial::all();
+        return  $allMaterials->all();
     }
 }

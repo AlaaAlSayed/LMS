@@ -107,10 +107,10 @@ Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
 // Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
 // Route::post('uploadFiles', [FileController::class , 'store']);
 
-
-// Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
-// Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
-// Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
-// // Route::put('/materials/{material}/{student}/{subject}', [MaterialController::class, 'upload'])->name('api.materials.upload');
-// Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
-// Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
+//teacher dashboard  - materials CRUD operations  :
+Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
+Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
+Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
+Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
+Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
+Route::get('/subject/{subject}/materials', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
