@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Models\SubjectMaterial;
-
+use App\Models\teacher_teaches_subjects;
 class MaterialController extends Controller
 {
-    public function index($subjectId)
+    public function index()
     {
         $allMaterials =  SubjectMaterial::all();
         return  $allMaterials->all();
@@ -17,6 +18,15 @@ class MaterialController extends Controller
     public function subjectMaterials($subjectId)
     {
         $allMaterials = SubjectMaterial::find($subjectId)->all();
+        return  $allMaterials->all();
+    }
+
+    public function classroomMaterials($classroomId,$teacherId)
+    {
+        $subjectId= teacher_teaches_subjects::
+        where([['teacherId','=',$teacherId ],['classroomId','=',$classroomId]])->get('subjectId');
+        
+        $allMaterials = SubjectMaterial::find($subjectId)->first();
         return  $allMaterials->all();
     }
 
