@@ -1,6 +1,7 @@
 import { Subject } from './../../../../models/subject';
 import { SubjectService } from '../../../services/subject.service';
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student-home',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentHomeComponent implements OnInit {
    subjects:Subject[]=[];
-  constructor(private _subjectService:SubjectService) { }
+  constructor(private _subjectService:SubjectService, private _studentService:StudentService) { }
 
   ngOnInit(): void {
     this._subjectService.get().subscribe (
