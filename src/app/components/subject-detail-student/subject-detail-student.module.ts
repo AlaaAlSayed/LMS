@@ -1,3 +1,4 @@
+// import { StudentModule } from './../student/student.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes} from '@angular/router';
@@ -9,6 +10,8 @@ import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
 import { ShowassignmentComponent } from './showassignment/showassignment.component';
+import { SharedModule } from '../shared/shared.module';
+
 enableProdMode();
 
 const routes: Routes = [
@@ -35,7 +38,7 @@ const routes: Routes = [
   ],
   imports: [
     
-    CommonModule,RouterModule.forChild(routes),HttpClientModule
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule
     
   ]
 })

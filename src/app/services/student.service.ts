@@ -25,10 +25,10 @@ export class StudentService {
   {
     return this._httpClient.get(`${environment.APIURL}/api/students`);
    }
-   getStudentByID(id: number)
+   getStudentByID(id: number):Observable<Student>
   //  Observable<Student>
    {
-    return this._httpClient.get(`${environment.APIURL}/api/students/${id}`);
+    return this._httpClient.get<Student>(`${environment.APIURL}/api/students/${id}`);
 
    }
    post(data:Student){
