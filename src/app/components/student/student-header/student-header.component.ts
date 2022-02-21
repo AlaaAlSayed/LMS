@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./student-header.component.css']
 })
 export class StudentHeaderComponent implements OnInit {
-  student:Student= new Student();
+  student:any= new Student();
   constructor(private _studentService:StudentService,private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {

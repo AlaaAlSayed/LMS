@@ -1,4 +1,5 @@
 <h1 class="border-bottom mt-5"> Add Student Form: </h1>
+<!-- <form (ngSubmit)="insertStudent()"> -->
 <div [formGroup]="formAdd" >
 <div class="row g-3">
     <div class="col-md-6">
@@ -24,7 +25,7 @@
         <small class="form-text text-danger"*ngIf="isControlHasError('studentEmail','maxLength')" >max length is 30</small>
         </div>
       </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <label  class="form-label">Password</label>
       <input type="password" class="form-control" formControlName="studentPassword" [class.is-invalid]="isInValidAndTouched('studentPassword')" [class.is-valid]="isValidControl('studentPassword')">
       <div *ngIf="isInValidAndTouched('studentPassword')">
@@ -32,7 +33,7 @@
       <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','minLength')" >min length is 8</small>
       <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','maxLength')" >max length is 20</small>
       </div>
-    </div>
+    </div> -->
     <div class="col-md-6">
         <label class="form-label">Phone</label>
         <input type="text" class="form-control" formControlName="studentPhone" [class.is-invalid]="isInValidAndTouched('studentPhone')" [class.is-valid]="isValidControl('studentPhone')">
@@ -43,20 +44,20 @@
         </div>
       </div>
      
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <label  class="form-label">Level</label>
         <input type="number" class="form-control" formControlName="studentLevel" [class.is-invalid]="isInValidAndTouched('studentLevel')" [class.is-valid]="isValidControl('studentLevel')"  >
         <div *ngIf="isInValidAndTouched('studentLevel')">
           <small class="form-text text-danger" *ngIf="isControlHasError('studentLevel','required')" >required Level</small>
         </div>
-      </div>
+      </div> -->
       <div class="col-md-6">
         <label  class="form-label">ClassRoom ID</label>
         <input type="number" class="form-control" formControlName="studentClass" [class.is-invalid]="isInValidAndTouched('studentClass')" [class.is-valid]="isValidControl('studentClass')"  >
         <div *ngIf="isInValidAndTouched('studentClass')">
           <small class="form-text text-danger" *ngIf="isControlHasError('studentClass','required')" >required Class ID</small>
         </div>
-      </div>
+      </div> 
     <div class="col-md-6">
       <label class="form-label">Picture</label>
       <input type="file" class="form-control" formControlName="studentPicture" [class.is-invalid]="isInValidAndTouched('studentPicture')" [class.is-valid]="isValidControl('studentPicture')"  >
@@ -92,7 +93,8 @@
       </div>
     </div>
     <div class="col-12">
-      <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertStudent()">Add Student</button>
+      <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertStudent()" >Add Student</button>
     </div>
 </div>
 </div>
+<!-- </form> -->

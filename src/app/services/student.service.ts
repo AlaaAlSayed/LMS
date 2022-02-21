@@ -10,24 +10,28 @@ import {Subject} from '../../models/subject';
   providedIn: 'root'
 })
 export class StudentService {
-httpOption;
+
+// httpOption;
   constructor(private _httpClient:HttpClient) {
-    this.httpOption = {
-      headers: new HttpHeaders({
-        'Accept': 'application/json'
-      })
-    };
+    // this.httpOption = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //     // 'Content-Type': 'multipart/form-data'
+    //   })
+    // };
    }
-  get(): Observable<Student[]>
+  get()
+  // Observable<Student[]>
   {
-    return this._httpClient.get<Student[]>(`${environment.APIURL}/api/students`);
+    return this._httpClient.get(`${environment.APIURL}/api/students`);
    }
-   getStudentByID(id: number): Observable<Student>
+   getStudentByID(id: number)
+  //  Observable<Student>
    {
-    return this._httpClient.get<Student>(`${environment.APIURL}/api/students/${id}`);
+    return this._httpClient.get(`${environment.APIURL}/api/students/${id}`);
 
    }
-   post(data:Student):Observable<Student>{
-    return this._httpClient.post<Student>(`${environment.APIURL}/api/students`, data, this.httpOption);
+   post(data:Student){
+    return this._httpClient.post(`${environment.APIURL}/api/students`, data);
    }
 }

@@ -9,8 +9,8 @@ import { Student } from 'src/models/student';
   styleUrls: ['./add-student.component.css']
 })
 export class AddStudentComponent implements OnInit {
-  // student:Student= new Student();
-  student: Student = {} as Student;
+  // student: Student = {} as Student;
+  student=new Student();
     formAdd = new FormGroup({}) 
   constructor(private _formBuilder:FormBuilder, private _studentService:StudentService) { }
 //private _formBuilder:FormBuilder
@@ -18,9 +18,9 @@ export class AddStudentComponent implements OnInit {
     this.formAdd = this._formBuilder.group({
       studentName:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
       studentEmail:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10)]],
-      studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
+      // studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
       studentPhone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
-      studentLevel:['',[Validators.required]],
+      // studentLevel:['',[Validators.required]],
       studentClass:['',[Validators.required]],
       studentPicture:['',[Validators.required]],
       studentGov:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
@@ -48,6 +48,7 @@ export class AddStudentComponent implements OnInit {
 this._studentService.post(this.student).subscribe(response=>{
   console.log(response);
 })
+// console.log('hello');
  }
 
 }

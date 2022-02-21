@@ -6,6 +6,7 @@ import { StudentHomeComponent } from './student-home/student-home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path:'header',component:StudentHeaderComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
     StudentProfileComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),SharedModule
+    CommonModule,RouterModule.forChild(routes),SharedModule,ReactiveFormsModule,FormsModule
   ]
 })
 export class StudentModule { }
