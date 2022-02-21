@@ -16,6 +16,10 @@ const routes: Routes = [
     path:'subject/:student_id/:id',
     loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
     
+  },  {
+    path:'subject/:student_id/:id/assignment',
+    loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
+    
   },{path:'teacher/:id',
     loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
  

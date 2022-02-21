@@ -30,7 +30,7 @@ this._subjectservice.getById(id)
   (response:any)=>{
     this._subject=response.data;
     console.log(response.data);
-    console.log(this._subject.studentAssignment);
+    //console.log(this._subject.studentAssignment);
 
   },
   (error:any)=>{alert("error");}

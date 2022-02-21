@@ -25,8 +25,8 @@ export class MatrialComponent implements OnInit {
       .subscribe(
         (response:any)=>{
           this._subject=response.data;
-          console.log(response.data);
-          console.log(this._subject.studentAssignment);
+          //console.log(response.data);
+          console.log(this._subject.subjectMaterial);
       this._matrial=this._subject.subjectMaterial;
         },
         (error:any)=>{alert("error");}

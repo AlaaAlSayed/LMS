@@ -33,17 +33,19 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">name </th>
-        <th scope="col">Answer</th>
+        <th scope="col">show</th>
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mat of _assignment;let currentIndex=index;">
-            <th scope="row"> {{mat.id}}</th>
+        <tr *ngFor="let mat of _classassignment;let currentIndex=index;">
+            <th scope="row"> {{currentIndex+1}}</th>
             <td>
-                <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.answer}}</a> 
+                <p>{{mat.name}}</p> 
             </td>
             <td>
-                <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.answer}}</a> 
+                <a [routerLink]="['show',mat.id]" class="text-dark" style="text-decoration: none;">
+                    <button class="btn btn-info">view</button>
+                </a> 
             </td>
     </tr>
      

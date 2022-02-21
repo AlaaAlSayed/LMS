@@ -27,14 +27,19 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">file</th>
+            <th scope="col">name</th>
+
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let mat of _matrial;let currentIndex=index;">
                 <th scope="row"> {{mat.id}}</th>
                 <td>
-                   <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.material_path}}</a> 
+                   <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.material}}</a> 
                 </td>
+                <td>
+                    <p>{{mat.name}}</p> 
+                 </td>
         </tr>
          
         </tbody>

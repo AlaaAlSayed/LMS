@@ -1,10 +1,11 @@
 import { assignment } from './../../../models/assignment';
-import { Component, OnInit } from '@angular/core';
+import { Component, enableProdMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { subject } from 'src/app/models/subject';
 import { subjectservice } from 'src/app/services/subject.service';
 import { AttachedAssignment } from 'src/app/models/AttachedAssignment';
 
+enableProdMode();
 @Component({
   selector: 'app-assignment',
   templateUrl: './assignment.component.html',
@@ -28,7 +29,7 @@ export class AssignmentComponent implements OnInit {
           this._subject=response.data;
           console.log(response.data);
         
-      this._assignment=this._subject.studentAssignment;
+      this._classassignment=this._subject.assignments;
     
         },
         (error:any)=>{alert("error");}
@@ -38,6 +39,7 @@ export class AssignmentComponent implements OnInit {
 
     
   }
+
   
 
 }
