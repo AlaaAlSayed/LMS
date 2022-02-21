@@ -13,7 +13,7 @@ class StudentController extends Controller
     public function index()
     {
         $allStudents = Student::all();
-        return  StudentResource::collection($allStudents);
+        return  $allStudents->all();
     }
 
 
@@ -33,25 +33,25 @@ class StudentController extends Controller
     {
       
 
-    $request->validate([
-        'picture_path' => 'image|mimes:jpeg,pmb,png|max:88453'
-      ]);
+    // $request->validate([
+    //     'picture_path' => 'image|mimes:jpeg,pmb,png|max:88453'
+    //   ]);
   
   
-      if ($request->hasFile('picture_path')) //if user choose file
-      {
+    //   if ($request->hasFile('picture_path')) //if user choose file
+    //   {
   
-        $file = $request->file('picture_path'); //store  uploaded file to variable $file to 
+    //     $file = $request->file('picture_path'); //store  uploaded file to variable $file to 
   
-        $extension = $file->getClientOriginalExtension();
-        $filename = 'image' . '_' . time() . '.' . $extension;
-        $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+    //     $extension = $file->getClientOriginalExtension();
+    //     $filename = 'image' . '_' . time() . '.' . $extension;
+    //     $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
      
       
-      } else {
+    //   } else {
   
-        $filename = 'storage/app/public/assets/image_1645107020.jpeg';
-      }
+    //     $filename = 'storage/app/public/assets/image_1645107020.jpeg';
+    //   }
   
       $data = request()->all();
   
@@ -59,7 +59,7 @@ class StudentController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' => $filename ,
+            'picture_path' =>$data['picture_path'] ,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
