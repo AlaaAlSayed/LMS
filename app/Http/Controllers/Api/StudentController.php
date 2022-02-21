@@ -59,7 +59,7 @@ class StudentController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' =>$data['picture_path'] ,
+            'picture_path' =>'dkjdksjk' ,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
