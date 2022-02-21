@@ -22,7 +22,6 @@ export class StudentProfileComponent implements OnInit {
         },
       )
     }
-
     )
   }
 

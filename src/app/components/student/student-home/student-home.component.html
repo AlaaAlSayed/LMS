@@ -6,7 +6,7 @@
     <div class="col-md-4 pt-5 text-center lh-lg border-end s-class shadow-lg rounded " *ngFor="let subject of subjects;" >
         <h1 class="text-dark"> {{subject.name}} </h1>
         <!-- <img src="../../assets/images/arabic.jpeg"> -->
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
+        <button type="button" routerLink="subject/{{student.id}}/{{mySubject.id}}" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
         
     </div>
     <!-- <div class="col-md-4 pt-5 text-center lh-lg border-end shadow-lg rounded s-class" >
