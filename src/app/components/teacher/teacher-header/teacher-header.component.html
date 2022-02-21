@@ -1,0 +1,20 @@
+
+<div class="container-fluid" >
+    <header class="d-flex flex-wrap bg-warning justify-content-center py-3 mb-4 border-bottom" >
+      <a routerLink="profile/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <span class="fs-4 ps-5"><i class="fa fa-graduation-cap"></i>Education</span>
+      </a>
+  
+      <ul class="nav nav-pills">
+        <!-- <li class="nav-item"><a routerLink="/student/home" class="fs-6 text-white nav-link" aria-current="page">Home</a></li> -->
+        <!-- <li class="nav-item"><a routerLink="/profile/about" class="fs-6 text-white nav-link">About</a></li> -->
+        <li class="nav-item"><a routerLink="/profile/contact" class="fs-6 text-white nav-link">Contact</a></li>
+        <li class="nav-item"><a routerLink="/teacher/home/{{teacher.id}}" class="fs-6 text-white nav-link">classes</a></li>
+        <li class="nav-item"><a routerLink="/teacher/profile/{{teacher.id}}" routerLinkActive="router-link-active" class="fs-6 text-white nav-link">My Profile</a></li>
+        <li class="nav-item"><a routerLink="#" class="text-white fs-6 nav-link">Login</a></li>
+  
+        <li class="nav-item"><a routerLink="#" class="text-white fs-6 nav-link">Logout</a></li>
+      </ul>
+    </header>
+  </div>
+  

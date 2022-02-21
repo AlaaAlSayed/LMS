@@ -1,0 +1,19 @@
+<app-student-header></app-student-header>
+<!-- <p>student-profile works!</p> -->
+
+<section class=" card">
+    <div class=" card-body d-flex">
+        <div class=" mr-5">
+            <img src="assets/images/teacher-3.jpg" width="250px" height="250px" alt="profile picture">
+        </div>
+        <div class=" ms-5">
+            <h2 class="text-danger">Name: {{student.name}}  </h2>
+            <p>Email: {{student.email}}</p>
+            <p>Phone: {{student.phone}}</p>
+            <p>Class ID: {{student.classroomId}}</p>
+            <p>Address: {{student.street + student.city+student.government}}</p>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
