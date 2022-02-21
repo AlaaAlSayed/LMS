@@ -19,16 +19,18 @@ class AssignmentController extends Controller
     $teacher = Teacher::find($teacherId);
     // @dd($teacher->assignments);
     // return View('assignment'); 
+    // return View('assignment', ['assignmentId' => $assignmentId]);
+
     return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
   }
 
   public function studentshow( $assignmentId)
   {
     $assignment = Assignment::find($assignmentId);
-    // return  $assignment->name; 
+    return  $assignment->name; 
   
-
-    return asset('storage/assets/'. $assignment->name);
+  //  dd(asset('storage/assets/'. $assignment->name));
+    // return asset('storage/assets/'. $assignment->name);
 
     // return View('assignment', ['assignment_pdf' => $assignment->name]); 
   }
