@@ -1,3 +1,4 @@
+// import { Student } from 'src/models/student';
 import { SubjectService } from './subject.service';
 import { Student } from './../../models/student';
 import { Injectable } from '@angular/core';
@@ -20,10 +21,10 @@ export class StudentService {
     //   })
     // };
    }
-  get()
+  get():Observable<Student[]>
   // Observable<Student[]>
   {
-    return this._httpClient.get(`${environment.APIURL}/api/students`);
+    return this._httpClient.get<Student[]>(`${environment.APIURL}/api/students`);
    }
    getStudentByID(id: number):Observable<Student>
   //  Observable<Student>
@@ -33,5 +34,10 @@ export class StudentService {
    }
    post(data:Student){
     return this._httpClient.post(`${environment.APIURL}/api/students`, data);
+   }
+   getSubjects(id:number): Observable<Subject[]>
+   {
+    return this._httpClient.get<Subject[]>(`${environment.APIURL}/api/students/${id}/home`);
+
    }
 }

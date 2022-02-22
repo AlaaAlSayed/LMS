@@ -1,4 +1,6 @@
+import { Student } from 'src/models/student';
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from './../../../services/student.service';
 
 @Component({
   selector: 'app-view-students',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-students.component.css']
 })
 export class ViewStudentsComponent implements OnInit {
-
-  constructor() { }
+  students:Student[]=[];
+  constructor(private _studentService:StudentService) { }
 
   ngOnInit(): void {
+    this._studentService.get().subscribe (
+      student=>{this.students=student;
+        // console.log(student);
+      }
+      )
+      console.log(this.students);
   }
 
 }
