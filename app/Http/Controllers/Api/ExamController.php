@@ -42,59 +42,17 @@ class ExamController extends Controller
         return($exams->all());
     }
   
-    // public function store(StoreExamRequest $request)
-    // {
-    //     $data = $request->all();
-
-    //     $exam = Exam::create([
-    //         'name' => $data['name'],
-    //     ]);
-
-    //     return new ExamResource($exam);
-    // }
-
-    // public function update($examId, UpdateExamRequest $request)
-    // {
-    //     $data = $request->all();
-
-    //     $exam = Exam::where('id', $examId)->update([
-    //         'name' => $data['name'],
-    //     ]);
-
-    //     $exam = Exam::find($examId);
-    //     return new ExamResource($exam);
-    // }
-
-    
-
-
-    // public function take($examId, $studentId, $subjectId)
-    // {
-    //     $data = request()->all();
-    
-    //     StudentTakeExam::updateOrCreate(
-    //         ['examId'=> $examId,'studentId'=> $studentId ,'subjectId'=> $subjectId],
-    //         ['result'=>$data['result']]
-    //     );
-    // }
-
-
-   
-
-   
-
-    public function store($teacherId)
+    public function store($teacherId , $subjectId)
     {
         $data=request()->all();
-        $subject= Subject::find($teacherId);
-     
+            
         $exam= Exam::create([
            'name'=>$data['name']
-       ]);
-       
-        teacher_makes_exams::where('teacherId', $teacherId)->create([
+        ]);
+        
+        teacher_makes_exams::create([
         'teacherId'=>$teacherId,
-        'subjectId'=>$subject->id,
+        'subjectId'=>$subjectId,
         'examId'=>$exam->id,
         'min_score'=>$data['min_score'],
         'time'=>$data['time'],
@@ -104,20 +62,16 @@ class ExamController extends Controller
         $teacher_makes_exams=teacher_makes_exams::all();
         return ($teacher_makes_exams);
     }
-    
-    public function update($teacherId, $examId)
+
+    public function update($examId)
     {
         $data=request()->all();
-        //    @dd( $data);
-        $subject= Subject::find($teacherId);
-        //  @dd( $subject->id);
       
         Exam::where('id', $examId)->update([
            'name'=>$data['name']
        ]);
       
-        // @dd( $assignment->id);
-        teacher_makes_exams::where('teacherId', $teacherId)->update([
+        teacher_makes_exams::where('examId', $examId)->update([
         'min_score'=>$data['min_score'],
         'time'=>$data['time'],
         'date'=>$data['date']
@@ -132,61 +86,25 @@ class ExamController extends Controller
         $teacher_makes_exams=teacher_makes_exams::all();
         return($teacher_makes_exams);
     }
+
+
+
+    public function take($examId, $studentId, $subjectId)
+    {
+        $data = request()->all();
+    
+        StudentTakeExam::updateOrCreate(
+            ['examId'=> $examId,
+            'studentId'=> $studentId ,
+            'subjectId'=> $subjectId],
+            ['result'=>$data['result']
+            ]);
+    }
+    
 }
 
 
-//     public function store($teacherId) {
-  
-//         $data=request()->all();
-//      //    @dd( $data);
-//         $subject= Subject::find($teacherId);
-//        //  @dd( $subject->id);
-     
-//          $exam= Exam::create([
-//            'name'=>$data['name']
-//        ]); 
-//       // @dd($data['min_score']);
-//        // @dd( $assignment->id);
-       
-         
-         
-//        // @dd( $assignment->id);
-//        teacher_makes_exams::where('teacherId',$teacherId)->update([
-//         'teacherId'=>$teacherId,
-//         'subjectId'=>$subject->id,
-//         'examId'=>$exam->id,
-//         'min_score'=>$data['min_score'],
-//         'time'=>$data['time'],
-//         'date'=>$data['date']
-//       ]); 
-      
-//      $teacher_makes_exams=teacher_makes_exams::all();
-//       return ($teacher_makes_exams);
-       
-     
-//      }
-//      public function update($teacherId,$examId) {
-  
-//         $data=request()->all();
-//       //    @dd( $data);
-//         $subject= Subject::find($teacherId);
-//        //  @dd( $subject->id);
-      
-//          Exam::where('id',$examId)->update([
-//            'name'=>$data['name']
-//        ]); 
-      
-//        // @dd( $assignment->id);
-//        teacher_makes_exams::where('teacherId',$teacherId)->update([
-//         'min_score'=>$data['min_score'],
-//         'time'=>$data['time'],
-//         'date'=>$data['date']
-//       ]); 
-      
-      
-       
-      
-//       }
+
 
 
 

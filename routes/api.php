@@ -102,7 +102,7 @@ Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teach
 // download assignment as pdf
 Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
 
-// student dashboard  - assignment upload   :
+// student dashboard  - upload assignment    :
 // Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
 
 // show assignment as pdf
@@ -115,15 +115,11 @@ Route::get('/download/{assignmentId}', [AssignmentController::class,'download'])
 //teacher dashboard  - exam CRUD operations  :
 
 Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
-Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
-Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
-Route::post('/exams/{teacherId}',[ExamController::class,'store']);
-Route::put('/exams/{teacherId}/{examId}', [ExamController::class , 'update']);
-Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
+Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams'])->name('api.exams.teacherExams');
+Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show'])->name('api.exams.show');
+Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store'])->name('api.exams.store');
+Route::put('/exams/{examId}', [ExamController::class , 'update'])->name('api.exams.update');
+Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api.exams.destroy');
 
-
-// Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
-// Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('api.exams.update');
-// Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
-// Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
-// Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
+// student dashboard  -  take exam  :
+Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
