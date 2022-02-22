@@ -58,16 +58,6 @@ Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->nam
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 
 
-Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
-Route::post('/assignments', [AssignmentController::class, 'store'])->name('api.assignments.store');
-Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
-Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
-Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
-// show assignment as pdf
-// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
-Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
-
-
 // Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
 // Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
 // Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('api.exams.update');
@@ -75,28 +65,22 @@ Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentsh
 // Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
 // Route::get('/exams/{exam}', [ExamController::class, 'show'])->name('api.exams.show');
 
-
-Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
-Route::get('assignments/{teacherId}',[AssignmentController::class,'teacherAssignments']);
-Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
-Route::post('/assignments/{teacherId}',[AssignmentController::class,'store']);
-
-Route::put('/assignments/{teacherId}/{assignmentId}', [AssignmentController::class , 'update']);
-Route::delete('/assignments/{assignmentId}', [AssignmentController::class , 'destroy']);
-
-Route::get('teachers',[TeacherController::class,'index']);
+//admin dashboard  -  all teachers page :
+Route::get('/teachers',[TeacherController::class,'index']);
 
 //teacher dashboard  - profile page :
 Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
+
 Route::post('teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 
-// Route::get('classrooms',[ClassroomController::class,'index']);
 //teacher dashboard  - home page :
 Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+
 // Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
+// Route::get('classrooms',[ClassroomController::class,'index']);
 
 
 Route::get('exams/{teacherId}',[ExamController::class,'index']);
@@ -109,6 +93,7 @@ Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
 // Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
 // Route::post('uploadFiles', [FileController::class , 'store']);
 
+//*******************   MATERIALS  ********************
 //teacher dashboard  - materials CRUD operations  :
 Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
 Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
@@ -118,3 +103,26 @@ Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('
 
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
+
+
+// ***********************     ASSIGNMENTS   *********************
+//teacher dashboard  - assignments CRUD operations  :
+Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
+Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store'])->name('api.assignments.store');
+Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
+Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
+
+// show assignments of given teacher 
+Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teacherAssignments']);
+
+
+// download assignment as pdf
+Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
+
+// student dashboard  - assignment upload   :
+// Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
+
+// show assignment as pdf
+// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
+// Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+// Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);

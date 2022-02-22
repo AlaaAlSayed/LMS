@@ -14,34 +14,31 @@ class TeacherController extends Controller
   public function show($teacherId)
   {
     $teacher = Teacher::find($teacherId);
-     return($teacher);
-
+    return ($teacher);
   }
   public function home($teacherId)
   {
-      $teacher = Teacher::find($teacherId);
-      return   $teacher->classrooms->all();
+    $teacher = Teacher::find($teacherId);
+    return   $teacher->classrooms->all();
   }
 
   public function index()
   {
     $teachers = Teacher::all();
-    // @dd(  $teachers -> subject);
     return ($teachers);
   }
-  public function classroomSubject($teacherId,$classroomId)
+
+  public function classroomSubject($teacherId, $classroomId)
   {
-    $subjectId = teacher_teaches_subjects::where([['teacherId','=',$teacherId],['classroomId','=',$classroomId]])->get('subjectId');
+    $subjectId = teacher_teaches_subjects::where([['teacherId', '=', $teacherId], ['classroomId', '=', $classroomId]])->get('subjectId');
     return $subjectId;
   }
 
-  
 
   public function store()
   {
 
     $data = request()->all();
-    //    @dd( $data);
     $teacher = Teacher::create([
       'name' => $data['name'],
       'email' => $data['email'],
@@ -50,6 +47,19 @@ class TeacherController extends Controller
       'city' => $data['city'],
       'street' => $data['street'],
     ]);
+    return ($teacher);
+  }
+
+
+  public function destroy($teacherId)
+  {
+    Teacher::where('id', $teacherId)->delete();
+  }
+
+  public function update(Request $request, $teacherId)
+  {
+    $teacher = Teacher::where('id', '=', $teacherId)->first();
+    $teacher->update($request->all());
     return ($teacher);
   }
   // public function update($teacherId)
@@ -68,23 +78,5 @@ class TeacherController extends Controller
   //   // @dd( $data);
   //   return ($teacher);
   // }
-
-  public function destroy($teacherId)
-  {
-
-    Teacher::where('id', $teacherId)->delete();
-  }
-
-
-
-
-   public function update(Request $request, $teacherId)
-   {
-      $teacher= Teacher::where('id', '=', $teacherId)->first();
-
-     $teacher->update($request->all());
-          return($teacher);
-
-   }
 
 }
