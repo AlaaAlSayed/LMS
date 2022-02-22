@@ -1,1 +1,27 @@
-<p>view-students works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">ClassroomId</th>
+        <th scope="col">Government</th>
+        <th scope="col">City</th>
+        <th scope="col">Street</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students;let currentIndex=index">
+        <th scope="row">{{currentIndex+1}}</th>
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.phone}}</td>
+        <td>{{student.classroomId}}</td>
+        <td>{{student.government}}</td>
+        <td>{{student.city}}</td>
+        <td>{{student.street}}</td>
+      </tr>
+    </tbody>
+  </table>

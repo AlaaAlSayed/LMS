@@ -13,13 +13,13 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class StudentHomeComponent implements OnInit {
    subjects:Subject[]=[];
    student= new Student();
-   mySubject=new Subject();
+  //  mySubject:Subject[]=[];
 
   constructor(private _subjectService:SubjectService, private _studentService:StudentService, private _activatedRoute:ActivatedRoute,private _router:Router) { }
 
   ngOnInit(): void {
-    this._subjectService.get().subscribe (
-      subject=>this.subjects=subject)
+    // this._subjectService.get().subscribe (
+    //   subject=>this.subjects=subject)
     this._activatedRoute.paramMap.subscribe( params=>{
       let id = Number(params.get('id'));
       this._studentService.getStudentByID(id)
@@ -32,10 +32,11 @@ export class StudentHomeComponent implements OnInit {
     )
     this._activatedRoute.paramMap.subscribe( params=>{
       let id = Number(params.get('id'));
-      this._subjectService.getSubjectByID(id)
+      this._studentService.getSubjects(id)
       .subscribe(
         response=>{
-          this.mySubject=response;
+          this.subjects=response;
+          console.log(this.subjects);
         },
       )
     }
