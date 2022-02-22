@@ -61,6 +61,7 @@ Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 //student dashboard - profile page :
 Route::get('/students/{student}', [StudentController::class, 'show'])->name('api.students.show');
+Route::get('/students/image/{student}', [StudentController::class, 'showImage'])->name('api.students.showImage');
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 

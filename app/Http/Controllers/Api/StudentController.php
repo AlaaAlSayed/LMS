@@ -18,7 +18,12 @@ class StudentController extends Controller
         return  $allStudents->all();
     }
 
-
+    public function showImage($studentId)
+    {
+        $picture_path = Student::find($studentId)->get('picture_path');
+        return ( asset('storage/assets/'. $picture_path));
+    }
+    
     public function show($studentId)
     {
         $student = Student::find($studentId);
