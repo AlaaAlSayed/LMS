@@ -36,15 +36,15 @@ class StudentController extends Controller
     {
       
 
-    // $request->validate([
+    // request()->validate([
     //     'picture_path' => 'image|mimes:jpeg,pmb,png|max:88453'
     //   ]);
   
   
-    //   if ($request->hasFile('picture_path')) //if user choose file
+    //   if (request()->hasFile('picture_path')) //if user choose file
     //   {
   
-    //     $file = $request->file('picture_path'); //store  uploaded file to variable $file to 
+    //     $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
   
     //     $extension = $file->getClientOriginalExtension();
     //     $filename = 'image' . '_' . time() . '.' . $extension;
@@ -62,7 +62,7 @@ class StudentController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' =>$data['picture_path'] ,
+            'picture_path' => $data['picture_path'] ,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],

@@ -21,11 +21,11 @@ use App\Models\Subject;
 
 class ExamController extends Controller
 {
-    // public function index()
-    // {
-    //     $allExams = Exam::all();
-    //     return  ExamResource::collection($allExams);
-    // }
+    public function index()
+    {
+        $allExams = Exam::all();
+        return  ($allExams);
+    }
 
 
     // public function show($examId)
@@ -76,13 +76,13 @@ class ExamController extends Controller
     // }
 
 
-    public function index($teacherId)
-    {
-        $teacher=Teacher::find($teacherId);
-        // @dd(  $teachers->assignments);
+    // public function index($teacherId)
+    // {
+    //     $teacher=Teacher::find($teacherId);
+    //     // @dd(  $teachers->assignments);
        
-        return($teacher->exams);
-    }
+    //     return($teacher->exams);
+    // }
   
 
     public function show($teacherId, $examId)
