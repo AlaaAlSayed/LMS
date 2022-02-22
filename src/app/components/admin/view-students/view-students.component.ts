@@ -17,7 +17,7 @@ export class ViewStudentsComponent implements OnInit {
         // console.log(student);
       }
       )
-      console.log(this.students);
+      // console.log(this.students);
   }
 
 }

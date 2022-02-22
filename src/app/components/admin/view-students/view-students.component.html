@@ -14,7 +14,6 @@
     <tbody>
       <tr *ngFor="let student of students;let currentIndex=index">
         <th scope="row">{{currentIndex+1}}</th>
-        <td>{{student.id}}</td>
         <td>{{student.name}}</td>
         <td>{{student.email}}</td>
         <td>{{student.phone}}</td>
@@ -22,6 +21,9 @@
         <td>{{student.government}}</td>
         <td>{{student.city}}</td>
         <td>{{student.street}}</td>
+        <td><a class="navLink" routerLink="/admin/details-student/{{student.id}}">Details</a></td>
+        <td><a class="navLink" routerLink="#">Edit</a></td>
+        <td><a class="navLink" routerLink="#">Delete</a></td>
       </tr>
     </tbody>
   </table>
