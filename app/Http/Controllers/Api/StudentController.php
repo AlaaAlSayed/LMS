@@ -8,6 +8,8 @@ use App\Http\Resources\StudentResource;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Resources\SubjectResource;
+use App\Models\Subject;
+
 class StudentController extends Controller
 {
     public function index()
@@ -26,10 +28,11 @@ class StudentController extends Controller
     public function home($studentId)
     {
         $student = Student::find($studentId);
-        return   $student->subjects->all();
+        $subjects= Subject::where('classroomId','=',$student->classroomId)->get();
+        return  $subjects ;
     }
 
-    public function store(StoreStudentRequest $request)
+    public function store()
     {
       
 
@@ -59,7 +62,7 @@ class StudentController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' =>'dkjdksjk' ,
+            'picture_path' =>$data['picture_path'] ,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
