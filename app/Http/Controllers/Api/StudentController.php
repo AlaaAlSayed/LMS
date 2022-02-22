@@ -21,9 +21,10 @@ class StudentController extends Controller
     public function showImage($studentId)
     {
         $picture_path = Student::find($studentId)->get('picture_path');
-        return ( asset('storage/assets/'. $picture_path));
+        $imgsrc=asset('storage/assets/'. $picture_path);
+        return response()->json($imgsrc);
     }
-    
+
     public function show($studentId)
     {
         $student = Student::find($studentId);
