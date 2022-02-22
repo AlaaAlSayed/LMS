@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Subject;
-use App\Models\teacher_attaches_assignments;
+use App\Models\teacher_teaches_subjects;
 
 class TeacherController extends Controller
 {
@@ -29,8 +29,13 @@ class TeacherController extends Controller
     // @dd(  $teachers -> subject);
     return ($teachers);
   }
+  public function classroomSubject($teacherId,$classroomId)
+  {
+    $subjectId = teacher_teaches_subjects::where([['teacherId','=',$teacherId],['classroomId','=',$classroomId]])->get('subjectId');
+    return $subjectId;
+  }
 
-
+  
 
   public function store()
   {

@@ -47,6 +47,8 @@ Route::get('/students/{student}', [StudentController::class, 'show'])->name('api
 // Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
 // Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
 
+//teacher dashboard  - to get subject of this teacher to this class : 
+Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject'])->name('api.teachers.classroomSubject');
 
 Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');
 Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');

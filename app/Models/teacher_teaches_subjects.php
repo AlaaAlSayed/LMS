@@ -9,12 +9,9 @@ class teacher_teaches_subjects extends Model
 {
     use HasFactory;
     protected $fillable = [
-      
-        
         'teacherId',
         'subjectId',
         'classroomId',
-        
      ];
  
     
