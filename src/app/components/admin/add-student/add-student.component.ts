@@ -17,18 +17,18 @@ export class AddStudentComponent implements OnInit {
 //private _formBuilder:FormBuilder
   ngOnInit(): void {
     this.formAdd = this._formBuilder.group({
-      studentID:[''],
+      id:[''],
 
-      studentName:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
-      studentEmail:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10)]],
+      name:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
+      email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
       // studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
-      studentPhone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+      phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]],
       // studentLevel:['',[Validators.required]],
-      studentClass:['',[Validators.required]],
-      // studentPicture:['',[Validators.required]],
-      studentGov:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-      studentCity:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-      studentStreet:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]]
+      classroomId:['',[Validators.required]],
+      picture_path:['',[Validators.required]],
+      government:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
+      city:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
+      street:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]]
     })
   }
   Add():void
