@@ -22,75 +22,87 @@ class StudentController extends Controller
     public function show($studentId)
     {
         $student = Student::find($studentId);
-        return $student ;
-        // return new StudentResource($student);
+        return $student;
     }
     public function home($studentId)
     {
         $student = Student::find($studentId);
-        $subjects= Subject::where('classroomId','=',$student->classroomId)->get();
-        return  $subjects ;
+        $subjects = Subject::where('classroomId', '=', $student->classroomId)->get();
+        return  $subjects;
     }
 
     public function store()
     {
-      
 
-    request()->validate([
-        'picture_path' => 'image|mimes:jpeg,pmb,png|max:88453'
-      ]);
-  
-  
-      if (request()->hasFile('picture_path')) //if user choose file
-      {
-  
-        $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
-  
-        $extension = $file->getClientOriginalExtension();
-        $filename = 'student-image' . '_' . time() . '.' . $extension;
-        $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-     
-      
-      } else {
-  
-        $filename = 'storage/app/public/assets/image_1645107020.jpeg';
-      }
-  
-      $data = request()->all();
-  
-      Student::create([
+
+        request()->validate([
+            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+        ]);
+
+
+        if (request()->hasFile('picture_path')) //if user choose file
+        {
+
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'student-image' . '_' . time() . '.' . $extension;
+            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+
+
+        } else {
+
+            $filename = 'image_tmp.jpeg';
+        }
+
+        $data = request()->all();
+
+        Student::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' =>  $filename ,
+            'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
         ]);
-
-        // return new StudentResource($student);
     }
 
-    public function update($studentId ,UpdateStudentRequest $request)
+    public function update($studentId)
     {
+        request()->validate([
+            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+        ]);
 
-        $data = $request->all();
 
-        $student = Student::where('id', $studentId)->update([
+        if (request()->hasFile('picture_path')) //if user choose file
+        {
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'student-image' . '_' . time() . '.' . $extension;
+            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+
+        } else {
+
+            $filename =  Student::where('id', $studentId)->get('picture_path');
+        }
+
+        $data = request()->all();
+
+        Student::where('id', $studentId)->update([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture_path' => $data['picture_path'],
+            'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
-
         ]);
 
-        // $student = Student::find($studentId);
-        // return new StudentResource($student);
+        $student = Student::find($studentId);
+        return ($student);
     }
 
     public function destroy($studentId)
