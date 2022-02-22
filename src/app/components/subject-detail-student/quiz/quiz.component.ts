@@ -1,8 +1,8 @@
-import { quiz } from './../../../models/quiz ';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubjectService } from 'src/app/services/subject.service';
 import { subject } from 'src/app/models/subject';
+import { quiz } from 'src/app/models/quiz ';
 
 @Component({
   selector: 'app-quiz',

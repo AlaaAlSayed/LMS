@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class subjectservice {
+export class assignmentsservice {
 
   constructor(private _HttpClient:HttpClient) { }
   get(){
@@ -18,10 +18,10 @@ export class subjectservice {
 
    return this._HttpClient.get(`${environment.APIURL}/api/assignments`);
   }
-   getById(id:number):Observable<subject>{
+   getById(id:number){
     console.log(`${environment.APIURL}/api/assignments/${id}`);
-
-    return this._HttpClient.get<subject>(`${environment.APIURL}/api/assignments/${id}`);
+    console.log(this._HttpClient.get(`${environment.APIURL}/api/assignments/${id}`));
+    return this._HttpClient.get(`${environment.APIURL}/api/assignments/${id}`);
    }
 
   post(_subject:subject){

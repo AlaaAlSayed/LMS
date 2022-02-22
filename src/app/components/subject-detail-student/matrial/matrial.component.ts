@@ -1,9 +1,10 @@
-import { matrial } from './../../../models/matrial';
+
 import { subject } from 'src/app/models/subject';
-import { SubjectService } from './../../../services/subject.service';
 import { Component, OnInit ,Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { SubjectService } from 'src/app/services/subject.service';
+import { matrial } from 'src/app/models/matrial';
 
 @Component({
   selector: 'app-matrial',

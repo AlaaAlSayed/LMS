@@ -1,8 +1,9 @@
-import { SubjectService } from './../../../services/subject.service';
+
 import { subject } from 'src/app/models/subject';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { enableProdMode } from '@angular/core';
+import { SubjectService } from 'src/app/services/subject.service';
 
 enableProdMode();
 @Component({

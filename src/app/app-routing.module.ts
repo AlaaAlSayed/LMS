@@ -43,7 +43,11 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
 },
-{path:'teacher/:id',
+{path:'classroom/:teacherid/:classroomid',
+  loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
+
+},
+{path:'classroom/:teacherid/:classroomid/matrial',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
 }
