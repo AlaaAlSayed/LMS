@@ -21,19 +21,27 @@ use App\Models\Subject;
 
 class ExamController extends Controller
 {
+   
     public function index()
     {
         $allExams = Exam::all();
         return  ($allExams);
     }
+    public function show($teacherId, $examId)
+    {
+        // $teacher= Teacher::find($teacherId);
+        // return($teacher->exams);
 
+        $exam=teacher_makes_exams::where([['teacherId',$teacherId],['examId',$examId]])->get();       
+        return($exam);
+    }
 
-    // public function show($examId)
-    // {
-    //     $exam = Exam::find($examId);
-    //     return new ExamResource($exam);
-    // }
-
+    public function teacherExams($teacherId)
+    {
+        $exams=teacher_makes_exams::where('teacherId',$teacherId)->get();       
+        return($exams->all());
+    }
+  
     // public function store(StoreExamRequest $request)
     // {
     //     $data = $request->all();
@@ -57,12 +65,7 @@ class ExamController extends Controller
     //     return new ExamResource($exam);
     // }
 
-    // public function destroy($examId)
-    // {
-    //     Exam::where('id', $examId)->delete();
-    //     // $allExams = Exam::all();
-    //     // return  ExamResource::collection($allExams);
-    // }
+    
 
 
     // public function take($examId, $studentId, $subjectId)
@@ -76,37 +79,19 @@ class ExamController extends Controller
     // }
 
 
-    // public function index($teacherId)
-    // {
-    //     $teacher=Teacher::find($teacherId);
-    //     // @dd(  $teachers->assignments);
-       
-    //     return($teacher->exams);
-    // }
-  
+   
 
-    public function show($teacherId, $examId)
-    {
-        $teacher= Teacher::find($teacherId);
-        //  $examId=$examId-1;
-        return($teacher->exams[$examId]);
-    }
-
+   
 
     public function store($teacherId)
     {
         $data=request()->all();
-        //    @dd( $data);
         $subject= Subject::find($teacherId);
-        //  @dd( $subject->id);
      
         $exam= Exam::create([
            'name'=>$data['name']
        ]);
-        // @dd($data['min_score']);
-        // @dd( $assignment->id);
        
-        // @dd( $assignment->id);
         teacher_makes_exams::where('teacherId', $teacherId)->create([
         'teacherId'=>$teacherId,
         'subjectId'=>$subject->id,
@@ -142,37 +127,12 @@ class ExamController extends Controller
     public function destroy($examId)
     {
         Exam::where('id', $examId)->delete();
-        teacher_makes_exams::where('id', $examId)->delete();
+        teacher_makes_exams::where('examId', $examId)->delete();
         
         $teacher_makes_exams=teacher_makes_exams::all();
         return($teacher_makes_exams);
     }
 }
-// use Illuminate\Http\Request;
-// use App\Models\Assignment;
-// use App\Models\Exam;
-// use App\Models\Teacher;
-// use App\Models\teacher_makes_exams;
-// use App\Models\Subject;
-
-// class ExamController extends Controller
-// {
-//     public function index($teacherId)
-//     {
-//         $teacher=Teacher::find($teacherId);
-//         // @dd(  $teachers->assignments);
-       
-//         return($teacher->exams);
-//   }
-  
-
-//   public function show($teacherId,$examId)
-//     { 
-//         $teacher= Teacher::find($teacherId);
-//       //  $examId=$examId-1;
-//         return(  $teacher->exams[$examId]);
-      
-//     }
 
 
 //     public function store($teacherId) {
@@ -228,14 +188,5 @@ class ExamController extends Controller
       
 //       }
 
-//     public function destroy($examId) {
-  
-//         Exam::where('id',$examId)->delete();
-//         teacher_makes_exams::where('id',$examId)->delete();
-        
-//         $teacher_makes_exams=teacher_makes_exams::all();
-//          return($teacher_makes_exams);
-      
-//       }
-       
-// }
+
+

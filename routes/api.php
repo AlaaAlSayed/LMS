@@ -114,14 +114,14 @@ Route::get('/download/{assignmentId}', [AssignmentController::class,'download'])
 //*******************   EXAM  ********************
 //teacher dashboard  - exam CRUD operations  :
 
-Route::get('exams/{teacherId}',[ExamController::class,'index']);
-Route::get('exams/{teacherId}/{examId}',[ExamController::class,'show']);
-Route::post('exams/{teacherId}',[ExamController::class,'store']);
-Route::put('exams/{teacherId}/{examId}', [ExamController::class , 'update']);
-Route::delete('exams/{examId}', [ExamController::class , 'destroy']);
-
-
 Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
+Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
+Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
+Route::post('/exams/{teacherId}',[ExamController::class,'store']);
+Route::put('/exams/{teacherId}/{examId}', [ExamController::class , 'update']);
+Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
+
+
 // Route::post('/exams', [ExamController::class, 'store'])->name('api.exams.store');
 // Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('api.exams.update');
 // Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
