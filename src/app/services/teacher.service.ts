@@ -27,8 +27,8 @@ export class TeacherService {
     return this._httpClient.get<TeacherTeachesSubjects[]>(`${environment.APIURL}/api/teachers/${id}/home`);
 
    }
-  //  getImage(id:number){
-  //   return this._httpClient.get<Teacher>(`${environment.APIURL}/api/teachers/${id}`);
+   getImage(id:number){
+    return this._httpClient.get(`${environment.APIURL}/api/teachers/image/${id}`);
 
-  //  }
+   }
   }
