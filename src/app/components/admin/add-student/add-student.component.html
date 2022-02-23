@@ -60,7 +60,7 @@
       </div> 
     <div class="col-md-6">
       <label class="form-label">Picture</label>
-      <input type="text" class="form-control" formControlName="picture_path" name="picture_path" [class.is-invalid]="isInValidAndTouched('picture_path')" [class.is-valid]="isValidControl('picture_path')"  >
+      <input type="file" class="form-control" (change)="uploadImage($event)" formControlName="picture_path" name="picture_path" [class.is-invalid]="isInValidAndTouched('picture_path')" [class.is-valid]="isValidControl('picture_path')"  >
       <div *ngIf="isInValidAndTouched('picture_path')" >
         <small class="form-text text-danger" *ngIf="isControlHasError('picture_path','required')" >required Picture</small>
       </div>
