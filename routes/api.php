@@ -69,7 +69,9 @@ Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api
 //teacher dashboard  - to get subject of this teacher to this class : 
 Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject'])->name('api.teachers.classroomSubject');
 //teacher dashboard  - profile page :
-Route::get('teachers/{teacherId}',[TeacherController::class,'show']);
+Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
+Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage'])->name('api.teachers.showImage');
+
 //teacher dashboard  - home page :
 Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 

@@ -12,7 +12,7 @@ class Teacher extends Model
         'name',
         'email',
         'phone',
-
+        'picture_path',
         //address
         'government',
         'city',

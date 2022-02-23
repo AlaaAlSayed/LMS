@@ -16,6 +16,14 @@ class TeacherController extends Controller
     $teacher = Teacher::find($teacherId);
     return ($teacher);
   }
+
+  public function showImage($teacherId)
+  {
+      $picture_path = Teacher::where('id',$teacherId)->first()->picture_path;
+      $imgsrc= asset('storage/assets/'. $picture_path);
+      return response()->json($imgsrc);
+  }
+
   public function home($teacherId)
   {
     $teacher = Teacher::find($teacherId);
@@ -37,12 +45,31 @@ class TeacherController extends Controller
 
   public function store()
   {
+    request()->validate([
+      'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+  ]);
 
+
+  if (request()->hasFile('picture_path')) //if user choose file
+  {
+
+      $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'teacher-image' . '_' . time() . '.' . $extension;
+      $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+
+
+  } else {
+
+      $filename = 'image_tmp.jpeg';
+  }
     $data = request()->all();
     $teacher = Teacher::create([
       'name' => $data['name'],
       'email' => $data['email'],
       'phone' => $data['phone'],
+      'picture_path'=> $filename,
       'government' => $data['government'],
       'city' => $data['city'],
       'street' => $data['street'],

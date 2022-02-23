@@ -22,7 +22,6 @@ class StudentController extends Controller
     {
         $picture_path = Student::where('id',$studentId)->first()->picture_path;
         $imgsrc= asset('storage/assets/'. $picture_path);
-        // return $imgsrc;
         return response()->json($imgsrc);
     }
 
