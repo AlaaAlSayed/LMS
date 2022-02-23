@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentProfileComponent implements OnInit {
   student:any= new Student();
   constructor(private _studentService:StudentService, private _activatedRoute:ActivatedRoute) { }
-
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe( params=>{
       let id = Number(params.get('id'));
