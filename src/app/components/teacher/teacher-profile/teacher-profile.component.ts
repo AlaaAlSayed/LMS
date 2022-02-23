@@ -20,8 +20,6 @@ export class TeacherProfileComponent implements OnInit {
     this._activatedRoute.paramMap.subscribe( params=>{
       let id = Number(params.get('id'));
       this._teacherService.getTeacherByID(id)
-      // this._httpClient.get(`http://127.0.0.1:8000/api/teachers/${id}`)
-
       .subscribe(
         response=>{
           this.teacher=response;
