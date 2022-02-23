@@ -89,6 +89,11 @@ Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('
 
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
+// show material as pdf
+Route::get('/materials/{material}', [MaterialController::class, 'studentshow'])->name('api.materials.studentshow');
+
+// download material as pdf
+Route::get('/materials/download/{materialId}', [MaterialController::class,'download']);
 
 
 // ***********************     ASSIGNMENTS   *********************
@@ -101,16 +106,14 @@ Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destro
 // show assignments of given teacher 
 Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teacherAssignments']);
 
-
 // download assignment as pdf
-Route::get('/download/{assignmentId}', [AssignmentController::class,'download']);
+Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,'download']);
 
 // student dashboard  - upload assignment    :
 // Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
 
 // show assignment as pdf
-// Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('api.assignments.show');
-// Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
 // Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
 
 

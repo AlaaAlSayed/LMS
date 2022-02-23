@@ -20,7 +20,20 @@ class MaterialController extends Controller
         $allMaterials = SubjectMaterial::find($subjectId)->all();
         return  $allMaterials->all();
     }
+    public function studentshow($materialId)
+    {
+      $material = SubjectMaterial::find($materialId);
+      $embed_src= asset('storage/assets/'. $material->material);
+      return response()->json($embed_src);
+    }
+  
+    public function download($materialId)
+    {
+      $material = SubjectMaterial::find($materialId);
+      return response()->download('storage/assets/' . $material->material);
+    }
 
+    
     public function classroomMaterials($classroomId,$teacherId)
     {
         $subjectId= teacher_teaches_subjects::

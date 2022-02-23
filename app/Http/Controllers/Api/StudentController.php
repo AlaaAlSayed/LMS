@@ -58,7 +58,7 @@ class StudentController extends Controller
 
         } else {
 
-            $filename = 'image_tmp.jpeg';
+            $filename = 'storage/app/public/assets/image_tmp.jpeg';
         }
 
         $data = request()->all();

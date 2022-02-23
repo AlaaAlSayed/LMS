@@ -20,31 +20,27 @@ class AssignmentController extends Controller
     return   $allAssignments->all();
   }
 
-  public function show($teacherId, $assignmentId)
-  {
-    $teacher = Teacher::find($teacherId);
-    // @dd($teacher->assignments);
-    // return View('assignment'); 
-    // return View('assignment', ['assignmentId' => $assignmentId]);
+  // public function show($teacherId, $assignmentId)
+  // {
+  //   $teacher = Teacher::find($teacherId);
+  //   // @dd($teacher->assignments);
+  //   // return View('assignment'); 
+  //   // return View('assignment', ['assignmentId' => $assignmentId]);
 
-    return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
-  }
+  //   return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
+  // }
 
   public function studentshow($assignmentId)
   {
     $assignment = Assignment::find($assignmentId);
-    return  $assignment;
-
-    //  dd(asset('storage/assets/'. $assignment->name));
-    // return asset('storage/assets/'. $assignment->name);
-
-    // return View('assignment', ['assignment_pdf' => $assignment->name]); 
+    $embed_src= asset('storage/assets/'. $assignment->name);
+    return response()->json($embed_src);
   }
 
   public function download($assignmentId)
   {
-    $image = Assignment::find($assignmentId);
-    return response()->download('storage/assets/' . $image->name);
+    $assignment = Assignment::find($assignmentId);
+    return response()->download('storage/assets/' . $assignment->name);
   }
 
   public function teacherAssignments($teacherId)
@@ -69,7 +65,7 @@ class AssignmentController extends Controller
       
     } else {
 
-      $filename = 'storage/app/public/assets/Assignment_1645107020.pdf';
+      $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
     }
 
     $data = request()->all();
@@ -105,7 +101,7 @@ class AssignmentController extends Controller
       
     } else {
 
-      $filename = 'storage/app/public/assets/Assignment_1645107020.pdf';
+      $filename = Assignment::where('id', $assignmentId)->name;
     }
 
     $data = request()->all();
