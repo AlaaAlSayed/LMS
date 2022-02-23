@@ -34,6 +34,9 @@
         <th scope="col">#</th>
         <th scope="col">name </th>
         <th scope="col">show</th>
+        <th scope="col">Download</th>
+        <th scope="col">Upload</th>
+
       </tr>
     </thead>
     <tbody>
@@ -43,10 +46,24 @@
                 <p>{{mat.name}}</p> 
             </td>
             <td>
-                <a [routerLink]="['show',mat.id]" class="text-dark" style="text-decoration: none;">
-                    <button class="btn btn-info">view</button>
-                </a> 
+
+                    <button (click)="getlink(mat.id)"class="btn btn-info">view</button>
             </td>
+            <td>
+              <a href="api/download/{{mat.id}}" class="text-dark" style="text-decoration: none;">
+                  <button class="btn btn-danger">Download</button>
+              </a> 
+          </td>
+          <td>
+            <div class="form-group ">
+
+              <input type="file" class=""
+                     id="file" >
+          </div>
+         <!--    <a [routerLink]="['show',mat.id]" class="text-dark" style="text-decoration: none;">
+                <button class="btn btn-success">Upload</button>
+            </a>  -->
+        </td>
     </tr>
      
     </tbody>
