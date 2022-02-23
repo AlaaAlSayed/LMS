@@ -1,19 +1,17 @@
-import { StudentService } from './../../../services/student.service';
 import { Component, OnInit } from '@angular/core';
+import { TeacherService } from 'src/app/services/teacher.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  selector: 'app-add-teacher',
+  templateUrl: './add-teacher.component.html',
+  styleUrls: ['./add-teacher.component.css']
 })
-export class AddStudentComponent implements OnInit {
-  // student: Student = {} as Student;
+export class AddTeacherComponent implements OnInit {
   files:any;
   data:any;
     formAdd = new FormGroup({}) 
-  constructor(private _formBuilder:FormBuilder, private _studentService:StudentService) { }
-//private _formBuilder:FormBuilder
+  constructor(private _formBuilder:FormBuilder, private _teacherService:TeacherService) { }
+
   ngOnInit(): void {
     this.formAdd = this._formBuilder.group({
       id:[''],
@@ -22,12 +20,11 @@ export class AddStudentComponent implements OnInit {
       email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
       // studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
       phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]],
-      // studentLevel:['',[Validators.required]],
-      classroomId:['',[Validators.required]],
-      picture_path:['',[Validators.required]],
       government:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
       city:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-      street:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]]
+      street:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]],
+      picture_path:['',[Validators.required]],
+     
     })
   }
   Add():void
@@ -60,12 +57,11 @@ export class AddStudentComponent implements OnInit {
    formData.append("city",this.formAdd.value.city);
    formData.append("street",this.formAdd.value.street);
 
-this._studentService.post(formData).subscribe(response=>{
+this._teacherService.post(formData).subscribe(response=>{
   this.files=response;
   console.log(this.files);
 
 })
 }
-
 
 }

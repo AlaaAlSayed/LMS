@@ -17,7 +17,17 @@ export class ViewStudentsComponent implements OnInit {
         // console.log(student);
       }
       )
-      // console.log(this.students);
+  }
+  deleteStudent(id:number){
+     this._studentService.deleteStudent(id).subscribe(
+       response=>{
+         this._studentService.get().subscribe (
+          student=>{this.students=student;
+          }
+          )
+         console.log(response);
+       }
+     )
   }
 
 }

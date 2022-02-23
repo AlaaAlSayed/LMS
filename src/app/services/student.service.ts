@@ -45,4 +45,11 @@ export class StudentService {
     return this._httpClient.get(`${environment.APIURL}/api/students/image/${id}`);
 
    }
+   deleteStudent(id:number){
+    return this._httpClient.delete(`${environment.APIURL}/api/students/${id}`);
+
+   }
+   updateData(id:number, data:any){
+    return this._httpClient.put(`${environment.APIURL}/api/students/${id}`, data);
+   }
 }
