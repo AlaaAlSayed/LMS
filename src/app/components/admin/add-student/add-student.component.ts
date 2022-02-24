@@ -1,7 +1,6 @@
 import { StudentService } from './../../../services/student.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Student } from 'src/models/student';
 
 @Component({
   selector: 'app-add-student',
@@ -10,8 +9,8 @@ import { Student } from 'src/models/student';
 })
 export class AddStudentComponent implements OnInit {
   // student: Student = {} as Student;
-  
-  student=new Student();
+  files:any;
+  data:any;
     formAdd = new FormGroup({}) 
   constructor(private _formBuilder:FormBuilder, private _studentService:StudentService) { }
 //private _formBuilder:FormBuilder
@@ -47,13 +46,26 @@ export class AddStudentComponent implements OnInit {
   {
     return  this.formAdd.controls[name].invalid && this.formAdd.controls[name].errors?.[error];
   }
+  uploadImage(event:any){
+   this.files=event.target.files[0];
+  }
  insertStudent(){
-this._studentService.post(this.student).subscribe(response=>{
-  console.log(this.student);
-// })
- })
+   let formData= new FormData();
+   formData.append("name",this.formAdd.value.name);
+   formData.append("email",this.formAdd.value.email);
+   formData.append("phone",this.formAdd.value.phone);
+   formData.append("classroomId",this.formAdd.value.classroomId);
+   formData.append("picture_path",this.files, this.files.name);
+   formData.append("government",this.formAdd.value.government);
+   formData.append("city",this.formAdd.value.city);
+   formData.append("street",this.formAdd.value.street);
+
+this._studentService.post(formData).subscribe(response=>{
+  this.files=response;
+  console.log(this.files);
+
+})
 }
-// console.log('hello');
-//  }
+
 
 }

@@ -21,9 +21,9 @@
         <td>{{student.government}}</td>
         <td>{{student.city}}</td>
         <td>{{student.street}}</td>
-        <td><a class="navLink" routerLink="/admin/details-student/{{student.id}}">Details</a></td>
-        <td><a class="navLink" routerLink="#">Edit</a></td>
-        <td><a class="navLink" routerLink="#">Delete</a></td>
+        <td><button class="btn btn-primary btn-sm" routerLink="/admin/details-student/{{student.id}}">Details</button></td>
+        <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-student/{{student.id}}">Edit</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

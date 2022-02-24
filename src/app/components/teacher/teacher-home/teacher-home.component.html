@@ -13,7 +13,7 @@
         
             <h1 class="text-dark"> class: {{item.classroomId}} </h1>
             
-            <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Class </button>
+            <a class="m-5 mt-2 text-secondary" routerLink="/classroom/{{teacher.id}}/{{item.classroomId}}"> Go to Class</a>
             
         </div>
     <!-- <div class="col-md-4 pt-5 text-center lh-lg border-end shadow-lg rounded t-class">

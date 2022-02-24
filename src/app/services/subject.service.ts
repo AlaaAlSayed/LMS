@@ -18,4 +18,19 @@ export class SubjectService {
     return this._httpClient.get<Subject>(`${environment.APIURL}/api/subjects/${subjectID}`);
 
    }
+   getSubject(id:number): Observable<Subject>
+   {
+    return this._httpClient.get<Subject>(`${environment.APIURL}/api/subjects/show/${id}`);
+
+
+   }
+   post(data:any){
+    return this._httpClient.post(`${environment.APIURL}/api/subjects`, data);
+   }
+   deleteSubject(id:number){
+    return this._httpClient.delete(`${environment.APIURL}/api/subjects/${id}`);
+   }
+   updateData(id:number, data:any){
+    return this._httpClient.put(`${environment.APIURL}/api/subjects/${id}`, data);
+   }
 }
