@@ -1,0 +1,34 @@
+<h1 class="border-bottom mt-5"> Add New Classroom: </h1>
+<div [formGroup]="formAdd" >
+<div class="row g-3">
+    <div class="col-md-6" hidden>
+        <label  class="form-label">ID</label>
+        <input type="number" formControlName="id" name="id" class="form-control" >
+      </div>
+
+    <div class="col-md-6">
+        <label  class="form-label" >Level</label>
+        <input type="number" #inputLevel class="form-control" formControlName="level" name="level">
+       
+      </div>
+      <div class="col-md-6">
+        <label  class="form-label" >Code</label>
+        <input type="number" #inputCode class="form-control" formControlName="code" name="code" >
+        
+      </div>
+  
+    <div class="col-md-6">
+        <label class="form-label" >Capacity</label>
+        <input type="number" #inputCapacity class="form-control" formControlName="capacity" name="capacity">
+       
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" >TimeTable</label>
+        <input type="text" #inputTable class="form-control" formControlName="time_table" name="time_table">
+       
+      </div>
+      <div class="col-12">
+        <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertClassroom(inputLevel.valueAsNumber, inputCode.valueAsNumber, inputCapacity.valueAsNumber, inputTable.value)" >Add Student</button>
+      </div>
+  </div>
+  </div>

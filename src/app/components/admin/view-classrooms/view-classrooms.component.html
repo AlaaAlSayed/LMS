@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Level</th>
+        <th scope="col">Code</th>
+        <th scope="col">Capacity</th>
+        <th scope="col">Time Table</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let classroom of classrooms;let currentIndex=index">
+        <th scope="row">{{classroom.id}}</th>
+        <td>{{classroom.level}}</td>
+        <td>{{classroom.code}}</td>
+        <td>{{classroom.capacity}}</td>
+        <td>{{classroom.time_table}}</td>
+        <td><button class="btn btn-primary btn-sm" routerLink="/admin/details-classroom/{{classroom.id}}">Details</button></td>
+        <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-classroom/{{classroom.id}}">Edit</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteClass(classroom.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+

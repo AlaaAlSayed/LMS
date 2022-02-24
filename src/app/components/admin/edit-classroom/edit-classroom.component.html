@@ -1,0 +1,32 @@
+<h1 class="border-bottom mt-5"> Edit Student Form: </h1>
+<div [formGroup]="formEdit" >
+<div class="row g-3">
+    <!-- <div class="col-md-6" hidden>
+        <label  class="form-label">ID</label>
+        <input type="number" formControlName="id" name="id" class="form-control" >
+      </div> -->
+
+    <div class="col-md-6 form-group" >
+        <label  class="form-label">Level</label>
+        <input type="number" class="form-control" formControlName="level" name="level"  >
+      </div>
+      <div class="col-md-6 form-group">
+        <label  class="form-label">Code</label>
+        <input type="number" class="form-control" formControlName="code" name="code"  >
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="form-label">Capacity</label>
+        <input type="number" class="form-control" formControlName="capacity" name="capacity" >
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label  class="form-label">Time Table</label>
+        <input type="text" class="form-control" formControlName="time_table" name="time_table"   >
+      </div> 
+
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" (click)="updateClass()" >Update</button>
+    </div>
+</div>
+</div>
