@@ -32,7 +32,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::create([
             'level' => $data['level'],
             'capacity' => $data['capacity'],
-            // 'time_table' => $data['time_table'],
+            'time_table' => "tmp/path",
             'code' => $data['code'],
         ]);
 
@@ -47,7 +47,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::where('id', $classroomId)->update([
             'level'=> $data['level'],
             'capacity'=> $data['capacity'],
-            // 'time_table' => $data['time_table'],
+            'time_table' => "tmp/path",
             'code' => $data['code'],
         ]);
 
