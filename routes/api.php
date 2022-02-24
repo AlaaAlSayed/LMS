@@ -90,8 +90,8 @@ Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
 // show material as pdf
-Route::get('/materials/{material}', [MaterialController::class, 'studentshow'])->name('api.materials.studentshow');
-
+Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow'])->name('api.materials.studentshow');
+    
 // download material as pdf
 Route::get('/materials/download/{materialId}', [MaterialController::class,'download']);
 
