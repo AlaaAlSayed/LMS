@@ -23,8 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// composer require laravel/ui
+// php artisan ui vue --auth
 
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('chat','users.messages');
+

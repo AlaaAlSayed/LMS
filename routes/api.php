@@ -41,13 +41,11 @@ Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 // to be re-checked on admin dashboard
-// Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
-// Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
-// Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
-// Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
-// Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
-// Route::get('classrooms/{teacherId}',[ClassroomController::class,'show']);
-// Route::get('classrooms',[ClassroomController::class,'index']);
+Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
+Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
+Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
+Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
+Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
 
 // to be re-checked on admin dashboard
 // Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');

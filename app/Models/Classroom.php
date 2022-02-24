@@ -23,7 +23,7 @@ class Classroom extends Model
         return $this->hasMany(Student::class, 'classroomId');
     }
 
-    // public function students()
+    
     // public function teachers()
     // {
     //     return $this->belongsToMany('App\Models\Teacher', 'teacher_teaches_subjects', 'classroomId', 'teacherId'); //,'subjectId','id','id','id');
