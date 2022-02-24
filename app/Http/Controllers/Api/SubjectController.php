@@ -26,7 +26,7 @@ class SubjectController extends Controller
         return new SubjectResource($subject);
     }
 
-    public function store(StoreSubjectRequest $request)
+    public function store()//StoreSubjectRequest $request)
     {
         $data = request()->all();
 
@@ -38,7 +38,7 @@ class SubjectController extends Controller
         return ($subject);
     }
 
-    public function update($subjectId ,UpdateSubjectRequest $request)
+    public function update($subjectId )//,UpdateSubjectRequest $request)
     {
 
         $data = request()->all();
