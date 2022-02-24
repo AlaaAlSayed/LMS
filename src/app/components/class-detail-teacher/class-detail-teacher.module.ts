@@ -6,13 +6,16 @@ import { TechmatrialComponent } from './techmatrial/techmatrial.component';
 import { TechassignmentComponent } from './techassignment/techassignment.component';
 import { TechquizComponent } from './techquiz/techquiz.component';
 import { TechsubjectmainComponent } from './techsubjectmain/techsubjectmain.component';
+import { CreateMatrialComponent } from './create-matrial/create-matrial.component';
+import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
 
 const routes: Routes = [
   {path:'assignment',component:TechassignmentComponent},
   {path:'quiz',component:TechquizComponent},
   {path:'matrial',component:TechmatrialComponent},
-  {path:'',component:TechsubjectmainComponent}
- 
+  {path:'',component:TechsubjectmainComponent},
+  {path:'creatematrial',component:CreateMatrialComponent},
+
 ];
 
 @NgModule({
@@ -20,7 +23,9 @@ const routes: Routes = [
     TechmatrialComponent,
     TechassignmentComponent,
     TechquizComponent,
-    TechsubjectmainComponent
+    TechsubjectmainComponent,
+    CreateMatrialComponent,
+    CreateAssignmentComponent
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),HttpClientModule

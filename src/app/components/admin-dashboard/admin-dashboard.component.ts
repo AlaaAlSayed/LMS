@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AdminDashboardComponent implements OnInit {
   isDisplay=true;
   isDisplay2=true;
+  isDisplay3=true;
+  isDisplay4=true;
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +19,12 @@ export class AdminDashboardComponent implements OnInit {
   }
   toggleDisplay2(){
     this.isDisplay2=!this.isDisplay2;
+  }
+  toggleDisplay3(){
+    this.isDisplay3=!this.isDisplay3;
+  }
+  toggleDisplay4(){
+    this.isDisplay4=!this.isDisplay4;
   }
 
 }

@@ -5,7 +5,7 @@ export class Student{
     phone:string="";
     // level:number=0;
     classroomId:number=0;
-    picture_path:string="";
+    picture_path:any;
     government:string="";
     city:string="";
     street:string="";

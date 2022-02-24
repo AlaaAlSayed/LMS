@@ -12,8 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class TeacherHomeComponent implements OnInit {
-  // teacher:Teacher= new Teacher();
-  // teachers:Teacher[]=[];
+  teacher:Teacher= new Teacher();
   teach:TeacherTeachesSubjects[]=[];
   // teach:any[]=[];
   constructor(private _teacherService:TeacherService, private _activatedRoute:ActivatedRoute) { }
@@ -32,7 +31,14 @@ export class TeacherHomeComponent implements OnInit {
         },
       )
     })
-
-      }
+    this._activatedRoute.paramMap.subscribe( params=>{
+      let id = Number(params.get('id'));
+      this._teacherService.getTeacherByID(id)
+      .subscribe(
+        response=>{
+          this.teacher=response;
+        },
+      )
+      })
   }
-  
+}

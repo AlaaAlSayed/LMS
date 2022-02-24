@@ -6,4 +6,5 @@ export class Teacher{
     government:string="";
     city:string="";
     street:string="";
+    picture_path:any=""
 }

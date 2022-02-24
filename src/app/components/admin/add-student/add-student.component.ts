@@ -1,7 +1,6 @@
 import { StudentService } from './../../../services/student.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Student } from 'src/models/student';
 
 @Component({
   selector: 'app-add-student',
@@ -10,25 +9,25 @@ import { Student } from 'src/models/student';
 })
 export class AddStudentComponent implements OnInit {
   // student: Student = {} as Student;
-  
-  student=new Student();
+  files:any;
+  data:any;
     formAdd = new FormGroup({}) 
   constructor(private _formBuilder:FormBuilder, private _studentService:StudentService) { }
 //private _formBuilder:FormBuilder
   ngOnInit(): void {
     this.formAdd = this._formBuilder.group({
-      studentID:[''],
+      id:[''],
 
-      studentName:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
-      studentEmail:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10)]],
+      name:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
+      email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
       // studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
-      studentPhone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+      phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]],
       // studentLevel:['',[Validators.required]],
-      studentClass:['',[Validators.required]],
-      // studentPicture:['',[Validators.required]],
-      studentGov:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-      studentCity:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
-      studentStreet:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]]
+      classroomId:['',[Validators.required]],
+      picture_path:['',[Validators.required]],
+      government:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
+      city:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
+      street:['',[Validators.required,Validators.minLength(2),Validators.maxLength(30)]]
     })
   }
   Add():void
@@ -47,13 +46,26 @@ export class AddStudentComponent implements OnInit {
   {
     return  this.formAdd.controls[name].invalid && this.formAdd.controls[name].errors?.[error];
   }
+  uploadImage(event:any){
+   this.files=event.target.files[0];
+  }
  insertStudent(){
-this._studentService.post(this.student).subscribe(response=>{
-  console.log(this.student);
-// })
- })
+   let formData= new FormData();
+   formData.append("name",this.formAdd.value.name);
+   formData.append("email",this.formAdd.value.email);
+   formData.append("phone",this.formAdd.value.phone);
+   formData.append("classroomId",this.formAdd.value.classroomId);
+   formData.append("picture_path",this.files, this.files.name);
+   formData.append("government",this.formAdd.value.government);
+   formData.append("city",this.formAdd.value.city);
+   formData.append("street",this.formAdd.value.street);
+
+this._studentService.post(formData).subscribe(response=>{
+  this.files=response;
+  console.log(this.files);
+
+})
 }
-// console.log('hello');
-//  }
+
 
 }

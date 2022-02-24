@@ -13,18 +13,22 @@ import { HttpClient } from '@angular/common/http';
 export class TeacherProfileComponent implements OnInit {
 
   teacher:Teacher= new Teacher();
+  data:any;
   constructor(private _teacherService:TeacherService, private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe( params=>{
       let id = Number(params.get('id'));
       this._teacherService.getTeacherByID(id)
-      // this._httpClient.get(`http://127.0.0.1:8000/api/teachers/${id}`)
-
       .subscribe(
         response=>{
           this.teacher=response;
         },
+      )
+      this._teacherService.getImage(id).subscribe( data=>{
+          this.data=data;
+          console.log(this.data);
+        }, error => console.error(error)
       )
     }
 
