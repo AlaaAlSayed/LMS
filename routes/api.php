@@ -54,7 +54,7 @@ Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects
 Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
 Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
 Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
-
+Route::get('/subjects/show/{subject}', [SubjectController::class, 'showSubject'])->name('api.subjects.showSubject');
 
 
 //student dashboard  - home page :
