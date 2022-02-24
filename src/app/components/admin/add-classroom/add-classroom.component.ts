@@ -22,16 +22,16 @@ export class AddClassroomComponent implements OnInit {
       level:[''],
       code:[''],
       capacity:[''],
-      time_table:[''],
+      // time_table:[''],
 
     })
   }
-  insertClassroom(level:number, code:number, capacity:number, time_table:string){
+  insertClassroom(level:number, code:number, capacity:number){
     let classroom=new Classroom();
     classroom.level=level;
     classroom.code=code;
     classroom.capacity=capacity;
-    classroom.time_table=time_table;
+    // classroom.time_table=time_table;
     this._classroomService.post(classroom).subscribe(response=>{
       console.log(this.classes);
       this.classes.push(classroom);

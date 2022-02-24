@@ -22,13 +22,13 @@
         <input type="number" #inputCapacity class="form-control" formControlName="capacity" name="capacity">
        
       </div>
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <label class="form-label" >TimeTable</label>
         <input type="text" #inputTable class="form-control" formControlName="time_table" name="time_table">
        
-      </div>
+      </div> -->
       <div class="col-12">
-        <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertClassroom(inputLevel.valueAsNumber, inputCode.valueAsNumber, inputCapacity.valueAsNumber, inputTable.value)" >Add Student</button>
+        <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertClassroom(inputLevel.valueAsNumber, inputCode.valueAsNumber, inputCapacity.valueAsNumber)" >Add Student</button>
       </div>
   </div>
   </div>

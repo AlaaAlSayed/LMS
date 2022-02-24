@@ -14,7 +14,7 @@ formEdit = new FormGroup({
   level:new FormControl(),
   code:new FormControl(),
   capacity:new FormControl(),
-  time_table:new FormControl(''),
+  // time_table:new FormControl(''),
   })
   constructor(private _formBuilder:FormBuilder,private _classroomService:ClassroomService, private _activatedRoute:ActivatedRoute) { }
 
@@ -29,7 +29,7 @@ formEdit = new FormGroup({
             level:new FormControl(response['level']),
             code:new FormControl(response['code']),
             capacity:new FormControl(response['capacity']),
-            time_table:new FormControl(response['time_table']),
+            // time_table:new FormControl(response['time_table']),
           })
         },
       )

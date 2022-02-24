@@ -18,7 +18,7 @@ export class EditSubjectComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe( params=>{
       this.id = Number(params.get('id'));
-      this._subjectService.getSubjectByID(this.id).subscribe(
+      this._subjectService.getSubject(this.id).subscribe(
         response=>{
             this.formEdit=new FormGroup({
               name:new FormControl(response['name']),
@@ -31,6 +31,7 @@ export class EditSubjectComponent implements OnInit {
     updateSubject(){
       this._subjectService.updateData(this.id, this.formEdit.value).subscribe(response=>{
         console.log(response, 'updated Successfully');
+        alert('updated successfully');
       }
       )
     }
