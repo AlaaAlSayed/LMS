@@ -17,9 +17,9 @@ return new class extends Migration
             //subjectID	 name	classID
             $table->id();
             $table->timestamps();
+
             $table->string('name');
             $table->foreignId('classroomId')->nullable()->constraint();
-
 
         });
     }

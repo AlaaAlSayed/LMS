@@ -91,7 +91,6 @@ class TeacherController extends Controller
     return ($teacher);
   }
 
-  // Route::post('/teacher/{teacherId}/classroom/{classroomId}/subject/{subjectId}',[TeacherController::class,'assign']);
   public function assign()//$teacherId, $classroomId, $subjectId)
   {
     $data = request()->all();
@@ -102,17 +101,15 @@ class TeacherController extends Controller
       'classroomId' => $data['classroomId'],
     ]);
 
-    // $teacher = teacher_teaches_subjects::create([
-    //   'teacherId' => $teacherId,
-    //   'subjectId' => $subjectId,
-    //   'classroomId' => $classroomId,
-    // ]);
     return ($teacher);
   }
 
 
-
-
+  public function teaches($teacherId)
+  {
+    $teacher = teacher_teaches_subjects::where('teacherId',$teacherId)->get();
+    return ($teacher);
+  }
 
 
   // public function update($teacherId)
