@@ -19,9 +19,9 @@ class TeacherController extends Controller
 
   public function showImage($teacherId)
   {
-      $picture_path = Teacher::where('id',$teacherId)->first()->picture_path;
-      $imgsrc= asset('storage/assets/'. $picture_path);
-      return response()->json($imgsrc);
+    $picture_path = Teacher::where('id', $teacherId)->first()->picture_path;
+    $imgsrc = asset('storage/assets/' . $picture_path);
+    return response()->json($imgsrc);
   }
 
   public function home($teacherId)
@@ -47,11 +47,11 @@ class TeacherController extends Controller
   {
     request()->validate([
       'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-  ]);
+    ]);
 
 
-  if (request()->hasFile('picture_path')) //if user choose file
-  {
+    if (request()->hasFile('picture_path')) //if user choose file
+    {
 
       $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
 
@@ -60,16 +60,17 @@ class TeacherController extends Controller
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
 
 
-  } else {
+    } else {
 
       $filename = 'image_tmp.jpeg';
-  }
+    }
+
     $data = request()->all();
     $teacher = Teacher::create([
       'name' => $data['name'],
       'email' => $data['email'],
       'phone' => $data['phone'],
-      'picture_path'=> $filename,
+      'picture_path' => $filename,
       'government' => $data['government'],
       'city' => $data['city'],
       'street' => $data['street'],
@@ -89,6 +90,31 @@ class TeacherController extends Controller
     $teacher->update($request->all());
     return ($teacher);
   }
+
+  // Route::post('/teacher/{teacherId}/classroom/{classroomId}/subject/{subjectId}',[TeacherController::class,'assign']);
+  public function assign()//$teacherId, $classroomId, $subjectId)
+  {
+    $data = request()->all();
+
+    $teacher = teacher_teaches_subjects::create([
+      'teacherId' => $data['teacherId'],
+      'subjectId' => $data['subjectId'],
+      'classroomId' => $data['classroomId'],
+    ]);
+
+    // $teacher = teacher_teaches_subjects::create([
+    //   'teacherId' => $teacherId,
+    //   'subjectId' => $subjectId,
+    //   'classroomId' => $classroomId,
+    // ]);
+    return ($teacher);
+  }
+
+
+
+
+
+
   // public function update($teacherId)
   // {
   //   $data = request()->all();

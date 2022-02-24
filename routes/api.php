@@ -36,9 +36,11 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy'])->nam
 
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
-Route::post('teachers',[TeacherController::class,'store']);
+Route::post('/teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
+Route::post('/teachers/assign',[TeacherController::class,'assign']);
+// Route::post('/teacher/{teacherId}/classroom/{classroomId}/subject/{subjectId}',[TeacherController::class,'assign']);
 
 //  admin dashboard - classrooms CRUD operations 
 Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
