@@ -23,7 +23,7 @@ class SubjectController extends Controller
     public function show($subjectId)
     {
         $subject = Subject::find($subjectId);
-        return ($subject);
+        return new SubjectResource($subject);
     }
 
     public function store(StoreSubjectRequest $request)

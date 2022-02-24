@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('teachers', function (Blueprint $table) {
-             $table->string('picture_path');
+        Schema::create('admin_review_applications', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->foreignId('adminId')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreignId('applicationId')->references('id')->on('applications')->onDelete('cascade');
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('teachers', function (Blueprint $table) {
-            $table->dropColumn('picture_path');
-        });
+        Schema::dropIfExists('admin_review_applications');
     }
 };
