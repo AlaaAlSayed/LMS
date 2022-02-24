@@ -40,18 +40,18 @@ Route::post('teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
-// to be re-checked on admin dashboard
+//  admin dashboard - classrooms CRUD operations 
 Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
 Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
 Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
 Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
 Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
 
-// to be re-checked on admin dashboard
-// Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');
-// Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
-// Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
-// Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
+// admin dashboard - classrooms CRUD operations 
+Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');
+Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
+Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
+Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
 
 
 
