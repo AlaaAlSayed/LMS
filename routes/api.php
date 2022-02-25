@@ -41,7 +41,7 @@ Route::get('/teachers/classroom',[TeacherController::class,'show']);
 Route::post('/teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
-Route::get('/teachers/teaches/{teacherId}',[TeacherController::class,'teaches']);
+Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 
 //  admin dashboard - classrooms CRUD operations 
 Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');

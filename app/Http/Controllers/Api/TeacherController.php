@@ -105,9 +105,9 @@ class TeacherController extends Controller
   }
 
 
-  public function teaches($teacherId)
+  public function teaches()
   {
-    $teacher = teacher_teaches_subjects::where('teacherId',$teacherId)->get();
+    $teacher = teacher_teaches_subjects::all();
     return ($teacher);
   }
 
