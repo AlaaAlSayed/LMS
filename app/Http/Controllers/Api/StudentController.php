@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
+use App\Models\Assignment;
 
 class StudentController extends Controller
 {
@@ -20,8 +21,8 @@ class StudentController extends Controller
 
     public function showImage($studentId)
     {
-        $picture_path = Student::where('id',$studentId)->first()->picture_path;
-        $imgsrc= asset('storage/assets/'. $picture_path);
+        $picture_path = Student::where('id', $studentId)->first()->picture_path;
+        $imgsrc = asset('storage/assets/' . $picture_path);
         return response()->json($imgsrc);
     }
 
@@ -39,25 +40,18 @@ class StudentController extends Controller
 
     public function store()
     {
-
-
         request()->validate([
             'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
         ]);
 
 
-        if (request()->hasFile('picture_path')) //if user choose file
-        {
-
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+        if (request()->hasFile('picture_path')) { //if user choose file
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
 
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-
-
         } else {
-
             $filename = 'storage/app/public/assets/image_tmp.jpeg';
         }
 
@@ -82,15 +76,12 @@ class StudentController extends Controller
         ]);
 
 
-        if (request()->hasFile('picture_path')) //if user choose file
-        {
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+        if (request()->hasFile('picture_path')) { //if user choose file
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-
         } else {
-
             $filename =  Student::where('id', $studentId)->get('picture_path');
         }
 
@@ -116,5 +107,38 @@ class StudentController extends Controller
         Student::where('id', $studentId)->delete();
         // $allStudents = Student::all();
         // return  StudentResource::collection($allStudents);
+    }
+
+
+
+    public function upload($studentId, $assignmentId, $subjectId)
+    {
+        request()->validate([
+            "name" => 'required|mimes:pdf,docs,xlsx|max:10000'
+        ]);
+
+        if (request()->hasFile('name')) { //if user choose file
+            $file = request()->file('name'); //store  uploaded file to variable $file to
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'Answer_'.$studentId.  '_' . time() . '.' . $extension;
+            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+        } else {
+            $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
+        }
+
+        $data = request()->all();
+        // $subject = Subject::find($teacherId);
+        $assignment = Assignment::create([
+            'name' => $filename
+        ]);
+
+        // $teacher_teaches_subjects = teacher_attaches_assignments::create([
+        //     'teacherId' => $teacherId,
+        //     'subjectId' => $subjectId,
+        //     'assignmentId' => $assignment->id,
+        //     'deadline' => $data['deadline']
+        // ]);
+        // $teacher_teaches_subjects = teacher_attaches_assignments::all();
+        // return ($teacher_teaches_subjects);
     }
 }

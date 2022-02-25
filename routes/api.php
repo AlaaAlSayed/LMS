@@ -37,6 +37,8 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy'])->nam
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
 Route::get('/teachers/classroom',[TeacherController::class,'show']);
+Route::get('/teachers/showClassroom/{teacherId}/{subjectId}',[TeacherController::class,'showClassroom']);
+
 Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 Route::post('/teachers',[TeacherController::class,'store']);
 Route::put('/teachers/teachesUpdate/{teacherId}/{subjectId}', [TeacherController::class , 'teachesUpdate']);
@@ -65,6 +67,8 @@ Route::get('/students/{student}', [StudentController::class, 'show'])->name('api
 Route::get('/students/image/{student}', [StudentController::class, 'showImage'])->name('api.students.showImage');
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
+// student dashboard  - upload assignment    :
+Route::put('/students/{studentId}/{assignmentId}/{subjectId}', [StudentController::class, 'upload'])->name('api.students.upload');
 
 
 //teacher dashboard  - to get subject of this teacher to this class : 
@@ -111,8 +115,6 @@ Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teach
 // download assignment as pdf
 Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,'download']);
 
-// student dashboard  - upload assignment    :
-// Route::put('/assignments/{assignment}/{student}/{subject}', [AssignmentController::class, 'upload'])->name('api.assignments.upload');
 
 // show assignment as pdf
 Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
