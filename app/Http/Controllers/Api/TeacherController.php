@@ -82,6 +82,7 @@ class TeacherController extends Controller
   public function destroy($teacherId)
   {
     Teacher::where('id', $teacherId)->delete();
+    teacher_teaches_subjects::where('teacherId', $teacherId)->delete();
   }
 
   public function update(Request $request, $teacherId)
