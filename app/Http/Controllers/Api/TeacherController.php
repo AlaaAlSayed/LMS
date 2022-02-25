@@ -113,21 +113,16 @@ class TeacherController extends Controller
   }
 
 
-  // public function update($teacherId)
-  // {
-  //   $data = request()->all();
-  //   //@dd( $data);
-  //   $teacher = Teacher::where('id', $teacherId)->update([
-  //     'name' => $data['name'],
-  //     'email' => $data['email'],
-  //     'phone' => $data['phone'],
-  //     'government' => $data['government'],
-  //     'city' => $data['city'],
-  //     'street' => $data['street'],
-  //   ]);
+  public function teachesUpdate($teacherId,$subjectId)
+  {
+    $data = request()->all();
+    $teacher = teacher_teaches_subjects::where([['teacherId', $teacherId],['subjectId',$subjectId]])->update([
+      // 'teacherId' => $data['teacherId'],
+      // 'subjectId' => $data['subjectId'],
+      'classroomId' => $data['classroomId'],
+    ]);
 
-  //   // @dd( $data);
-  //   return ($teacher);
-  // }
+    return ($teacher);
+  }
 
 }
