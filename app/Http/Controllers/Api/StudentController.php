@@ -10,6 +10,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Models\Assignment;
+use App\Models\StudentUploadAssignment;
 
 class StudentController extends Controller
 {
@@ -114,31 +115,29 @@ class StudentController extends Controller
     public function upload($studentId, $assignmentId, $subjectId)
     {
         request()->validate([
-            "name" => 'required|mimes:pdf,docs,xlsx|max:10000'
+            "answer" => 'required|mimes:pdf|max:10000'
         ]);
 
-        if (request()->hasFile('name')) { //if user choose file
-            $file = request()->file('name'); //store  uploaded file to variable $file to
+        if (request()->hasFile('answer')) { //if user choose file
+            $file = request()->file('answer'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
-            $filename = 'Answer_'.$studentId.  '_' . time() . '.' . $extension;
+            $filename = 'Answer_' . $studentId .  '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
         } else {
             $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
         }
 
         $data = request()->all();
-        // $subject = Subject::find($teacherId);
-        $assignment = Assignment::create([
-            'name' => $filename
+
+        $assignment = StudentUploadAssignment::create([
+            'studentId' => $studentId,
+            'subjectId' => $subjectId,
+            'assignmentId' => $assignmentId,
+            'answer' => $filename,
         ]);
 
-        // $teacher_teaches_subjects = teacher_attaches_assignments::create([
-        //     'teacherId' => $teacherId,
-        //     'subjectId' => $subjectId,
-        //     'assignmentId' => $assignment->id,
-        //     'deadline' => $data['deadline']
-        // ]);
-        // $teacher_teaches_subjects = teacher_attaches_assignments::all();
-        // return ($teacher_teaches_subjects);
+        
+        $StudentsUploadAssignment = StudentUploadAssignment::all();
+        return ($StudentsUploadAssignment);
     }
 }

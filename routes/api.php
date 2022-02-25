@@ -68,7 +68,7 @@ Route::get('/students/image/{student}', [StudentController::class, 'showImage'])
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 // student dashboard  - upload assignment    :
-Route::put('/students/{studentId}/{assignmentId}/{subjectId}', [StudentController::class, 'upload'])->name('api.students.upload');
+Route::put('/students/upload/{studentId}/{assignmentId}/{subjectId}', [StudentController::class, 'upload'])->name('api.students.upload');
 
 
 //teacher dashboard  - to get subject of this teacher to this class : 
