@@ -52,7 +52,7 @@ class MaterialController extends Controller
     public function store()
     {
         request()->validate([
-            'material' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material' => 'mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
@@ -82,7 +82,7 @@ class MaterialController extends Controller
     public function update($materialId,Request $request)
     {
         $request->validate([
-            'material' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material' => 'mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
