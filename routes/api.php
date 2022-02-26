@@ -27,6 +27,10 @@ use App\Http\Controllers\Api\MaterialController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//admin dashboard -  profile page:
+Route::get('/admins', [AdminController::class, 'index']);
+Route::get('/admins/{adminId}',[AdminController::class,'show']);
+Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
 Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
