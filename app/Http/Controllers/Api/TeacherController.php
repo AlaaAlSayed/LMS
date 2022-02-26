@@ -77,7 +77,7 @@ class TeacherController extends Controller
       'city' => $data['city'],
       'street' => $data['street'],
     ]);
-    
+
     Teacher::create([
       'id' => $newUser->id,
       'phone' => $data['phone'],
@@ -93,15 +93,59 @@ class TeacherController extends Controller
 
   public function destroy($teacherId)
   {
-    Teacher::where('id', $teacherId)->delete();
-    teacher_teaches_subjects::where('teacherId', $teacherId)->delete();
+    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId);
+    if ($teacher) {
+      User::where('id', $teacherId)->delete();
+      teacher_teaches_subjects::where('teacherId', $teacherId)->delete();
+
+      $allStudents =  User::join('teachers', 'teachers.id', '=', 'users.id')->get()->all();
+      return  $allStudents;
+    }
+    return  "not teacher";
+
+    // Teacher::where('id', $teacherId)->delete();
   }
 
   public function update(Request $request, $teacherId)
   {
-    $teacher = Teacher::where('id', '=', $teacherId)->first();
-    $teacher->update($request->all());
-    return ($teacher);
+    // $teacher = Teacher::where('id', '=', $teacherId)->first();
+    // $teacher->update($request->all());
+    // return ($teacher);
+
+    request()->validate([
+      'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+    ]);
+
+
+    if (request()->hasFile('picture_path')) { //if user choose file
+      $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'teacher-image' . '_' . time() . '.' . $extension;
+      $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+    } else {
+      $filename =  Teacher::where('id', $teacherId)->get('picture_path');
+    }
+
+    $data = request()->all();
+
+
+    User::where('id', $teacherId)->update([
+      'username' => $data['username'],
+      'name' => $data['name'],
+      // 'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+      'government' => $data['government'],
+      'city' => $data['city'],
+      'street' => $data['street'],
+    ]);
+
+    Teacher::where('id', $teacherId)->update([
+      'phone' => $data['phone'],
+      'email' => $data['email'],
+      'picture_path' =>  $filename,
+    ]);
+    
+    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId);
+    return $teacher;
   }
 
   public function assign() //$teacherId, $classroomId, $subjectId)
