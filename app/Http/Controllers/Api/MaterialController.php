@@ -79,27 +79,27 @@ class MaterialController extends Controller
         return $allMaterials->all();
     }
 
-    public function update($materialId)
+    public function update($materialId,Request $request)
     {
-        request()->validate([
+        $request->validate([
             'material' => 'required|mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
-        if (request()->hasFile('material')) //if user choose file
+        if ($request->hasFile('material')) //if user choose file
         {
 
-            $file = request()->file('material'); //store  uploaded file to variable $file to       
+            $file = $request->file('material'); //store  uploaded file to variable $file to       
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-            $data = request()->all();
+            // $data = $request->all();
         } else {
 
             $filename = SubjectMaterial::where('id', $materialId)->find('material');
         }
 
-        $data = request()->all();
+        $data = $request->all();
 
         SubjectMaterial::where('id', $materialId)->update([
             'subjectId' => $data['subjectId'],
