@@ -14,7 +14,7 @@ class Classroom extends Model
         'level',
         'capacity',
         'code',
-        'time_table',
+        // 'time_table',
 
     ];
 
