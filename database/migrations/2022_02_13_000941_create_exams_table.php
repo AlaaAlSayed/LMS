@@ -13,8 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('teachers', function (Blueprint $table) {
-             $table->string('picture_path');
+        Schema::create('exams', function (Blueprint $table) {
+           
+            $table->id();
+            $table->string('name');
+            $table->string('questions');
+
+            $table->timestamps();
+
+
         });
     }
 
@@ -25,8 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('teachers', function (Blueprint $table) {
-            $table->dropColumn('picture_path');
-        });
+        Schema::dropIfExists('exams');
     }
 };

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            //subjectID	 name	classID
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
+
+            $table->string('email')->unique();;
+            $table->string('phone');
+
             $table->timestamps();
 
-            $table->string('name');
-            $table->foreignId('classroomId')->nullable()->constraint();
 
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('admins');
     }
 };

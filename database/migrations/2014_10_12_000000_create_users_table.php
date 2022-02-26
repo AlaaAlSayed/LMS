@@ -15,15 +15,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('is_online')->default(0);
-            // $table->string('last_activity')->nullable;
-             $table->string('last_activity')->default(0);
 
+            $table->string('name');
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+
+            $table->string('password');
+            
+            $table->foreignId('roleId')->references('id')->on('roles')->onDelete('cascade');
+            //1-> admin , 2-> teacher , 3->student 
+
+            //address
+            $table->string('government')->default('Cairo');
+            $table->string('city')->default('Nasr City');
+            $table->string('street')->default('65 walt disney');
+
+            $table->boolean('is_online')->default(0);
+            $table->string('last_activity')->default(0);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
+
             $table->timestamps();
         });
     }

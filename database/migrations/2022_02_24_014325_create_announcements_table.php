@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admins__notify__students', function (Blueprint $table) {
+        Schema::create('announcements', function (Blueprint $table) {
             $table->id();
+            // title	description	 media	adminId
+            $table->string('title');
+            $table->text('description');
+            $table->string('media')->nullable();
+            $table->foreignId('adminID')->references('id')->on('admins')->onDelete('cascade');
+
             $table->timestamps();
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('adminId')->nullable()->constraint();
-            $table->text('message');
+
         });
     }
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins__notify__students');
+        Schema::dropIfExists('announcements');
     }
 };

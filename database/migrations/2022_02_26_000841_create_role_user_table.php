@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('subject_materials', function (Blueprint $table) {
-            $table->string('name');
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('role_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('subject_materials', function (Blueprint $table) {
-            $table->dropColumn('name');
-        });
+        Schema::dropIfExists('role_user');
     }
 };

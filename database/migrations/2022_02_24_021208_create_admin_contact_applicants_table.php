@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('admin_contact_applicants', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            // title	description	 media	adminId
-            $table->string('title');
-            $table->text('description');
-            $table->string('media')->nullable();
-            $table->foreignId('adminID')->references('id')->on('admins')->onDelete('cascade');
+          
+            $table->foreignId('applicantId')->references('id')->on('applicants')->onDelete('cascade');
+            $table->foreignId('adminId')->references('id')->on('admins')->onDelete('cascade');
+            $table->text('message');
 
+            $table->timestamps();
 
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('admin_contact_applicants');
     }
 };

@@ -12,17 +12,18 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {//TeacherMakeExam	teacherId	subjectId	examId	time	date	min_score
-        Schema::create('teacher_makes_exams', function (Blueprint $table) {
+    {
+        Schema::create('student_take_exams', function (Blueprint $table) {
+            //studentID	subjectID	examID	result
             $table->id();
-            $table->timestamps();
-            $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
+            
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('examId')->references('id')->on('exams')->onDelete('cascade');
-           
-            $table->time('time');
-            $table->date('date');
-            $table->float('min_score');
+            $table->float('result');
+
+            $table->timestamps();
+
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_makes_exams');
+        Schema::dropIfExists('student_take_exams');
     }
 };

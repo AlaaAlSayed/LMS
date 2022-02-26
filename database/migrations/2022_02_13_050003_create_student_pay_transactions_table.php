@@ -12,13 +12,13 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('teachers_contact_students', function (Blueprint $table) {
+    {//studentPayTransaction studentId	processID	status
+        Schema::create('student_pay_transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
+            $table->foreignId('transactionId')->references('id')->on('transactions')->onDelete('cascade');
+            $table->string('status');
             $table->timestamps();
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('teacherId')->nullable()->constraint();
-            $table->text('message');
 
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers_contact_students');
+        Schema::dropIfExists('student_pay_transactions');
     }
 };

@@ -12,12 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {//studentPayTransaction studentId	processID	status
-        Schema::create('student_pay_transactions', function (Blueprint $table) {
+    {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('transactionID')->nullable()->constraint();
+            //applicationId	questions	status
+            $table->string('questions');
             $table->string('status');
+
+            $table->timestamps();
+           
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_pay_transactions');
+        Schema::dropIfExists('applications');
     }
 };

@@ -12,14 +12,18 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {//TeacherTeachesSubject	teacherId	subjectId	classId
-        Schema::create('teacher_teaches_subjects', function (Blueprint $table) {
+    {
+        Schema::create('student_upload_assignments', function (Blueprint $table) {
+            //	studentID	subjectID	assignmentID	answer
             $table->id();
-            
-            $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
+             
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
-            $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
-           
+            $table->foreignId('assignmentId')->references('id')->on('assignments')->onDelete('cascade');
+            $table->text('answer');
+
+            $table->timestamps();
+
         });
     }
 
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_teaches_subjects');
+        Schema::dropIfExists('student_upload_assignments');
     }
 };

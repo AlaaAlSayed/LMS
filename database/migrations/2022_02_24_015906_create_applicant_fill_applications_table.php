@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('applicant_fill_applications', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
 
             // applicantId	adminId	applicationId	answer
             $table->foreignId('applicantId')->references('id')->on('applicants')->onDelete('cascade');
             $table->foreignId('adminId')->references('id')->on('admins')->onDelete('cascade');
             $table->foreignId('applicationId')->references('id')->on('applications')->onDelete('cascade');
             $table->text('answer');
+
+            $table->timestamps();
+
         });
     }
 
