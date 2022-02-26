@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
         $users = [
             ['name' => 'student',
             'username' =>'stud',
-            'email_verified_at' => now(),
+            // 'email_verified_at' => now(),
             'password' =>password_hash('pass',PASSWORD_DEFAULT ) ,// password
-            'email' =>'stud@gmail.com',
+            // 'email' =>'stud@gmail.com',
             'remember_token' => Str::random(10),
             'roleId'=> '3',
             //address
@@ -44,9 +44,9 @@ class DatabaseSeeder extends Seeder
             ] ,
             ['name' => 'Admin',
             'username' =>'admn',
-            'email_verified_at' => now(),
+            // 'email_verified_at' => now(),
             'password' =>password_hash('pass',PASSWORD_DEFAULT ) ,// password
-            'email' =>'admn@gmail.com',
+            // 'email' =>'admn@gmail.com',
             'remember_token' => Str::random(10),
             'roleId'=> '1',
             //address
@@ -56,8 +56,8 @@ class DatabaseSeeder extends Seeder
             ] ,
             ['name' => 'teacher',
             'username' =>'tchr',
-            'email' =>'tchr@gmail.com',
-            'email_verified_at' => now(),
+            // 'email' =>'tchr@gmail.com',
+            // 'email_verified_at' => now(),
             'password' =>password_hash('pass',PASSWORD_DEFAULT ) ,// password
             'remember_token' => Str::random(10),
             'roleId'=> '2',
