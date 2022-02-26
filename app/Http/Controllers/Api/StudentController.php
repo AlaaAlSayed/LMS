@@ -74,7 +74,6 @@ class StudentController extends Controller
             'phone' => $data['phone'],
             'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
-            // 'birthdate' => $data['birthdate'],
           
         ]);
 
@@ -100,19 +99,25 @@ class StudentController extends Controller
 
         $data = request()->all();
 
-        Student::where('id', $studentId)->update([
+     
+        User::where('id', $studentId)->update([
+            'username' => $data['username'],
             'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'picture_path' =>  $filename,
-            'classroomId' => $data['classroomId'],
+            // 'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+            // 'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
         ]);
+        
+        Student::where('id', $studentId)->update([
+            'phone' => $data['phone'],
+            'picture_path' =>  $filename,
+            'classroomId' => $data['classroomId'],
 
-        $student = Student::find($studentId);
-        return ($student);
+        ]);
+        $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId);
+        return $student;
     }
 
     public function destroy($studentId)
@@ -134,7 +139,7 @@ class StudentController extends Controller
     public function upload($studentId, $assignmentId, $subjectId)
     {
         request()->validate([
-            "answer" => 'required|mimes:pdf|max:10000'
+            'answer' => 'required|mimes:pdf|max:10000'
         ]);
 
         if (request()->hasFile('answer')) { //if user choose file

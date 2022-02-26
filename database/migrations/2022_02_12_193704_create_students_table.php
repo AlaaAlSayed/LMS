@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('phone');
             $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
             $table->string('picture_path')->nullable()->default(0);
-            $table->date('birthdate')->nullable();
 
             // //address
             // $table->string('city')->default('Nasr City');
