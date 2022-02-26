@@ -23,7 +23,7 @@ class StudentController extends Controller
 
     public function showImage($studentId)
     {
-        $picture_path = User::join('students', 'students.id', '=', 'users.id')->find($studentId)->picture_path;
+        $picture_path = Student::find($studentId)->picture_path;
         $imgsrc = asset('storage/assets/' . $picture_path);
         return response()->json($imgsrc);
     }

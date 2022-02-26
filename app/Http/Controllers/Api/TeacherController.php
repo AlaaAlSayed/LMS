@@ -8,18 +8,19 @@ use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Subject;
 use App\Models\teacher_teaches_subjects;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
   public function show($teacherId)
   {
-    $teacher = Teacher::find($teacherId);
-    return ($teacher);
+    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId);
+    return $teacher;
   }
 
   public function showImage($teacherId)
   {
-    $picture_path = Teacher::where('id', $teacherId)->first()->picture_path;
+    $picture_path = Teacher::find($teacherId)->picture_path;
     $imgsrc = asset('storage/assets/' . $picture_path);
     return response()->json($imgsrc);
   }
@@ -32,8 +33,8 @@ class TeacherController extends Controller
 
   public function index()
   {
-    $teachers = Teacher::all();
-    return ($teachers);
+    $allTeachers =  User::join('teachers', 'teachers.id', '=', 'users.id')->get()->all();
+    return  $allTeachers;
   }
 
   public function classroomSubject($teacherId, $classroomId)
@@ -66,16 +67,27 @@ class TeacherController extends Controller
     }
 
     $data = request()->all();
-    $teacher = Teacher::create([
+
+    $newUser = User::create([
+      'username' => $data['username'],
       'name' => $data['name'],
-      'email' => $data['email'],
-      'phone' => $data['phone'],
-      'picture_path' => $filename,
+      'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+      'roleId' => '2',
       'government' => $data['government'],
       'city' => $data['city'],
       'street' => $data['street'],
     ]);
-    return ($teacher);
+    
+    Teacher::create([
+      'id' => $newUser->id,
+      'phone' => $data['phone'],
+      'email' => $data['email'],
+      'picture_path' =>  $filename,
+
+    ]);
+
+    $allTeachers =  User::join('teachers', 'teachers.id', '=', 'users.id')->get()->all();
+    return  $allTeachers;
   }
 
 
@@ -92,7 +104,7 @@ class TeacherController extends Controller
     return ($teacher);
   }
 
-  public function assign()//$teacherId, $classroomId, $subjectId)
+  public function assign() //$teacherId, $classroomId, $subjectId)
   {
     $data = request()->all();
 
@@ -113,10 +125,10 @@ class TeacherController extends Controller
   }
 
 
-  public function teachesUpdate($teacherId,$subjectId)
+  public function teachesUpdate($teacherId, $subjectId)
   {
     $data = request()->all();
-    $teacher = teacher_teaches_subjects::where([['teacherId', $teacherId],['subjectId',$subjectId]])->update([
+    $teacher = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId]])->update([
       // 'teacherId' => $data['teacherId'],
       // 'subjectId' => $data['subjectId'],
       'classroomId' => $data['classroomId'],
@@ -124,9 +136,9 @@ class TeacherController extends Controller
 
     return ($teacher);
   }
-  public function showClassroom($teacherId,$subjectId)
+  public function showClassroom($teacherId, $subjectId)
   {
-    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId],['subjectId',$subjectId]])->get();
+    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId]])->get();
     return ($classroomId);
   }
 }
