@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from 'src/app/services/teacher.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { TeacherTeachesSubjects } from 'src/models/teacher_teaches_subjects';
 @Component({
   selector: 'app-add-teacher',
   templateUrl: './add-teacher.component.html',
@@ -10,6 +11,11 @@ export class AddTeacherComponent implements OnInit {
   files:any;
   data:any;
     formAdd = new FormGroup({}) 
+
+    //assign teacher to subject and class
+    id:any;
+    formAssign = new FormGroup({}) 
+    teaches:TeacherTeachesSubjects[]=[]
   constructor(private _formBuilder:FormBuilder, private _teacherService:TeacherService) { }
 
   ngOnInit(): void {
@@ -26,6 +32,27 @@ export class AddTeacherComponent implements OnInit {
       picture_path:['',[Validators.required]],
      
     })
+    this._teacherService.getClasses(this.id).subscribe (
+      teach=>{this.teaches=teach;
+      }
+      )
+      this.formAssign = this._formBuilder.group({
+        id:[''],
+        teacherId:[''],
+        subjectId:[''],
+        classroomId:[''],  
+      })
+  }
+  AssignTeacher(teacherId:number, subjectId:number, classroomId:number){
+    let teach= new TeacherTeachesSubjects();
+    teach.teacherId=teacherId;
+    teach.subjectId=subjectId;
+    teach.classroomId= classroomId;
+    this._teacherService.postTeacherClass(teach).subscribe(response=>{
+      console.log(this.teaches);
+      this.teaches.push(teach);
+    })
+
   }
   Add():void
   {

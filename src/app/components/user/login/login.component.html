@@ -1,4 +1,87 @@
-<div [formGroup]="formLogin">
+<section class="min-vh-100">
+  <div class="container-fluid ">
+    <div class="row d-flex justify-content-center align-items-center h-100 mt-5">
+      <div class="col-md-6 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+          alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="formLogin">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" formControlName="email" name="email" class="form-control form-control-lg"
+              placeholder="Enter a valid email address" [class.is-invalid]="isInValidAndTouched('email')" [class.is-valid]="isValidControl('email')" />
+              <div *ngIf="isInValidAndTouched('email')">
+                <small class="form-text text-danger" *ngIf="isControlHasError('email','required')" >required Email</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('email','minLength')" >min length is 10</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('email','maxLength')" >max length is 30</small>
+              </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <input type="password" formControlName="password" name="password" class="form-control form-control-lg"
+              placeholder="Enter password" [class.is-invalid]="isInValidAndTouched('password')" [class.is-valid]="isValidControl('password')"/>
+              <div *ngIf="isInValidAndTouched('password')">
+                <small class="form-text text-danger" *ngIf="isControlHasError('password','required')" >required Password</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('password','minLength')" >min length is 8</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('password','maxLength')" >max length is 20</small>
+              </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" />
+              <label class="form-check-label" >
+                Remember me
+              </label>
+            </div>
+            <!-- <a href="#!" class="text-body">Forgot password?</a> -->
+          </div>
+
+          <div class="mt-4">
+          <button type="button" class="btn btn-primary me-2 btn-lg">Login as Admin</button>
+          <button type="button" class="btn btn-primary me-2 btn-lg">Login as Teacher</button>
+          <button type="button" class="btn btn-primary btn-lg ">Login as Student</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class=" py-4 bg-primary mt-1 ">
+    <!-- Copyright -->
+    <div class="text-white  mb-md-0 text-center">
+      Copyright © 2020. All rights reserved.
+    </div>
+    <!-- Copyright -->
+
+    <!-- Right -->
+    <!-- <div>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="#!" class="text-white">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div> -->
+    <!-- Right -->
+  </div>
+<!-- </section> -->
+
+
+
+
+
+
+<!-- <div [formGroup]="formLogin">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input formControlName="Email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')" aria-describedby="emailHelp" placeholder="Enter email">
@@ -21,4 +104,4 @@
     
     <button [disabled]="formLogin.invalid" (click)="login()" type="button" class="btn btn-primary">Submit</button>
 </div>
-
+ -->

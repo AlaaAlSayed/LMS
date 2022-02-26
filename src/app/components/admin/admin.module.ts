@@ -19,6 +19,7 @@ import { ViewClassroomsComponent } from './view-classrooms/view-classrooms.compo
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
+import { EditAssignTeacherComponent } from './edit-assign-teacher/edit-assign-teacher.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'edit-classroom/:id',component:EditClassroomComponent},
   {path: 'add-subject', component:AddSubjectComponent},
   {path: 'edit-subject/:id', component:EditSubjectComponent},
-  {path: 'view-subjects',component:ViewSubjectsComponent}
+  {path: 'view-subjects',component:ViewSubjectsComponent},
+  {path: 'edit-assign/:id/:id', component:EditAssignTeacherComponent}
 ]
 
 @NgModule({
@@ -58,6 +60,7 @@ const routes: Routes = [
     AddSubjectComponent,
     EditSubjectComponent,
     ViewSubjectsComponent,
+    EditAssignTeacherComponent,
   
   ],
   imports: [

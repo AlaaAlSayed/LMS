@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../services/student.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { stringify } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-edit-student',
   templateUrl: './edit-student.component.html',
@@ -34,14 +35,14 @@ files:any;
           // console.log(response.picture_path);
           // console.log(response);
           this.formEdit=new FormGroup({
-            name:new FormControl(response['name']),
-            email:new FormControl(response['email']),
-            phone:new FormControl(response['phone']),
-            classroomId:new FormControl(response['classroomId']),
-            // picture_path:new FormControl(response['picture_path']),
-            government:new FormControl(response['government']),
-            city:new FormControl(response['city']),
-            street:new FormControl(response['street']),
+            name:new FormControl(response['name'],[Validators.required,Validators.minLength(3)]),
+            email:new FormControl(response['email'],[Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]),
+            phone:new FormControl(response['phone'],[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]),
+            classroomId:new FormControl(response['classroomId'],[Validators.required]),
+            // picture_path:new FormControl((response['picture_path'])),
+            government:new FormControl(response['government'],[Validators.required,Validators.minLength(4),Validators.maxLength(10)]),
+            city:new FormControl(response['city'],[Validators.required,Validators.minLength(4),Validators.maxLength(10)]),
+            street:new FormControl(response['street'],[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
           })
         },
       )
@@ -60,18 +61,18 @@ files:any;
     
     
   }
-  // isValidControl(name:string):boolean
-  // {
-  //   return this.formEdit.controls[name].valid;
-  // }
-  // isInValidAndTouched(name:string):boolean
-  // {
-  //   return  this.formEdit.controls[name].invalid && (this.formEdit.controls[name].dirty || this.formEdit.controls[name].touched);
-  // }
-  // isControlHasError(name:string,error:string):boolean
-  // {
-  //   return  this.formEdit.controls[name].invalid && this.formEdit.controls[name].errors?.[error];
-  // }
+  isValidControl(name:string):boolean
+  {
+    return this.formEdit.controls[name].valid;
+  }
+  isInValidAndTouched(name:string):boolean
+  {
+    return  this.formEdit.controls[name].invalid && (this.formEdit.controls[name].dirty || this.formEdit.controls[name].touched);
+  }
+  isControlHasError(name:string,error:string):boolean
+  {
+    return  this.formEdit.controls[name].invalid && this.formEdit.controls[name].errors?.[error];
+  }
   uploadImage(event:any){
    this.files=event.target.files[0];
   }

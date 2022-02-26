@@ -1,8 +1,8 @@
 <h1 class="border-bottom mt-5"> Add New Teacher: </h1>
 <div [formGroup]="formAdd" >
 <div class="row g-3">
-    <div class="col-md-6" >
-        <label  class="form-label">ID</label>
+    <div class="col-md-6" hidden>
+        <label  class="form-label" >ID</label>
         <input type="number" formControlName="id" name="id" class="form-control" >
       </div>
 
@@ -82,4 +82,26 @@
     </div>
 </div>
 </div>
-<!-- </form> -->
+
+<!-- assign teacher to class and subject -->
+<h1 class="border-bottom mt-5"> Assign Teacher To Classroom: </h1>
+<div [formGroup]="formAssign" >
+<div class="row g-3">
+  <div class="col-md-6 form-group" >
+    <label  class="form-label">Teacher ID</label>
+    <input type="number" class="form-control" #inputTeacher formControlName="teacherId" name="teacherId"  >
+  </div>
+  <div class="col-md-6 form-group">
+    <label  class="form-label">Subject ID</label>
+    <input type="number" class="form-control" #inputSubject formControlName="subjectId" name="subjectId"  >
+  </div>
+
+  <div class="col-md-6 form-group">
+    <label class="form-label">Classroom ID</label>
+    <input type="number" class="form-control" #inputClass formControlName="classroomId" name="classroomId" >
+  </div>
+  <div class="col-12">
+    <button type="button" class="btn btn-primary" (click)="AssignTeacher(inputTeacher.valueAsNumber, inputSubject.valueAsNumber,inputClass.valueAsNumber)" >Add</button>
+  </div>
+</div>
+</div>

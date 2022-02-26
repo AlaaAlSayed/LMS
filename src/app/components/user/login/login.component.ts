@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin=this._formBuilder.group({
-      Email:['' , [Validators.required,Validators.maxLength(50),Validators.minLength(10)]],
-      Password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]]
+      email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10),Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
+      password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]]
     });
   }
 
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
     alert(JSON.stringify(this.formLogin.value));
     //Call API to validate user
-    this._userService.login('3453535453453453453535353535');
-    this._router.navigateByUrl('/tasks');
+    // this._userService.login('3453535453453453453535353535');
+    // this._router.navigateByUrl('/tasks');
   }
 
   isValidControl(name:string):boolean
