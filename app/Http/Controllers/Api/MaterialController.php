@@ -52,14 +52,14 @@ class MaterialController extends Controller
     public function store()
     {
         request()->validate([
-            'input_file' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material' => 'required|mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
-        if (request()->hasFile('input_file')) //if user choose file
+        if (request()->hasFile('material')) //if user choose file
         {
 
-            $file = request()->file('input_file'); //store  uploaded file to variable $file to       
+            $file = request()->file('material'); //store  uploaded file to variable $file to       
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -82,14 +82,14 @@ class MaterialController extends Controller
     public function update($materialId)
     {
         request()->validate([
-            'input_file' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material' => 'required|mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
-        if (request()->hasFile('input_file')) //if user choose file
+        if (request()->hasFile('material')) //if user choose file
         {
 
-            $file = request()->file('input_file'); //store  uploaded file to variable $file to       
+            $file = request()->file('material'); //store  uploaded file to variable $file to       
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
