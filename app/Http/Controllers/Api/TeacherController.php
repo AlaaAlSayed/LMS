@@ -132,7 +132,7 @@ class TeacherController extends Controller
     User::where('id', $teacherId)->update([
       'username' => $data['username'],
       'name' => $data['name'],
-      // 'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+      'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
       'government' => $data['government'],
       'city' => $data['city'],
       'street' => $data['street'],

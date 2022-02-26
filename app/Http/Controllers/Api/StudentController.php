@@ -103,7 +103,7 @@ class StudentController extends Controller
         User::where('id', $studentId)->update([
             'username' => $data['username'],
             'name' => $data['name'],
-            // 'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+            'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
             // 'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
