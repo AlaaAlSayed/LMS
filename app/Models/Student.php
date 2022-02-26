@@ -12,14 +12,11 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
+        'id',
         'phone',
         'picture_path',
         'classroomId',
-        'government',
-        'city',
-        'street',
+      
     ];
     public function classrooms()
     {

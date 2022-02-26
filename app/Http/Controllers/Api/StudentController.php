@@ -11,25 +11,26 @@ use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Models\Assignment;
 use App\Models\StudentUploadAssignment;
+use App\Models\User;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        $allStudents = Student::all();
-        return  $allStudents->all();
+        $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
+        return  $allStudents;
     }
 
     public function showImage($studentId)
     {
-        $picture_path = Student::where('id', $studentId)->first()->picture_path;
+        $picture_path = User::join('students', 'students.id', '=', 'users.id')->find($studentId)->picture_path;
         $imgsrc = asset('storage/assets/' . $picture_path);
         return response()->json($imgsrc);
     }
 
     public function show($studentId)
     {
-        $student = Student::find($studentId);
+        $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId);
         return $student;
     }
     public function home($studentId)
@@ -57,17 +58,28 @@ class StudentController extends Controller
         }
 
         $data = request()->all();
-
-        Student::create([
+       
+        $newUser=User::create([
+            'username' => $data['username'],
             'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'picture_path' =>  $filename,
-            'classroomId' => $data['classroomId'],
+            'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+            'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
         ]);
+        
+        Student::create([
+            'id' => $newUser->id,
+            'phone' => $data['phone'],
+            'picture_path' =>  $filename,
+            'classroomId' => $data['classroomId'],
+            // 'birthdate' => $data['birthdate'],
+          
+        ]);
+
+        $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
+        return  $allStudents;
     }
 
     public function update($studentId)
@@ -105,9 +117,16 @@ class StudentController extends Controller
 
     public function destroy($studentId)
     {
-        Student::where('id', $studentId)->delete();
-        // $allStudents = Student::all();
-        // return  StudentResource::collection($allStudents);
+        $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId);
+        if ($student )
+       {
+           User::where('id', $studentId)->delete();
+           $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
+           return  $allStudents;
+       }
+        // Student::where('id', $studentId)->delete();
+        return  "not student";
+        
     }
 
 
