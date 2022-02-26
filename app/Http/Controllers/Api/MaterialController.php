@@ -52,14 +52,14 @@ class MaterialController extends Controller
     public function store()
     {
         request()->validate([
-            'input_file' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
-        if (request()->hasFile('input_file')) //if user choose file
+        if (request()->hasFile('material_path')) //if user choose file
         {
 
-            $file = request()->file('input_file'); //store  uploaded file to variable $file to       
+            $file = request()->file('material_path'); //store  uploaded file to variable $file to       
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -72,7 +72,7 @@ class MaterialController extends Controller
 
         SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
-            'material' => $filename,
+            'material_path' => $filename,
             'name' => $data['name'],
         ]);
         $allMaterials = SubjectMaterial::all();
@@ -82,28 +82,28 @@ class MaterialController extends Controller
     public function update($materialId)
     {
         request()->validate([
-            'input_file' => 'required|mimes:pdf,docs,xlsx|max:10000'
+            'material_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
         ]);
 
 
-        if (request()->hasFile('input_file')) //if user choose file
+        if (request()->hasFile('material_path')) //if user choose file
         {
 
-            $file = request()->file('input_file'); //store  uploaded file to variable $file to       
+            $file = request()->file('material_path'); //store  uploaded file to variable $file to       
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
             $data = request()->all();
         } else {
 
-            $filename = SubjectMaterial::where('id', $materialId)->find('material');
+            $filename = SubjectMaterial::where('id', $materialId)->find('material_path');
         }
 
         $data = request()->all();
 
         SubjectMaterial::where('id', $materialId)->update([
             'subjectId' => $data['subjectId'],
-            'material' =>  $filename,
+            'material_path' =>  $filename,
             'name' => $data['name'],
         ]);
 

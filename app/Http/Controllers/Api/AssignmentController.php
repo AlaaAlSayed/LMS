@@ -52,13 +52,13 @@ class AssignmentController extends Controller
   public function store($teacherId,$subjectId ,Request $request)
   {
     $request->validate([
-      "name" => 'required|mimes:pdf,docs,xlsx|max:10000'
+      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
     ]);
 
-    if ($request->hasFile('name')) //if user choose file
+    if ($request->hasFile('assignment_path')) //if user choose file
     {
 
-      $file = $request->file('name'); //store  uploaded file to variable $file to 
+      $file = $request->file('assignment_path'); //store  uploaded file to variable $file to 
       $extension = $file->getClientOriginalExtension();
       $filename = 'Assignment' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -71,7 +71,8 @@ class AssignmentController extends Controller
     $data = request()->all();
     // $subject = Subject::find($teacherId);
     $assignment = Assignment::create([
-      'name' => $filename
+      'assignment_path'=> $filename,
+      'name' => $data['name']
     ]);
 
     $teacher_teaches_subjects = teacher_attaches_assignments::create([
@@ -88,13 +89,13 @@ class AssignmentController extends Controller
   public function update( $assignmentId)
   {
     request()->validate([
-      "name" => 'required|mimes:pdf,docs,xlsx|max:10000'
+      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
     ]);
 
-    if (request()->hasFile('name')) //if user choose file
+    if (request()->hasFile('assignment_path')) //if user choose file
     {
 
-      $file = request()->file('name'); //store  uploaded file to variable $file to 
+      $file = request()->file('assignment_path'); //store  uploaded file to variable $file to 
       $extension = $file->getClientOriginalExtension();
       $filename = 'Assignment' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -106,7 +107,8 @@ class AssignmentController extends Controller
 
     $data = request()->all();
     Assignment::where('id', $assignmentId)->update([
-      'name' => $filename
+      'assignment_path'=> $filename,
+      'name' => $data['name']
     ]);
 
     $teacher_teaches_subjects = teacher_attaches_assignments::where('assignmentId', $assignmentId)->update([

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('assignment_path');
             $table->timestamps();
 
         });
