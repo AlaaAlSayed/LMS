@@ -115,7 +115,7 @@ class StudentController extends Controller
     public function upload($studentId, $assignmentId, $subjectId)
     {
         request()->validate([
-            "answer" => 'required|mimes:pdf|max:10000'
+            'answer' => 'required|mimes:pdf|max:10000'
         ]);
 
         if (request()->hasFile('answer')) { //if user choose file

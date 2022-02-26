@@ -52,7 +52,7 @@ class AssignmentController extends Controller
   public function store($teacherId,$subjectId ,Request $request)
   {
     $request->validate([
-      "name" => 'required|mimes:pdf,docs,xlsx|max:10000'
+      'name' => 'required|mimes:pdf,docs,xlsx|max:10000'
     ]);
 
     if ($request->hasFile('name')) //if user choose file
