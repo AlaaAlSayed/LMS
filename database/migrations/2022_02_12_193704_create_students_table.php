@@ -16,25 +16,17 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             //studentID	name	email	address	phone	birthdate	level	picture	classID	
-            $table->id();
+            // $table->id();
+            $table->foreignId('id')->references('id')->on('users')->onDelete('cascade')->unique();
+            $table->string('phone');
+            $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
+            $table->string('picture_path')->nullable()->default(0);
+
+            // //address
+            // $table->string('city')->default('Nasr City');
+            // $table->string('street')->default('65 walt disney');
+
             $table->timestamps();
-            $table->string('name');
-            $table->string('email');
-            $table->integer('phone');
-            $table->integer('level');
-
-            // $table-> integer('classID');
-            // $table->foreign('classID')->References('id')->on('class');
-            $table->foreignId('classroomId')->nullable()->constraint();
-
-            $table->string('picture_path');
-
-            //address
-            $table->string('government');
-            $table->string('city');
-            $table->string('street');
-
-
         });
     }
 

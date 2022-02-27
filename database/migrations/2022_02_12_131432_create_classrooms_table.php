@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_notify_students', function (Blueprint $table) {
-          //  adminNotifyStudent	studentID	adminID	message
+        Schema::create('classrooms', function (Blueprint $table) {
+            //classID	level	capacity	time-table
             $table->id();
+            $table->integer('level');
+            $table->string('code');
+            $table->integer('capacity');
+            // $table->string('time_table');
             $table->timestamps();
 
-            $table->foreignId('adminID')->nullable()->constraint();
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->text('message');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_notify_students');
+        Schema::dropIfExists('classrooms');
     }
 };

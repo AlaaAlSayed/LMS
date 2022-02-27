@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             //subjectID	 name	classID
             $table->id();
-            $table->timestamps();
+
             $table->string('name');
-            $table->foreignId('classroomId')->nullable()->constraint();
+            $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
+            
+            $table->timestamps();
 
 
         });

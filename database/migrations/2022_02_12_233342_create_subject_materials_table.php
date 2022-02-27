@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('subject_materials', function (Blueprint $table) {
             //subjectID	material
             $table->id();
+
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->string('name');
+            $table->string('material_path');
+
             $table->timestamps();
-
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->string('material');
-
 
         });
     }

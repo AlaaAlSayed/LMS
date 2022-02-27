@@ -12,15 +12,14 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {	//adminContactTeacher	teacherId	adminId	message
-        Schema::create('admin_contacts_teachers', function (Blueprint $table) {
-            $table->id() ;      
-                 $table->timestamps();
-
-
-            $table->foreignId('teacherId')->nullable()->constraint();
-            $table->foreignId('adminId')->nullable()->constraint();
+    {
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
             $table->text('message');
+            $table->integer('user_id')->unsigned;
+            $table->integer('receiver_id')->unsigned;
+            $table->boolean('is_seen')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_contacts_teachers');
+        Schema::dropIfExists('messages');
     }
 };

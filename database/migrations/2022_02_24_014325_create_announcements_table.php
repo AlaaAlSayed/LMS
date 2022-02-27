@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_contact_students', function (Blueprint $table) {
-          //  teacherContactStudent	studentID	teacherID	message
+        Schema::create('announcements', function (Blueprint $table) {
             $table->id();
+            // title	description	 media	adminId
+            $table->string('title');
+            $table->text('description');
+            $table->string('media')->nullable();
+            $table->foreignId('adminID')->references('id')->on('admins')->onDelete('cascade');
+
             $table->timestamps();
 
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('teacherID')->nullable()->constraint();
-            $table->text('message');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_contact_students');
+        Schema::dropIfExists('announcements');
     }
 };

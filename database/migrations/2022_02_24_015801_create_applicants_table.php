@@ -13,29 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-
+            // applicantId	name	email	level	phone	government	city
             $table->string('name');
-            $table->string('username')->unique();
-            // $table->string('email')->unique();
-
-            $table->string('password');
-            
-            $table->foreignId('roleId')->references('id')->on('roles')->onDelete('cascade');
-            //1-> admin , 2-> teacher , 3->student 
-
+            $table->string('email')->unique();;
+            $table->string('phone');
+           
+            $table-> integer('level');
+          
             //address
             $table->string('government')->default('Cairo');
             $table->string('city')->default('Nasr City');
             $table->string('street')->default('65 walt disney');
 
-            $table->boolean('is_online')->default(0);
-            $table->string('last_activity')->default(0);
-            // $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
-
             $table->timestamps();
+
         });
     }
 
@@ -46,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('applicants');
     }
 };

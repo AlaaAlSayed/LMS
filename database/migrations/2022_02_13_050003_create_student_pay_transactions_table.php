@@ -15,9 +15,11 @@ return new class extends Migration
     {//studentPayTransaction studentId	processID	status
         Schema::create('student_pay_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('transactionID')->nullable()->constraint();
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
+            $table->foreignId('transactionId')->references('id')->on('transactions')->onDelete('cascade');
             $table->string('status');
+            $table->timestamps();
+
         });
     }
 

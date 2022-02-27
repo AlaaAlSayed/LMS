@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('admin_review_applications', function (Blueprint $table) {
             $table->id();
-            $table->float('total');
-            $table->timestamps();
 
+            $table->foreignId('adminId')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreignId('applicationId')->references('id')->on('applications')->onDelete('cascade');
+            $table->timestamps();
+       
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('admin_review_applications');
     }
 };

@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('student_take_exams', function (Blueprint $table) {
             //studentID	subjectID	examID	result
             $table->id();
-          //  $table->timestamps();
-
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->foreignId('examId')->nullable()->constraint();
-
+            
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('examId')->references('id')->on('exams')->onDelete('cascade');
             $table->float('result');
+
+            $table->timestamps();
 
         });
     }

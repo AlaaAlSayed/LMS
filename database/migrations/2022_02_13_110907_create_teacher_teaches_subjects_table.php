@@ -15,9 +15,11 @@ return new class extends Migration
     {//TeacherTeachesSubject	teacherId	subjectId	classId
         Schema::create('teacher_teaches_subjects', function (Blueprint $table) {
             $table->id();
+            
             $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');
+            $table->timestamps();
            
         });
     }

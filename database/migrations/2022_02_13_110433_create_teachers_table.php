@@ -15,16 +15,14 @@ return new class extends Migration
     {  //teacher	teacherId	name	email	phone	government	city	street
 
         Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('name');
-            $table->string('email');
+            // $table->id();
+            $table->foreignId('id')->references('id')->on('users')->onDelete('cascade')->unique();
+            $table->string('email')->unique;
             $table->integer('phone');
-            
-            //address
-            $table->string('government');
-            $table->string('city');
-            $table->string('street');
+            $table->string('picture_path');
+
+            $table->timestamps();
+
   
         });
     }

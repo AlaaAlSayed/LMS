@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('student_upload_assignments', function (Blueprint $table) {
             //	studentID	subjectID	assignmentID	answer
             $table->id();
+             
+            $table->foreignId('studentId')->references('id')->on('students')->onDelete('cascade');
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('assignmentId')->references('id')->on('assignments')->onDelete('cascade');
+            $table->text('answer');
+
             $table->timestamps();
 
-            $table->foreignId('studentId')->nullable()->constraint();
-            $table->foreignId('subjectId')->nullable()->constraint();
-            $table->foreignId('assignmentId')->nullable()->constraint();
-
-            $table->float('answer');
         });
     }
 

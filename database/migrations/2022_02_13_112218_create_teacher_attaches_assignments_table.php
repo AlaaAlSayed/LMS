@@ -15,11 +15,11 @@ return new class extends Migration
     {//TeacherAttatchAssignment	teacherId	subjectId	assignmentId	deadline
         Schema::create('teacher_attaches_assignments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('assignmentId')->references('id')->on('assignments')->onDelete('cascade');
             $table->date('deadline');
+            $table->timestamps();
            
         });
     }
