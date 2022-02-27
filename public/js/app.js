@@ -1,5 +1,5 @@
 
-// require('./bootstrap');
-import './bootstrap';
+require('./bootstrap');
+// import './bootstrap';
 
 //  <script type="module" src="./bootstrap"></script> 
