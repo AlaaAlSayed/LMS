@@ -13,6 +13,8 @@ use App\Models\Assignment;
 use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\MaterialController;
+use App\Http\Controllers\Api\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
