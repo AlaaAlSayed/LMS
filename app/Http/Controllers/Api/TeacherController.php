@@ -14,7 +14,7 @@ class TeacherController extends Controller
 {
   public function show($teacherId)
   {
-    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId)->first();
+    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId);
     return $teacher;
   }
 

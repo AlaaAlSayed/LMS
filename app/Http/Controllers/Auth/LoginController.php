@@ -44,22 +44,22 @@ class LoginController extends Controller
         return 'username';
     }
 
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'username' => ['required', 'username'],
-    //         'password' => ['required'],
-    //     ]);
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => ['required', 'username'],
+            'password' => ['required'],
+        ]);
  
-    //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
  
-    //         return redirect()->intended('dashboard');
-    //     }
+            return redirect()->intended();
+        }
  
-    //     return back()->withErrors([
-    //         'username' => 'The provided credentials do not match our records.',
-    //     ]);
-    // }
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records.',
+        ]);
+    }
 
 }
