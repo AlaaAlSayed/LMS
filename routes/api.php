@@ -41,7 +41,7 @@ Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
         'username' => 'required',
         'password' => 'required',
-        'device_name' => 'required',
+        // 'device_name' => 'required',
     ]);
  
     $user = User::where('username', $request->username)->first();
@@ -52,7 +52,7 @@ Route::post('/sanctum/token', function (Request $request) {
         ]);
     }
  
-    return $user->createToken($request->device_name)->plainTextToken;
+    return $user->createToken($request->password)->plainTextToken;
 });
 
 
