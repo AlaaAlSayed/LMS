@@ -182,7 +182,7 @@ class TeacherController extends Controller
   }
   public function showClassroom($teacherId, $subjectId,$classroomId)
   {
-    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId],['classroomId',$classroomId]])->get()->first();
+    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId],['classroomId',$classroomId]])->get();
     return ($classroomId);
   }
   // public function showClassroom($Id)
