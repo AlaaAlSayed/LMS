@@ -14,7 +14,7 @@ class TeacherController extends Controller
 {
   public function show($teacherId)
   {
-    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId);
+    $teacher =  User::join('teachers', 'teachers.id', '=', 'users.id')->find($teacherId)->first();
     return $teacher;
   }
 
@@ -180,9 +180,9 @@ class TeacherController extends Controller
 
     return ($teacher);
   }
-  public function showClassroom($teacherId, $subjectId)
+  public function showClassroom($teacherId, $subjectId,$classroomId)
   {
-    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId]])->get();
+    $classroomId = teacher_teaches_subjects::where([['teacherId', $teacherId], ['subjectId', $subjectId],['classroomId',$classroomId]])->get();
     return ($classroomId);
   }
 }

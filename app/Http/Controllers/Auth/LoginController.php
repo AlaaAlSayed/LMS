@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -41,5 +43,23 @@ class LoginController extends Controller
     {
         return 'username';
     }
-   
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'username' => ['required', 'username'],
+    //         'password' => ['required'],
+    //     ]);
+ 
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+ 
+    //         return redirect()->intended('dashboard');
+    //     }
+ 
+    //     return back()->withErrors([
+    //         'username' => 'The provided credentials do not match our records.',
+    //     ]);
+    // }
+
 }

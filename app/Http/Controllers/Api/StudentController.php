@@ -30,7 +30,7 @@ class StudentController extends Controller
 
     public function show($studentId)
     {
-        $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId);
+        $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId)->first();
         return $student;
     }
     public function home($studentId)
