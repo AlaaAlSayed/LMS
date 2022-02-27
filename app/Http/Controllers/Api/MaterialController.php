@@ -108,7 +108,7 @@ class MaterialController extends Controller
         $data = request()->all();
 
         SubjectMaterial::where('id', $materialId)->update([
-            'subjectId' => $data['subjectId'],
+            // 'subjectId' => $data['subjectId'],
             'material' =>  $filename,
             'name' => $data['name'],
         ]);
