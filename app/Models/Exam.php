@@ -11,9 +11,19 @@ class Exam extends Model
 
     protected $fillable = [
         'name',
-        
     ];
 
+    // public function examResult()
+    // {
+    //     return $this->hasMany(StudentTakeExam::class, 'id');
+    // }
+    public function intakes()
+    {
+        return $this->hasMany(StudentTakeExam::class, 'examId');
+    }
+    
+        
+    
     public function teachers()
     {
       

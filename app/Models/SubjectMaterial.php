@@ -12,7 +12,8 @@ class SubjectMaterial extends Model
     protected $fillable = [
       
        'subjectId',
-       'material',
+       'material_path',
+       'name',
     ];
 
     public function subjects()

@@ -10,172 +10,123 @@ use App\Models\teacher_attaches_assignments;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Storage;
 use Spatie\FlareClient\Http\Response;
-
+use App\Http\Resources\AssignmentResource;
 
 class AssignmentController extends Controller
 {
-    public function show($teacherId,$assignmentId)
-    { 
-        $teacher= Teacher::find($teacherId);
-@dd($teacher->assignments);
-        return View('assignment', ['assignment_pdf' =>$teacher->assignments[$assignmentId]->name]);
+  public function index()
+  {
+    $allAssignments = Assignment::all();
+    return   $allAssignments->all();
+  }
 
+  // public function show($teacherId, $assignmentId)
+  // {
+  //   $teacher = Teacher::find($teacherId);
+  //   // @dd($teacher->assignments);
+  //   // return View('assignment'); 
+  //   // return View('assignment', ['assignmentId' => $assignmentId]);
 
+  //   return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
+  // }
+
+  public function studentshow($assignmentId)
+  {
+    $assignment = Assignment::find($assignmentId);
+    $embed_src= asset('storage/assets/'. $assignment->name);
+    return response()->json($embed_src);
+  }
+
+  public function download($assignmentId)
+  {
+    $assignment = Assignment::find($assignmentId);
+    return response()->download('storage/assets/' . $assignment->name);
+  }
+
+  public function teacherAssignments($teacherId)
+  {
+    $allTeacherAssignments = teacher_attaches_assignments::where('teacherId','=',$teacherId)->get();
+    return ($allTeacherAssignments);
+  }
+
+  public function store($teacherId,$subjectId ,Request $request)
+  {
+    $request->validate([
+      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
+    ]);
+
+    if ($request->hasFile('assignment_path')) //if user choose file
+    {
+
+      $file = $request->file('assignment_path'); //store  uploaded file to variable $file to 
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'Assignment' . '_' . time() . '.' . $extension;
+      $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
       
+    } else {
+
+      $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
     }
 
-    public function download($assignmentId)
-    { 
-        
-     $image = Assignment::find($assignmentId);
-    //  @dd($image->name);
-  return response()->download('storage/assets/'.$image->name);
- }
+    $data = request()->all();
+    // $subject = Subject::find($teacherId);
+    $assignment = Assignment::create([
+      'assignment_path'=> $filename,
+      'name' => $data['name']
+    ]);
 
-    public function index($teacherId)
+    $teacher_teaches_subjects = teacher_attaches_assignments::create([
+      'teacherId' => $teacherId,
+      'subjectId' => $subjectId,
+      'assignmentId' => $assignment->id,
+      'deadline' => $data['deadline']
+    ]);
+    $teacher_teaches_subjects = teacher_attaches_assignments::all();
+    return ($teacher_teaches_subjects);
+
+  }
+
+  public function update( $assignmentId)
   {
-      $teachers=Teacher::find($teacherId);
-      // @dd(  $teachers->assignments);
-      // select('first_name','pic')->get();
-      return($teachers->assignments);
+    request()->validate([
+      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
+    ]);
+
+    if (request()->hasFile('assignment_path')) //if user choose file
+    {
+
+      $file = request()->file('assignment_path'); //store  uploaded file to variable $file to 
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'Assignment' . '_' . time() . '.' . $extension;
+      $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
       
-}
+    } else {
 
- 
+      $filename = Assignment::where('id', $assignmentId)->name;
+    }
 
+    $data = request()->all();
+    Assignment::where('id', $assignmentId)->update([
+      'assignment_path'=> $filename,
+      'name' => $data['name']
+    ]);
 
+    $teacher_teaches_subjects = teacher_attaches_assignments::where('assignmentId', $assignmentId)->update([
+      'deadline' => $data['deadline']
+    ]);
 
-
-
-
-
-
-//     public function index($teacherId)
-//   {
-//       $teachers=teacher_attaches_assignments::where('teacherId',$teacherId)->get();
-//       // @dd(  $teachers);
-//  return($teachers);
-// }
-
-
-// public function store(Request $request) {
-  
-//   // dd($request->file('image'));
-
-//  $data=request()->all();
-// //    @dd( $data);
-//  $subject= Subject::find($teacherId);
-// //  @dd( $subject->id);
-
-//   $assignment= Assignment::create([
-//     'name'=>$data['name']
-// ]); 
-
-// // @dd( $assignment->id);
-// $teacher_teaches_subjects=teacher_attaches_assignments::create([
-//   'teacherId'=>$teacherId,
-//   'subjectId'=>$subject->id,
-//   'assignmentId'=>$assignment->id,
-//   'deadline'=>$data['deadline']
-// ]); 
-// $teacher_teaches_subjects=teacher_attaches_assignments::all();
-// return ($teacher_teaches_subjects);
-
-
-// }
-
-
-  public function store($teacherId, Request $request) {   
-  
-   //dd($request->file('input_image'));//image name for input
-$request->validate([
-'input_image'=>'image|mimes:jpeg,pmb,png|max:88453'
-]);
-
-if($request->hasFile('input_image'))//if user choose file
-{
-
-  $file=$request->file('input_image');//store  uploaded file to variable $file to 
-      // dd($file);extract its data
-  
-  $extension= $file->getClientOriginalExtension();
-  $filename='image'.'_'.time().'.'.$extension;
-  $file->storeAs('public/assets',$filename);//make folder assets in public/storage/assets and put file
+    $teacher_teaches_subjects = teacher_attaches_assignments::all();
+    return ($teacher_teaches_subjects);
+  }
   
 
-}
-else
-{
-  $filename='/home/fatma/Desktop/LMS/LMS/storage/app/public/assets/image_1645107020.jpeg';
-}
+  public function destroy($assignmentId)
+  {
 
+    Assignment::where('id', $assignmentId)->delete();
+    teacher_attaches_assignments::where('id', $assignmentId)->delete();
 
-
-
-
-   $data=request()->all();
-   // @dd( $teacherId);
-   $subject= Subject::find($teacherId);
-  // @dd( $subject->id);
-  //@dd( $data);
-    $assignment= Assignment::create([
-      'name'=>$filename
-  ]); 
-
-  // @dd( $assignment->id);
-  $teacher_teaches_subjects=teacher_attaches_assignments::create([
-    'teacherId'=>$teacherId,
-    'subjectId'=>$subject->id,
-    'assignmentId'=>$assignment->id,
-    'deadline'=>$data['deadline']
-]); 
-$teacher_teaches_subjects=teacher_attaches_assignments::all();
- return ($teacher_teaches_subjects);
-  
-
-}
-
-
-public function update($teacherId,$assignmentId) {
-  
-  $data=request()->all();
-//    @dd( $data);
-  $subject= Subject::find($teacherId);
- //  @dd( $subject->id);
-
-   Assignment::where('id',$assignmentId)->update([
-     'name'=>$data['name']
- ]); 
-
- // @dd( $assignment->id);
- $teacher_teaches_subjects=teacher_attaches_assignments::where('teacherId',$teacherId)->update([
-   'deadline'=>$data['deadline']
-]); 
-
-return ($teacher_teaches_subjects);
- 
-
-}
-// public function ($a){
-//   $data=request()->all();
-//   //@dd( $data);
-//     $teacher= Assignment::where('id',$teacherId)->update([
-//          'name'=>$data['name'],
-//      ]); 
-    
-//     // @dd( $data);
-//      return($teacher);
- 
-//   }
-
-public function destroy($assignmentId) {
-  
-   Assignment::where('id',$assignmentId)->delete();
-   teacher_attaches_assignments::where('id',$assignmentId)->delete();
-   
-   $teacher_teaches_subjects=teacher_attaches_assignments::all();
-    return($teacher_teaches_subjects);
- 
- }
-  
+    $teacher_teaches_subjects = teacher_attaches_assignments::all();
+    return ($teacher_teaches_subjects);
+  }
 }
