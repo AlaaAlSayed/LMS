@@ -14,6 +14,10 @@ use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +35,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// 1|IX5GH2qbPd4Tq9zHv1AUFO7mcDazSRYVOJdpnVby token for admn user
+// 2|H66CwHt6QYUW5mwiFEZ02cXszBdBSZ8coFWQQ8N4   token for stud user
+Route::post('/sanctum/token', function (Request $request) {
+    $request->validate([
+        'username' => 'required',
+        'password' => 'required',
+        'device_name' => 'required',
+    ]);
+ 
+    $user = User::where('username', $request->username)->first();
+ 
+    if (! $user || ! Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'username' => ['The provided credentials are incorrect.'],
+        ]);
+    }
+ 
+    return $user->createToken($request->device_name)->plainTextToken;
+});
 
-// Route::middleware('auth')->group(function () {
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
-Route::get('/user', [AdminController::class, 'user']);
-Route::get('/id', [AdminController::class, 'id']);
+// Route::get('/user', [AdminController::class, 'user']);
+// Route::get('/id', [AdminController::class, 'id']);
 
 
 //admin dashboard -  profile page:
@@ -153,6 +179,6 @@ Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api
 // student dashboard  -  take exam  :
 Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
 
-// });
+});
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
