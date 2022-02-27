@@ -1,0 +1,94 @@
+<h1 class="border-bottom mt-5"> Edit Admin Form: </h1>
+<div [formGroup]="formEdit" >
+<div class="row g-3">
+    <div class="col-md-6" hidden>
+        <label  class="form-label">ID</label>
+        <input type="number" formControlName="id" name="id" class="form-control" >
+      </div>
+
+    <div class="col-md-6 form-group" >
+        <label  class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name" name="name" [class.is-invalid]="isInValidAndTouched('name')" [class.is-valid]="isValidControl('name')" >
+        <!-- [class.is-invalid]="isInValidAndTouched('name')" [class.is-valid]="isValidControl('name')" -->
+        <div *ngIf="isInValidAndTouched('name')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('name','required')" >required Name</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('name','minLength')" >min length is 3</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('name','maxLength')" >max length is 30</small>
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label  class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" name="email" [class.is-invalid]="isInValidAndTouched('email')" [class.is-valid]="isValidControl('email')" >
+        <!-- [class.is-invalid]="isInValidAndTouched('email')" [class.is-valid]="isValidControl('email')" -->
+        <div *ngIf="isInValidAndTouched('email')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('email','required')" >required Email</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('email','minLength')" >min length is 10</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('email','maxLength')" >max length is 30</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label  class="form-label">Username</label>
+        <input type="username" class="form-control" formControlName="username" name="username" [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" >
+        <div *ngIf="isInValidAndTouched('username')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('username','required')" >required username</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('username','minLength')" >min length is 5</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('username','maxLength')" >max length is 15</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+      <label  class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" [class.is-invalid]="isInValidAndTouched('password')" [class.is-valid]="isValidControl('password')">
+      <div *ngIf="isInValidAndTouched('password')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('password','required')" >required Password</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('password','minLength')" >min length is 8</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('password','maxLength')" >max length is 20</small>
+      </div>
+    </div>
+      <div class="col-md-6 form-group">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" formControlName="phone" name="phone" [class.is-invalid]="isInValidAndTouched('phone')" [class.is-valid]="isValidControl('phone')">
+        <!-- [class.is-invalid]="isInValidAndTouched('phone')" [class.is-valid]="isValidControl('phone')" -->
+         <div *ngIf="isInValidAndTouched('phone')"> 
+          <small class="form-text text-danger" *ngIf="isControlHasError('phone','required')" >required Phone Number</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('phone','minLength')" >min length is 11</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('phone','maxLength')" >max length is 11</small>
+        </div> 
+      </div>
+      
+    <div class="col-md-4 form-group">
+      <label class="form-label">Government</label>
+      <input type="text" class="form-control" formControlName="government" name="government" [class.is-invalid]="isInValidAndTouched('government')" [class.is-valid]="isValidControl('government')" >
+      <!-- [class.is-invalid]="isInValidAndTouched('government')" [class.is-valid]="isValidControl('government')" -->
+      <div *ngIf="isInValidAndTouched('government')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('government','required')" >required Government</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('government','minLength')" >min length is 4</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('government','maxLength')" >max length is 10</small>
+      </div>
+    </div>
+    <div class="col-md-4 form-group">
+      <label class="form-label">City</label>
+      <input type="text" class="form-control" formControlName="city" name="city" [class.is-invalid]="isInValidAndTouched('city')" [class.is-valid]="isValidControl('city')" >
+      <!-- [class.is-invalid]="isInValidAndTouched('city')" [class.is-valid]="isValidControl('city')"  -->
+      <div *ngIf="isInValidAndTouched('city')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('city','required')" >required Government</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('city','minLength')" >min length is 4</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('city','maxLength')" >max length is 10</small>
+      </div>
+    </div>
+    <div class="col-md-4 form-group">
+      <label class="form-label">Street</label>
+      <input type="text" class="form-control" formControlName="street" name="street" [class.is-invalid]="isInValidAndTouched('street')" [class.is-valid]="isValidControl('street')" >
+      <!-- [class.is-invalid]="isInValidAndTouched('street')" [class.is-valid]="isValidControl('street')" -->
+      <div *ngIf="isInValidAndTouched('street')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('street','required')" >required Street</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('street','minLength')" >min length is 2</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('street','maxLength')" >max length is 30</small>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" (click)="updateAdmin()" >Update</button>
+    </div>
+</div>
+</div>
+

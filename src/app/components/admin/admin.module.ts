@@ -1,3 +1,4 @@
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -20,11 +21,12 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
 import { EditAssignTeacherComponent } from './edit-assign-teacher/edit-assign-teacher.component';
+import { EditAdminComponent } from './edit-admin/edit-admin.component';
 
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
-  {path: 'profile', component:AdminProfileComponent},
+  {path: 'profile/:id', component:AdminProfileComponent},
   {path: 'addStudent', component:AddStudentComponent},
   {path: 'view-students', component:ViewStudentsComponent},
   {path: 'details-student/:id',component:DetailsStudentComponent},
@@ -39,7 +41,9 @@ const routes: Routes = [
   {path: 'add-subject', component:AddSubjectComponent},
   {path: 'edit-subject/:id', component:EditSubjectComponent},
   {path: 'view-subjects',component:ViewSubjectsComponent},
-  {path: 'edit-assign/:id/:id', component:EditAssignTeacherComponent}
+  {path: 'edit-assign/:id/:id', component:EditAssignTeacherComponent},
+  {path: 'edit-admin/:id',component:EditAdminComponent},
+  {path: 'dashboard',component:AdminDashboardComponent}
 ]
 
 @NgModule({
@@ -61,6 +65,8 @@ const routes: Routes = [
     EditSubjectComponent,
     ViewSubjectsComponent,
     EditAssignTeacherComponent,
+    EditAdminComponent,
+    AdminDashboardComponent,
   
   ],
   imports: [

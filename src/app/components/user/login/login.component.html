@@ -9,12 +9,12 @@
         <form [formGroup]="formLogin">
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" formControlName="email" name="email" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" [class.is-invalid]="isInValidAndTouched('email')" [class.is-valid]="isValidControl('email')" />
-              <div *ngIf="isInValidAndTouched('email')">
-                <small class="form-text text-danger" *ngIf="isControlHasError('email','required')" >required Email</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('email','minLength')" >min length is 10</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('email','maxLength')" >max length is 30</small>
+            <input type="text" formControlName="username" name="username" class="form-control form-control-lg"
+              placeholder="Enter a valid username address" [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" />
+              <div *ngIf="isInValidAndTouched('username')">
+                <small class="form-text text-danger" *ngIf="isControlHasError('username','required')" >required username</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('username','minLength')" >min length is 10</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('username','maxLength')" >max length is 30</small>
               </div>
           </div>
 

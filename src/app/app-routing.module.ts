@@ -1,10 +1,9 @@
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MainSubjectComponent } from './components/subject-detail-student/main-subject/main-subject.component';
 
 const routes: Routes = [
   {path: 'admin',
@@ -50,7 +49,8 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
 {path:'classroom/:teacherid/:classroomid/matrial',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
-}
+},
+
 
 ];
 @NgModule({

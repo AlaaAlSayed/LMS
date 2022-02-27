@@ -13,7 +13,8 @@ export class EditStudentComponent implements OnInit {
 
 formEdit = new FormGroup({
   name:new FormControl(''),
-  email:new FormControl(''),
+  username:new FormControl(''),
+  password:new FormControl(''),
   phone:new FormControl(''),
   classroomId:new FormControl(),
   picture_path:new FormControl(),
@@ -36,7 +37,8 @@ files:any;
           // console.log(response);
           this.formEdit=new FormGroup({
             name:new FormControl(response['name'],[Validators.required,Validators.minLength(3)]),
-            email:new FormControl(response['email'],[Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]),
+            username:new FormControl(response['username'],[Validators.required,Validators.maxLength(15),Validators.minLength(5)]),
+            password:new FormControl(response['password'],[Validators.required,Validators.minLength(8),Validators.maxLength(20)]),
             phone:new FormControl(response['phone'],[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]),
             classroomId:new FormControl(response['classroomId'],[Validators.required]),
             // picture_path:new FormControl((response['picture_path'])),

@@ -1,13 +1,16 @@
 <section class=" card">
     <div class=" card-body d-flex">
-        <div class=" mr-5">
+        <!-- <div class=" mr-5">
             <img src="assets/images/teacher-1.jpg" width="250px" height="250px" alt="profile picture">
-        </div>
+        </div> -->
         <div class=" ms-5">
-            <h2 class="text-danger">Name:  </h2>
-            <p>Email: </p>
-            <p>Phone: </p>
-            <button class="btn btn-dark text-white">Edit</button>
+            <h2 class="text-danger">Name: {{admin.name}} </h2>
+            <p>Username: {{admin.username}}</p>
+            <p>Email: {{admin.email}} </p>
+            <p>Phone: {{admin.phone}} </p>
+            <p>Address: {{admin.street + ' ' + admin.city + ' ' + admin.government}}</p>
+
+            <button class="btn btn-dark text-white" routerLink="/admin/edit-admin/{{admin.id}}">Edit</button>
         </div>
     </div>
 </section>
