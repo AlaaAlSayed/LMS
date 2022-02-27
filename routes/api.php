@@ -27,6 +27,11 @@ use App\Http\Controllers\Api\MaterialController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//general for current authenticated user info
+Route::get('/user', [AdminController::class, 'user']);
+Route::get('/id', [AdminController::class, 'id']);
+
+
 //admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index']);
 Route::get('/admins/{adminId}',[AdminController::class,'show']);

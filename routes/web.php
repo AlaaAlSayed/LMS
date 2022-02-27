@@ -26,8 +26,9 @@ Route::get('/', function () {
 // composer require laravel/ui
 // php artisan ui vue --auth
 
-Auth::routes();
+Route::view('/chat','users.messages');
+
+
+
+Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::view('chat','users.messages');
-
