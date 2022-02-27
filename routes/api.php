@@ -26,9 +26,14 @@ use App\Http\Controllers\Api\AdminController;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Route::middleware('auth')->group(function () {
+   
 //general for current authenticated user info
 Route::get('/user', [AdminController::class, 'user']);
 Route::get('/id', [AdminController::class, 'id']);
@@ -144,3 +149,7 @@ Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api
 
 // student dashboard  -  take exam  :
 Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
+
+// });
+
+// ->withoutMiddleware([EnsureTokenIsValid::class]);

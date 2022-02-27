@@ -28,7 +28,7 @@ class User extends Authenticatable
 
         'is_online',
         'last_activity',
-     
+
     ];
 
     /**
@@ -49,4 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasRole($role)
+    {
+        return User::where('role', $role)->get();
+    }
 }
