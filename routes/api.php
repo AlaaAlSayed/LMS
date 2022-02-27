@@ -57,6 +57,8 @@ Route::get('/teachers/showClassroom/{teacherId}/{subjectId}/{classroomId}',[Teac
 
 Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 Route::post('/teachers',[TeacherController::class,'store']);
+Route::post('/teachers/assign',[TeacherController::class,'assign']);
+
 Route::put('/teachers/teachesUpdate/{teacherId}/{subjectId}', [TeacherController::class , 'teachesUpdate']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
