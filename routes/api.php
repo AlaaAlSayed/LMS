@@ -91,6 +91,7 @@ Route::post('/materials', [MaterialController::class, 'store'])->name('api.mater
 Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
 Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
 Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
+Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
 
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');

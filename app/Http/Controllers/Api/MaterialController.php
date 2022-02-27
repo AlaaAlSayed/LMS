@@ -48,7 +48,13 @@ class MaterialController extends Controller
         $material = SubjectMaterial::find($materialId);
         return $material;
     }
-
+    public function getFile($materialId)
+    {
+        $material = SubjectMaterial::find($materialId);
+        $link= asset('storage/assets/'. $material->material);
+        $pdf=response()->file($link) ;
+        return ($pdf) ;
+    }
     public function store()
     {
         request()->validate([
@@ -63,13 +69,13 @@ class MaterialController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = 'material' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-            $data = request()->all();
+            // 
         } else {
 
             $filename = 'storage/app/public/assets/material_temp.pdf';
         }
 
-
+        $data = request()->all();
         SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
             'material' => $filename,
