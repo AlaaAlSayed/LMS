@@ -55,6 +55,7 @@ class MaterialController extends Controller
         $pdf=response()->file($link) ;
         return ($pdf) ;
     }
+    
     public function store()
     {
         request()->validate([
