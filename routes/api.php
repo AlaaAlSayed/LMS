@@ -58,7 +58,7 @@ Route::get('/welcome' ,function () {
     return view('welcome');})->name('welcome');
 
 
-
+//admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index'])->middleware('IsTeacher');
 Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
 Route::put('/admins/{adminId}', [AdminController::class, 'update'])->middleware('IsAdmin');
