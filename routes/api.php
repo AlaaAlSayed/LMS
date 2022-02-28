@@ -8,13 +8,10 @@ use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\TeacherController;
-use App\Models\Teacher;
-use App\Models\Assignment;
-use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
-use App\Models\User;
+use App\Http\Controllers\Api\AnnouncementsContoller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
  
@@ -63,14 +60,17 @@ Route::get('/welcome' ,function () {
 
 
 
+Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index']);
+Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
+Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
+Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
 
-
-Route::get('/admins', [AdminController::class, 'index'])->middleware('IsTeacher');
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
-Route::put('/admins/{adminId}', [AdminController::class, 'update'])->middleware('IsAdmin');
+Route::get('/admins', [AdminController::class, 'index']);
+Route::get('/admins/{adminId}',[AdminController::class,'show']);
+Route::put('/admins/{adminId}', [AdminController::class, 'update'])     ;
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->name('api.students.index')->middleware('IsAdmin');
+Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
 Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
 Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
@@ -181,3 +181,5 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 });
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
+
+Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);

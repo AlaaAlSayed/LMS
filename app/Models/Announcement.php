@@ -12,6 +12,17 @@ class Announcement extends Model
         'title',
         'description',
         'media',
-        'adminId',
+        'adminID',
     ];
+
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // public function sluggable():array
+    // {
+    //    return[ 'slug'=>['source'=>'title']];
+    // }
 }
