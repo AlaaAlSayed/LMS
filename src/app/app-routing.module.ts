@@ -50,6 +50,9 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
 {path:'classroom/:teacherid/:classroomid/matrial',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
+},{path:'classroom/:teacherid/:classroomid/assignment',
+loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
+
 }
 
 ];

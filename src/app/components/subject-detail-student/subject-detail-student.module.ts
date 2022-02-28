@@ -10,6 +10,8 @@ import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { UploadassignmentComponent } from './uploadassignment/uploadassignment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 enableProdMode();
 
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path:'result',component:ResultComponent},
   {path:'quiz',component:QuizComponent},
   {path:'matrial',component:MatrialComponent},
+  {path:'uploadassignment/:assignmentid',component:UploadassignmentComponent},
+
   {path:'',component:MainSubjectComponent}
 
 ];
@@ -31,10 +35,11 @@ const routes: Routes = [
     MatrialComponent,
     ResultComponent,
     MainSubjectComponent,
+    UploadassignmentComponent,
   ],
   imports: [
     
-    CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule,ReactiveFormsModule
     
   ]
 })

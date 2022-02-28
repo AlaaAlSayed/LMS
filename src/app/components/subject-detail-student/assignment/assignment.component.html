@@ -1,10 +1,5 @@
 
-
-
-
-
-
-<div class="row d-flex justify-content-center  mb-2">
+   <div class="row d-flex justify-content-center  mb-2">
     <div class="col-12 text-center  rounded  text-dark">
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -12,9 +7,11 @@
             <img src="./assets/photos/backgroundschool.jpg" alt="pic2" style="  width: 100%;
             height: auto;">
             <div class="carousel-caption d-none d-md-block text-dark">
-              <h1>Assignments</h1>
-              <p>{{_subject.name}}</p>
-              <p>teacher</p>
+             <h1>Assignment</h1>
+
+              <h3>{{_subject.name}}</h3>
+            <!--   <p>class</p>
+              <p>teacher</p> -->
               
             </div>
           </div>
@@ -22,52 +19,42 @@
         </div>
       </div>
     </div>
-</div>
+</div> 
+<div class="row d-flex justify-content-center">
+<div class="col-8  m-3 ">
+ <table class="table justify-content-center ">
+     <thead class="thead-dark">
+       <tr>
+         <th scope="col">#</th>
+         <th scope="col">Name</th>
+         <th scope="col">View</th>
+         <th scope="col">Download</th>
+         <th scope="col">Upload</th>
 
 
-
-<div class="row d-flex justify-content-center m-3">
-    <div class="col-8  ">
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">name </th>
-        <th scope="col">show</th>
-        <th scope="col">Download</th>
-        <th scope="col">Upload</th>
-
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let mat of _classassignment;let currentIndex=index;">
-            <th scope="row"> {{currentIndex+1}}</th>
-            <td>
-                <p>{{mat.name}}</p> 
+       </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let mat of _classassignment;let currentIndex=index;">
+             <th scope="row"> {{currentIndex+1}}</th>
+             <td>
+               <p>{{mat.name}}</p> 
+            </td>
+             <td>
+              
+                <button class="btn" (click)="redirect(mat.id)" style="background-color: #bed6bf;">View</button> 
+             </td>
+             <td>
+               <button class="btn" (click)="downloadid(mat.id,mat.name)" style="background-color:#e9544d;">Download</button> 
             </td>
             <td>
-
-                    <button (click)="getlink(mat.id)"class="btn btn-info">view</button>
-            </td>
-            <td>
-              <a href="api/download/{{mat.id}}" class="text-dark" style="text-decoration: none;">
-                  <button class="btn btn-danger">Download</button>
-              </a> 
-          </td>
-          <td>
-            <div class="form-group ">
-
-              <input type="file" class=""
-                     id="file" >
-          </div>
-         <!--    <a [routerLink]="['show',mat.id]" class="text-dark" style="text-decoration: none;">
-                <button class="btn btn-success">Upload</button>
-            </a>  -->
-        </td>
-    </tr>
-     
-    </tbody>
-  </table>
-  
-    </div>
+            <a routerLink="uploadassignment/{{mat.id}}">  <button class="btn" style="background-color:#62d166;">Upload</button> </a>
+           </td>
+              
+     </tr>
+      
+     </tbody>
+   </table>
+   
+ </div>
 </div>

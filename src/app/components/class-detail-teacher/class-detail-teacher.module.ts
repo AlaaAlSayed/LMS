@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'',component:TechsubjectmainComponent},
   {path:'creatematrial',component:CreateMatrialComponent},
   {path:'createassignment',component:CreateAssignmentComponent},
-
+  {path:'updateassignment/:assignmentid',component:UpdateassignmentComponent},
   {path:'updatematrial/:matrialid',component:UpdatematerialComponent},
 
 

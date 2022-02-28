@@ -8,12 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MatrialService {
   constructor(private _HttpClient:HttpClient) { }
-  get(){
-   // console.log(`${environment.APIURL}/api/exams`);
-    //console.log(this._HttpClient.get(`${environment.api_URL}/api/subjects`));
-
-   return this._HttpClient.get(`${environment.APIURL}/api/exams`);
-  }
+ 
    getSubjectById(teacherid:number,classroomid:number){
     
     //console.log(`${environment.APIURL}/api/subjects/teacher/${teacherid}/classroom/${classroomid}`);

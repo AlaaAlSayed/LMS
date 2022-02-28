@@ -18,6 +18,9 @@ export class AssignmentComponent implements OnInit {
   _subject:subject=new subject();
   _assignment:AttachedAssignment[]=[];
   _classassignment:assignment[]=[];
+  blob:any;
+  showid:number=0;
+
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params=>{
       let id=Number(params.get('id'));
@@ -38,17 +41,35 @@ export class AssignmentComponent implements OnInit {
           })
 
   }
-getlink(assignid:number){
-  let link ;
- this._assignmentsservice.getById(assignid).subscribe(
-  (response:any)=>{
-           link=response.data;
-  },
-  //(error:any)=>{alert("error in getlink");}
+  redirect(id:number){
 
-  );
-  console.log(link);
-  return link; 
+    this._assignmentsservice.show(id).subscribe(
+    
+      (response:any)=>{
+    
+    window.open (response,'_blank') ;
+    
+      },
+      (error:any)=>{alert("error");}
+    )
+    
+      }
+      downloadid(id:number,name:string){
+        console.log(id);
+    
+    this._assignmentsservice.download(id).subscribe(
+    
+      (response:any)=>{
+        this.blob = new Blob([response], {type: 'application/pdf'});
+    
+        var downloadURL = window.URL.createObjectURL(response);
+        var link = document.createElement('a');
+        link.href = downloadURL;
+        //let str=name.concat(".pdf");
+        link.download = name;
+        link.click();
+      }
+    )
 }
   
 

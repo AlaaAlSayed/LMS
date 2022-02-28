@@ -60,6 +60,7 @@ this.subjectid=this.matrials[0].subjectId;
    formData.append("name",this.formAdd.value.name);
    formData.append("material",this.files, this.files.name);
    formData.append("subjectId",String(this.subjectid));
+   console.log(formData.get("material"));
    this._matrialservice.post(formData).subscribe(response=>{
     this.files=response;
     //console.log(this.files);

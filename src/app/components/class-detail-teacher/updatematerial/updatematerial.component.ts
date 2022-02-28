@@ -73,34 +73,29 @@ this.formAdd=new FormGroup({
   let formData= new FormData();
   // console.log(this.formAdd.value.name);
    formData.append("subjectId",String(this.subjectid));
+   formData.append("name",this.formAdd.value.name);
+
    this._matrialservice.getfile(this.matrialid).subscribe(
     (response:any)=>{
       this.backupfiles = new Blob([response], {type: 'application/pdf'});
 
-console.log("this.backupfiles");
-this.backupfiles.webkitRelativePath="storage/app/public/assets/material_1645829389.pdf"
-formData.append("material",this.backupfiles,this._matrial.material);
-console.log(formData.get('material'));
+formData.append("material",this.backupfiles,this._matrial.name);
+this._matrialservice.post(formData).subscribe(response=>{
+
+  this._matrialservice.delete(this.matrialid).subscribe(response=>{
+  });
+  window.location.href=`http://localhost:4200/classroom/${this.teacherid}/${this.classroomid}/matrial`;
+
+
+}
+)
     }
    );
 
-   formData.append("name",this.formAdd.value.name);
 
-   //console.log(formData.get("material"));
-   //console.log(formData.get("subjectId"));
+ 
 
-  this._matrialservice.post(formData).subscribe(response=>{
-    //console.log("post done")
 
-    this._matrialservice.delete(this.matrialid).subscribe(response=>{
-     // console.log("delete done")
-    });
-    //console.log("update done");
-    window.location.href=`http://localhost:4200/classroom/${this.teacherid}/${this.classroomid}/matrial`;
-
-  
-  },
-  )
  
   }
 

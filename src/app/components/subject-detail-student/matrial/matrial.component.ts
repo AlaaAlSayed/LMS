@@ -18,7 +18,7 @@ export class MatrialComponent implements OnInit {
   _subject:subject=new subject();
   _matrial:matrial[]=[];
  // link:any;
-  showid:number=1;
+  showid:number=0;
   blob:any;
 
   ngOnInit(): void {
