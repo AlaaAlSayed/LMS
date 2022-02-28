@@ -41,14 +41,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
 
-
-Route::middleware('auth:sanctum')->group(function () {
 
 //admin dashboard -  profile page:
 Route::get('/welcome' ,function () {
