@@ -124,6 +124,9 @@ Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'student
 
 Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
 
+Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
+
+
 //*******************   EXAM  ********************
 //teacher dashboard  - exam CRUD operations  :
 

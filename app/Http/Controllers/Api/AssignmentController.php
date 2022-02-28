@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Assignment;
 use App\Models\Teacher;
 use App\Models\teacher_attaches_assignments;
-use App\Models\Subject;
+use App\Models\StudentUploadAssignment;
 use Illuminate\Support\Facades\Storage;
 use Spatie\FlareClient\Http\Response;
 use App\Http\Resources\AssignmentResource;
@@ -19,7 +19,6 @@ class AssignmentController extends Controller
     $allAssignments = Assignment::all();
     return   $allAssignments->all();
   }
-
   public function show($assignmentId)
   {
     $assignment = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->find($assignmentId);
@@ -129,4 +128,13 @@ class AssignmentController extends Controller
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);
   }
+
+
+  public function studentsUploads()
+  {
+    $allAssignments = StudentUploadAssignment::all();
+    return   $allAssignments->all();
+  }
+
+
 }
