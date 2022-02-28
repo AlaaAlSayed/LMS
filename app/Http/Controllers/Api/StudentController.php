@@ -112,7 +112,7 @@ class StudentController extends Controller
 
 
 
-    public function upload($studentId, $assignmentId, $subjectId)
+    public function upload()
     {
         request()->validate([
             'answer' => 'required|mimes:pdf|max:10000'
@@ -121,7 +121,7 @@ class StudentController extends Controller
         if (request()->hasFile('answer')) { //if user choose file
             $file = request()->file('answer'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
-            $filename = 'Answer_' . $studentId .  '_' . time() . '.' . $extension;
+            $filename = 'Answer_'  .  '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
         } else {
             $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
@@ -130,9 +130,9 @@ class StudentController extends Controller
         $data = request()->all();
 
         $assignment = StudentUploadAssignment::create([
-            'studentId' => $studentId,
-            'subjectId' => $subjectId,
-            'assignmentId' => $assignmentId,
+            'studentId' => $data['studentId'],
+            'subjectId' => $data['subjectId'],
+            'assignmentId' => $data['assignmentId'],
             'answer' => $filename,
         ]);
 
