@@ -22,7 +22,8 @@ class AssignmentController extends Controller
 
   public function show($assignmentId)
   {
-    $assignment = Assignment::find($assignmentId);
+    $assignment = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.id')->find ($assignmentId);
+    // $assignment = Assignment::find($assignmentId);
     return ($assignment); 
 
   }
