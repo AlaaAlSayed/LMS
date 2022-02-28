@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\TeacherController;
 use App\Models\Teacher;
 use App\Models\Assignment;
 use App\Http\Controllers\Api\UserAvatarController;
-use App\Http\Controllers\Api\FileController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
 use App\Models\User;
@@ -37,22 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // 1|IX5GH2qbPd4Tq9zHv1AUFO7mcDazSRYVOJdpnVby token for admn user
 // 2|H66CwHt6QYUW5mwiFEZ02cXszBdBSZ8coFWQQ8N4   token for stud user
-Route::post('/sanctum/token', function (Request $request) {
-    $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
- 
-    $user = User::where('username', $request->username)->first();
- 
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'username' => ['The provided credentials are incorrect.'],
-        ]);
-    }
- 
-    return $user->createToken($request->username)->plainTextToken;
-});
+Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 
@@ -60,8 +45,8 @@ Route::post('/sanctum/token', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
-// Route::get('/user', [AdminController::class, 'user']);
-// Route::get('/id', [AdminController::class, 'id']);
+Route::get('/user', [UserController::class, 'user']);
+Route::get('/id', [UserController::class, 'id']);
 
 
 //admin dashboard -  profile page:
