@@ -41,7 +41,6 @@ Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
         'username' => 'required',
         'password' => 'required',
-        'device_name' => 'required',
     ]);
  
     $user = User::where('username', $request->username)->first();
@@ -52,7 +51,7 @@ Route::post('/sanctum/token', function (Request $request) {
         ]);
     }
  
-    return $user->createToken($request->device_name)->plainTextToken;
+    return $user->createToken($request->username)->plainTextToken;
 });
 
 
@@ -66,12 +65,27 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 //admin dashboard -  profile page:
-Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show']);
-Route::put('/admins/{adminId}', [AdminController::class, 'update']);
+Route::get('/welcome' ,function () {
+    return view('welcome');})->name('welcome');
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admins', [AdminController::class, 'index'])->middleware('IsTeacher');
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
+Route::put('/admins/{adminId}', [AdminController::class, 'update'])->middleware('IsAdmin');
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
+Route::get('/students', [StudentController::class, 'index'])->name('api.students.index')->middleware('IsAdmin');
 Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
 Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
 Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
