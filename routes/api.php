@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Models\Teacher;
 use App\Models\Assignment;
@@ -40,28 +41,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
-
-
-Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
 
+
+Route::middleware('auth:sanctum')->group(function () {
+
 //admin dashboard -  profile page:
 Route::get('/welcome' ,function () {
     return view('welcome');})->name('welcome');
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -181,3 +172,15 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 });
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
+
+
+
+//*******************   MESSAGE  ********************
+// users dashboard  - message CRUD operations  :
+
+Route::get('/messages', [MessageController::class, 'index'])->name('api.messages.index');
+Route::get('/messages/{userId}',[MessageController::class,'teacherMessages'])->name('api.messages.teacherMessages');
+Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show'])->name('api.messages.show');
+Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store'])->name('api.messages.store');
+Route::put('/messages/{messageId}', [MessageController::class , 'update'])->name('api.messages.update');
+Route::delete('/messages/{messageId}', [MessageController::class , 'destroy'])->name('api.messages.destroy');
