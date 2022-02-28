@@ -51,9 +51,8 @@ class MaterialController extends Controller
     public function getFile($materialId)
     {
         $material = SubjectMaterial::find($materialId);
-        $link= asset('storage/assets/'. $material->material);
-        $pdf=response()->file($link) ;
-        return ($pdf) ;
+        return response()->file('storage/assets/'. $material->material) ;
+       
     }
     
     public function store()

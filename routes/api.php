@@ -118,9 +118,10 @@ Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,
 
 
 // show assignment as pdf
-Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
 // Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
 
+Route::get('/assignments/getFile/{assignmentId}', [AssignmentsController::class, 'getFile']);
 
 //*******************   EXAM  ********************
 //teacher dashboard  - exam CRUD operations  :
