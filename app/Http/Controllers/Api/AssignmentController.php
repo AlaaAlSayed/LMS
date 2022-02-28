@@ -20,15 +20,12 @@ class AssignmentController extends Controller
     return   $allAssignments->all();
   }
 
-  // public function show($teacherId, $assignmentId)
-  // {
-  //   $teacher = Teacher::find($teacherId);
-  //   // @dd($teacher->assignments);
-  //   // return View('assignment'); 
-  //   // return View('assignment', ['assignmentId' => $assignmentId]);
+  public function show($assignmentId)
+  {
+    $assignment = Assignment::find($assignmentId);
+    return ($assignment); 
 
-  //   return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
-  // }
+  }
 
   public function studentshow($assignmentId)
   {

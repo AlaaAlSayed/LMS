@@ -106,6 +106,7 @@ Route::get('/materials/download/{materialId}', [MaterialController::class,'downl
 // ***********************     ASSIGNMENTS   *********************
 //teacher dashboard  - assignments CRUD operations  :
 Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
+Route::get('/assignment/{assignmentId}', [AssignmentController::class, 'show'])->name('api.assignments.show');
 Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store'])->name('api.assignments.store');
 Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
 Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
