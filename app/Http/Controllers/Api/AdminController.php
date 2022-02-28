@@ -6,29 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
 
 
 class AdminController extends Controller
 {
 
 
-    public function user()
-    {
-        // Get the currently authenticated user...
-        $user = Auth::user();
-        return $user;
-    }
-    
-    public function id()
-    {
-        // Get the currently authenticated user's ID...
-        $id = Auth::id();
-        return $id;
-    }
-
-
-
+  
 
     public function index()
     {
