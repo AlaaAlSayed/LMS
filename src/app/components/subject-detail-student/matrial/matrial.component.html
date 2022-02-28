@@ -26,20 +26,28 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">file</th>
-            <th scope="col">name</th>
+            <th scope="col">Name</th>
+            <th scope="col">View</th>
+            <th scope="col">Download</th>
 
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let mat of _matrial;let currentIndex=index;">
-                <th scope="row"> {{mat.id}}</th>
+                <th scope="row"> {{currentIndex+1}}</th>
                 <td>
-                   <a href="#"  class="text-dark" style="text-decoration: none;">{{mat.material}}</a> 
+                  <p>{{mat.name}}</p> 
+               </td>
+                <td>
+                 
+                   <button class="btn" (click)="redirect(mat.id)" style="background-color: #bed6bf;">View</button> 
                 </td>
                 <td>
-                    <p>{{mat.name}}</p> 
-                 </td>
+                 
+                  <button class="btn" (click)="downloadid(mat.id,mat.name)" style="background-color:#e9544d;">Download</button> 
+               </td>
+               
+                 
         </tr>
          
         </tbody>

@@ -8,6 +8,9 @@ import { TechquizComponent } from './techquiz/techquiz.component';
 import { TechsubjectmainComponent } from './techsubjectmain/techsubjectmain.component';
 import { CreateMatrialComponent } from './create-matrial/create-matrial.component';
 import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdatematerialComponent } from './updatematerial/updatematerial.component';
+import { UpdateassignmentComponent } from './updateassignment/updateassignment.component';
 
 const routes: Routes = [
   {path:'assignment',component:TechassignmentComponent},
@@ -15,6 +18,10 @@ const routes: Routes = [
   {path:'matrial',component:TechmatrialComponent},
   {path:'',component:TechsubjectmainComponent},
   {path:'creatematrial',component:CreateMatrialComponent},
+  {path:'createassignment',component:CreateAssignmentComponent},
+
+  {path:'updatematrial/:matrialid',component:UpdatematerialComponent},
+
 
 ];
 
@@ -25,10 +32,12 @@ const routes: Routes = [
     TechquizComponent,
     TechsubjectmainComponent,
     CreateMatrialComponent,
-    CreateAssignmentComponent
+    CreateAssignmentComponent,
+    UpdatematerialComponent,
+    UpdateassignmentComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),HttpClientModule
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule
   ]
 })
 export class ClassDetailTeacherModule { }

@@ -9,28 +9,51 @@ import { environment } from 'src/environments/environment';
 export class MatrialService {
   constructor(private _HttpClient:HttpClient) { }
   get(){
-    console.log(`${environment.APIURL}/api/exams`);
+   // console.log(`${environment.APIURL}/api/exams`);
     //console.log(this._HttpClient.get(`${environment.api_URL}/api/subjects`));
 
    return this._HttpClient.get(`${environment.APIURL}/api/exams`);
   }
-   getById(id:number){
-    console.log(`${environment.APIURL}/api/subjects/${id}`);
-
-    return this._HttpClient.get(`${environment.APIURL}/api/exams/${id}`);
+   getSubjectById(teacherid:number,classroomid:number){
+    
+    //console.log(`${environment.APIURL}/api/subjects/teacher/${teacherid}/classroom/${classroomid}`);
+    return this._HttpClient.get(`${environment.APIURL}/api/subjects/teacher/${teacherid}/classroom/${classroomid}`);
    }
 
-  post(_matrial:matrial){
-    return this._HttpClient.post(`${environment.APIURL}/api/exams`,_matrial);
+  post(_matrial:any){
+    return this._HttpClient.post(`${environment.APIURL}/api/materials`,_matrial);
    }
 
-   
-  put(_matrial:matrial){
-    return this._HttpClient.put(`${environment.APIURL}/api/exams`,_matrial);
+   show(matrialid:number){
+     //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/showpdf/${matrialid}`));
+    return this._HttpClient.get(`${environment.APIURL}/api/materials/showpdf/${matrialid}`);
+   }
+
+   download(matrialid:number){
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+    //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`));
+   return this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`,httpOptions);
+  }
+  getfile(matrialid:number){
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+    //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`));
+   return this._HttpClient.get(`${environment.APIURL}/api/materials/getFile/${matrialid}`,httpOptions);
+  }
+  put(id:number,_matrial:any){
+ 
+    return this._HttpClient.put(`${environment.APIURL}/api/materials/${id}`,_matrial);
    }
 
    delete(id:number){
-    return this._HttpClient.delete(`${environment.APIURL}/api/exams/${id}`);
+    return this._HttpClient.delete(`${environment.APIURL}/api/materials/${id}`);
+   } 
+
+ getmatrialbyid(id:number){
+    return this._HttpClient.get(`${environment.APIURL}/api/materials/${id}`);
    } 
 
 }

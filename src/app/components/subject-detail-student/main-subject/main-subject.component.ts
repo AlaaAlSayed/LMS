@@ -16,17 +16,19 @@ export class MainSubjectComponent implements OnInit {
 
 
   _subject:subject=new subject();
-title:string=""
+title:string="";
+id :number=0;
 
   constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this._activatedRoute.paramMap.subscribe(params=>{
-let id=Number(params.get('id'));
+this.id=Number(params.get('id'));
 let student_id=Number(params.get('student_id'));
+console.log(this.id);
 
-this._subjectservice. getSubjectByID(id)
+this._subjectservice. getSubjectByID(this.id)
 .subscribe(
   (response:any)=>{
     this._subject=response.data;

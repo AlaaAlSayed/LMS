@@ -9,7 +9,6 @@ import { QuizComponent } from './quiz/quiz.component';
 import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
-import { ShowassignmentComponent } from './showassignment/showassignment.component';
 import { SharedModule } from '../shared/shared.module';
 
 enableProdMode();
@@ -17,8 +16,6 @@ enableProdMode();
 const routes: Routes = [
   {
     path:'assignment',component:AssignmentComponent
-  }, {
-    path:'show/:assignid',component:ShowassignmentComponent
   },
 
   {path:'result',component:ResultComponent},
@@ -34,7 +31,6 @@ const routes: Routes = [
     MatrialComponent,
     ResultComponent,
     MainSubjectComponent,
-    ShowassignmentComponent
   ],
   imports: [
     

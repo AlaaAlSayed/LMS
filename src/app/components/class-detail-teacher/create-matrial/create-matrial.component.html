@@ -1,19 +1,24 @@
+
+
+
+<div >
 <div class="row justify-content-center m-5">
     <div class="col-4">
         <h1 class="text-center fw-bolder">Create Matrial</h1>
-<form class="border p-5" >
+<form class="border p-5" [formGroup]="formAdd" >
    
     <div class="form-group ">
       <label for="name">Mtrial Name</label><br>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name"><br>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name" formControlName="name" ><br>
     </div>
     <div class="form-group col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1"> <br><br>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="file" (change)="uploadfile($event)"> <br><br>
       </div>
     
       <div>
-    <button type="submit" class="btn btn-warning">create</button>
+         <button type="submit" class="btn btn-warning" (click)="insertMatrial()">create</button>
 </div>
   </form>
+</div>
 </div>
 </div>

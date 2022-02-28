@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { SubjectService } from 'src/app/services/subject.service';
 import { matrial } from 'src/app/models/matrial';
+import { MatrialService } from 'src/app/services/matrial.service';
 
 @Component({
   selector: 'app-matrial',
@@ -13,9 +14,12 @@ import { matrial } from 'src/app/models/matrial';
 })
 export class MatrialComponent implements OnInit {
 
-  constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute) { }
+  constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute,private _matrialservice:MatrialService) { }
   _subject:subject=new subject();
   _matrial:matrial[]=[];
+ // link:any;
+  showid:number=1;
+  blob:any;
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params=>{
@@ -26,8 +30,7 @@ export class MatrialComponent implements OnInit {
       .subscribe(
         (response:any)=>{
           this._subject=response.data;
-          //console.log(response.data);
-          console.log(this._subject.subjectMaterial);
+        
       this._matrial=this._subject.subjectMaterial;
         },
         (error:any)=>{alert("error");}
@@ -37,6 +40,40 @@ export class MatrialComponent implements OnInit {
 
     
   }
+
+  redirect(id:number){
+
+this._matrialservice.show(id).subscribe(
+
+  (response:any)=>{
+
+window.open (response,'_blank') ;
+
+  },
+  (error:any)=>{alert("error");}
+)
+
+  }
+  downloadid(id:number,name:string){
+    console.log(id);
+
+this._matrialservice.download(id).subscribe(
+
+  (response:any)=>{
+    this.blob = new Blob([response], {type: 'application/pdf'});
+
+    var downloadURL = window.URL.createObjectURL(response);
+    var link = document.createElement('a');
+    link.href = downloadURL;
+    let str=name.concat(".pdf");
+    link.download = str;
+    link.click();
+  }
+)
+
+  }
+      
+
   
 
 

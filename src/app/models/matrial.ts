@@ -1,8 +1,11 @@
+// import { FILE } from "dns";
+// import { fileURLToPath } from "url";
+// import { FILE } from "dns";
 export class matrial{
     id:number=0 ;
     subjectId:number=0;
     name:string='';
-    material:any;
-   input_file :any;
+     input_file :any;
+     material:any;
 
 }
