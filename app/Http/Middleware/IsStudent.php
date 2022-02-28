@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class IsStudent
 {
@@ -16,20 +17,16 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        $user_name=$request->username;
-        $role=User::where('username','=', $user_name)->first();
-        
- //        gettype($u)
- // @dd( $role->roleId);
- 
-             if ($role->roleId==3) {
-                 return $next($request);
-             }
-      
-            
-         
-             return redirect()->route('welcome');
-            
-    }
-    }
+        $user_name = $request->username;
+        $role = User::where('username', '=', $user_name)->first();
 
+        //        gettype($u)
+        // @dd( $role->roleId);
+
+        if ($role->roleId == 3) {
+            return $next($request);
+        } else {
+            return redirect()->route('welcome');
+        }
+    }
+}
