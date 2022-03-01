@@ -78,8 +78,13 @@ this.formAdd=new FormGroup({
    this._matrialservice.getfile(this.matrialid).subscribe(
     (response:any)=>{
       this.backupfiles = new Blob([response], {type: 'application/pdf'});
-
+      if(this.files==null){
 formData.append("material",this.backupfiles,this._matrial.name);
+}
+else{
+  formData.append("material",this.files,this.files.name);
+
+}
 this._matrialservice.post(formData).subscribe(response=>{
 
   this._matrialservice.delete(this.matrialid).subscribe(response=>{

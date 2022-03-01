@@ -3,5 +3,6 @@ export class AttachedAssignment{
     studentId:number=0;
     subjectId:number=0;
     assignmentId:number=0;
+    name:any;
     answer:string="";
 }

@@ -30,15 +30,22 @@ export class AssignmentComponent implements OnInit {
       .subscribe(
         (response:any)=>{
           this._subject=response.data;
-          console.log(response.data);
+         // console.log(response.data);
         
       this._classassignment=this._subject.assignments;
+      console.log(this._classassignment);
+
     
         },
         (error:any)=>{alert("error");}
       )
+      this._assignmentsservice.getuploads().subscribe((response:any)=>{
+        this._assignment=response;
+        console.log(response);
+      })
             
           })
+        
 
   }
   redirect(id:number){

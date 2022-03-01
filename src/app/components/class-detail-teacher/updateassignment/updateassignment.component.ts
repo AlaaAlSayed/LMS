@@ -71,14 +71,20 @@ this.subjectid=this.matrials[0].subjectId;
    formData.append("deadline",this.formAdd.value.deadline);
    formData.append("teacherId",String(this.teacherid));
 
-   this._matrialservice.getfile(this.assignmentid).subscribe(
+   this._assignmentservice.getfile(this.assignmentid).subscribe(
     (response:any)=>{
+      
       this.backupfiles = new Blob([response], {type: 'application/pdf'});
-
+      if(this.files==null){
 formData.append("name",this.backupfiles,this._assignment.name);
-this._matrialservice.post(formData).subscribe(response=>{
+}
+else{
+  formData.append("name",this.files,this.files.name);
 
-  this._matrialservice.delete(this.assignmentid).subscribe(response=>{
+}
+this._assignmentservice.post(formData,this.teacherid,this.subjectid).subscribe(response=>{
+
+  this._assignmentservice.delete(this.assignmentid).subscribe(response=>{
   });
   window.location.href=`http://localhost:4200/classroom/${this.teacherid}/${this.classroomid}/assignment`;
 

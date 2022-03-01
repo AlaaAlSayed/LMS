@@ -47,6 +47,10 @@ export class assignmentsservice {
    delete(id:number){
     return this._HttpClient.delete(`${environment.APIURL}/api/assignments/${id}`);
    } 
+   getuploads(){
+    return this._HttpClient.get(`${environment.APIURL}/api/assignments/studentsUploads`);
+
+   }
    getfile(assignmentId:number){
     const httpOptions = {
       responseType: 'blob' as 'json'
