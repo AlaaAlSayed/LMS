@@ -27,7 +27,7 @@ class AnnouncementsContoller extends Controller
     
          request()->validate([
          
-            'file'=>'required|mimes:jpeg,pmb,png,jpg|max:10000']);
+            'file'=>'required|mimes:jpeg,pmb,png,jpg,pdf,docs,xlsx|max:10000']);
             
 
        
@@ -53,11 +53,15 @@ class AnnouncementsContoller extends Controller
         }
     
     
-        public function show($postId) {
+        public function show($postId)
+         {
        
             $Post=Announcement::find($postId);
-            return $Post;
-         }
+            $embed_src= asset('storage/assets/'.$Post->media);
+//@dd( $embed_src);
+            return response()->json($embed_src);
+  // return View('assignment', ['assignment_pdf' => $embed_src]);
+        }
      
     
     
