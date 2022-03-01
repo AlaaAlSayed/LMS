@@ -30,7 +30,8 @@ class IsAdmin
 
         if ($role->roleId == 1) {
             return $next($request);
-        } else {
+        } 
+        else {
             return redirect()->route('welcome');
         }
     }
