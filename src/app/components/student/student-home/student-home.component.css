@@ -1,0 +1,7 @@
+.s-class{transition: all 500ms ease-in ;
+opacity: 0.6;}
+.s-class:hover{
+    opacity: 1;
+    transform: scale(1.07);
+    /* box-shadow: 1px 1px 1px 1px #ffc107, -0px -1px 0.5px #ffc107 !important; */
+}

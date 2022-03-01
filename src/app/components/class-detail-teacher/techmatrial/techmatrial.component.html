@@ -1,0 +1,63 @@
+
+   <div class="row d-flex justify-content-center  mb-2">
+    <div class="col-12 text-center  rounded  text-dark">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="height: 300px;">
+            <img src="./assets/photos/backgroundschool.jpg" alt="pic2" style="  width: 100%;
+            height: auto;">
+            <div class="carousel-caption d-none d-md-block text-dark">
+             <h1>Matrial</h1>
+
+              <h3></h3>
+            <!--   <p>class</p>
+              <p>teacher</p> -->
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div> 
+<a routerLink="creatematrial" routerLinkActive="active" class=" d-flex justify-content-center text-dark" style="text-decoration: none;">  
+    <div class=" text-center p-3 m-2 rounded col-3 bg-warning text-dark align-middle justify-content-center">
+    <h1 class="mb-3 h2 align-middle "> Create Matrial</h1> 
+  </div></a>
+<div class="row d-flex justify-content-center">
+<div class="col-8  m-3 ">
+ <table class="table justify-content-center ">
+     <thead class="thead-dark">
+       <tr>
+         <th scope="col">#</th>
+         <th scope="col">name</th>
+         <th scope="col">Show</th>
+         <th scope="col">Update</th>
+         <th scope="col">Delete</th>
+
+
+       </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let mat of _matrial;let currentIndex=index;">
+             <th scope="row"> {{ currentIndex+1}}</th>
+             <td>
+              <p>{{mat.name}}</p> 
+           </td>
+             <td>
+              <button class="btn" (click)="redirect(mat.id)" style="background-color: #bed6bf;">View</button> 
+            </td>
+            <td>
+           <a routerLink="updatematrial/{{mat.id}}">  <button class="btn" style="background-color: #629db1;">Update</button> </a> 
+            </td>
+            <td>
+              <button class="btn" (click)="delete(mat.id,currentIndex)" style="background-color:#e9544d;">Delete</button> 
+            </td>
+            
+     </tr>
+      
+     </tbody>
+   </table>
+   
+ </div>
+</div>

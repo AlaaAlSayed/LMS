@@ -1,0 +1,26 @@
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+p, .paragraph {
+    font-weight: 400;
+    color: #5c5c77;
+    font-size: 15px;
+    line-height: 1.9;
+    font-family: "Poppins", sans-serif;
+}
+.page-title-section{
+    background-image: url(src/assets/images/page-title.jpg);
+    padding: 200px 0 80px;
+
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+img {
+    vertical-align: middle;
+    border: 0;
+}
