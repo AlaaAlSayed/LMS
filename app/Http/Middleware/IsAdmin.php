@@ -25,14 +25,14 @@ class IsAdmin
         $user_name = $request->username;
         $role = User::where('username', '=', $user_name)->first();
 
-        //        gettype($u)
-        // @dd( $role->roleId);
-
-        if ($role->roleId == 1) {
-            return $next($request);
+        if ($role->roleId == 1) { // 1 is for admin
+            
+            //admin : then redirect to the targeted url
+            return $next($request); 
         } 
         else {
-            return redirect()->route('welcome');
+            //if not admin redirection
+            return redirect()->route('login');
         }
     }
 }
