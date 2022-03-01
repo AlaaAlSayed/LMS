@@ -57,11 +57,13 @@ Route::get('/id', [UserController::class, 'id']);
 Route::get('/welcome' ,function () {
     return view('welcome');})->name('welcome');
 
-
+    // ->middleware('IsTeacher');
+    // ->middleware('IsAdmin');
+    
 //admin dashboard -  profile page:
-Route::get('/admins', [AdminController::class, 'index'])->middleware('IsTeacher');
+Route::get('/admins', [AdminController::class, 'index']);
 Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
-Route::put('/admins/{adminId}', [AdminController::class, 'update'])->middleware('IsAdmin');
+Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
 Route::get('/students', [StudentController::class, 'index'])->name('api.students.index')->middleware('IsAdmin');
