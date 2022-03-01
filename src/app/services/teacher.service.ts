@@ -49,13 +49,13 @@ export class TeacherService {
    updateData(id:number, data:any){
     return this._httpClient.put(`${environment.APIURL}/api/teachers/${id}`, data);
    }
-   updateTeaches(teacherId:number, subjectId:number, data:any){
-    return this._httpClient.put(`${environment.APIURL}/api/teachers/teachesUpdate/${teacherId}/${subjectId}`, data);
+   updateTeaches(id:number, data:any){
+    return this._httpClient.put(`${environment.APIURL}/api/teachers/teachesUpdate/${id}`, data);
 
    }
-   getTeaches(id1:number, id2:number): Observable<TeacherTeachesSubjects>
+   getTeaches(id1:number, id2:number, id3:number): Observable<TeacherTeachesSubjects>
    {
-    return this._httpClient.get<TeacherTeachesSubjects>(`${environment.APIURL}/api/teachers/showClassroom/${id1}/${id2}`);
+    return this._httpClient.get<TeacherTeachesSubjects>(`${environment.APIURL}/api/teachers/showClassroom/${id1}/${id2}/${id3}`);
 
    }
   }

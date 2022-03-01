@@ -7,7 +7,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" routerLink="#">Logout</a>
+        <a class="nav-link px-3"  routerLink="/user/logout">Logout</a>
       </div>
     </div>
     </header>
@@ -99,11 +99,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="profile/2">
-                <!-- <span data-feather="bar-chart-2"></span> -->
+              <!-- <a class="nav-link" [routerLink]="['/admin-profile',admin.id]">
                 <i class="fa fa-user-circle"></i>
                 My Profile
-              </a>
+              </a> -->
+              <button  class="btn btn-primary" routerLink='/admin/admin-profile/{{admin.id}}'>profile</button>
+              <!-- (click)="clickHandler(admin.id)" -->
             </li>
             </ul>
         </div>

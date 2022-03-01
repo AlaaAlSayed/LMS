@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from './../../../../models/student';
 import { ActivatedRoute, Router} from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-home',
@@ -15,7 +16,7 @@ export class StudentHomeComponent implements OnInit {
    student= new Student();
   //  mySubject:Subject[]=[];
 
-  constructor(private _subjectService:SubjectService, private _studentService:StudentService, private _activatedRoute:ActivatedRoute,private _router:Router) { }
+  constructor(private _subjectService:SubjectService, private _studentService:StudentService, private _activatedRoute:ActivatedRoute,private _router:Router,private http:HttpClient) { }
 
   ngOnInit(): void {
     // this._subjectService.get().subscribe (
@@ -41,5 +42,13 @@ export class StudentHomeComponent implements OnInit {
       )
     }
     )
+    // const headers= new HttpHeaders({
+    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //   });
+    //   this.http.get('http://localhost:8000/api/students', {headers:headers}).subscribe
+    //   (result=>{
+        
+    //     console.log(result);
+    //   })
   }
 }

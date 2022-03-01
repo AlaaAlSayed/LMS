@@ -7,10 +7,10 @@
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form [formGroup]="formLogin">
-          <!-- Email input -->
+          <!-- username input -->
           <div class="form-outline mb-4">
             <input type="text" formControlName="username" name="username" class="form-control form-control-lg"
-              placeholder="Enter a valid username address" [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" />
+              placeholder="Enter a username " [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" />
               <div *ngIf="isInValidAndTouched('username')">
                 <small class="form-text text-danger" *ngIf="isControlHasError('username','required')" >required username</small>
               <small class="form-text text-danger"*ngIf="isControlHasError('username','minLength')" >min length is 10</small>
@@ -41,9 +41,9 @@
           </div>
 
           <div class="mt-4">
-          <button type="button" class="btn btn-primary me-2 btn-lg">Login as Admin</button>
-          <button type="button" class="btn btn-primary me-2 btn-lg">Login as Teacher</button>
-          <button type="button" class="btn btn-primary btn-lg ">Login as Student</button>
+          <button type="button" class="btn btn-primary me-2 btn-lg" (click)="login()">Login</button>
+          <!-- <button type="button" class="btn btn-primary me-2 btn-lg" (click)="login()">Login as Teacher</button>
+          <button type="button" class="btn btn-primary btn-lg " (click)="login()">Login as Student</button> -->
         </div>
         </form>
       </div>

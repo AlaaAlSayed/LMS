@@ -1,3 +1,6 @@
+import { TokenInterceptor } from './../../token.interceptor';
+import { AdminGuard } from './../../guards/admin.guard';
+import { AuthGuard } from './../../guards/auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,28 +25,29 @@ import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
 import { EditAssignTeacherComponent } from './edit-assign-teacher/edit-assign-teacher.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 const routes: Routes = [
-  {path:'home',component:HomeComponent},
-  {path: 'profile/:id', component:AdminProfileComponent},
-  {path: 'addStudent', component:AddStudentComponent},
-  {path: 'view-students', component:ViewStudentsComponent},
-  {path: 'details-student/:id',component:DetailsStudentComponent},
-  {path:'addTeacher', component:AddTeacherComponent},
-  {path: 'view-teachers',component:ViewTeachersComponent},
-  {path: 'details-teacher/:id', component:DetailsTeacherComponent},
-  {path: 'edit-student/:id', component:EditStudentComponent},
-  {path: 'edit-teacher/:id', component:EditTeacherComponent},
-  {path: 'view-classrooms', component:ViewClassroomsComponent},
-  {path: 'add-classroom', component:AddClassroomComponent},
-  {path: 'edit-classroom/:id',component:EditClassroomComponent},
-  {path: 'add-subject', component:AddSubjectComponent},
-  {path: 'edit-subject/:id', component:EditSubjectComponent},
-  {path: 'view-subjects',component:ViewSubjectsComponent},
-  {path: 'edit-assign/:id/:id', component:EditAssignTeacherComponent},
-  {path: 'edit-admin/:id',component:EditAdminComponent},
-  {path: 'dashboard',component:AdminDashboardComponent}
+  {path:'home',component:HomeComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'admin-profile/:id', component:AdminProfileComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'addStudent', component:AddStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'view-students', component:ViewStudentsComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'details-student/:id',component:DetailsStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path:'addTeacher', component:AddTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'view-teachers',component:ViewTeachersComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'details-teacher/:id', component:DetailsTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-student/:id', component:EditStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-teacher/:id', component:EditTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'view-classrooms', component:ViewClassroomsComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'add-classroom', component:AddClassroomComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-classroom/:id',component:EditClassroomComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'add-subject', component:AddSubjectComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-subject/:id', component:EditSubjectComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'view-subjects',component:ViewSubjectsComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-assign/:id/:id/:id', component:EditAssignTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'edit-admin/:id',component:EditAdminComponent,canActivate:[AuthGuard,AdminGuard]},
+  {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]}
 ]
 
 @NgModule({
@@ -71,6 +75,11 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),ReactiveFormsModule,FormsModule
-  ]
+  ],
+  // providers: [{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: TokenInterceptor,
+  //   multi: true
+  // }],
 })
 export class AdminModule { }

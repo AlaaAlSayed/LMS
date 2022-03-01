@@ -28,6 +28,14 @@ export class StudentProfileComponent implements OnInit {
       );
     }
     )
+    // const headers= new HttpHeaders({
+    //       'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //     });
+    //     this.http.get('http://localhost:8000/api/students', {headers:headers}).subscribe
+    //     (result=>{
+          
+    //       console.log(result);
+    //     })
   }
 
 }

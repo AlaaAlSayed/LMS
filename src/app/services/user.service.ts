@@ -1,27 +1,45 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../../environments/environment';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  // logged=new BehaviorSubject<boolean>(this.isLoggedIn());
-  // constructor() { }
   
-  // login(token:string)
-  // {
-  //   localStorage.setItem("Token",token);
-  //   this.logged.next(true);
-  // }
+  logged=new BehaviorSubject<boolean>(this.isLoggedIn());
+  constructor(private _httpClient:HttpClient) { }
+  
+  postLogin(data:any)
+  {
+    return this._httpClient.post(`${environment.APIURL}/api/sanctum/token`, data);
 
-  // isLoggedIn():boolean
-  // {
-  //  let toekn= localStorage.getItem("Token");
-  //  return toekn!=null;
-  // }
+    // localStorage.setItem("Token",token);
+    // this.logged.next(true);
+  }
 
-  // logout(){
-  //   localStorage.removeItem("Token");
-  //   this.logged.next(false);
-  // }
+  isLoggedIn():boolean
+  {
+   let toekn= localStorage.getItem("token");
+   return toekn!=null;
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+
+    this.logged.next(false);
+  }
+  getLoggedId(options={}){
+    return this._httpClient.get(`${environment.APIURL}/api/id`,options);
+
+  }
+  getUsers(){
+    return this._httpClient.get(`${environment.APIURL}/api/user`);
+
+  }
+  
+
 }
