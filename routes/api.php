@@ -117,6 +117,7 @@ Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teach
 // download assignment as pdf
 Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,'download']);
 
+Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
 
 // show assignment as pdf
 Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
@@ -124,7 +125,6 @@ Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'student
 
 Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
 
-Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
 
 
 //*******************   EXAM  ********************
