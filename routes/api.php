@@ -44,7 +44,7 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
    
 //general for current authenticated user info
@@ -96,7 +96,7 @@ Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home']);
 //student dashboard - profile page :
-Route::get('/students/{student}', [StudentController::class, 'show']);
+Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('IsStudent');
 Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
@@ -107,7 +107,7 @@ Route::post('/students/upload', [StudentController::class, 'upload']);
 //teacher dashboard  - to get subject of this teacher to this class : 
 Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
 //teacher dashboard  - profile page :
-Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
+Route::get('/teachers/{teacherId}',[TeacherController::class,'show'])->middleware('IsTeacher');
 Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
 
 //teacher dashboard  - home page :
@@ -177,7 +177,6 @@ Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
 Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
 
 
-// });
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
 
@@ -194,3 +193,4 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
+});
