@@ -26,13 +26,12 @@ class IsAdmin
         $role = User::where('username', '=', $user_name)->first();
 
         if ($role->roleId == 1) { // 1 is for admin
-            
+
             //admin : then redirect to the targeted url
-            return $next($request); 
-        } 
-        else {
-            //if not admin redirection
-            return redirect()->route('login');
+            return $next($request);
         }
+
+        //if not admin redirection
+        return redirect()->route('login');
     }
 }
