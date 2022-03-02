@@ -23,7 +23,16 @@ class IsTeacher
         if ( auth()->user()->roleId == 2) {
             return $next($request);
         }
+        elseif (auth()->user()->roleId == 1) {
+
+            return redirect()->route('api.admins.home', auth()->user()->id);
+
+        } 
+        elseif (auth()->user()->roleId == 3) {
+            
+            return redirect()->route('api.students.home', auth()->user()->id);
+        }
         
-        return redirect()->route('api.teachers.home');
+        // return redirect()->route('api.teachers.home');
     }
 }

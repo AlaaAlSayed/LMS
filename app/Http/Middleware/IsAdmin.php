@@ -22,18 +22,23 @@ class IsAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        // $user = $request->route('id');
-        // // $user = User::where('id', '=', $id)->first();
-        // dd( auth()->user()->roleId);
-        
-        if ( auth()->user()->roleId ==1) { // 1 is for admin
+
+        if (auth()->user()->roleId == 1) { // 1 is for admin
 
             //admin : then redirect to the targeted url
             return $next($request);
         }
+         elseif (auth()->user()->roleId == 2) {
 
-        //if not admin redirection
-        
-        return redirect()->route('api.admins.home');
+            return redirect()->route('api.teachers.home', auth()->user()->id);
+
+        } 
+        elseif (auth()->user()->roleId == 3) {
+            
+            return redirect()->route('api.students.home', auth()->user()->id);
+        }
+
+        // //if not admin redirection
+        // return redirect()->route('api.admins.home');
     }
 }
