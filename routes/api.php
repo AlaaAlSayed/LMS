@@ -55,21 +55,21 @@ Route::get('/id', [UserController::class, 'id']);
 
 //admin dashboard -  profile page:
 Route::get('/welcome' ,function () {
-    return view('welcome');})->name('welcome');
-
+    return view('welcome');
+});
     // ->middleware('IsTeacher');
     // ->middleware('IsAdmin');
     
 //admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin:');
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->name('api.students.index')->middleware('IsAdmin');
-Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
-Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
-Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
+Route::get('/students', [StudentController::class, 'index'])->middleware('IsAdmin');
+Route::post('/students', [StudentController::class, 'store']);
+Route::put('/students/{student}', [StudentController::class, 'update']);
+Route::delete('/students/{student}', [StudentController::class, 'destroy']);
 
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
@@ -86,32 +86,32 @@ Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 //  admin dashboard - classrooms CRUD operations 
-Route::get('/classrooms', [ClassroomController::class, 'index'])->name('api.classrooms.index');
-Route::post('/classrooms', [ClassroomController::class, 'store'])->name('api.classrooms.store');
-Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('api.classrooms.update');
-Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
-Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
+Route::get('/classrooms', [ClassroomController::class, 'index']);
+Route::post('/classrooms', [ClassroomController::class, 'store']);
+Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update']);
+Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy']);
+Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 
 
 //student dashboard  - home page :
-Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
+Route::get('/students/{student}/home', [StudentController::class, 'home']);
 //student dashboard - profile page :
-Route::get('/students/{student}', [StudentController::class, 'show'])->name('api.students.show');
-Route::get('/students/image/{student}', [StudentController::class, 'showImage'])->name('api.students.showImage');
+Route::get('/students/{student}', [StudentController::class, 'show']);
+Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
 //student dashboard - single subject page :
-Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
+Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
 // student dashboard  - upload assignment    :
-Route::post('/students/upload', [StudentController::class, 'upload'])->name('api.students.upload');
+Route::post('/students/upload', [StudentController::class, 'upload']);
 
 
 //teacher dashboard  - to get subject of this teacher to this class : 
-Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject'])->name('api.teachers.classroomSubject');
+Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
 //teacher dashboard  - profile page :
 Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
-Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage'])->name('api.teachers.showImage');
+Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
 
 //teacher dashboard  - home page :
-Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home']);
 
 
 // Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
@@ -119,19 +119,19 @@ Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->na
 
 //*******************   MATERIALS  ********************
 //teacher dashboard  - materials CRUD operations  :
-Route::get('/materials', [MaterialController::class, 'index'])->name('api.materials.index');
-Route::post('/materials', [MaterialController::class, 'store'])->name('api.materials.store');
-Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('api.materials.update');
-Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
-Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
+Route::get('/materials', [MaterialController::class, 'index']);
+Route::post('/materials', [MaterialController::class, 'store']);
+Route::put('/materials/{material}', [MaterialController::class, 'update']);
+Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
+Route::get('/materials/{material}', [MaterialController::class, 'show']);
 
 Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
 
-Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
-Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
+Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
+Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials']);
 
 // show material as pdf
-Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow'])->name('api.materials.studentshow');
+Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow']);
 
 // download material as pdf
 Route::get('/materials/download/{materialId}', [MaterialController::class,'download']);
@@ -140,11 +140,11 @@ Route::get('/materials/download/{materialId}', [MaterialController::class,'downl
 
 // ***********************     ASSIGNMENTS   *********************
 // teacher dashboard  - assignments CRUD operations  :
-Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
-Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->name('api.assignments.show');
-Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store'])->name('api.assignments.store');
-Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
-Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
+Route::get('/assignments', [AssignmentController::class, 'index']);
+Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show']);
+Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store']);
+Route::put('/assignments/{assignment}', [AssignmentController::class, 'update']);
+Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy']);
 
 // show assignments of given teacher 
 Route::get('/assignments/teacher/{teacherId}',[AssignmentController::class,'teacherAssignments']);
@@ -158,22 +158,24 @@ Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 
 
 
 // show assignment as pdf
-Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
 
 //*******************   EXAM  ********************
 //teacher dashboard  - exam CRUD operations  :
 
-Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
-Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams'])->name('api.exams.teacherExams');
-Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show'])->name('api.exams.show');
-Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store'])->name('api.exams.store');
-Route::put('/exams/{examId}', [ExamController::class , 'update'])->name('api.exams.update');
-Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api.exams.destroy');
+Route::get('/exams', [ExamController::class, 'index']);
+Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
+Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
+Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store']);
+Route::put('/exams/{examId}', [ExamController::class , 'update']);
+Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
+
 
 // student dashboard  -  take exam  :
-Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
+Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
+
 
 });
 
@@ -183,11 +185,12 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 
 //*******************   MESSAGE  ********************
 // users dashboard  - message CRUD operations  :
-Route::get('/messages', [MessageController::class, 'index'])->name('api.messages.index');
-Route::get('/messages/{userId}',[MessageController::class,'teacherMessages'])->name('api.messages.teacherMessages');
-Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show'])->name('api.messages.show');
-Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store'])->name('api.messages.store');
-Route::put('/messages/{messageId}', [MessageController::class , 'update'])->name('api.messages.update');
-Route::delete('/messages/{messageId}', [MessageController::class , 'destroy'])->name('api.messages.destroy');
+Route::get('/messages', [MessageController::class, 'index']);
+Route::get('/messages/{userId}',[MessageController::class,'teacherMessages']);
+Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show']);
+Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store']);
+Route::put('/messages/{messageId}', [MessageController::class , 'update']);
+Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
+
 
 

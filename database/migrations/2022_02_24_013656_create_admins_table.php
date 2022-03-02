@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-
+            // $table->id();
+            $table->foreignId('id')->references('id')->on('users')->onDelete('cascade')->unique();
             $table->string('email')->unique();;
             $table->string('phone');
 
