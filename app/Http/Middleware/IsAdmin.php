@@ -22,11 +22,11 @@ class IsAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        $user_name = $request->username;
-        $role = User::where('username', '=', $user_name)->first();
+        $id = $request->id;
+        $user = User::where('id', '=', $id)->first();
 
-        if ($role->roleId == 1) { // 1 is for admin
-            
+        if ($user->roleId == 1) { // 1 is for admin
+
             //admin : then redirect to the targeted url
             return $next($request); 
         } 
