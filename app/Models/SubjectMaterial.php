@@ -12,7 +12,7 @@ class SubjectMaterial extends Model
     protected $fillable = [
       
        'subjectId',
-       'material_path',
+       'material',
        'name',
     ];
 
