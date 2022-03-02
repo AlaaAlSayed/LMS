@@ -1,0 +1,24 @@
+
+
+
+    <div class="row justify-content-center m-5">
+        <div class="col-4">
+            <h1 class="text-center fw-bolder">Update Assignment</h1>
+    <form class="border p-5" [formGroup]="formAdd" >
+       
+        <div class="form-group ">
+          <label for="deadline">Deadline</label><br>
+          <input type="date" class="form-control" id="deadline" aria-describedby="emailHelp"  formControlName="deadline" ><br>
+        </div>
+
+     <button  class="btn btn-success" (click)= "uploadfileclick()" >Change File</button><br><br>
+        <div class="form-group col-3" *ngIf="!isok" >
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="assignment" (change)="uploadfile($event)"> <br><br>
+        </div>
+        
+          <div>
+             <button type="submit" class="btn btn-warning" (click)="UpdateAssignment()">Update</button>
+    </div>
+      </form>
+    </div>
+    </div>

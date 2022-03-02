@@ -1,0 +1,57 @@
+
+   <div class="row d-flex justify-content-center  mb-2">
+       <div class="col-12 text-center  rounded  text-dark">
+       <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+           <div class="carousel-inner">
+             <div class="carousel-item active" style="height: 300px;">
+               <img src="./assets/photos/backgroundschool.jpg" alt="pic2" style="  width: 100%;
+               height: auto;">
+               <div class="carousel-caption d-none d-md-block text-dark">
+                <h1>Matrial</h1>
+
+                 <h3>{{_subject.name}}</h3>
+               <!--   <p>class</p>
+                 <p>teacher</p> -->
+                 
+               </div>
+             </div>
+   
+           </div>
+         </div>
+       </div>
+   </div> 
+   <div class="row d-flex justify-content-center">
+   <div class="col-8  m-3 ">
+    <table class="table justify-content-center ">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">View</th>
+            <th scope="col">Download</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mat of _matrial;let currentIndex=index;">
+                <th scope="row"> {{currentIndex+1}}</th>
+                <td>
+                  <p>{{mat.name}}</p> 
+               </td>
+                <td>
+                 
+                   <button class="btn" (click)="redirect(mat.id)" style="background-color: #bed6bf;">View</button> 
+                </td>
+                <td>
+                 
+                  <button class="btn" (click)="downloadid(mat.id,mat.name)" style="background-color:#e9544d;">Download</button> 
+               </td>
+               
+                 
+        </tr>
+         
+        </tbody>
+      </table>
+      
+    </div>
+</div>
