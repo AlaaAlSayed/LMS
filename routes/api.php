@@ -190,4 +190,3 @@ Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store
 Route::put('/messages/{messageId}', [MessageController::class , 'update'])->name('api.messages.update');
 Route::delete('/messages/{messageId}', [MessageController::class , 'destroy'])->name('api.messages.destroy');
 
-
