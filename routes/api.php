@@ -75,7 +75,7 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy']);
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
 Route::get('/teachers/classroom',[TeacherController::class,'show']);
-Route::get('/teachers/showClassroom/{teacherId}/{subjectId}/{classroomId}',[TeacherController::class,'showClassroom']);
+Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
 // Route::get('/teachers/showClassroom/{Id}',[TeacherController::class,'showClassroom']);
 
 Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
