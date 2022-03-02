@@ -93,11 +93,12 @@ Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update']);
 Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy']);
 Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 
+Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('IsAdmin');
 
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 //student dashboard - profile page :
-Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('IsStudent');
+Route::get('/students/profile/{student}', [StudentController::class, 'show'])->middleware('IsStudent');
 Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
