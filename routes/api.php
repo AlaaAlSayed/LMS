@@ -63,11 +63,11 @@ Route::get('/welcome' ,function () {
     
 //admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->name('api.admins.home')->middleware('IsAdmin');
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->name('api.admins.home');
+Route::get('/students', [StudentController::class, 'index']);
 Route::post('/students', [StudentController::class, 'store']);
 Route::put('/students/{student}', [StudentController::class, 'update']);
 Route::delete('/students/{student}', [StudentController::class, 'destroy']);
