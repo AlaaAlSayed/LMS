@@ -22,9 +22,10 @@ export class StudentGuard implements CanActivate {
     // let id= parseInt(`${localStorage.getItem('id')}`);
     // for (let i=0; i<this.users.length;i++){
       if(this.users.roleId!=3){
-        this._router.navigate(['/user/login']);
+        this._router.navigateByUrl('/user/login');
         // this._router.navigate([`/student/home/${this.users.id}`])
         this.isAble=false;
+        alert("you are not able to go here, please login as a student first");
     // if(this.users.roleId!=3 && this.users.roleId==1){
       // this._router.navigate(['/admin/home']);
       // if(this.users.roleId==1){this._router.navigate(['/admin/home']); this.isAble=true; }
@@ -33,7 +34,12 @@ export class StudentGuard implements CanActivate {
     //  }
     // }
   }
-  else{this.isAble=true}
+  else{
+    // this._router.navigateByUrl(`/student/home/${this.users.id}`);
+    this.isAble=true;
+    // alert("you are student");
+    // this._router.navigate([`/student/home/${this.users.id}`]);
+  }
 
   // else if(this.users.roleId=3)
   // {this._router.navigateByUrl(`/student/home/${id}`);

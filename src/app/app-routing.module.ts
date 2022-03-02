@@ -11,17 +11,17 @@ const routes: Routes = [
   {path: 'admin',
 
   component:AdminDashboardComponent,
-  loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule),canActivate:[AuthGuard,AdminGuard]
+  loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
 },
 {
   path: 'student', 
  
-  loadChildren: () => import('./components/student/student.module').then(m => m.StudentModule), canActivate:[AuthGuard]
+  loadChildren: () => import('./components/student/student.module').then(m => m.StudentModule)
 },
 {
   path: 'teacher', 
  
-loadChildren: () => import('./components/teacher/teacher.module').then(m => m.TeacherModule) , canActivate:[AuthGuard]
+loadChildren: () => import('./components/teacher/teacher.module').then(m => m.TeacherModule) 
 },
 
 {
@@ -41,20 +41,20 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
 },
 {
   path:'subject/:student_id/:id',
-  loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule), canActivate:[AuthGuard]
+  loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
 }, 
  {
   path:'subject/:student_id/:id/assignment',
-  loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule), canActivate:[AuthGuard]
+  loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
 },
 {path:'classroom/:teacherid/:classroomid',
-  loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule) , canActivate:[AuthGuard]
+  loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule) 
 
 },
 {path:'classroom/:teacherid/:classroomid/matrial',
-  loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule), canActivate:[AuthGuard]
+  loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
 },
 

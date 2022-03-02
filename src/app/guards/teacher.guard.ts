@@ -18,22 +18,19 @@ export class TeacherGuard implements CanActivate {
     // return true;
     this._userService.getUsers().subscribe((response:any)=>{
       this.users=response; 
-      
-    // })
-    // let id= parseInt(`${localStorage.getItem('id')}`);
-    // for (let i=0; i<this.users.length;i++){
+  
     if(this.users.roleId!=2){
-    //  alert("You are not a teacher");
-     this._router.navigate(['/user/login']);
+     this._router.navigateByUrl('/user/login');
      this.isAble=false;
-    // }
+     alert("you are not able to go here,Please Login as teacher first")
   }
-  else{this.isAble=true}
-
-  // if(this.users.roleId=2)
-  // {this._router.navigateByUrl(`/teacher/home/${id}`);
-// return true;
-// }
+  // if (this.users.roleId==1 || this.users.roleId==3){
+  //   this._router.navigate(['/user/login']);
+  //    this.isAble=false;
+  // }
+  else {
+    // this._router.navigateByUrl(`/teacher/home/${this.users.id}`);
+    this.isAble=true}
 })
   return this.isAble;
   }
