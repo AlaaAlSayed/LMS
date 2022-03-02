@@ -22,8 +22,8 @@ class IsAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        $user_name = $request->username;
-        $user = User::where('username', '=', $user_name)->first();
+        $id = $request->id;
+        $user = User::where('id', '=', $id)->first();
 
         if ($user->roleId == 1) { // 1 is for admin
 
