@@ -44,7 +44,7 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
 
    
 //general for current authenticated user info
@@ -56,13 +56,13 @@ Route::get('/id', [UserController::class, 'id']);
 //admin dashboard -  profile page:
 Route::get('/welcome' ,function () {
     return view('welcome');
-});
+})->name('login');
     // ->middleware('IsTeacher');
     // ->middleware('IsAdmin');
     
 //admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin:');
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
@@ -177,7 +177,7 @@ Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
 Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
 
 
-});
+// });
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
 
