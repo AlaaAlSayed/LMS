@@ -39,7 +39,7 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
@@ -49,16 +49,6 @@ Route::get('/id', [UserController::class, 'id']);
 //admin dashboard -  profile page:
 Route::get('/welcome' ,function () {
     return view('welcome');})->name('welcome');
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index']);
 Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
@@ -178,7 +168,7 @@ Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api
 // student dashboard  -  take exam  :
 Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
 
-});
+// });
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
 
