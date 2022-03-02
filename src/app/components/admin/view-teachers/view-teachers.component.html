@@ -4,6 +4,7 @@
         <th scope="col">#id</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
+        <th scope="col">Username</th>
         <th scope="col">Phone</th>
         <th scope="col">Government</th>
         <th scope="col">City</th>
@@ -15,6 +16,7 @@
         <th scope="row">{{teacher.id}}</th>
         <td>{{teacher.name}}</td>
         <td>{{teacher.email}}</td>
+        <td>{{teacher.username}}</td>
         <td>{{teacher.phone}}</td>
         <td>{{teacher.government}}</td>
         <td>{{teacher.city}}</td>
@@ -25,4 +27,26 @@
       </tr>
     </tbody>
   </table>
+
+<!-- Teacher Teaches Subjects -->
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">Teacher ID</th>
+      <th scope="col">Subject ID</th>
+      <th scope="col">Classroom ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of teach;">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.teacherId}}</td>
+      <td>{{item.subjectId}}</td>
+      <td>{{item.classroomId}}</td>
+      <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-assign/{{item.teacherId}}/{{item.subjectId}}/{{item.classroomId}}">Edit</button></td>
+      <!-- <td><button class="btn btn-danger btn-sm" (click)="deleteTeacher(teacher.id)">Delete</button></td> -->
+    </tr>
+  </tbody>
+</table>
 

@@ -19,10 +19,9 @@ export class AddStudentComponent implements OnInit {
       id:[''],
 
       name:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
-      email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
-      // studentPassword:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
+      username:['' , [Validators.required,Validators.maxLength(15),Validators.minLength(5)]],
+      password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
       phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]],
-      // studentLevel:['',[Validators.required]],
       classroomId:['',[Validators.required]],
       picture_path:['',[Validators.required]],
       government:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
@@ -52,7 +51,8 @@ export class AddStudentComponent implements OnInit {
  insertStudent(){
    let formData= new FormData();
    formData.append("name",this.formAdd.value.name);
-   formData.append("email",this.formAdd.value.email);
+   formData.append("username",this.formAdd.value.username);
+   formData.append("password",this.formAdd.value.password);
    formData.append("phone",this.formAdd.value.phone);
    formData.append("classroomId",this.formAdd.value.classroomId);
    formData.append("picture_path",this.files, this.files.name);

@@ -13,10 +13,13 @@ export class SubjectService {
   {
     return this._httpClient.get<Subject[]>(`${environment.APIURL}/api/subjects`);
    }
-   getSubjectByID(subjectID: any): Observable<Subject>
+   /* getSubjectByID(subjectID: any): Observable<Subject>
    {
     console.log(subjectID);
      console.log(`${environment.APIURL}/api/subjects/${subjectID}`);
+    } */
+     getSubjectByID(subjectID: number): Observable<Subject>
+   {
     return this._httpClient.get<Subject>(`${environment.APIURL}/api/subjects/${subjectID}`);
 
    }

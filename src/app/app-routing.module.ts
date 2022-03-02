@@ -1,10 +1,11 @@
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MainSubjectComponent } from './components/subject-detail-student/main-subject/main-subject.component';
 
 const routes: Routes = [
   {path: 'admin',
@@ -34,6 +35,11 @@ component:LayoutComponent,
 loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
 },
 {
+  path: '',
+  component:LayoutComponent,
+loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
+},
+{
   path:'subject/:student_id/:id',
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
@@ -54,6 +60,8 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
 loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
 }
+
+
 
 ];
 @NgModule({

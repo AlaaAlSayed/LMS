@@ -16,23 +16,23 @@
         </div>
       </div>
       <div class="col-md-6">
-        <label  class="form-label">Email</label>
-        <input type="email" class="form-control" formControlName="email" name="email" [class.is-invalid]="isInValidAndTouched('email')" [class.is-valid]="isValidControl('email')" >
-        <div *ngIf="isInValidAndTouched('email')">
-          <small class="form-text text-danger" *ngIf="isControlHasError('email','required')" >required Email</small>
-        <small class="form-text text-danger"*ngIf="isControlHasError('email','minLength')" >min length is 10</small>
-        <small class="form-text text-danger"*ngIf="isControlHasError('email','maxLength')" >max length is 30</small>
+        <label  class="form-label">Username</label>
+        <input type="username" class="form-control" formControlName="username" name="username" [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" >
+        <div *ngIf="isInValidAndTouched('username')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('username','required')" >required username</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('username','minLength')" >min length is 5</small>
+        <small class="form-text text-danger"*ngIf="isControlHasError('username','maxLength')" >max length is 15</small>
         </div>
       </div>
-    <!-- <div class="col-md-6">
+    <div class="col-md-6">
       <label  class="form-label">Password</label>
-      <input type="password" class="form-control" formControlName="studentPassword" [class.is-invalid]="isInValidAndTouched('studentPassword')" [class.is-valid]="isValidControl('studentPassword')">
-      <div *ngIf="isInValidAndTouched('studentPassword')">
-        <small class="form-text text-danger" *ngIf="isControlHasError('studentPassword','required')" >required Password</small>
-      <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','minLength')" >min length is 8</small>
-      <small class="form-text text-danger"*ngIf="isControlHasError('studentPassword','maxLength')" >max length is 20</small>
+      <input type="password" class="form-control" formControlName="password" [class.is-invalid]="isInValidAndTouched('password')" [class.is-valid]="isValidControl('password')">
+      <div *ngIf="isInValidAndTouched('password')">
+        <small class="form-text text-danger" *ngIf="isControlHasError('password','required')" >required Password</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('password','minLength')" >min length is 8</small>
+      <small class="form-text text-danger"*ngIf="isControlHasError('password','maxLength')" >max length is 20</small>
       </div>
-    </div> -->
+    </div>
     <div class="col-md-6">
         <label class="form-label">Phone</label>
         <input type="text" class="form-control" formControlName="phone" name="phone" [class.is-invalid]="isInValidAndTouched('phone')" [class.is-valid]="isValidControl('phone')">

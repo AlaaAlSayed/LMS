@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /node_modules
 /public/hot
 /public/storage
@@ -13,3 +14,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+=======
+node_modules
+>>>>>>> 4e889e12c048bdd28f2b8639334e78938f01ae48

@@ -38,7 +38,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule
-  ]
+    
+  ],
+ 
 })
 export class ClassDetailTeacherModule { }
 
