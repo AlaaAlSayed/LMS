@@ -22,16 +22,18 @@ class IsAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        $id = $request->id;
-        $user = User::where('id', '=', $id)->first();
-
-        if ($user->roleId == 1) { // 1 is for admin
+        // $user = $request->route('id');
+        // // $user = User::where('id', '=', $id)->first();
+        // dd( auth()->user()->roleId);
+        
+        if ( auth()->user()->roleId ==1) { // 1 is for admin
 
             //admin : then redirect to the targeted url
             return $next($request);
         }
 
         //if not admin redirection
-        return redirect()->route('login');
+        
+        return redirect()->route('api.admins.home');
     }
 }

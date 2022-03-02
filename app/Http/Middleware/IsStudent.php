@@ -17,12 +17,12 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        $id = $request->id;
-        $user = User::where('id', '=', $id)->first();
+        // $id = $request->id;
+        // $user = User::where('id', '=', $id)->first();
 
-        if ($user->roleId == 3) {
+        if ( auth()->user()->roleId == 3) {
             return $next($request);
         }
-        return redirect()->route('welcome');
+        return redirect()->route('api.students.home');
     }
 }

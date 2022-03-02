@@ -17,12 +17,13 @@ class IsTeacher
      */
     public function handle(Request $request, Closure $next)
     {
-        $id = $request->id;
-        $user = User::where('id', '=', $id)->first();
+        // $id = $request->id;
+        // $user = User::where('id', '=', $id)->first();
 
-        if ($user->roleId == 2) {
+        if ( auth()->user()->roleId == 2) {
             return $next($request);
         }
-        return redirect()->route('welcome');
+        
+        return redirect()->route('api.teachers.home');
     }
 }

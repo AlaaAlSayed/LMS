@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
+$id=Route::get('/id', [UserController::class, 'id']);
 
 
 //admin dashboard -  profile page:
@@ -66,7 +67,7 @@ Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsA
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->middleware('IsAdmin');
+Route::get('/students', [StudentController::class, 'index'])->name('api.admins.home');
 Route::post('/students', [StudentController::class, 'store']);
 Route::put('/students/{student}', [StudentController::class, 'update']);
 Route::delete('/students/{student}', [StudentController::class, 'destroy']);
@@ -94,7 +95,7 @@ Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 
 
 //student dashboard  - home page :
-Route::get('/students/{student}/home', [StudentController::class, 'home']);
+Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 //student dashboard - profile page :
 Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('IsStudent');
 Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
@@ -111,7 +112,7 @@ Route::get('/teachers/{teacherId}',[TeacherController::class,'show'])->middlewar
 Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
 
 //teacher dashboard  - home page :
-Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home']);
+Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 
 
 // Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
