@@ -17,13 +17,25 @@ class IsTeacher
      */
     public function handle(Request $request, Closure $next)
     {
-        $id = $request->id;
-        $user = User::where('id', '=', $id)->first();
+        // $id = $request->id;
+        // $user = User::where('id', '=', $id)->first();
 
-        if ($user->roleId == 2) {
+        if ( auth()->user()->roleId == 2) {
             return $next($request);
-        } else {
-            return redirect()->route('welcome');
-        }
+        } 
+        // else {
+        //     return redirect()->route('welcome');
+        // }
+        // elseif (auth()->user()->roleId == 1) {
+
+        //     return redirect()->route('api.admins.home', auth()->user()->id);
+
+        // } 
+        // elseif (auth()->user()->roleId == 3) {
+            
+        //     return redirect()->route('api.students.home', auth()->user()->id);
+        // }
+        
+        return redirect()->route('login');
     }
 }

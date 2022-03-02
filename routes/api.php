@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
+$id=Route::get('/id', [UserController::class, 'id']);
 
 
 //admin dashboard -  profile page:
@@ -62,11 +63,11 @@ Route::get('/welcome' ,function () {
     
 //admin dashboard -  profile page:
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->name('api.admins.home')->middleware('IsAdmin');
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->middleware('IsAdmin');
+Route::get('/students', [StudentController::class, 'index']);
 Route::post('/students', [StudentController::class, 'store']);
 Route::put('/students/{student}', [StudentController::class, 'update']);
 Route::delete('/students/{student}', [StudentController::class, 'destroy']);
@@ -74,7 +75,7 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy']);
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
 Route::get('/teachers/classroom',[TeacherController::class,'show']);
-Route::get('/teachers/showClassroom/{teacherId}/{subjectId}/{classroomId}',[TeacherController::class,'showClassroom']);
+Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
 // Route::get('/teachers/showClassroom/{Id}',[TeacherController::class,'showClassroom']);
 
 Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
@@ -94,9 +95,9 @@ Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 
 
 //student dashboard  - home page :
-Route::get('/students/{student}/home', [StudentController::class, 'home']);
+Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 //student dashboard - profile page :
-Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('IsStudent');
+Route::get('/students/{student}', [StudentController::class, 'show']);
 Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
@@ -107,11 +108,11 @@ Route::post('/students/upload', [StudentController::class, 'upload']);
 //teacher dashboard  - to get subject of this teacher to this class : 
 Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
 //teacher dashboard  - profile page :
-Route::get('/teachers/{teacherId}',[TeacherController::class,'show'])->middleware('IsTeacher');
+Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
 Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
 
 //teacher dashboard  - home page :
-Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home']);
+Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 
 
 // Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
