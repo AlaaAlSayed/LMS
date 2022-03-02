@@ -25,7 +25,8 @@ class IsTeacher
 
         if ($role->roleId == 2) {
             return $next($request);
+        } else {
+            return redirect()->route('welcome');
         }
-        return redirect()->route('welcome');
     }
 }
