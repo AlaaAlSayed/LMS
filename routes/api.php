@@ -92,13 +92,6 @@ Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update'])->n
 Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy'])->name('api.classrooms.destroy');
 Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show'])->name('api.classrooms.show');
 
-// admin dashboard - classrooms CRUD operations 
-Route::get('/subjects', [SubjectController::class, 'index'])->name('api.subjects.index');
-Route::post('/subjects', [SubjectController::class, 'store'])->name('api.subjects.store');
-Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('api.subjects.update');
-Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('api.subjects.destroy');
-Route::get('/subjects/show/{subject}', [SubjectController::class, 'showSubject'])->name('api.subjects.showSubject');
-
 
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
@@ -108,7 +101,7 @@ Route::get('/students/image/{student}', [StudentController::class, 'showImage'])
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('api.subjects.show');
 // student dashboard  - upload assignment    :
-Route::put('/students/upload/{studentId}/{assignmentId}/{subjectId}', [StudentController::class, 'upload'])->name('api.students.upload');
+Route::post('/students/upload', [StudentController::class, 'upload'])->name('api.students.upload');
 
 
 //teacher dashboard  - to get subject of this teacher to this class : 
@@ -132,6 +125,8 @@ Route::put('/materials/{material}', [MaterialController::class, 'update'])->name
 Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('api.materials.destroy');
 Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('api.materials.show');
 
+Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
+
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials'])->name('api.materials.classroomMaterials');
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials'])->name('api.materials.subjectMaterials');
 
@@ -142,23 +137,29 @@ Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'stude
 Route::get('/materials/download/{materialId}', [MaterialController::class,'download']);
 
 
+
 // ***********************     ASSIGNMENTS   *********************
-//teacher dashboard  - assignments CRUD operations  :
+// teacher dashboard  - assignments CRUD operations  :
 Route::get('/assignments', [AssignmentController::class, 'index'])->name('api.assignments.index');
+Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->name('api.assignments.show');
 Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store'])->name('api.assignments.store');
 Route::put('/assignments/{assignment}', [AssignmentController::class, 'update'])->name('api.assignments.update');
 Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy'])->name('api.assignments.destroy');
 
 // show assignments of given teacher 
-Route::get('assignments/teacher/{teacherId}',[AssignmentController::class,'teacherAssignments']);
+Route::get('/assignments/teacher/{teacherId}',[AssignmentController::class,'teacherAssignments']);
 
 // download assignment as pdf
 Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,'download']);
 
+Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
+
+Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
+
 
 // show assignment as pdf
-Route::get('/assignments/{assignment}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
-// Route::get('assignments/{teacherId}/{assignmentId}',[AssignmentController::class,'show']);
+Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->name('api.assignments.studentshow');
+
 
 
 //*******************   EXAM  ********************
@@ -182,10 +183,11 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 
 //*******************   MESSAGE  ********************
 // users dashboard  - message CRUD operations  :
-
 Route::get('/messages', [MessageController::class, 'index'])->name('api.messages.index');
 Route::get('/messages/{userId}',[MessageController::class,'teacherMessages'])->name('api.messages.teacherMessages');
 Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show'])->name('api.messages.show');
 Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store'])->name('api.messages.store');
 Route::put('/messages/{messageId}', [MessageController::class , 'update'])->name('api.messages.update');
 Route::delete('/messages/{messageId}', [MessageController::class , 'destroy'])->name('api.messages.destroy');
+
+
