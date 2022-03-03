@@ -40,10 +40,13 @@ users:any=new Users();
       this._userService.getLoggedId().subscribe((result:any)=> 
         {
           localStorage.setItem("id",result);
+          
           this._userService.getUsers().subscribe(response=>{
             this.users=response;
+            localStorage.setItem("roleId",this.users.roleId);
             if(this.users.roleId==1){
               this._router.navigate(['/admin/home']);
+              
               
             }
              else if(this.users.roleId==2){

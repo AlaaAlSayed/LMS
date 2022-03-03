@@ -10,23 +10,25 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class EditAssignTeacherComponent implements OnInit {
   formEditAssign = new FormGroup({
-    teacherId:new FormControl(''),
-    subjectId:new FormControl(''),
-    classroomId:new FormControl(''),
+    id:new FormControl(),
+    teacherId:new FormControl(),
+    subjectId:new FormControl(),
+    classroomId:new FormControl(),
   }) 
-  id_1:any;
-  id_2:any;
-  id_3:any;
+  id1:any;
+  // id_2:any;
+  // id_3:any;
   constructor(private _formBuilder:FormBuilder,private _teacherService:TeacherService, private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe( params=>{
-      this.id_1 = Number(params.get('id1'));
+      this.id1 = Number(params.get('id1'));
       // this.id_2 = Number(params.get('id2'));
       // this.id_3=Number(params.get('id3'))
-      this._teacherService.getTeaches(this.id_1).subscribe(
+      this._teacherService.getTeaches(this.id1).subscribe(
         response=>{
           this.formEditAssign=new FormGroup({
+            id:new FormControl(response['id']),
             teacherId:new FormControl(response['teacherId']),
             subjectId:new FormControl(response['subjectId']),
             classroomId:new FormControl(response['classroomId']),
@@ -38,7 +40,7 @@ export class EditAssignTeacherComponent implements OnInit {
     })
   }
   updateTeaches(){
-    this._teacherService.updateTeaches(this.id_1, this.formEditAssign.value).subscribe(
+    this._teacherService.updateTeaches(this.id1, this.formEditAssign.value).subscribe(
       response=>{
         console.log(response,'updated successfully');
       }

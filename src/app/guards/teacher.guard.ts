@@ -11,15 +11,12 @@ import { Users } from 'src/models/users';
 export class TeacherGuard implements CanActivate {
   users:any=new Users();
   isAble:boolean=false;
+  roleId:any=localStorage.getItem('roleId');
   constructor(private _userService:UserService,private _router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // return true;
-    this._userService.getUsers().subscribe((response:any)=>{
-      this.users=response; 
-  
-    if(this.users.roleId!=2){
+    if(this.roleId!=2){
      this._router.navigateByUrl('/user/login');
      this.isAble=false;
      alert("you are not able to go here,Please Login as teacher first")
@@ -27,13 +24,7 @@ export class TeacherGuard implements CanActivate {
  
   else {
     this.isAble=true}
-})
   return this.isAble;
   }
   
 }
-    // this._router.navigateByUrl(`/teacher/home/${this.users.id}`);
- // if (this.users.roleId==1 || this.users.roleId==3){
-  //   this._router.navigate(['/user/login']);
-  //    this.isAble=false;
-  // }
