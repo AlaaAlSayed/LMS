@@ -9,13 +9,10 @@ use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\TeacherController;
-use App\Models\Teacher;
-use App\Models\Assignment;
-use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
-use App\Models\User;
+use App\Http\Controllers\Api\AnnouncementsContoller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
  
@@ -42,10 +39,8 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 
-
-
-Route::middleware('auth:sanctum')->group(function () {
-
+//***********************************  AUTH **************************** */
+// Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
@@ -61,16 +56,27 @@ Route::get('/welcome' ,function () {
     // ->middleware('IsTeacher');
     // ->middleware('IsAdmin');
     
+
+
+Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index']);
+Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
+Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
+Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
+Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
+
+
+
 //admin dashboard -  profile page:
+
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->name('api.admins.home')->middleware('IsAdmin');
-Route::put('/admins/{adminId}', [AdminController::class, 'update']);
+Route::get('/admins/{adminId}',[AdminController::class,'show']);
+Route::put('/admins/{adminId}', [AdminController::class, 'update'])     ;
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index']);
-Route::post('/students', [StudentController::class, 'store']);
-Route::put('/students/{student}', [StudentController::class, 'update']);
-Route::delete('/students/{student}', [StudentController::class, 'destroy']);
+Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
+Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
+Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
+Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
 //admin dashboard  -  all teachers page :
 Route::get('/teachers',[TeacherController::class,'index']);
@@ -194,4 +200,4 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
-});
+// });

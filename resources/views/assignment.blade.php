@@ -8,8 +8,7 @@
 </head>
 <body>
     
-   <img src="{{asset('storage/assets/'.$assignment_pdf)}}"   alt="personal photo">
-<a href="{{route('files/download/1')}}" >Download</a>
+   <!-- <img src="{{asset($assignment_pdf)}}"   alt="personal photo"> -->
 
 </body>
 </html>
