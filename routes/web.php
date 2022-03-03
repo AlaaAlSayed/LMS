@@ -29,3 +29,11 @@ use App\Models\Assignment;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::view('chat','users.messages');
+
+Auth::routes(['register' => false]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/chat', [App\Http\Controllers\Api\ChatsController::class, 'index']);
+Route::get('/messages', [App\Http\Controllers\Api\ChatsController::class, 'fetchMessages']);
+Route::post('/messages', [App\Http\Controllers\Api\ChatsController::class, 'sendMessage']);

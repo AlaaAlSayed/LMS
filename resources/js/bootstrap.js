@@ -30,12 +30,3 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-import Echo from "laravel-echo"
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '3bee20a7dba542d55ac9',
-    cluster: 'mt1',
-    encrypted: true
-});

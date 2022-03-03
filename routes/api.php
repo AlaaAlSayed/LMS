@@ -206,6 +206,6 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
-Route::get('/', [ChatsController::class, 'index']);
-Route::get('messages', 'ChatsController@fetchMessages');
-Route::post('messages', 'ChatsController@sendMessage');
+Route::get('/chat', [ChatsController::class, 'index']);
+Route::get('/messages', [ChatsController::class, 'fetchMessages']);
+Route::post('/messages', [ChatsController::class, 'sendMessage']);

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->text('message');
-            $table->integer('user_id')->unsigned;
-            $table->integer('receiver_id')->unsigned;
+            $table->integer('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+            $table->integer('receiver_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->boolean('is_seen')->default(0);
             $table->timestamps();
         });
