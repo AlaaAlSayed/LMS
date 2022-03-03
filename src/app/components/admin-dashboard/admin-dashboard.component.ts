@@ -10,6 +10,8 @@ export class AdminDashboardComponent implements OnInit {
   isDisplay2=true;
   isDisplay3=true;
   isDisplay4=true;
+  isDisplay5=true;
+
   constructor() { }
 
   ngOnInit(): void {

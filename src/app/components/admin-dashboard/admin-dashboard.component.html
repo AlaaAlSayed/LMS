@@ -98,6 +98,31 @@
                 All Subjects
               </a>
             </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="#" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" (click)="toggleDisplay()">
+                <!-- <span data-feather="file"></span> -->
+                <i class="fa fa-users"></i>
+                Posts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="addStudent" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" [hidden]="isDisplay5">
+                <!-- <span data-feather="file"></span> -->
+                <i class="fa fa-plus"></i>
+                Add Post
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="view-students" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" [hidden]="isDisplay5">
+                <!-- <span data-feather="file"></span> -->
+                All Posts
+              </a>
+            </li>
+
+
+
             <li class="nav-item">
               <a class="nav-link" routerLink="/admin/profile">
                 <!-- <span data-feather="bar-chart-2"></span> -->

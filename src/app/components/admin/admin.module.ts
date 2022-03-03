@@ -26,6 +26,10 @@ import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
 import { EditAssignTeacherComponent } from './edit-assign-teacher/edit-assign-teacher.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { DetailPostComponent } from './detail-post/detail-post.component';
+import { ViewPostsComponent } from './view-posts/view-posts.component';
 
 
 const routes: Routes = [
@@ -47,7 +51,9 @@ const routes: Routes = [
   {path: 'view-subjects',component:ViewSubjectsComponent,canActivate:[AuthGuard,AdminGuard]},
   {path: 'edit-assign/:id/:id/:id', component:EditAssignTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
   {path: 'edit-admin/:id',component:EditAdminComponent,canActivate:[AuthGuard,AdminGuard]},
-  {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]}
+  {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]},
+  {path: 'addpost/:adminid',component:AddPostComponent}
+
 ]
 
 @NgModule({
@@ -71,6 +77,10 @@ const routes: Routes = [
     EditAssignTeacherComponent,
     EditAdminComponent,
     AdminDashboardComponent,
+    AddPostComponent,
+    EditPostComponent,
+    DetailPostComponent,
+    ViewPostsComponent,
   
   ],
   imports: [
