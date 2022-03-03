@@ -40,7 +40,7 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 //***********************************  AUTH **************************** */
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
@@ -205,4 +205,4 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
-});
+// });
