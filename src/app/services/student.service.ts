@@ -11,7 +11,7 @@ import {Subject} from '../../models/subject';
   providedIn: 'root'
 })
 export class StudentService {
-
+// id=`${localStorage.getItem('id')}`;
 // httpOption;
   constructor(private _httpClient:HttpClient) {
     // this.httpOption = {

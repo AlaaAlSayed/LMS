@@ -53,9 +53,9 @@ export class TeacherService {
     return this._httpClient.put(`${environment.APIURL}/api/teachers/teachesUpdate/${id}`, data);
 
    }
-   getTeaches(id1:number, id2:number, id3:number): Observable<TeacherTeachesSubjects>
+   getTeaches(id1:number): Observable<TeacherTeachesSubjects>
    {
-    return this._httpClient.get<TeacherTeachesSubjects>(`${environment.APIURL}/api/teachers/showClassroom/${id1}/${id2}/${id3}`);
+    return this._httpClient.get<TeacherTeachesSubjects>(`${environment.APIURL}/api/teachers/showClassroom/${id1}`);
 
    }
   }

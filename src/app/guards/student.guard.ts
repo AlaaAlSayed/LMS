@@ -17,36 +17,32 @@ export class StudentGuard implements CanActivate {
     // return true;
     this._userService.getUsers().subscribe((response:any)=>{
       this.users=response; 
-      
-    // })
-    // let id= parseInt(`${localStorage.getItem('id')}`);
-    // for (let i=0; i<this.users.length;i++){
+
       if(this.users.roleId!=3){
         this._router.navigateByUrl('/user/login');
-        // this._router.navigate([`/student/home/${this.users.id}`])
         this.isAble=false;
         alert("you are not able to go here, please login as a student first");
-    // if(this.users.roleId!=3 && this.users.roleId==1){
+  }
+  else{
+    this.isAble=true;
+  }
+
+})
+  return this.isAble;
+  }
+  
+}
+// if(this.users.roleId!=3 && this.users.roleId==1){
       // this._router.navigate(['/admin/home']);
       // if(this.users.roleId==1){this._router.navigate(['/admin/home']); this.isAble=true; }
     //  else{
      
     //  }
     // }
-  }
-  else{
-    // this._router.navigateByUrl(`/student/home/${this.users.id}`);
-    this.isAble=true;
-    // alert("you are student");
-    // this._router.navigate([`/student/home/${this.users.id}`]);
-  }
-
-  // else if(this.users.roleId=3)
+// else if(this.users.roleId=3)
   // {this._router.navigateByUrl(`/student/home/${id}`);
 // return true;
 // }
-})
-  return this.isAble;
-  }
-  
-}
+    // alert("you are student");
+    // this._router.navigate([`/student/home/${this.users.id}`]);
+        // let id= parseInt(`${localStorage.getItem('id')}`);

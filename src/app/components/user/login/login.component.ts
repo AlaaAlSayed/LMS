@@ -35,17 +35,11 @@ users:any=new Users();
     
     this._userService.postLogin(data).subscribe((result:any)=>{
       console.log(result);
-      const headers=new HttpHeaders({
-        Authorization: `Bearer ${result}`
-      })
-      let options={
-        'headers':headers
-      }
+     
       localStorage.setItem("token", result);
-      this._userService.getLoggedId(options).subscribe((result:any)=> 
+      this._userService.getLoggedId().subscribe((result:any)=> 
         {
           localStorage.setItem("id",result);
-          // this._userService.logged.next(true);
           this._userService.getUsers().subscribe(response=>{
             this.users=response;
             if(this.users.roleId==1){
@@ -54,17 +48,14 @@ users:any=new Users();
             }
              else if(this.users.roleId==2){
               this._router.navigate([`/teacher/home/${this.users.id}`]);
-              // this._userService.logged.next(true);
             }
             else if(this.users.roleId==3){
               this._router.navigate([`/student/home/${this.users.id}`]);  
-              // this._userService.logged.next(true);            
             }
             
             
             this._userService.logged.next(true);
           })
-          // this._userService.logged.next(true);
       },
       error=>{
         console.log(error);
@@ -98,3 +89,9 @@ users:any=new Users();
   }
 
 }
+ // const headers=new HttpHeaders({
+      //   Authorization: `Bearer ${result}`
+      // })
+      // let options={
+      //   'headers':headers
+      // }

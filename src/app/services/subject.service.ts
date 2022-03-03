@@ -20,7 +20,7 @@ export class SubjectService {
    }
    getSubject(id:number): Observable<Subject>
    {
-    return this._httpClient.get<Subject>(`${environment.APIURL}/api/subjects/show/${id}`);
+    return this._httpClient.get<Subject>(`${environment.APIURL}/api/subjects/showSubject/${id}`);
 
 
    }

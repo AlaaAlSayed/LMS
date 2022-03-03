@@ -1,3 +1,4 @@
+import { StudentGuard } from './../../guards/student.guard';
 // import { StudentModule } from './../student/student.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,20 +12,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
 import { ShowassignmentComponent } from './showassignment/showassignment.component';
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 enableProdMode();
 
 const routes: Routes = [
   {
     path:'assignment',component:AssignmentComponent
-  }, {
-    path:'show/:assignid',component:ShowassignmentComponent
+    ,canActivate:[AuthGuard,StudentGuard]}, {
+    path:'show/:assignid',component:ShowassignmentComponent,canActivate:[AuthGuard,StudentGuard]
   },
 
-  {path:'result',component:ResultComponent},
-  {path:'quiz',component:QuizComponent},
-  {path:'matrial',component:MatrialComponent},
-  {path:'',component:MainSubjectComponent}
+  {path:'result',component:ResultComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'quiz',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'matrial',component:MatrialComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]}
 
 ];
 @NgModule({

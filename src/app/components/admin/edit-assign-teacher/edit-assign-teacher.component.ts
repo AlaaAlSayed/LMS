@@ -22,9 +22,9 @@ export class EditAssignTeacherComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe( params=>{
       this.id_1 = Number(params.get('id1'));
-      this.id_2 = Number(params.get('id2'));
-      this.id_3=Number(params.get('id3'))
-      this._teacherService.getTeaches(this.id_1,this.id_2,this.id_3).subscribe(
+      // this.id_2 = Number(params.get('id2'));
+      // this.id_3=Number(params.get('id3'))
+      this._teacherService.getTeaches(this.id_1).subscribe(
         response=>{
           this.formEditAssign=new FormGroup({
             teacherId:new FormControl(response['teacherId']),

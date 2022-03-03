@@ -22,12 +22,9 @@ export class AdminGuard implements CanActivate {
     this._userService.getUsers().subscribe((response:any)=>{
       this.users=response; 
       console.log(response);
-    // })
   
-    // if(this.users.roleId=2 || (this.users.roleId=3))
     if(this.users.roleId!=1)
     {   
-    //  this._router.navigateByUrl('/user/login/');
      this.isAble=false;
      alert("You are not an admin");
      this._router.navigate(['/user/login/']);
