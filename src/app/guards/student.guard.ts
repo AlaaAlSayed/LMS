@@ -10,15 +10,13 @@ import { Users } from 'src/models/users';
 export class StudentGuard implements CanActivate {
   users:any=new Users();
   isAble:boolean=false;
+  roleId:any=localStorage.getItem('roleId');
+  id:any=localStorage.getItem('id');
   constructor(private _userService:UserService,private _router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // return true;
-    this._userService.getUsers().subscribe((response:any)=>{
-      this.users=response; 
-
-      if(this.users.roleId!=3){
+      if(this.roleId!=3){
         this._router.navigateByUrl('/user/login');
         this.isAble=false;
         alert("you are not able to go here, please login as a student first");
@@ -27,22 +25,20 @@ export class StudentGuard implements CanActivate {
     this.isAble=true;
   }
 
-})
-  return this.isAble;
-  }
+//    if(this.roleId==3){
+//     this.isAble= true;
+//    this._router.parseUrl(`/student/home/${this.id}`);
+//  }
+//  else if(this.roleId==1)
+//   {   
+//     this.isAble=false;
+//      this._router.parseUrl('/admin/home');
+//   }
   
+//  else if(this.roleId==2){
+//   this.isAble= false;
+//    this._router.parseUrl(`/teacher/home/${this.id}`);
+//  }
+  return this.isAble;
+  } 
 }
-// if(this.users.roleId!=3 && this.users.roleId==1){
-      // this._router.navigate(['/admin/home']);
-      // if(this.users.roleId==1){this._router.navigate(['/admin/home']); this.isAble=true; }
-    //  else{
-     
-    //  }
-    // }
-// else if(this.users.roleId=3)
-  // {this._router.navigateByUrl(`/student/home/${id}`);
-// return true;
-// }
-    // alert("you are student");
-    // this._router.navigate([`/student/home/${this.users.id}`]);
-        // let id= parseInt(`${localStorage.getItem('id')}`);
