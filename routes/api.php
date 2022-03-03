@@ -54,6 +54,10 @@ Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index']);
 Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
 Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
+Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
+
+
+
 
 Route::get('/admins', [AdminController::class, 'index']);
 Route::get('/admins/{adminId}',[AdminController::class,'show']);
@@ -172,4 +176,3 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
 
-Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
