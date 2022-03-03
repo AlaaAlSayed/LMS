@@ -93,6 +93,12 @@ Route::put('/classrooms/{classroom}', [ClassroomController::class, 'update']);
 Route::delete('/classrooms/{classroom}', [ClassroomController::class, 'destroy']);
 Route::get('/classrooms/{classroom}', [ClassroomController::class, 'show']);
 
+Route::post('/subjects', [SubjectController::class, 'store']);
+Route::get('/subjects', [SubjectController::class, 'index']);
+Route::put('/subjects/{subjectId}', [SubjectController::class, 'update']);
+Route::delete('/subjects/{subjectId}', [SubjectController::class, 'destroy']);
+Route::get('/subjects/showSubject/{subjectId}', [SubjectController::class, 'showSubject']);
+
 
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
