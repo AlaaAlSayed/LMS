@@ -1,7 +1,13 @@
+import { SubjectService } from 'src/app/services/subject.service';
+import { Subject } from 'src/models/subject';
+import { TeacherService } from 'src/app/services/teacher.service';
+import { Teacher } from 'src/models/teacher';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StudentService } from './../../../services/student.service';
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/models/student';
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { Classroom } from 'src/models/classroom';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +15,39 @@ import { Student } from 'src/models/student';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-user:Student[]=[];
-  constructor(private _studentService:StudentService,private http:HttpClient) { }
+students:Student[]=[];
+teachers:Teacher[]=[];
+classes:Classroom[]=[];
+subjects:Subject[]=[];
+  constructor(private _studentService:StudentService,private _subjectService:SubjectService,private _classroomService:ClassroomService,private http:HttpClient, private _teacherService:TeacherService) { }
 
   ngOnInit(): void {
-    // const headers= new HttpHeaders({
-    //   'Authorization': `Bearer ${localStorage.getItem('token')}`
-    // });
-    // this.http.get('http://localhost:8000/api/students', {headers:headers}).subscribe
-    // (result=>{
-      
-    //   console.log(result);
-    // })
+   this._teacherService.get().subscribe(response=>{
+     this.teachers=response;
+   })
+   this._studentService.get().subscribe(res=>{
+     this.students=res;
+   })
+   this._classroomService.get().subscribe(result=>{
+     this.classes=result;
+   })
+   this._subjectService.get().subscribe(subject=>{
+     this.subjects=subject;
+   })
   }
+  getTeachersCount():number{
+    return this.teachers.filter(teacher=>teacher.id).length;
+}
+getStudentsCount():number{
+  return this.students.filter(student=>student.id).length;
+}
+getClassesCount():number{
+  return this.classes.filter(classroom=>classroom.id).length;
+
+}
+getSubjectsCount():number{
+  return this.subjects.filter(subject=>subject.id).length;
+
+}
 
 }

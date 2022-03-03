@@ -1,6 +1,7 @@
+import { TeacherGuard } from './../../guards/teacher.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TechmatrialComponent } from './techmatrial/techmatrial.component';
 import { TechassignmentComponent } from './techassignment/techassignment.component';
@@ -11,19 +12,22 @@ import { CreateAssignmentComponent } from './create-assignment/create-assignment
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdatematerialComponent } from './updatematerial/updatematerial.component';
 import { UpdateassignmentComponent } from './updateassignment/updateassignment.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { TeacherHeaderComponent } from '../teacher/teacher-header/teacher-header.component';
 
 const routes: Routes = [
-  {path:'assignment',component:TechassignmentComponent},
-  {path:'quiz',component:TechquizComponent},
-  {path:'matrial',component:TechmatrialComponent},
-  {path:'',component:TechsubjectmainComponent},
-  {path:'creatematrial',component:CreateMatrialComponent},
-  {path:'createassignment',component:CreateAssignmentComponent},
-  {path:'updateassignment/:assignmentid',component:UpdateassignmentComponent},
-  {path:'updatematrial/:matrialid',component:UpdatematerialComponent},
+  {path:'assignment',component:TechassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz',component:TechquizComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'matrial',component:TechmatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'',component:TechsubjectmainComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
 
 
-];
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ const routes: Routes = [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule
     
   ],
+  exports:[
+  ]
  
 })
 export class ClassDetailTeacherModule { }

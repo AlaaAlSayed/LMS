@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Admin } from '../../../../models/admin';
+import { Users } from 'src/models/users';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,6 +17,9 @@ export class AdminDashboardComponent implements OnInit {
   isDisplay4=true;
   isLogged=false;
   admin:Admin= new Admin();
+  // id:any;
+  user:any=new Users();
+  id:any=localStorage.getItem('id');
   constructor(private _adminService:AdminService, 
     private _activatedRoute:ActivatedRoute, private router:Router,
     private _userService:UserService) { }
@@ -41,16 +45,35 @@ export class AdminDashboardComponent implements OnInit {
         // )
         // let id= parseInt(`${localStorage.getItem('id')}`);
 
-        this._activatedRoute.paramMap.subscribe( params=>{
-          let id = Number(params.get('id'));
-          this._adminService.getAdminByID(id)
-          .subscribe(
-            response=>{
-              this.admin=response;
-            },
-          )
-        }
-        )
+        // this._activatedRoute.paramMap.subscribe( params=>{
+        //   let id = Number(params.get('id'));
+        //   this._adminService.getAdminByID(id)
+        //   .subscribe(
+        //     response=>{
+        //       this.admin=response;
+        //     },
+        //   )
+        // }
+        // )
+        // this._userService.getLoggedId().subscribe(result=>{
+        //   this.id=result;
+        //   this._adminService.getAdminByID(this.id)
+        //   .subscribe(
+        //     response=>{
+        //       this.admin=response;
+        //     },
+        //   )
+        // })
+        this._userService.getUsers().subscribe(result=>{
+          this.user=result;
+         this._adminService.getAdmin(this.user.id)
+         .subscribe(
+           response=>{
+             this.admin=response;
+             console.log(response);
+           },
+         )
+        })
       }
       // )
       // let currentID = this._activatedRoute.snapshot.paramMap.get('id');

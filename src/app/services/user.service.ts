@@ -32,8 +32,9 @@ export class UserService {
 
     this.logged.next(false);
   }
-  getLoggedId(options={}){
-    return this._httpClient.get(`${environment.APIURL}/api/id`,options);
+  getLoggedId(){
+    // options={}
+    return this._httpClient.get(`${environment.APIURL}/api/id`);
 
   }
   getUsers(){

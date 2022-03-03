@@ -26,6 +26,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),SharedModule,ReactiveFormsModule,FormsModule
+  ],
+  exports:[
+    StudentHeaderComponent
   ]
+
 })
 export class StudentModule { }

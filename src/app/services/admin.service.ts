@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AdminService {
 
   constructor(private _httpClient:HttpClient) { }
-  getAdminByID(id: number):Observable<Admin>
+  getAdmin( id:number):Observable<Admin>
    {
     return this._httpClient.get<Admin>(`${environment.APIURL}/api/admins/${id}`);
 

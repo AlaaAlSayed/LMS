@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { Users } from 'src/models/users';
 
 @Component({
   selector: 'app-edit-admin',
@@ -19,14 +21,16 @@ export class EditAdminComponent implements OnInit {
     city:new FormControl(''),
     street:new FormControl(''),
   }) 
-  id:any;
-
-  constructor(private _formBuilder:FormBuilder,private _adminService:AdminService, private _activatedRoute:ActivatedRoute) { }
+  // id:any;
+  user:any=new Users();
+  constructor(private _formBuilder:FormBuilder, private _userService:UserService,private _adminService:AdminService, private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._activatedRoute.paramMap.subscribe( params=>{
-      this.id = Number(params.get('id'));
-      this._adminService.getAdminByID(this.id).subscribe(
+    // this._activatedRoute.paramMap.subscribe( params=>{
+    //   this.id = Number(params.get('id'));
+    this._userService.getUsers().subscribe(result=>{
+      this.user=result;
+      this._adminService.getAdmin(this.user.id).subscribe(
         response=>{
           this.formEdit=new FormGroup({
             name:new FormControl(response['name'],[Validators.required,Validators.minLength(3)]),
@@ -55,7 +59,7 @@ export class EditAdminComponent implements OnInit {
     return  this.formEdit.controls[name].invalid && this.formEdit.controls[name].errors?.[error];
   }
   updateAdmin(){
-    this._adminService.updateData(this.id, this.formEdit.value).subscribe(response=>{
+    this._adminService.updateData(this.user.id, this.formEdit.value).subscribe(response=>{
       console.log(response, 'updated Successfully');
     }
     )

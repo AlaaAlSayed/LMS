@@ -24,15 +24,16 @@ export class TeacherGuard implements CanActivate {
      this.isAble=false;
      alert("you are not able to go here,Please Login as teacher first")
   }
-  // if (this.users.roleId==1 || this.users.roleId==3){
-  //   this._router.navigate(['/user/login']);
-  //    this.isAble=false;
-  // }
+ 
   else {
-    // this._router.navigateByUrl(`/teacher/home/${this.users.id}`);
     this.isAble=true}
 })
   return this.isAble;
   }
   
 }
+    // this._router.navigateByUrl(`/teacher/home/${this.users.id}`);
+ // if (this.users.roleId==1 || this.users.roleId==3){
+  //   this._router.navigate(['/user/login']);
+  //    this.isAble=false;
+  // }

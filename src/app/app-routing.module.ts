@@ -44,22 +44,22 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
 }, 
- {
+/*  {
   path:'subject/:student_id/:id/assignment',
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
-},
+}, */
 {path:'classroom/:teacherid/:classroomid',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
 },
-{path:'classroom/:teacherid/:classroomid/matrial',
+/* {path:'classroom/:teacherid/:classroomid/matrial',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
 },{path:'classroom/:teacherid/:classroomid/assignment',
 loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
-}
+} */
 
 
 
