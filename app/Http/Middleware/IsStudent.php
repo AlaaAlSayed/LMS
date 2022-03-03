@@ -22,7 +22,10 @@ class IsStudent
 
         if ( auth()->user()->roleId == 3) {
             return $next($request);
-        }
+        } 
+        // else {
+        //     return redirect()->route('welcome');
+        // }
         // elseif (auth()->user()->roleId == 1) {
 
         //     return redirect()->route('api.admins.home', auth()->user()->id);

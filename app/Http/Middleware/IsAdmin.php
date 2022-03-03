@@ -26,8 +26,9 @@ class IsAdmin
         if (auth()->user()->roleId == 1) { // 1 is for admin
 
             //admin : then redirect to the targeted url
-            return $next($request);
-        }
+            return $next($request); 
+        } 
+       
         //  elseif (auth()->user()->roleId == 2) {
 
         //     return redirect()->route('api.teachers.home', auth()->user()->id);
