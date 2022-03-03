@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\UserAvatarController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\ChatsController;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -201,3 +203,9 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 });
+
+
+
+Route::get('/', [ChatsController::class, 'index']);
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');

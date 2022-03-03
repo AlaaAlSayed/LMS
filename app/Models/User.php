@@ -51,8 +51,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRole($role)
+    // public function hasRole($role)
+    // {
+    //     return User::where('roleId', $role)->get();
+    // }
+
+    public function messages()
     {
-        return User::where('roleId', $role)->get();
+        return $this->hasMany(Message::class);
+    }
+    public function username()
+    {
+        return $this->username;
     }
 }
