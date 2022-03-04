@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+
 class UserController extends Controller
 {
     public function user()
@@ -23,7 +24,24 @@ class UserController extends Controller
         $id = Auth::id();
         return $id;
     }
-
+    public function chatUsers()
+    {
+        // Get the currently authenticated user's ID...
+        $user = Auth::user();
+        if ($user->roleId == 3) //student
+        {
+            $allUsers = User::where(['roleId', 1],['roleId', 2])->get();
+            return $allUsers;
+        } elseif ($user->roleId == 2) //teacher
+        {
+            $allUsers = User::all();
+            return $allUsers;
+        } else //admin
+        {
+            $allUsers = User::all();
+            return $allUsers;
+        }
+    }
 
     public function  generateToken(Request $request)
     {
