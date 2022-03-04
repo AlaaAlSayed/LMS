@@ -197,12 +197,12 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 
 //*******************   MESSAGE  ********************
 // users dashboard  - message CRUD operations  :
-Route::get('/messages', [MessageController::class, 'index']);
-Route::get('/messages/{userId}',[MessageController::class,'teacherMessages']);
-Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show']);
-Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store']);
-Route::put('/messages/{messageId}', [MessageController::class , 'update']);
-Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
+// Route::get('/messages', [MessageController::class, 'index']);
+// Route::get('/messages/{userId}',[MessageController::class,'teacherMessages']);
+// Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show']);
+// Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store']);
+// Route::put('/messages/{messageId}', [MessageController::class , 'update']);
+// Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
