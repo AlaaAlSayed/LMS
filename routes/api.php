@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AnnouncementsContoller;
+use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
  
@@ -206,3 +207,6 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 });
+
+
+Route::post('/messages', [ChatController::class, 'message']);
