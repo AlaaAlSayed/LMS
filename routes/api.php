@@ -40,7 +40,7 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 
 //***********************************  AUTH **************************** */
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
@@ -68,7 +68,7 @@ Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
 //admin dashboard -  profile page:
 
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show']);
+Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
 Route::put('/admins/{adminId}', [AdminController::class, 'update'])     ;
 
 //admin dashboard -  all students page:
@@ -205,4 +205,4 @@ Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
 
 
-// });
+});
