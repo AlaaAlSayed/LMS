@@ -30,15 +30,16 @@ use Illuminate\Validation\ValidationException;
 */
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-// 1|IX5GH2qbPd4Tq9zHv1AUFO7mcDazSRYVOJdpnVby token for admn user
-// 2|H66CwHt6QYUW5mwiFEZ02cXszBdBSZ8coFWQQ8N4   token for stud user
+// *********************************  LOGIN *****************************
 Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
-
+// *************************  HOME PAGE ******************************
+Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index'])->name('login');
+Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 //***********************************  AUTH **************************** */
 Route::middleware('auth:sanctum')->group(function () {
@@ -47,50 +48,38 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
-
-
-//admin dashboard -  profile page:
-Route::get('/welcome' ,function () {
-    return view('welcome');
-})->name('login');
-    // ->middleware('IsTeacher');
-    // ->middleware('IsAdmin');
-    
-
-
-Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index']);
-Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
+//----------------------------- IsAdmin --------------------------------------------
+Route::middleware('IsAdmin')->group(function () {
+//admin dashboard -  posts crud operations :
 Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
 Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
 Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
 
 
-
 //admin dashboard -  profile page:
-
+Route::get('/admins/{adminId}',[AdminController::class,'show']);
+Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 Route::get('/admins', [AdminController::class, 'index']);
-Route::get('/admins/{adminId}',[AdminController::class,'show'])->middleware('IsAdmin');
-Route::put('/admins/{adminId}', [AdminController::class, 'update'])     ;
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
-Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
-Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
+Route::get('/students', [StudentController::class, 'index']);
+Route::post('/students', [StudentController::class, 'store']);
+Route::put('/students/{student}', [StudentController::class, 'update']);
+Route::delete('/students/{student}', [StudentController::class, 'destroy']);
 
 //admin dashboard  -  all teachers page :
-Route::get('/teachers',[TeacherController::class,'index']);
-Route::get('/teachers/classroom',[TeacherController::class,'show']);
-Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
-// Route::get('/teachers/showClassroom/{Id}',[TeacherController::class,'showClassroom']);
-
-Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
-Route::post('/teachers',[TeacherController::class,'store']);
 Route::post('/teachers/assign',[TeacherController::class,'assign']);
-
 Route::put('/teachers/teachesUpdate/{teacherId}/{subjectId}', [TeacherController::class , 'teachesUpdate']);
+
+Route::get('/teachers',[TeacherController::class,'index']);
+Route::post('/teachers',[TeacherController::class,'store']);
 Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
+
+// Route::get('/teachers/classroom',[TeacherController::class,'show']);
+Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
+Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
+
 
 //  admin dashboard - classrooms CRUD operations 
 Route::get('/classrooms', [ClassroomController::class, 'index']);
@@ -105,6 +94,10 @@ Route::put('/subjects/{subjectId}', [SubjectController::class, 'update']);
 Route::delete('/subjects/{subjectId}', [SubjectController::class, 'destroy']);
 Route::get('/subjects/showSubject/{subjectId}', [SubjectController::class, 'showSubject']);
 
+}); // end of IsAdmin
+
+//----------------------------- IsStudent --------------------------------------------
+Route::middleware('IsStudent')->group(function () {
 
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
@@ -116,6 +109,10 @@ Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
 // student dashboard  - upload assignment    :
 Route::post('/students/upload', [StudentController::class, 'upload']);
 
+}); // end of IsStudent
+
+//----------------------------- IsTeacher --------------------------------------------
+Route::middleware('IsTeacher')->group(function () {
 
 //teacher dashboard  - to get subject of this teacher to this class : 
 Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
@@ -126,9 +123,7 @@ Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage'
 //teacher dashboard  - home page :
 Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 
-
-// Route::get('uploadFiles', [FileController::class , 'uploadFiles']);
-// Route::post('uploadFiles', [FileController::class , 'store']);
+}); // end of IsTeacher
 
 //*******************   MATERIALS  ********************
 //teacher dashboard  - materials CRUD operations  :
@@ -139,7 +134,6 @@ Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
 Route::get('/materials/{material}', [MaterialController::class, 'show']);
 
 Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
-
 Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
 Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials']);
 
@@ -164,9 +158,7 @@ Route::get('/assignments/teacher/{teacherId}',[AssignmentController::class,'teac
 
 // download assignment as pdf
 Route::get('/assignments/download/{assignmentId}', [AssignmentController::class,'download']);
-
 Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
-
 Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
 
 
@@ -175,27 +167,21 @@ Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'student
 
 
 
-//*******************   EXAM  ********************
-//teacher dashboard  - exam CRUD operations  :
+// //*******************   EXAM  ********************
+// //teacher dashboard  - exam CRUD operations  :
 
-Route::get('/exams', [ExamController::class, 'index']);
-Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
-Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
-Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store']);
-Route::put('/exams/{examId}', [ExamController::class , 'update']);
-Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
-
-
-// student dashboard  -  take exam  :
-Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
+// Route::get('/exams', [ExamController::class, 'index']);
+// Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
+// Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
+// Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store']);
+// Route::put('/exams/{examId}', [ExamController::class , 'update']);
+// Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
+// // student dashboard  -  take exam  :
+// Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
 
 
 
-// ->withoutMiddleware([EnsureTokenIsValid::class]);
-
-
-
-//*******************   MESSAGE  ********************
+//------------------------   MESSAGE for all users -----------------------
 // users dashboard  - message CRUD operations  :
 // Route::get('/messages', [MessageController::class, 'index']);
 // Route::get('/messages/{userId}',[MessageController::class,'teacherMessages']);
@@ -210,3 +196,8 @@ Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])
 
 
 Route::post('/messages', [ChatController::class, 'message']);
+
+
+
+
+// ->withoutMiddleware([EnsureTokenIsValid::class]);
