@@ -4,31 +4,91 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Events\sendMessage;
-
-
-use App\Events\MessageSent;
+use App\Events\clientSendMessage;
+use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
-
-// use App\Events\MessageSent;
 class ChatController extends Controller
 {
-    public function message(Request $request)
+  
+    public function index()
     {
-        event(new sendMessage($request->input('user_id'), $request->input('message')));
-        return  'hello Rahma from backend';
+        $allUsers = $this->chatUsers();
+        return view('chat',['allUsers'=>$allUsers]);
+    }
 
-        // return  $request->input('message');
+    public function fetchMessages()
+    {
+        return Message::with('user')->get();
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+        $message = $user->messages()->create([
+            'message' => $request->input('message'),
+            'receiver_id' => $request->input('receiver_id'),
+            'user_id' => $request->input('user_id'),
+            'is_seen' => 0,
+
+        ]);
+        broadcast(new clientSendMessage($request->input('user_id'), $request->input('receiver_id'),$request->input('message')))->toOthers();
+        return ['status' => 'Message Sent!'];
+    }
+    
+    public function chatUsers()
+    {
+        $user = Auth::user();
+        // dd($user);
+        if ($user->roleId == 3) //student
+        {
+            $allUsers = User::where('roleId', '=', '1')->orWhere('roleId', '=', '2')->get();
+        } elseif ($user->roleId == 2) //teacher
+        {
+            $allUsers = User::where('roleId', '=', '1')->orWhere('roleId', '=', '3')->get();
+        } else //admin
+        {
+            $allUsers = User::all();
+        }
+        return $allUsers;
     }
 }
-
-
-// class ChatsController extends Controller
+// class ChatController extends Controller
 // {
-//     public function __construct()
+//     public function send(Request $request)
 //     {
-//         $this->middleware('auth');
+//         event(new sendMessage($request->input('user_id'), $request->input('message')));
+//         return  'hello Rahma from backend';
+
+//         // return  $request->input('message');
 //     }
+
+//     public function fetch($userId)
+//     {
+//         return  'hello Rahma from backend';
+//     }
+
+//     public function chatUsers()
+//     {
+//         $user = Auth::user();
+//         // dd($user);
+//         if ($user->roleId == 3) //student
+//         {
+//             $allUsers = User::where('roleId', '=', '1')->orWhere('roleId', '=', '2')->get();
+//         } elseif ($user->roleId == 2) //teacher
+//         {
+//             $allUsers = User::where('roleId', '=', '1')->orWhere('roleId', '=', '3')->get();
+//         } else //admin
+//         {
+//             $allUsers = User::all();
+//         }
+//         return $allUsers;
+//     }
+
+//     // public function __construct()
+//     // {
+//         // $this->middleware('auth');
+//     // }
 
 //     /**
 //      * Show chats
@@ -60,7 +120,7 @@ class ChatController extends Controller
 //     {
 //         $user = Auth::user();
 
-//         $message = $user->messages()->create([
+//         $message = $user->messages->create([
 //             'message' => $request->input('message')
 //         ]);
 

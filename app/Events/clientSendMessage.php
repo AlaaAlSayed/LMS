@@ -12,29 +12,34 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Message;
 use App\Models\User;
 
-class sendMessage implements ShouldBroadcast
+class clientSendMessage implements ShouldBroadcast
 {
 
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $user;
+    public $user_id;
     public $message;
-    public function __construct(int $user_id, string $message)
+    public $receiver_id;
+
+
+    // public function __construct(User $user, Message $message)
+    public function __construct(int $user_id, int $receiver_id, string $message)
     {
-        $this->user = $user_id;
+        $this->user_id = $user_id;
         $this->message = $message;
+        $this->receiver_id = $receiver_id;
     }
 
-//     public function broadcastOn()
-// {
-//     return new PrivateChannel('chat'); //private channel
-// }
     public function broadcastOn()
     {
-        return ['chat']; //public channel
+        return new PrivateChannel('private-chat');
     }
+    // public function broadcastOn()
+    // {
+    //     return ['chat']; //public channel
+    // }
 
     public function broadcastAs()
     {
-        return 'sendMessage';
+        return 'clientSendMessage';
     }
 }

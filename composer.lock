@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7557ca0db5b2c749d33d85e6de59895d",
+    "content-hash": "5dd3162b9383bb9942db979d72f64992",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2780,7 +2780,7 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "dev-master",
+            "version": "7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
@@ -2804,7 +2804,6 @@
                 "overtrue/phplint": "^2.3",
                 "phpunit/phpunit": "^8.5|^9.3"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {

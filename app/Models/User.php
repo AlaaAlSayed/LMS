@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return User::where('roleId', $role)->get();
     }
+
+     
+     public function messages()
+     {
+         return $this->hasMany(Message::class);
+     }    
 }

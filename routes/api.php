@@ -190,14 +190,18 @@ Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'student
 // Route::put('/messages/{messageId}', [MessageController::class , 'update']);
 // Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
 
+Route::get('/chatUsers', [ChatController::class, 'chatUsers'])->name('ChatUsers');
 
+
+Route::get('/chat', [ChatController::class, 'index']);
+Route::get('/messages', [ChatController::class, 'fetchMessages']);
+Route::post('/messages', [ChatController::class, 'sendMessage']);
 
 });
 
 
-Route::post('/messages', [ChatController::class, 'message']);
-
-
-
+// Route::post('/messages', [ChatController::class, 'send']);
+// Route::get('/messages/{userId}',[ChatController::class,'fetchMessages']);
+// Route::get('/chat', [ChatController::class,'getIndex']);
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
