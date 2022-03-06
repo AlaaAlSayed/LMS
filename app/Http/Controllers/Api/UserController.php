@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+
 class UserController extends Controller
 {
     public function user()
@@ -24,7 +25,7 @@ class UserController extends Controller
         return $id;
     }
 
-
+   
     public function  generateToken(Request $request)
     {
         $request->validate([

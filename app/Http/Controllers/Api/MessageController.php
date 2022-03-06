@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MessageController extends Controller
 {
@@ -25,11 +26,12 @@ class MessageController extends Controller
         return ($message);
     }
 
-    public function showIcon($receiver_id)
-    {
-        $message = Message::find($receiver_id);
-        return ($message);
-    }
+    // public function showIcon($receiver_id)
+    // {
+    //     $picture_path = User::find($receiver_id)->picture_path;
+    //     $imgsrc = asset('storage/assets/' . $picture_path);
+    //     return response()->json($imgsrc);
+    // }
 
     public function store() //StoreSubjectRequest $request)
     {
@@ -46,6 +48,14 @@ class MessageController extends Controller
             'is_seen' => $data['is_seen'],
         ]);
 
+        return ($message);
+    }
+
+    public function seen($messageId) //put // post
+    {
+        $message = Message::where('id',$messageId)->update([
+            'is_seen' => 1 ,
+        ]);
         return ($message);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Assignment;
 use App\Models\Teacher;
 use App\Models\teacher_attaches_assignments;
-use App\Models\Subject;
+use App\Models\StudentUploadAssignment;
 use Illuminate\Support\Facades\Storage;
 use Spatie\FlareClient\Http\Response;
 use App\Http\Resources\AssignmentResource;
@@ -19,21 +19,18 @@ class AssignmentController extends Controller
     $allAssignments = Assignment::all();
     return   $allAssignments->all();
   }
+  public function show($assignmentId)
+  {
+    $assignment = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->find($assignmentId);
+    // $assignment = Assignment::find($assignmentId);
+    return ($assignment); 
 
-  // public function show($teacherId, $assignmentId)
-  // {
-  //   $teacher = Teacher::find($teacherId);
-  //   // @dd($teacher->assignments);
-  //   // return View('assignment'); 
-  //   // return View('assignment', ['assignmentId' => $assignmentId]);
-
-  //   return View('assignment', ['assignment_pdf' => $teacher->assignments->find($assignmentId)->name]);
-  // }
+  }
 
   public function studentshow($assignmentId)
   {
     $assignment = Assignment::find($assignmentId);
-    $embed_src= asset('storage/assets/'. $assignment->name);
+    $embed_src = asset('storage/assets/' . $assignment->name);
     return response()->json($embed_src);
   }
 
@@ -45,24 +42,29 @@ class AssignmentController extends Controller
 
   public function teacherAssignments($teacherId)
   {
-    $allTeacherAssignments = teacher_attaches_assignments::where('teacherId','=',$teacherId)->get();
+    $allTeacherAssignments = teacher_attaches_assignments::where('teacherId', '=', $teacherId)->get();
     return ($allTeacherAssignments);
   }
+  public function getFile($assignmentId)
+  {
+    $assignment = Assignment::find($assignmentId);
+    return response()->file('storage/assets/' . $assignment->name);
+  }
 
-  public function store($teacherId,$subjectId ,Request $request)
+  public function store($teacherId, $subjectId, Request $request)
   {
     $request->validate([
-      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
+      'name' => 'mimes:pdf,docs,xlsx|max:10000'
     ]);
 
-    if ($request->hasFile('assignment_path')) //if user choose file
+    if ($request->hasFile('name')) //if user choose file
     {
 
-      $file = $request->file('assignment_path'); //store  uploaded file to variable $file to 
+      $file = $request->file('name'); //store  uploaded file to variable $file to 
       $extension = $file->getClientOriginalExtension();
       $filename = 'Assignment' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-      
+
     } else {
 
       $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
@@ -71,8 +73,7 @@ class AssignmentController extends Controller
     $data = request()->all();
     // $subject = Subject::find($teacherId);
     $assignment = Assignment::create([
-      'assignment_path'=> $filename,
-      'name' => $data['name']
+      'name' => $filename
     ]);
 
     $teacher_teaches_subjects = teacher_attaches_assignments::create([
@@ -83,23 +84,22 @@ class AssignmentController extends Controller
     ]);
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);
-
   }
 
-  public function update( $assignmentId)
+  public function update($assignmentId)
   {
     request()->validate([
-      'assignment_path' => 'required|mimes:pdf,docs,xlsx|max:10000'
+      'name' => 'mimes:pdf,docs,xlsx|max:10000'
     ]);
 
-    if (request()->hasFile('assignment_path')) //if user choose file
+    if (request()->hasFile('name')) //if user choose file
     {
 
-      $file = request()->file('assignment_path'); //store  uploaded file to variable $file to 
+      $file = request()->file('name'); //store  uploaded file to variable $file to 
       $extension = $file->getClientOriginalExtension();
       $filename = 'Assignment' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-      
+
     } else {
 
       $filename = Assignment::where('id', $assignmentId)->name;
@@ -107,8 +107,7 @@ class AssignmentController extends Controller
 
     $data = request()->all();
     Assignment::where('id', $assignmentId)->update([
-      'assignment_path'=> $filename,
-      'name' => $data['name']
+      'name' => $filename
     ]);
 
     $teacher_teaches_subjects = teacher_attaches_assignments::where('assignmentId', $assignmentId)->update([
@@ -118,7 +117,7 @@ class AssignmentController extends Controller
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);
   }
-  
+
 
   public function destroy($assignmentId)
   {
@@ -129,4 +128,13 @@ class AssignmentController extends Controller
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);
   }
+
+
+  public function studentsUploads()
+  {
+    $allAssignments = StudentUploadAssignment::all();
+    return   $allAssignments->all();
+  }
+
+
 }

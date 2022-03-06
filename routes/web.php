@@ -22,8 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('teachers/{teacherId}',function($teacherId)
-{$teachers=Teacher::find($teacherId);
-@dd($teachers->assignment);
-}
-);
+
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::view('chat','users.messages');

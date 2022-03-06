@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let student of students;let currentIndex=index">
-        <th scope="row">{{currentIndex+1}}</th>
+        <th scope="row">{{student.id}}</th>
         <td>{{student.name}}</td>
         <td>{{student.username}}</td>
         <td>{{student.phone}}</td>
