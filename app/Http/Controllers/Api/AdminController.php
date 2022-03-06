@@ -24,11 +24,6 @@ class AdminController extends Controller
     public function show($adminId)
     {
         $admin =  User::join('admins', 'admins.id', '=', 'users.id')->find($adminId);
-        // return "hello" ;
-        // $admin =  User::find($adminId);
-
-        // return ($admin);
-
         return response()->json($admin);
     }
 
