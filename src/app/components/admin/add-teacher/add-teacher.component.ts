@@ -23,9 +23,9 @@ export class AddTeacherComponent implements OnInit {
       id:[''],
 
       name:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(3)]],
-      username:['' , [Validators.required,Validators.maxLength(15),Validators.minLength(5)]],
+      username:['' , [Validators.required,Validators.maxLength(15),Validators.minLength(4)]],
       email:['' , [Validators.required,Validators.maxLength(30),Validators.minLength(10), Validators.pattern(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,3}$/)]],
-      password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
+      password:['',[Validators.required,Validators.minLength(4),Validators.maxLength(20)]],
       phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11), Validators.pattern(/^01[0,1,2,5]\d{1,8}$/)]],
       government:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],
       city:['',[Validators.required,Validators.minLength(4),Validators.maxLength(10)]],

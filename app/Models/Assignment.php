@@ -10,7 +10,6 @@ class Assignment extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'assignment_path',
     ];
 
     public function uploads()

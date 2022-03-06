@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->string('name');
-            $table->string('material_path');
+            $table->string('material');
 
             $table->timestamps();
 

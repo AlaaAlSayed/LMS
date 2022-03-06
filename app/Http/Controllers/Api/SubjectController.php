@@ -26,7 +26,7 @@ class SubjectController extends Controller
         return new SubjectResource($subject);
     }
 
-    public function showSubject($subjectId)
+    public function showSubject($subjectId)// for edit (in admin dashboard)
     {
         $subject = Subject::find($subjectId);
         return ($subject);

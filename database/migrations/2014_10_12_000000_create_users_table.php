@@ -33,8 +33,10 @@ return new class extends Migration
             $table->boolean('is_online')->default(0);
             $table->string('last_activity')->default(0);
             // $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+          
 
+        
+            $table->rememberToken();
             $table->timestamps();
         });
     }

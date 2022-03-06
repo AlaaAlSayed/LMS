@@ -53,6 +53,12 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        return User::where('role', $role)->get();
+        return User::where('roleId', $role)->get();
     }
+
+     
+     public function messages()
+     {
+         return $this->hasMany(Message::class);
+     }    
 }

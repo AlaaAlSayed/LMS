@@ -7,6 +7,7 @@ use App\Http\Middleware\Authenticate;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class IsAdmin
 {
     /**
@@ -18,23 +19,27 @@ class IsAdmin
      */
 
 
- 
+
     public function handle(Request $request, Closure $next)
-    {  
-       $user_name=$request->username;
-       $role=User::where('username','=', $user_name)->first();
+    {
+
+        if (auth()->user()->roleId == 1) { // 1 is for admin
+
+            //admin : then redirect to the targeted url
+            return $next($request); 
+        } 
        
-//        gettype($u)
-// @dd( $role->roleId);
+        //  elseif (auth()->user()->roleId == 2) {
 
-            if ($role->roleId==1) {
-                return $next($request);
-            }
-     
-           
-        
-            return redirect()->route('welcome');
-           
+        //     return redirect()->route('api.teachers.home', auth()->user()->id);
 
-}
+        // } 
+        // elseif (auth()->user()->roleId == 3) {
+            
+        //     return redirect()->route('api.students.home', auth()->user()->id);
+        // }
+
+        // //if not admin redirection
+        return redirect()->route('login');
+    }
 }
