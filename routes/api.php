@@ -49,7 +49,7 @@ Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
 //----------------------------- IsAdmin --------------------------------------------
-Route::middleware('IsAdmin')->group(function () {
+// Route::middleware('IsAdmin')->group(function () {
 //admin dashboard -  posts crud operations :
 Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
 Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
@@ -94,7 +94,7 @@ Route::put('/subjects/{subjectId}', [SubjectController::class, 'update']);
 Route::delete('/subjects/{subjectId}', [SubjectController::class, 'destroy']);
 Route::get('/subjects/showSubject/{subjectId}', [SubjectController::class, 'showSubject']);
 
-}); // end of IsAdmin
+// }); // end of IsAdmin
 
 //----------------------------- IsStudent --------------------------------------------
 Route::middleware('IsStudent')->group(function () {
