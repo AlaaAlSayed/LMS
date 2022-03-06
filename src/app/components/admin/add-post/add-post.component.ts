@@ -39,8 +39,8 @@ export class AddPostComponent implements OnInit {
    formData.append("title",this.formAdd.value.title);
    console.log(formData.get("title"));
 
-   formData.append("media",this.files, this.files.name);
-   console.log(formData.get("media"));
+   formData.append("file",this.files, this.files.name);
+   console.log(formData.get("file"));
 
    formData.append("description",this.formAdd.value.description);
    console.log(formData.get("description"));

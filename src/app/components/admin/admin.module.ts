@@ -52,7 +52,9 @@ const routes: Routes = [
   {path: 'edit-assign/:id', component:EditAssignTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
   {path: 'edit-admin/:id',component:EditAdminComponent,canActivate:[AuthGuard,AdminGuard]},
   {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]},
-  {path: 'addpost/:adminid',component:AddPostComponent}
+  {path: 'addpost/:adminid',component:AddPostComponent},
+  {path: 'editpost/:adminid/:postid',component:AddPostComponent}
+
 
 ]
 
