@@ -57,9 +57,9 @@ Route::post('/annoncemetns', [AnnouncementsContoller::class, 'store']);
 
 
 //admin dashboard -  profile page:
+Route::get('/admins', [AdminController::class, 'index']);
 Route::get('/admins/{adminId}',[AdminController::class,'show']);
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
-Route::get('/admins', [AdminController::class, 'index']);
 
 //admin dashboard -  all students page:
 Route::get('/students', [StudentController::class, 'index']);
