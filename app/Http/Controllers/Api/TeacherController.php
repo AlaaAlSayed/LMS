@@ -165,7 +165,7 @@ class TeacherController extends Controller
   public function teaches()
   {
     $teacher = teacher_teaches_subjects::all();
-    return response()->json($teacher);
+    return ($teacher);
   }
 
 
@@ -183,7 +183,7 @@ class TeacherController extends Controller
   public function showClassroom($Id)
   {
     $teacher_teaches = teacher_teaches_subjects::find($Id);
-    return ($teacher_teaches);
+    return response()->json($teacher_teaches);
   }
   // public function showClassroom($Id)
   // {
