@@ -27,6 +27,7 @@ class StoreStudentRequest extends FormRequest
 
             'name' => ['required', 'min:3'],
             'email' => ['required', 'unique:App\Models\Student,email'],
+            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453',
 
            
 
