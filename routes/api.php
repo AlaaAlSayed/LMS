@@ -39,7 +39,9 @@ Route::post('/sanctum/token', [UserController::class, 'generateToken'] );
 
 // *************************  HOME PAGE ******************************
 Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index'])->name('login');
+Route::get('/annoncemetns/showPost/{postId}', [AnnouncementsContoller::class, 'showPost']);
 Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
+
 
 //***********************************  AUTH **************************** */
 Route::middleware('auth:sanctum')->group(function () {
