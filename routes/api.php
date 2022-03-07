@@ -48,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
+Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 Route::get('/students/{student}', [StudentController::class, 'show']);
 Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
 
@@ -80,7 +81,6 @@ Route::put('/teachers/{teacherId}', [TeacherController::class , 'update']);
 Route::delete('/teachers/{teacherId}', [TeacherController::class , 'destroy']);
 
 // Route::get('/teachers/classroom',[TeacherController::class,'show']);
-Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
 
 
