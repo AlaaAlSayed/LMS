@@ -49,11 +49,14 @@ Route::middleware('auth:sanctum')->group(function () {
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
+
+Route::group(['middleware' => ['CheckRole:Admin,Student']], function() {
+  
 Route::get('/teachers/showClassroom/{teachesId}',[TeacherController::class,'showClassroom']);
 Route::get('/teachers/teaches',[TeacherController::class,'teaches']);
 Route::get('/students/{student}', [StudentController::class, 'show']);
 Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
-
+});
 //----------------------------- IsAdmin --------------------------------------------
 Route::middleware('IsAdmin')->group(function () {
 //admin dashboard -  posts crud operations :

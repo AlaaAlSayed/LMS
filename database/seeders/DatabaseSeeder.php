@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->delete();
 
         $roles = [
-            ['id' => 1, 'name' => 'ROLE_ADMIN'],
-            ['id' => 2, 'name' => 'ROLE_TEACHER'],
-            ['id' => 3, 'name' => 'ROLE_STUDENT' ],
+            ['id' => 1, 'name' => 'Admin'],
+            ['id' => 2, 'name' => 'Teacher'],
+            ['id' => 3, 'name' => 'Student' ],
        
         ];
 
@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
         
         \App\Models\Classroom::insert($classrooms);
 
-        DB::table('students')->delete();
+        // DB::table('students')->delete();
         $students = [
             [
             'id' => '1',
