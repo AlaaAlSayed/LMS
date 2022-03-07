@@ -42,14 +42,14 @@ Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index'])->name('log
 Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 //***********************************  AUTH **************************** */
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
 //----------------------------- IsAdmin --------------------------------------------
-// Route::middleware('IsAdmin')->group(function () {
+Route::middleware('IsAdmin')->group(function () {
 //admin dashboard -  posts crud operations :
 Route::delete('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'destroy']);
 Route::put('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'update']);
@@ -94,7 +94,7 @@ Route::put('/subjects/{subjectId}', [SubjectController::class, 'update']);
 Route::delete('/subjects/{subjectId}', [SubjectController::class, 'destroy']);
 Route::get('/subjects/showSubject/{subjectId}', [SubjectController::class, 'showSubject']);
 
-// }); // end of IsAdmin
+}); // end of IsAdmin
 
 //----------------------------- IsStudent --------------------------------------------
 Route::middleware('IsStudent')->group(function () {
@@ -197,7 +197,7 @@ Route::get('/chat', [ChatController::class, 'index']);
 Route::get('/messages', [ChatController::class, 'fetchMessages']);
 Route::post('/messages', [ChatController::class, 'sendMessage']);
 
-// });
+});
 
 
 // Route::post('/messages', [ChatController::class, 'send']);
