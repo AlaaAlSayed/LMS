@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Components\FlashMessages;
 use Closure;
 use Illuminate\Http\Request;
 use  App\Models\Role;
@@ -36,16 +37,7 @@ class CheckRole
         }
     
         // Flash::warning('Access Denied', 'You are not authorized to view that content.'); // custom flash class
-        dd('not auth' . $role);
-    
+        dd('Access Denied', 'You are not authorized to view that content.');
         return redirect('/');
-    
-    
-    }
-
-
-    
-      
-      
-      
+    }     
 }
