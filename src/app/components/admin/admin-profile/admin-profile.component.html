@@ -1,16 +1,24 @@
-<section class=" card">
-    <div class=" card-body d-flex">
+<section class="mt-5">
+    <div class="">
         <!-- <div class=" mr-5">
             <img src="assets/images/teacher-1.jpg" width="250px" height="250px" alt="profile picture">
         </div> -->
-        <div class=" ms-5">
+        <!-- <div class="lh-lg text-center">
             <h2 class="text-danger">Name: {{admin.name}} </h2>
-            <p>Username: {{admin.username}}</p>
-            <p>Email: {{admin.email}} </p>
-            <p>Phone: {{admin.phone}} </p>
-            <p>Address: {{admin.street + ' ' + admin.city + ' ' + admin.government}}</p>
+           <span class="fw-bold"> Username: </span> <span>{{admin.username}}</span><br>
+            <span><i class="fa fa-envelope"></i>   Email:</span> <span>{{admin.email}} </span><br>
+            <span> <i class="fa fa-phone" ></i>  Phone: </span> <span>{{admin.phone}} </span><br>
+            <span>Address: </span> <span>{{admin.street + ' ' + admin.city + ' ' + admin.government}}</span><br>
 
             <button class="btn btn-dark text-white" routerLink='/admin/edit-admin/{{admin.id}}'>Edit</button>
-        </div>
+        </div> -->
+        <ul class="flex-column text-center lh-lg" style="list-style-type: none;">
+            <li class=" text-danger fw-bold fs-5"> Name: <span class="fw-normal">{{admin.name}} </span></li>
+            <li class="fw-bold fs-6"> <i class="fa fa-user-circle"></i>  Username: <span class="fw-normal">{{admin.username}} </span></li>
+            <li class="fw-bold fs-6"><i class="fa fa-envelope"></i> Email: <span class="fw-normal">{{admin.email}} </span></li>
+            <li class="fw-bold fs-6"><i class="fa fa-phone" ></i> Phone: <span class="fw-normal">{{admin.phone}} </span></li>
+            <li class="fw-bold fs-6"><i class="fa fa-map-marker"></i>  Address: <span class="fw-normal"> {{admin.street + ' ' + admin.city + ' ' + admin.government}} </span></li>
+            <button type="button" class="btn btn-dark btn-lg text-white rounded-pill col-md-2" routerLink='/admin/edit-admin/{{admin.id}}'>Edit</button>
+        </ul>
     </div>
 </section>

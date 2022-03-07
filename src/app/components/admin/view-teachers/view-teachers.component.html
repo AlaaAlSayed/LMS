@@ -1,6 +1,6 @@
-<table class="table">
+<table class="table table-striped table-hover mt-5">
     <thead>
-      <tr>
+      <tr class="fs-5">
         <th scope="col">#id</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
@@ -22,16 +22,16 @@
         <td>{{teacher.city}}</td>
         <td>{{teacher.street}}</td>
         <td><button class="btn btn-primary btn-sm"routerLink="/admin/details-teacher/{{teacher.id}}">Details</button></td>
-        <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-teacher/{{teacher.id}}">Edit</button></td>
+        <td><button class="btn btn-info text-white btn-sm" routerLink="/admin/edit-teacher/{{teacher.id}}">Edit</button></td>
         <td><button class="btn btn-danger btn-sm" (click)="deleteTeacher(teacher.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
 
 <!-- Teacher Teaches Subjects -->
-<table class="table mt-5">
+<table class="table table-striped table-hover mt-5">
   <thead>
-    <tr>
+    <tr class="fs-5">
       <th scope="col">#id</th>
       <th scope="col">Teacher ID</th>
       <th scope="col">Subject ID</th>
@@ -45,7 +45,7 @@
       <td>{{item.subjectId}}</td>
       <td>{{item.classroomId}}</td>
       <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-assign/{{item.id}}">Edit</button></td>
-      <!-- <td><button class="btn btn-danger btn-sm" (click)="deleteTeacher(teacher.id)">Delete</button></td> -->
+      <!-- <td><button class="btn btn-danger btn-sm" (click)="deleteTeacher(item.id)">Delete</button></td> -->
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,7 @@
-<table class="table">
+<!-- <div class="table-responsive-sm"> -->
+<table class="table table-striped table-hover mt-5">
     <thead>
-      <tr>
+      <tr class="fs-6">
         <th scope="col">#id</th>
         <th scope="col">Name</th>
         <th scope="col">Username</th>
@@ -22,8 +23,9 @@
         <td>{{student.city}}</td>
         <td>{{student.street}}</td>
         <td><button class="btn btn-primary btn-sm" routerLink="/admin/details-student/{{student.id}}">Details</button></td>
-        <td><button class="btn btn-primary btn-sm" routerLink="/admin/edit-student/{{student.id}}">Edit</button></td>
+        <td><button class="btn btn-info btn-sm text-white" routerLink="/admin/edit-student/{{student.id}}">Edit</button></td>
         <td><button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
+<!-- </div> -->

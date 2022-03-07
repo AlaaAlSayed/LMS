@@ -1,5 +1,86 @@
-hii
+<!-- hii
 <div class="text-danger">we have {{getTeachersCount()}} teachers + and {{getStudentsCount()}} students
     and {{getClassesCount()}} classes and {{getSubjectsCount()}} subjects
-</div>
- nnnnn
+</div> -->
+ <div class="w-100 rounded-pill bg-secondary bg-gradient mt-3 card" style="height: 200px;">
+    <div class="card-body d-flex align-items-center">
+        <div>
+       <h1 class="text-white fs-1 ps-5 fw-bold">Dashboard</h1>
+       </div>
+       <div>
+           <img src="/assets/images/dashboard.png" style="position: absolute;right: 20px;bottom: 0;">
+
+       </div>
+   </div>
+ </div>
+ <div class="row">
+     <div class="col-lg-3 col-md-6">
+         <div class=" bg-success bg-gradient  card border-0 text-center" style="margin-top: 66px; height:200px;;">
+             <div class="card-body">
+                 <div class="" style="position: relative; margin-top: -66px;">
+                     <img src="/assets/images/student.png">
+                 </div>
+                 <h2 class="text-white mb-0 fs-2">
+                     {{getStudentsCount()}} 
+                     <small class="d-block mt-2" style="margin-top: 0.5rem !important;">Students</small>
+
+                 </h2>
+
+             </div>
+
+         </div>
+
+     </div>
+     <div class="col-lg-3 col-md-6">
+        <div class=" bg-warning bg-gradient  card border-0 text-center" style="margin-top: 66px; height:200px;;">
+            <div class="card-body">
+                <div class="" style="position: relative; margin-top: -66px;">
+                    <img src="/assets/images/teacher.png">
+                </div>
+                <h2 class="text-white mb-0 fs-2">
+                    {{getTeachersCount()}}  
+                    <small class="d-block mt-2" style="margin-top: 0.5rem !important;">Teachers</small>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class=" bg-primary bg-gradient  card border-0 text-center" style="margin-top: 66px; height:200px;;">
+            <div class="card-body">
+                <div class="" style="position: relative; margin-top: -66px; ">
+                    <img src="/assets/images/class.png" width="100px" height="100px" class="mb-4" >
+                </div>
+                <h2 class="text-white mb-0 fs-2">
+                    {{getClassesCount()}} 
+                    <small class="d-block mt-2" style="margin-top: 0.5rem !important;">Classes</small>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class=" bg-danger bg-gradient  card border-0 text-center" style="margin-top: 66px; height:200px;;">
+            <div class="card-body">
+                <div class="" style="position: relative; margin-top: -66px; ">
+                    <img src="/assets/images/subject.png" width="80px" height="80px" class="mb-4 mt-4" >
+                </div>
+                <h2 class="text-white mb-0 fs-2">
+                    {{getSubjectsCount()}} 
+                    <small class="d-block mt-2" style="margin-top: 0.5rem !important;">Subjects</small>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ </div>
