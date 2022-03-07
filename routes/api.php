@@ -49,6 +49,7 @@ Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
 Route::get('/students/{student}', [StudentController::class, 'show']);
+Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
 
 //----------------------------- IsAdmin --------------------------------------------
 Route::middleware('IsAdmin')->group(function () {
@@ -119,7 +120,7 @@ Route::middleware('IsTeacher')->group(function () {
 //teacher dashboard  - to get subject of this teacher to this class : 
 Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
 //teacher dashboard  - profile page :
-Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
+// Route::get('/teachers/{teacherId}',[TeacherController::class,'show']);
 Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
 
 //teacher dashboard  - home page :
