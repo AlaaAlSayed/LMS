@@ -165,7 +165,7 @@ class TeacherController extends Controller
   public function teaches()
   {
     $teacher = teacher_teaches_subjects::all();
-    return ($teacher);
+    return response()->json($teacher);
   }
 
 
