@@ -48,6 +48,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/user', [UserController::class, 'user']);
 Route::get('/id', [UserController::class, 'id']);
 
+Route::get('/students/{student}', [StudentController::class, 'show']);
+
 //----------------------------- IsAdmin --------------------------------------------
 Route::middleware('IsAdmin')->group(function () {
 //admin dashboard -  posts crud operations :
@@ -102,7 +104,7 @@ Route::middleware('IsStudent')->group(function () {
 //student dashboard  - home page :
 Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
 //student dashboard - profile page :
-Route::get('/students/{student}', [StudentController::class, 'show']);
+// Route::get('/students/{student}', [StudentController::class, 'show']);
 Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
 //student dashboard - single subject page :
 Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
