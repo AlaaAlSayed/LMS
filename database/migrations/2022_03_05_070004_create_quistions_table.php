@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
-           
+        Schema::create('quistions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->timestamps();
+            $table->text('value');
+            $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('examId')->references('id')->on('exams')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('quistions');
     }
 };

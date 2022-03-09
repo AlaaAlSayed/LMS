@@ -1,22 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\StudentController;
-use App\Http\Controllers\Api\ClassroomController;
-use App\Http\Controllers\Api\SubjectController;
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AssignmentController;
+use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
-use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AnnouncementsContoller;
 use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
- 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +42,8 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 //***********************************  AUTH **************************** */
 Route::middleware('auth:sanctum')->group(function () {
+
+// Route::middleware('auth:sanctum')->group(function () {
    
 //general for current authenticated user info
 Route::get('/user', [UserController::class, 'user']);
@@ -68,10 +67,10 @@ Route::get('/admins/{adminId}',[AdminController::class,'show']);
 Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
 //admin dashboard -  all students page:
-Route::get('/students', [StudentController::class, 'index']);
-Route::post('/students', [StudentController::class, 'store']);
-Route::put('/students/{student}', [StudentController::class, 'update']);
-Route::delete('/students/{student}', [StudentController::class, 'destroy']);
+Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
+// Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
+Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
+Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
 //admin dashboard  -  all teachers page :
 Route::post('/teachers/assign',[TeacherController::class,'assign']);
@@ -170,38 +169,35 @@ Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 
 Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
-
+});
 // //*******************   EXAM  ********************
 // //teacher dashboard  - exam CRUD operations  :
 
-// Route::get('/exams', [ExamController::class, 'index']);
-// Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams']);
-// Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show']);
-// Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store']);
-// Route::put('/exams/{examId}', [ExamController::class , 'update']);
-// Route::delete('/exams/{examId}', [ExamController::class , 'destroy']);
-// // student dashboard  -  take exam  :
-// Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take']);
+// Route::get('/exams', [ExamController::class, 'index'])->name('api.exams.index');
+// Route::get('/exams/{teacherId}',[ExamController::class,'teacherExams'])->name('api.exams.teacherExams');
+// Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show'])->name('api.exams.show');
+// Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store'])->name('api.exams.store');
+// Route::put('/exams/{examId}', [ExamController::class , 'update'])->name('api.exams.update');
+// Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api.exams.destroy');
+
+// student dashboard  -  take exam  :
+Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
+
+// });
+
+// ->withoutMiddleware([EnsureTokenIsValid::class]);
+
+Route::post('/exams/{examId}/{studentId}/{selectedOptions}', [ExamController::class , 'score'])->name('api.exams.score');
+Route::get('/exams/{teacherId}/{examId}',[ExamController::class,'show'])->name('api.exams.show');
+Route::post('/exams/{teacherId}/{subjectId}',[ExamController::class,'store'])->name('api.exams.store');
+Route::put('/exams/{examId}', [ExamController::class , 'update'])->name('api.exams.update');
+Route::delete('/exams/{examId}', [ExamController::class , 'destroy'])->name('api.exams.destroy');
 
 
-
-//------------------------   MESSAGE for all users -----------------------
-// users dashboard  - message CRUD operations  :
-// Route::get('/messages', [MessageController::class, 'index']);
-// Route::get('/messages/{userId}',[MessageController::class,'teacherMessages']);
-// Route::get('/messages/{userId}/{messageId}',[MessageController::class,'show']);
-// Route::post('/messages/{teacherId}/{subjectId}',[MessageController::class,'store']);
-// Route::put('/messages/{messageId}', [MessageController::class , 'update']);
-// Route::delete('/messages/{messageId}', [MessageController::class , 'destroy']);
-
-Route::get('/chatUsers', [ChatController::class, 'chatUsers'])->name('ChatUsers');
-
-
-Route::get('/chat', [ChatController::class, 'index']);
-Route::get('/messages', [ChatController::class, 'fetchMessages']);
-Route::post('/messages', [ChatController::class, 'sendMessage']);
-
-});
+Route::get('/question/{questionId}',[QuistionContoller::class,'show'])->name('api.questions.show');
+Route::post('/question/{examId}/{subjectId}',[QuistionContoller::class,'store'])->name('api.questions.store');
+Route::put('/question/{questionId}', [QuistionContoller::class , 'update'])->name('api.questions.update');
+Route::delete('/question/{questionId}',[QuistionContoller::class,'delete'])->name('api.questions.delete');
 
 
 // Route::post('/messages', [ChatController::class, 'send']);
@@ -209,3 +205,9 @@ Route::post('/messages', [ChatController::class, 'sendMessage']);
 // Route::get('/chat', [ChatController::class,'getIndex']);
 
 // ->withoutMiddleware([EnsureTokenIsValid::class]);
+Route::get('/option/{optionId}',[OptionController::class,'show'])->name('api.option.show');
+Route::post('/option/{questionId}',[OptionController::class,'store'])->name('api.option.store');
+Route::put('/option/{optionId}', [OptionController::class , 'update'])->name('api.option.update');
+
+
+Route::delete('/option/{optionId}',[OptionController::class,'delete'])->name('api.option.delete');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\Console\Question\Question;
 
 class Exam extends Model
 {
@@ -11,29 +12,30 @@ class Exam extends Model
 
     protected $fillable = [
         'name',
+        'quistionId',
     ];
 
     // public function examResult()
     // {
     //     return $this->hasMany(StudentTakeExam::class, 'id');
     // }
-    public function intakes()
+    public function quistions()
     {
-        return $this->hasMany(StudentTakeExam::class, 'examId');
+        return $this->hasMany(Quistion::class, 'quistionId');
     }
     
         
-    
+  
     public function teachers()
     {
       
         
-          return $this->belongsToMany('App\Models\Teacher','teacher_makes_exams','examId','teacherId');//,'subjectId','id','id','id');
+          return $this->belongsTo('App\Models\Teacher','teacher_makes_exams','examId','teacherId');//,'subjectId','id','id','id');
       }      
 
       public function subjects()
       {
-        return $this->belongsToMany('App\Models\Subject','teacher_makes_exams','examtId','subjectId');//,'teacherId','id','id','id');
+        return $this->belongsTo('App\Models\Subject','teacher_makes_exams','examId','subjectId');//,'teacherId','id','id','id');
     }
 
 }
