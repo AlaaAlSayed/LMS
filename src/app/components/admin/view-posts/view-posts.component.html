@@ -1,1 +1,22 @@
-<p>view-posts works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Details</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of _annocement;let currentIndex=index;">
+        <th scope="row">{{currentIndex+1}}</th>
+        <td>{{post.title}}</td>
+        <td><button class="btn btn-primary btn-sm" routerLink="detailpost/{{adminid}}/{{post.id}}">Details</button></td>
+        <td><button class="btn btn-primary btn-sm" routerLink="editpost/{{adminid}}/{{post.id}}">Edit</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="delete(post.id,currentIndex)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+

@@ -44,6 +44,11 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
   
 }, 
+/* {
+  path:'admin/posts/:adminid',
+  loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+  
+},  */
 /*  {
   path:'subject/:student_id/:id/assignment',
   loadChildren: () => import('./components/subject-detail-student/subject-detail-student.module').then(m => m.SubjectDetailStudentModule)
@@ -65,7 +70,7 @@ loadChildren: () => import('./components/class-detail-teacher/class-detail-teach
 
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes),HttpClientModule,],
+  imports: [RouterModule.forRoot(routes),HttpClientModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

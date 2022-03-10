@@ -3,4 +3,6 @@ export class annocement{
     title:string="";
     description:string="";
     adminID:number=0;
+    media:any;
+    id:number=0;
 }

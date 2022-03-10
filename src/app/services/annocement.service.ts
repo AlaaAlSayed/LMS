@@ -12,8 +12,11 @@ export class AnnocementService {
     return this._HttpClient.post(`${environment.APIURL}/api/annoncemetns`,_anoccement);
    }
 
-   getbyid(id:number){
+   getbyidpic(id:number){
     return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/${id}`);
+   }
+   getbyid(id:number){
+    return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/showpost/${id}`);
    }
    getfile(annocementId:number){
     const httpOptions = {
@@ -22,5 +25,15 @@ export class AnnocementService {
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`));
    return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/getFile/${annocementId}`,httpOptions);
   }
+  put(annocementId:number,_anoccement:any){
+    return this._HttpClient.put(`${environment.APIURL}/api/annoncemetns/${annocementId}`,_anoccement);
 
+  }
+  delete(id:number){
+    return this._HttpClient.delete(`${environment.APIURL}/api/annoncemetns/${id}`);
+   } 
+   get(){
+    return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns`);
+
+   }
 }

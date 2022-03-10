@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { annocement } from 'src/app/models/annocement';
 import { AnnocementService } from 'src/app/services/annocement.service';
 
@@ -34,15 +34,14 @@ export class EditPostComponent implements OnInit {
 
     this._anncementservice.getbyid(this.postid).subscribe((response:any)=>{
       this._annocement=response;
+      console.log( response)
       //this._matrial.name=this.formAdd.value.name;
     this.formAdd=new FormGroup({
       title:new FormControl(this._annocement.title),
       description:new FormControl(this._annocement.description),
-
       media:new FormControl(),
     
     })
-      console.log(this._annocement);
     }) 
   }
 
@@ -53,33 +52,42 @@ export class EditPostComponent implements OnInit {
   uploadfileclick(){
     this.isok=false;
   }
-  UpdateAssignment(post:number){
+  Updatepost(){
     let formData= new FormData();
     // console.log(this.formAdd.value.name);
-     formData.append("id",String(post));
+     formData.append("adminID",String(this.adminid));
      formData.append("title",this.formAdd.value.title);
      formData.append("description",this.formAdd.value.description);
 
      this._anncementservice.getfile(this.postid).subscribe(
       (response:any)=>{
         
-        this.backupfiles = new Blob([response], {type: 'application/pdf'});
         if(this.files==null){
-  formData.append("media",this.backupfiles,this._annocement.file);
+          this.backupfiles = new Blob([response],{type:"image/jpg,image/jpeg"});
+  formData.append("file",this.backupfiles,this._annocement.media);
   }
   else{
-    formData.append("media",this.files,this.files.name);
-  
+    formData.append("file",this.files,this.files.name);
+  console.log(this.files)
   }
-  //this._anncementservice.post(formData).subscribe(response=>{
+
+/* this._anncementservice.put(this.postid,formData).subscribe( (response:any)=>{
+  console.log("done");
+}) */
+
+
+  this._anncementservice.post(formData).subscribe(response=>{
   
-   // this._assignmentservice.delete(this.assignmentid).subscribe(response=>{
-    //});
+   this._anncementservice.delete(this.postid).subscribe(response=>{
+     console.log("done");
+    });
    // window.location.href=`http://localhost:4200/classroom/${this.teacherid}/${this.classroomid}/assignment`;
   
   
-  }
-  )
-     // });
+  
+     });
+
+    }
+    );
     }
 }
