@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  // APIURL: 'http://localhost:3000'
-  APIURL: 'http://127.0.0.1:8000'
+  APIURL: 'http://127.0.0.1:8000',
+  pusher: {
+    key: '3bee20a7dba542d55ac9',
+  }
 
 };
 

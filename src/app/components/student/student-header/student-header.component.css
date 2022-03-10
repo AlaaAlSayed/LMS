@@ -1,6 +1,6 @@
-.nav-link{
+.nav-link, .edu{
     transition: all 1s !important;
 }
-.nav-link:hover{
+.nav-link:hover, .edu:hover{
     color:rgb(0, 0, 0) !important;
 }

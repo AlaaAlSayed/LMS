@@ -13,7 +13,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {path:'header',component:StudentHeaderComponent,canActivate:[AuthGuard,StudentGuard]},
-  {path:'home/:id',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'home/:id',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard], },
+  // data:{role_id: '3'},},
   {path:'profile/:id',component:StudentProfileComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard]}
   ];

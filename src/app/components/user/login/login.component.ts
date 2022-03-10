@@ -33,10 +33,10 @@ users:any=new Users();
       "password": formData.password
     }
     
-    this._userService.postLogin(data).subscribe((result:any)=>{
-      console.log(result);
+    this._userService.postLogin(data).subscribe((res:any)=>{
+      console.log(res);
      
-      localStorage.setItem("token", result);
+      localStorage.setItem("token", res);
       this._userService.getLoggedId().subscribe((result:any)=> 
         {
           localStorage.setItem("id",result);
@@ -53,6 +53,7 @@ users:any=new Users();
               this._router.navigate([`/teacher/home/${this.users.id}`]);
             }
             else if(this.users.roleId==3){
+              
               this._router.navigate([`/student/home/${this.users.id}`]);  
             }
             
