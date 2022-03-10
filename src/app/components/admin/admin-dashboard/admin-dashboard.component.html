@@ -110,6 +110,24 @@
                 All Subjects
               </a>
             </li>
+            <li class="nav-item pt-3 navs">
+              <a class="nav-link text-dark bg-white border fs-5 rounded-pill" routerLink="#" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" (click)="toggleDisplay5()">
+                <i class="fa fa-arrow-circle-o-right"></i>
+                Posts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark " routerLink="#" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" [hidden]="isDisplay5">
+                <i class="fa fa-plus"></i>
+                Add Post
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark " routerLink="#" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" [hidden]="isDisplay5">
+                <!-- <span data-feather="file"></span> -->
+                All Posts
+              </a>
+            </li>
             <li class="nav-item pt-3 ">
               <!-- <a class="nav-link" [routerLink]="['/admin-profile',admin.id]">
                 <i class="fa fa-user-circle"></i>

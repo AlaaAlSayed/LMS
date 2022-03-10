@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { Users } from 'src/models/users';
 
 @Component({
@@ -52,9 +51,9 @@ users:any=new Users();
              else if(this.users.roleId==2){
               this._router.navigate([`/teacher/home/${this.users.id}`]);
             }
-            else if(this.users.roleId==3){
+            else if(this.users.roleId==3 && this.users.id==localStorage.getItem("id")){
               
-              this._router.navigate([`/student/home/${this.users.id}`]);  
+              this._router.navigate([`/student/home/${localStorage.getItem("id")}`]); 
             }
             
             

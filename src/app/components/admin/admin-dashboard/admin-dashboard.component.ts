@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit {
   isDisplay2=true;
   isDisplay3=true;
   isDisplay4=true;
+  isDisplay5=true;
   isLogged=false;
   admin:Admin= new Admin();
   // id:any;
@@ -96,6 +97,9 @@ export class AdminDashboardComponent implements OnInit {
   }
   toggleDisplay4(){
     this.isDisplay4=!this.isDisplay4;
+  }
+  toggleDisplay5(){
+    this.isDisplay5=!this.isDisplay5;
   }
 
 }
