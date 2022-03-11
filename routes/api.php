@@ -62,7 +62,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //admin dashboard -  all students page:
         Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-        Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
         Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
         Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
@@ -144,6 +143,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
     Route::get('/materials/{material}', [MaterialController::class, 'show'])->middleware('CheckRole:Teacher');
 
+    Route::post('/students', [StudentController::class, 'store'])->middleware('CheckRole:Admin');
 
     // // //*******************   MATERIALS  ********************
     // //teacher dashboard  - materials CRUD operations  :
