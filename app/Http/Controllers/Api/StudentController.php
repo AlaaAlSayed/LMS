@@ -79,31 +79,35 @@ class StudentController extends Controller
         return  $allStudents;
     }
 
-    public function update($studentId )//,UpdateStudentRequest $request )
+    public function update($studentId) //,UpdateStudentRequest $request )
     {
-       
-
-        if (request()->hasFile('picture_path')) { //if user choose file
-            request()->validate([
+        if (isset($data['picture_path'])) {
+            if (request()->hasFile('picture_path')) { //if user choose file
+                request()->validate([
                 'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
             ]);
-    
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
-            $extension = $file->getClientOriginalExtension();
-            $filename = 'student-image' . '_' . time() . '.' . $extension;
-            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-            Student::where('id', $studentId)->update([
-                'picture_path' =>  $filename,    
+
+                $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+                $extension = $file->getClientOriginalExtension();
+                $filename = 'student-image' . '_' . time() . '.' . $extension;
+                $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+                Student::where('id', $studentId)->update([
+                'picture_path' =>  $filename,
             ]);
-        } 
-
+            }
+        }
+    
         $data = request()->all();
-
+        if (isset($data['password'])) {
+            User::where('id', $studentId)->update([
+                'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            ]);
+        }
 
         User::where('id', $studentId)->update([
             'username' => $data['username'],
             'name' => $data['name'],
-            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            // 'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             // 'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
