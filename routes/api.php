@@ -177,7 +177,7 @@ Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 
 Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
-});
+
 // //*******************   EXAM  ********************
 // //teacher dashboard  - exam CRUD operations  :
 
@@ -232,3 +232,4 @@ Route::put('/option/{optionId}', [OptionController::class , 'update'])->name('ap
 
 
 Route::delete('/option/{optionId}',[OptionController::class,'delete'])->name('api.option.delete');
+});
