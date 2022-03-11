@@ -32,7 +32,7 @@ files:any;
     this._activatedRoute.paramMap.subscribe( params=>{
       this.id = Number(params.get('id'));
       this._studentService.getStudentByID(this.id).subscribe(
-        response=>{
+        (response:any)=>{
           // console.log(response.picture_path);
           // console.log(response);
           this.formEdit=new FormGroup({
