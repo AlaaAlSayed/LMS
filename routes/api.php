@@ -127,14 +127,14 @@ Route::middleware('IsStudent')->group(function () {
     Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
     //student dashboard - profile page :
     Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
-    //student dashboard - single subject page :
-    Route::get('/subjects/{subject}', [SubjectController::class, 'show']);
+    
     // student dashboard  - upload assignment    :
     Route::post('/students/upload', [StudentController::class, 'upload']);
     
     }); // end of IsStudent
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
-
+//student dashboard - single subject page :
+Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
 //*******************   MATERIALS  ********************
 //teacher dashboard  - materials CRUD operations  :
 Route::get('/materials', [MaterialController::class, 'index']);
