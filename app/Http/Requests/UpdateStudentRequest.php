@@ -36,7 +36,6 @@ class UpdateStudentRequest extends FormRequest
             'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453',
             'phone' => ['required',  'min:11', 'max:11','regex:/(01)[0-9]{9}/'],
     
-
         ];
     }
 
@@ -44,7 +43,15 @@ class UpdateStudentRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required',
-            'email.required' => 'email is required',
+            'username.required' => 'username is required',
+            'password.required' => 'A password is required',
+            'government.required' => 'A government is required',
+            'city.required' => 'A city is required',
+            'street.required' => 'A street is required',
+
+            'phone.required' => 'A phone is required',
+
+            
         ];
     }
 }

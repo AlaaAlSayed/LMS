@@ -145,7 +145,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
-    // //*******************   MATERIALS  ********************
+    // // //*******************   MATERIALS  ********************
     // //teacher dashboard  - materials CRUD operations  :
     // Route::get('/materials', [MatrialController::class, 'index']);
     // Route::put('/materials/{material}', [MaterialController::class, 'update']);

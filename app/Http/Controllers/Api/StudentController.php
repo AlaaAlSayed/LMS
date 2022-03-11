@@ -79,15 +79,15 @@ class StudentController extends Controller
         return  $allStudents;
     }
 
-    public function update($studentId)
+    public function update(UpdateStudentRequest $request ,$studentId)
     {
-        request()->validate([
-            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-        ]);
+        // request()->validate([
+        //     'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+        // ]);
 
 
-        if (request()->hasFile('picture_path')) { //if user choose file
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+        if ($request->hasFile('picture_path')) { //if user choose file
+            $file = $request->file('picture_path'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -95,7 +95,7 @@ class StudentController extends Controller
             $filename =  Student::where('id', $studentId)->get('picture_path');
         }
 
-        $data = request()->all();
+        $data = $request->all();
 
 
         User::where('id', $studentId)->update([
