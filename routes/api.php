@@ -67,9 +67,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
         //admin dashboard  -  all teachers page :
+        Route::post('/teachers', [TeacherController::class, 'store']);
         Route::put('/teachers/teachesUpdate/{teacherId}/{subjectId}', [TeacherController::class, 'teachesUpdate']);
         Route::get('/teachers', [TeacherController::class, 'index']);
-        Route::post('/teachers', [TeacherController::class, 'store']);
         Route::post('/teachers/assign', [TeacherController::class, 'assign']);
         Route::put('/teachers/{teacherId}', [TeacherController::class, 'update']);
         Route::delete('/teachers/{teacherId}', [TeacherController::class, 'destroy']);

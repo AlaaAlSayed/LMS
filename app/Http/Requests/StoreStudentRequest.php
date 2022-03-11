@@ -43,7 +43,15 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name.required' => 'A name is required',
-            'email.required' => 'email is required',
+            'username.required' => 'username is required',
+            'password.required' => 'A password is required',
+            'government.required' => 'A government is required',
+            'city.required' => 'A city is required',
+            'street.required' => 'A street is required',
+
+            'phone.required' => 'A phone is required',
+
+            
         ];
     }
 }
