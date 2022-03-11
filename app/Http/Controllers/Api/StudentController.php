@@ -91,9 +91,10 @@ class StudentController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-        } else {
-            $filename =  Student::where('id', $studentId)->get('picture_path');
-        }
+            Student::where('id', $studentId)->update([
+                'picture_path' =>  $filename,    
+            ]);
+        } 
 
         $data = request()->all();
 
@@ -110,7 +111,7 @@ class StudentController extends Controller
 
         Student::where('id', $studentId)->update([
             'phone' => $data['phone'],
-            'picture_path' =>  $filename,
+            // 'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
 
         ]);
