@@ -104,7 +104,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/materials', [MaterialController::class, 'store']);
         Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
         Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
-        Route::get('/materials/{material}', [MaterialController::class, 'show']);
 
         Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store']);
         Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
@@ -117,7 +116,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //----------------------------- IsStudent --------------------------------------------
     Route::middleware('IsStudent')->group(function () {
-        
+
         //student dashboard - profile page :
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
         //student dashboard  - home page :
@@ -142,7 +141,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->middleware('CheckRole:Teacher,Student');
 
     // show assignment as pdf
-    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
+    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
+    Route::get('/materials/{material}', [MaterialController::class, 'show'])->middleware('CheckRole:Teacher');
 
 
     // // //*******************   MATERIALS  ********************
