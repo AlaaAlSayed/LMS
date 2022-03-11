@@ -81,12 +81,13 @@ class StudentController extends Controller
 
     public function update($studentId )//,UpdateStudentRequest $request )
     {
-        request()->validate([
-            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-        ]);
-
+       
 
         if (request()->hasFile('picture_path')) { //if user choose file
+            request()->validate([
+                'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+            ]);
+    
             $file = request()->file('picture_path'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
