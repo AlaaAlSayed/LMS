@@ -115,9 +115,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
     }); // end of IsTeacher
 
-    Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom'])->middleware('CheckRole:Admin');
-    Route::get('/teachers/teaches', [TeacherController::class, 'teaches'])->middleware('CheckRole:Admin');
-    Route::get('/teachers/{teacherId}', [TeacherController::class, 'show'])->middleware('CheckRole:Admin,Teacher');
+    Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom']);//->middleware('CheckRole:Admin');
+    Route::get('/teachers/teaches', [TeacherController::class, 'teaches']);//->middleware('CheckRole:Admin');
+    Route::get('/teachers/{teacherId}', [TeacherController::class, 'show']);//->middleware('CheckRole:Admin,Teacher');
 
     //----------------------------- IsStudent --------------------------------------------
     Route::middleware('IsStudent')->group(function () {
@@ -131,7 +131,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/students/upload', [StudentController::class, 'upload']);
     }); // end of IsStudent
 
-    Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
+    Route::get('/students/{student}', [StudentController::class, 'show']);//->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show']); //->middleware('CheckRole:Teacher,Student');
     //*******************   MATERIALS  ********************
