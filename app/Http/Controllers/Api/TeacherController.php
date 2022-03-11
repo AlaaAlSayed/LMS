@@ -109,19 +109,19 @@ class TeacherController extends Controller
     // Teacher::where('id', $teacherId)->delete();
   }
 
-  public function update(UpdateTeacherRequest $request, $teacherId)
+  public function update( $teacherId )//,UpdateTeacherRequest $request)
   {
     // $teacher = Teacher::where('id', '=', $teacherId)->first();
     // $teacher->update($request->all());
     // return ($teacher);
 
-    // request()->validate([
-    //   'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-    // ]);
+    request()->validate([
+      'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+    ]);
 
 
-    if ($request->hasFile('picture_path')) { //if user choose file
-      $file = $request->file('picture_path'); //store  uploaded file to variable $file to
+    if (request()->hasFile('picture_path')) { //if user choose file
+      $file = request()->file('picture_path'); //store  uploaded file to variable $file to
       $extension = $file->getClientOriginalExtension();
       $filename = 'teacher-image' . '_' . time() . '.' . $extension;
       $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
@@ -129,7 +129,7 @@ class TeacherController extends Controller
       $filename =  Teacher::where('id', $teacherId)->get('picture_path');
     }
 
-    $data = $request->all();
+    $data = request()->all();
 
 
     User::where('id', $teacherId)->update([
