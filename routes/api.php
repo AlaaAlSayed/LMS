@@ -100,7 +100,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
         //teacher dashboard  - home page :
         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
-
     }); // end of IsTeacher
 
     Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom'])->middleware('CheckRole:Admin');
@@ -116,14 +115,24 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
-        
+
+
+        // show material as pdf
+        Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow']);
+        // download material as pdf
+        Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
+    
+
+    // show assignment as pdf
+    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
+
     }); // end of IsStudent
 
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
-    
-    
+
+
     //*******************   MATERIALS  ********************
     //teacher dashboard  - materials CRUD operations  :
     Route::get('/materials', [MatrialController::class, 'index']);
@@ -135,11 +144,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
     Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials']);
 
-    // show material as pdf
-    Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow']);
-
-    // download material as pdf
-    Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
 
     Route::get('/materials/{material}', [MaterialController::class, 'show']);
 
@@ -161,9 +165,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
     Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
 
-
-    // show assignment as pdf
-    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
 
