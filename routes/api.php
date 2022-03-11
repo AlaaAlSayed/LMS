@@ -51,11 +51,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/id', [UserController::class, 'id']);
 
 
-    Route::middleware('CheckRole:Admin')->group(function (){
+    Route::middleware('CheckRole:Admin,Student')->group(function (){
         //admin dashboard -  all students page:
         Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
     });
-    
+
     //----------------------------- IsAdmin --------------------------------------------
     Route::middleware('IsAdmin')->group(function () {
 
