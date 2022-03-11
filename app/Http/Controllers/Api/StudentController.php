@@ -40,13 +40,13 @@ class StudentController extends Controller
         return  $subjects;
     }
 
-    public function store()
+    public function store(StoreStudentRequest $request)
     {
-       
 
 
-        if (request()->hasFile('picture_path')) { //if user choose file
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+
+        if ($request->hasFile('picture_path')) { //if user choose file
+            $file = $request->file('picture_path'); //store  uploaded file to variable $file to
 
             $extension = $file->getClientOriginalExtension();
             $filename = 'student-image' . '_' . time() . '.' . $extension;
@@ -55,24 +55,24 @@ class StudentController extends Controller
             $filename = 'storage/app/public/assets/image_tmp.jpeg';
         }
 
-        $data = request()->all();
-       
-        $newUser=User::create([
+        $data = $request->all();
+
+        $newUser = User::create([
             'username' => $data['username'],
             'name' => $data['name'],
-            'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
         ]);
-        
+
         Student::create([
             'id' => $newUser->id,
             'phone' => $data['phone'],
             'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
-          
+
         ]);
 
         $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
@@ -97,17 +97,17 @@ class StudentController extends Controller
 
         $data = request()->all();
 
-     
+
         User::where('id', $studentId)->update([
             'username' => $data['username'],
             'name' => $data['name'],
-            'password' => password_hash( $data['password'],PASSWORD_DEFAULT ),
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             // 'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
             'street' => $data['street'],
         ]);
-        
+
         Student::where('id', $studentId)->update([
             'phone' => $data['phone'],
             'picture_path' =>  $filename,
@@ -121,15 +121,13 @@ class StudentController extends Controller
     public function destroy($studentId)
     {
         $student =  User::join('students', 'students.id', '=', 'users.id')->find($studentId);
-        if ($student )
-       {
-           User::where('id', $studentId)->delete();
-           $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
-           return  $allStudents;
-       }
+        if ($student) {
+            User::where('id', $studentId)->delete();
+            $allStudents =  User::join('students', 'students.id', '=', 'users.id')->get()->all();
+            return  $allStudents;
+        }
         // Student::where('id', $studentId)->delete();
         return  "not student";
-        
     }
 
 
@@ -158,7 +156,7 @@ class StudentController extends Controller
             'answer' => $filename,
         ]);
 
-        
+
         $StudentsUploadAssignment = StudentUploadAssignment::all();
         return ($StudentsUploadAssignment);
     }
