@@ -16,14 +16,14 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { TeacherHeaderComponent } from '../teacher/teacher-header/teacher-header.component';
 
 const routes: Routes = [
-  {path:'assignment',component:TechassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'quiz',component:TechquizComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment',component:TechassignmentComponent},
+  {path:'quiz',component:TechquizComponent},
   {path:'matrial',component:TechmatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'',component:TechsubjectmainComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
+  {path:'matrial/creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'matrial/updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
 
 
 

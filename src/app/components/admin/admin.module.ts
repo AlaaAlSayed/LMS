@@ -106,11 +106,13 @@ const routes: Routes = [
   //   role:[1]
   // }},
   {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]},
+  {path: 'posts/:adminid',component:ViewPostsComponent, canActivate:[AuthGuard,AdminGuard]},
   // ,data:{
   //   role:[1]
   // }},
-  {path: 'addpost/:adminid',component:AddPostComponent},
-  {path: 'editpost/:adminid/:postid',component:AddPostComponent}
+  {path: 'addpost/:adminid',component:AddPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'editpost/:adminid/:postid',component:EditPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'detailpost/:adminid/:postid',component:DetailPostComponent, canActivate:[AuthGuard,AdminGuard]},
 
 
 ]
@@ -136,10 +138,10 @@ const routes: Routes = [
     EditAssignTeacherComponent,
     EditAdminComponent,
     AdminDashboardComponent,
+    ViewPostsComponent,
     AddPostComponent,
     EditPostComponent,
     DetailPostComponent,
-    ViewPostsComponent,
   
   ],
   imports: [

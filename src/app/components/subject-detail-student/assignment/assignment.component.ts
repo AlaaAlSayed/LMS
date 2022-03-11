@@ -41,10 +41,10 @@ export class AssignmentComponent implements OnInit {
         },
         (error:any)=>{alert("error");}
       )
-      this._assignmentsservice.getuploads().subscribe((response:any)=>{
+      /* this._assignmentsservice.getuploads().subscribe((response:any)=>{
         this._assignment=response;
         console.log(response);
-      })
+      }) */
             
           })
    

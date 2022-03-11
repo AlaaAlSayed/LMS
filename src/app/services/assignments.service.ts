@@ -18,7 +18,7 @@ export class assignmentsservice {
    getById(assignmentId:number){
     //console.log(`${environment.APIURL}/api/assignments/${id}`);
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/assignments/${id}`));
-    return this._HttpClient.get(`${environment.APIURL}/api/assignment/${assignmentId}`);
+    return this._HttpClient.get(`${environment.APIURL}/api/deadline/${assignmentId}`);
    }
    show(assignmentid:number){
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/showpdf/${matrialid}`));

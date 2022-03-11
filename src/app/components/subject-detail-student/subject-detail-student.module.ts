@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'result',component:ResultComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'quiz',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'matrial',component:MatrialComponent,canActivate:[AuthGuard,StudentGuard]},
-  {path:'uploadassignment/:assignmentid',component:UploadassignmentComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'assignment/uploadassignment/:assignmentid',component:UploadassignmentComponent,canActivate:[AuthGuard,StudentGuard]},
 
   {path:'',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]}
 

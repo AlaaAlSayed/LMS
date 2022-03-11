@@ -1,6 +1,6 @@
 
 <h1 class="border-bottom mt-5"> Edit New Post: </h1>
-<div  >
+<div [formGroup]="formAdd" >
 <div class="row g-3">
   
     <div class="col-md-6">
@@ -25,7 +25,7 @@
     <div class="col-md-6">
       <label class="form-label">Media</label>
      
-      <input type="file" class="form-control"  formControlName="media" name="media"  >
+      <input type="file" class="form-control"  formControlName="media" name="media" (change)="uploadfile($event)" >
      <br>
       <object data="">
     
@@ -36,7 +36,7 @@
 
     <div class="row g-3">
       <div class="col-12">
-        <button type="button" class="btn btn-primary"  >Edit Post</button>
+        <button type="button" class="btn btn-primary" (click)="Updatepost()" >Edit Post</button>
       </div>
     </div>
 
