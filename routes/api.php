@@ -51,10 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/id', [UserController::class, 'id']);
 
 
-    Route::middleware('CheckRole:Admin,Student')->group(function (){
-        //admin dashboard -  all students page:
-        Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-    });
+    // Route::middleware('CheckRole:Admin,Student')->group(function (){
+    //     //admin dashboard -  all students page:
+    //     Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
+    // });
 
     //----------------------------- IsAdmin --------------------------------------------
     Route::middleware('IsAdmin')->group(function () {
@@ -70,9 +70,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/admins/{adminId}', [AdminController::class, 'show']);
         Route::put('/admins/{adminId}', [AdminController::class, 'update']);
 
-        // //admin dashboard -  all students page:
-        // Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-        // // Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
+        //admin dashboard -  all students page:
+        Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
+        // Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
         Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
         Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
@@ -130,7 +130,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/students/upload', [StudentController::class, 'upload']);
     }); // end of IsStudent
 
-    Route::get('/students/{student}', [StudentController::class, 'show']); //->middleware('CheckRole:Admin,Student');
+    Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show']); //->middleware('CheckRole:Teacher,Student');
     //*******************   MATERIALS  ********************
