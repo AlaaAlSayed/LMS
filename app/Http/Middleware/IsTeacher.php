@@ -36,6 +36,6 @@ class IsTeacher
         //     return redirect()->route('api.students.home', auth()->user()->id);
         // }
         
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

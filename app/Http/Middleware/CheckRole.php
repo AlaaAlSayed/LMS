@@ -38,6 +38,6 @@ class CheckRole
     
         // Flash::warning('Access Denied', 'You are not authorized to view that content.'); // custom flash class
         dd('Access Denied', 'You are not authorized to view that content.');
-        return redirect('/');
+        return redirect('home');
     }     
 }
