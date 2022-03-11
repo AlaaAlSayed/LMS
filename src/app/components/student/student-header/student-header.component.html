@@ -1,19 +1,25 @@
 <div class="container-fluid sticky-top p-0 " style="width: 100%;">
-  <header class="d-flex flex-wrap bg-warning justify-content-center py-3 mb-4 border-bottom">
-    <a routerLink="profile/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <span class="fs-4 ps-5"><i class="fa fa-graduation-cap"></i>
+  <header class="d-flex flex-wrap bg-warning bg-gradient justify-content-center py-3 mb-4 border-bottom">
+    <a routerLink="profile/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none edu" style="text-shadow: 2px 2px 4px #000000;">
+      <span class="fs-4 ps-5">
+        <!-- <i class="fa fa-graduation-cap"></i> -->
+        <i class="fa fa-home" ></i>
+
         Education</span>
     </a>
 
     <ul class="nav nav-pills">
       <!-- <li class="nav-item"><a routerLink="/student/home" class="fs-6 text-white nav-link" aria-current="page">Home</a></li> -->
       <!-- <li class="nav-item"><a routerLink="/profile/about" class="fs-6 text-white nav-link">About</a></li> -->
-      <li class="nav-item"><a routerLink="/profile/contact" class="fs-6 text-white nav-link">Contact</a></li>
-      <li class="nav-item"><a routerLink="/student/home/{{student.id}}" class="fs-6 text-white nav-link">Subjects</a></li>
-      <li class="nav-item"><a routerLink="/student/profile/{{student.id}}" class="fs-6 text-white nav-link">My Profile</a></li>
+      <li class="nav-item"><a routerLink="/profile/contact" class="fs-6 text-white nav-link"> <i class="fa fa-comment"></i>
+         Contact</a></li>
+      <li class="nav-item"><a routerLink="/student/home/{{student.id}}" class="fs-6 text-white nav-link"><i class="fa fa-home" ></i>  Subjects</a></li>
+      <li class="nav-item"><a routerLink="/student/profile/{{student.id}}" class="fs-6 text-white nav-link"> <i class="fa fa-user-circle-o"></i>
+        My Profile</a></li>
       <!-- <li class="nav-item"><a routerLink="#" class="text-white fs-6 nav-link">Login</a></li> -->
 
-      <li class="nav-item"><a routerLink="/user/logout" class="text-white fs-6 nav-link">Logout</a></li>
+      <li class="nav-item"><a routerLink="/user/logout" class="text-white fs-6 nav-link"> <i class="fa fa-sign-out"></i>
+        Logout</a></li>
     </ul>
   </header>
 </div>

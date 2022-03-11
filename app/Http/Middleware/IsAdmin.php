@@ -40,6 +40,6 @@ class IsAdmin
         // }
 
         // //if not admin redirection
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

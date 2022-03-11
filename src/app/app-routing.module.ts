@@ -1,9 +1,7 @@
-import { AdminGuard } from './guards/admin.guard';
-import { AuthGuard } from './guards/auth.guard';
+import { MessagesComponent } from './components/messages/messages.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -57,6 +55,10 @@ loadChildren: () => import('./components/profile/profile.module').then(m => m.Pr
 {path:'classroom/:teacherid/:classroomid',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)
 
+},
+{
+  path: 'chat',
+  component: MessagesComponent,
 },
 /* {path:'classroom/:teacherid/:classroomid/matrial',
   loadChildren: () => import('./components/class-detail-teacher/class-detail-teacher.module').then(m => m.ClassDetailTeacherModule)

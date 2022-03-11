@@ -7,13 +7,13 @@
 </h2> -->
 <!--style="background-image: url('assets/images/teach5.jpg');"-->
 
-<div class=" container-fluid d-flex mt-2"  >
+<div class=" container-fluid d-flex mt-5 min-vh-100"  >
     <div class="row">
-        <div class="h-50%  pt-5 text-center lh-lg border-end shadow-lg rounded t-class me-2" style="width: 250px;" *ngFor="let item of teach">
+        <div class="bg-gradient pt-5 text-center border border-2 border-dark shadow-lg rounded-3 t-class ms-3" style="width: 250px; height: 200px;" *ngFor="let item of teach">
         
             <h1 class="text-dark"> class: {{item.classroomId}} </h1>
             
-            <a class="m-5 mt-2 text-secondary" routerLink="/classroom/{{teacher.id}}/{{item.classroomId}}"> Go to Class</a>
+            <button class="btn bg-dark bg-gradient mt-2 text-white" routerLink="/classroom/{{teacher.id}}/{{item.classroomId}}"> Go to Class</button>
             
         </div>
     <!-- <div class="col-md-4 pt-5 text-center lh-lg border-end shadow-lg rounded t-class">

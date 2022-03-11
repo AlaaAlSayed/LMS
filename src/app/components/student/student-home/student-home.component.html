@@ -1,44 +1,19 @@
 <app-student-header></app-student-header>
 
-<div class=" container-fluid d-flex mt-2 min-vh-100" >
+<div class=" container-fluid d-flex mt-5 min-vh-100" >
     <!-- style="background-image: url('assets/images/success-story.jpg')" -->
     <div class="row" >
-    <div class=" h-50% pt-5 text-center  border-end s-class shadow-lg rounded " style="width: 250px;" *ngFor="let subject of subjects;" >
+    <div class="bg-gradient pt-5 text-center ms-3 border border-2 border-dark s-class shadow-lg rounded-3 " style="width: 250px; height: 200px;"  *ngFor="let subject of subjects; let currentIndex =index ">
+        <!-- [ngClass]="{'s-class': currentIndex%2!=0, 'g-class': currentIndex%2==0}"  -->
         <h1 class="text-dark"> {{subject.name}} </h1>
-        <!-- <img src="../../assets/images/arabic.jpeg"> -->
-        <a class=" mt-2 text-secondary" routerLink="/subject/{{student.id}}/{{subject.id}}/matrial"> Go to Subject</a>
-        <!-- <button type="button"  class="m-5 mt-2  btn btn-secondary">Go to Subject </button> -->
+        <button class="btn bg-dark bg-gradient mt-2 text-white" routerLink="/subject/{{student.id}}/{{subject.id}}"> Go to Subject</button>
     </div>
     <!-- <div class="col-md-4 pt-5 text-center lh-lg border-end shadow-lg rounded s-class" >
         <h1 class="text-dark"> Arabic </h1>
         <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
         
-    </div>
-    <div class="col-md-4 pt-5 text-center lh-lg border-end s-class shadow-lg rounded" >
-        <h1 class="text-dark"> English </h1>
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
-        
-    </div>
-    <div class="col-md-4 pt-5 text-center lh-lg border-end s-class shadow-lg rounded" >
-        <h1 class="text-dark"> Mathematics </h1>
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
-        
-    </div>
-    <div class="col-md-4 pt-5 text-center lh-lg border-end mt-5 s-class shadow-lg rounded" >
-        <h1 class="text-dark"> Social Studies </h1>
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
-        
-    </div>
-    <div class="col-md-4 pt-5 text-center lh-lg border-end mt-5 s-class shadow-lg rounded" >
-        <h1 class="text-dark"> Science </h1>
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
-        
-    </div>
-    <div class="col-md-4 pt-5 text-center lh-lg border-end mt-5 s-class shadow-lg rounded" >
-        <h1 class="text-dark"> Religion </h1>
-        <button type="button" class="m-5 mt-2  btn btn-secondary">Go to Subject </button>
-        
     </div> -->
+    
     <app-footer></app-footer>
     </div>
 

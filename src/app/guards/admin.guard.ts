@@ -31,6 +31,19 @@ export class AdminGuard implements CanActivate {
   else{
     this.isAble=true;
   }
+  // route.data['role'].forEach(
+  //   (element:any) => {
+  //   if(element==this.roleId) { 
+  //     this.isAble=true 
+  //   } 
+  //  else{ this.isAble=false; 
+  // alert('not allowed')}
+    
+  // });
+  return this.isAble;
+
+  // return route.data['role']==this.roleId;
+
     //   if(this.roleId==1)
     //   {   
     //     this.isAble=true;
@@ -51,7 +64,7 @@ export class AdminGuard implements CanActivate {
     // return this._router.parseUrl('/admin/home');
   // console.log(ActivatedRouteSnapshot);
   // console.log(RouterStateSnapshot);
-return this.isAble;
+// return this.isAble;
 }
 }
 

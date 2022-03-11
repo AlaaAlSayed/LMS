@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { Users } from 'src/models/users';
 
 @Component({
@@ -33,10 +32,10 @@ users:any=new Users();
       "password": formData.password
     }
     
-    this._userService.postLogin(data).subscribe((result:any)=>{
-      console.log(result);
+    this._userService.postLogin(data).subscribe((res:any)=>{
+      console.log(res);
      
-      localStorage.setItem("token", result);
+      localStorage.setItem("token", res);
       this._userService.getLoggedId().subscribe((result:any)=> 
         {
           localStorage.setItem("id",result);
@@ -46,14 +45,14 @@ users:any=new Users();
             localStorage.setItem("roleId",this.users.roleId);
             if(this.users.roleId==1){
               this._router.navigate(['/admin/home']);
-              
-              
             }
              else if(this.users.roleId==2){
               this._router.navigate([`/teacher/home/${this.users.id}`]);
             }
-            else if(this.users.roleId==3){
-              this._router.navigate([`/student/home/${this.users.id}`]);  
+            else if(this.users.roleId==3 ){
+              
+              this._router.navigate([`/student/home/${this.users.id}`]); 
+              
             }
             
             

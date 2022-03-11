@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import { Subject } from 'src/models/subject';
 import { TeacherService } from 'src/app/services/teacher.service';
@@ -19,9 +20,10 @@ students:Student[]=[];
 teachers:Teacher[]=[];
 classes:Classroom[]=[];
 subjects:Subject[]=[];
-  constructor(private _studentService:StudentService,private _subjectService:SubjectService,private _classroomService:ClassroomService,private http:HttpClient, private _teacherService:TeacherService) { }
+  constructor(private _userService:UserService, private _studentService:StudentService,private _subjectService:SubjectService,private _classroomService:ClassroomService,private http:HttpClient, private _teacherService:TeacherService) { }
 
   ngOnInit(): void {
+
    this._teacherService.get().subscribe(response=>{
      this.teachers=response;
    })

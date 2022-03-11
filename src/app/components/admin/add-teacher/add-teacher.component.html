@@ -96,6 +96,10 @@
 <h1 class="border-bottom mt-5"> Assign Teacher To Classroom: </h1>
 <div [formGroup]="formAssign" >
 <div class="row g-3">
+  <div class="col-md-6" hidden>
+        <label  class="form-label">ID</label>
+        <input type="number" formControlName="id" name="id" class="form-control" >
+      </div>
   <div class="col-md-6 form-group" >
     <label  class="form-label">Teacher ID</label>
     <input type="number" class="form-control" #inputTeacher formControlName="teacherId" name="teacherId"  >

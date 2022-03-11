@@ -1,7 +1,7 @@
 
 <app-teacher-header></app-teacher-header>
-<section class=" card">
-    <div class=" card-body d-flex">
+<section class=" mt-5">
+    <!-- <div class=" card-body d-flex">
         <div class=" mr-5">
             <img src="{{data}}" width="250px" height="250px" alt="profile picture">
         </div>
@@ -11,10 +11,18 @@
             <p>Email: {{teacher.username}}</p>
             <p>Phone: {{teacher.phone}}</p>
             <p>Address: {{teacher.street+' '+teacher.city+ ' '+teacher.government}}</p>
-
-            
         </div>
-    </div>
+    </div> -->
+    <ul class="flex-column text-center lh-lg" style="list-style-type: none;">
+        <div class=" mr-5">
+            <img src="{{data}}" width="200px" height="150px" alt="profile picture" class="rounded-circle">
+        </div>
+        <li class=" text-danger fw-bold fs-5"> Name: <span class="fw-normal">{{teacher.name}} </span></li>
+        <li class="fw-bold fs-6"> <i class="fa fa-user-circle"></i>  Username: <span class="fw-normal">{{teacher.username}} </span></li>
+        <li class="fw-bold fs-6"><i class="fa fa-envelope"></i> Email: <span class="fw-normal">{{teacher.email}} </span></li>
+        <li class="fw-bold fs-6"><i class="fa fa-phone" ></i> Phone: <span class="fw-normal">{{teacher.phone}} </span></li>
+        <li class="fw-bold fs-6"><i class="fa fa-map-marker"></i>  Address: <span class="fw-normal"> {{teacher.street + ' ' + teacher.city + ' ' + teacher.government}} </span></li>
+    </ul>
 </section>
 
 <app-footer></app-footer>

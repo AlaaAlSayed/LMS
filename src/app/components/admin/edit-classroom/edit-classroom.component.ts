@@ -38,6 +38,7 @@ formEdit = new FormGroup({
   updateClass(){
     this._classroomService.updateData(this.id, this.formEdit.value).subscribe(response=>{
       console.log(response, 'updated Successfully');
+      alert('updated Successfully');
     }
     )
   }

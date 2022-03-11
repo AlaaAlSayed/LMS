@@ -61,6 +61,7 @@ export class EditAdminComponent implements OnInit {
   updateAdmin(){
     this._adminService.updateData(this.user.id, this.formEdit.value).subscribe(response=>{
       console.log(response, 'updated Successfully');
+      alert('updated Successfully');
     }
     )
   }

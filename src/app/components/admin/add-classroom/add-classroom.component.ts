@@ -35,6 +35,7 @@ export class AddClassroomComponent implements OnInit {
     this._classroomService.post(classroom).subscribe(response=>{
       console.log(this.classes);
       this.classes.push(classroom);
+      alert('Added Successfully');
     })
   }
 

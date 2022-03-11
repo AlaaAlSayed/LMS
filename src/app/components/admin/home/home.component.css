@@ -1,9 +1,7 @@
-/* @media (min-width: 768px){} */
-/* .iframe-preview[_ngcontent-serverApp-c157] {
-    position: absolute;
-    height: calc(100% - 63px);
-    width: 100%;
-    border: none;
-    margin-top: 63px;
+/* .bg-gradient-purple{
+    background: linear-gradient(
+        135deg, #e564fb 0%,#9c27b0 66%);
 } */
-
+.d-block{
+    display: block !important;
+} 

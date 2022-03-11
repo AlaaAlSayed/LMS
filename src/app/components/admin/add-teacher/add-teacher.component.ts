@@ -52,6 +52,7 @@ export class AddTeacherComponent implements OnInit {
     this._teacherService.postTeacherClass(teach).subscribe(response=>{
       console.log(this.teaches);
       this.teaches.push(teach);
+      alert('Added Successfully');
     })
 
   }
@@ -87,9 +88,10 @@ export class AddTeacherComponent implements OnInit {
    formData.append("city",this.formAdd.value.city);
    formData.append("street",this.formAdd.value.street);
 
-this._teacherService.post(formData).subscribe(response=>{
-  this.files=response;
+this._teacherService.post(formData).subscribe((response:any)=>{
+  this.files=response.data;
   console.log(this.files);
+  alert('Added Successfully');
 
 })
 }

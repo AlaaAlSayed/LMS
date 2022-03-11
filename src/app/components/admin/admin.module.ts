@@ -34,28 +34,85 @@ import { ViewPostsComponent } from './view-posts/view-posts.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent, canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'admin-profile/:id', component:AdminProfileComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'addStudent', component:AddStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'view-students', component:ViewStudentsComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'details-student/:id',component:DetailsStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path:'addTeacher', component:AddTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'view-teachers',component:ViewTeachersComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'details-teacher/:id', component:DetailsTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-student/:id', component:EditStudentComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-teacher/:id', component:EditTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'view-classrooms', component:ViewClassroomsComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'add-classroom', component:AddClassroomComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-classroom/:id',component:EditClassroomComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'add-subject', component:AddSubjectComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-subject/:id', component:EditSubjectComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'view-subjects',component:ViewSubjectsComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-assign/:id', component:EditAssignTeacherComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'edit-admin/:id',component:EditAdminComponent,canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
   {path: 'dashboard',component:AdminDashboardComponent , canActivate:[AuthGuard,AdminGuard]},
-  {path: 'posts/:adminid',component:ViewPostsComponent},
-  {path: 'addpost/:adminid',component:AddPostComponent},
-  {path: 'editpost/:adminid/:postid',component:EditPostComponent},
-  {path: 'detailpost/:adminid/:postid',component:DetailPostComponent},
+  {path: 'posts/:adminid',component:ViewPostsComponent, canActivate:[AuthGuard,AdminGuard]},
+  // ,data:{
+  //   role:[1]
+  // }},
+  {path: 'addpost/:adminid',component:AddPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'editpost/:adminid/:postid',component:EditPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'detailpost/:adminid/:postid',component:DetailPostComponent, canActivate:[AuthGuard,AdminGuard]},
 
 
 ]

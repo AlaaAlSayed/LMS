@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 
 
@@ -8,7 +8,7 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  
+
   logged=new BehaviorSubject<boolean>(this.isLoggedIn());
   constructor(private _httpClient:HttpClient) { }
   
@@ -16,8 +16,6 @@ export class UserService {
   {
     return this._httpClient.post(`${environment.APIURL}/api/sanctum/token`, data);
 
-    // localStorage.setItem("Token",token);
-    // this.logged.next(true);
   }
 
   isLoggedIn():boolean

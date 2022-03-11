@@ -60,9 +60,10 @@ export class AddStudentComponent implements OnInit {
    formData.append("city",this.formAdd.value.city);
    formData.append("street",this.formAdd.value.street);
 
-this._studentService.post(formData).subscribe(response=>{
-  this.files=response;
+this._studentService.post(formData).subscribe((response:any)=>{
+  this.files=response.data;
   console.log(this.files);
+  alert('Added Successfully');
 
 })
 }

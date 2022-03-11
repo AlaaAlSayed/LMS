@@ -20,10 +20,10 @@ const routes: Routes = [
   {path:'quiz',component:TechquizComponent},
   {path:'matrial',component:TechmatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'',component:TechsubjectmainComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
+  {path:'matrial/creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'matrial/updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
 
 
 
