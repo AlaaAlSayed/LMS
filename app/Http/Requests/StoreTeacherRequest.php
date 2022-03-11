@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStudentRequest extends FormRequest
+class StoreTeacherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreStudentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,7 +24,6 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
         return [
-
             'name' => ['required', 'min:3', 'max:30'],
             'username' => ['required', 'min:5', 'max:15','unique:users'],
            
@@ -33,17 +32,9 @@ class StoreStudentRequest extends FormRequest
             'city' => ['required','min:4', 'max:10'],
             'street' => ['required' ,'min:4', 'max:10'],
         
-            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453',
+            'picture_path' => ['required'],
             'phone' => ['required',  'min:11', 'max:11','regex:/(01)[0-9]{9}/'],
-    
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required' => 'A name is required',
-            'email.required' => 'email is required',
+            'email' => ['required', 'min:10', 'max:30','email','unique:teachers'],
         ];
     }
 }

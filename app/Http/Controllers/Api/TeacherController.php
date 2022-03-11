@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\Subject;
 use App\Models\teacher_teaches_subjects;
 use App\Models\User;
+use App\Http\Requests\StoreTeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -44,17 +45,17 @@ class TeacherController extends Controller
   }
 
 
-  public function store()
+  public function store( StoreTeacherRequest  $request)
   {
-    request()->validate([
-      'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-    ]);
+    // $request->validate([
+    //   'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+    // ]);
 
 
-    if (request()->hasFile('picture_path')) //if user choose file
+    if ($request->hasFile('picture_path')) //if user choose file
     {
 
-      $file = request()->file('picture_path'); //store  uploaded file to variable $file to 
+      $file = $request->file('picture_path'); //store  uploaded file to variable $file to 
 
       $extension = $file->getClientOriginalExtension();
       $filename = 'teacher-image' . '_' . time() . '.' . $extension;
@@ -66,7 +67,7 @@ class TeacherController extends Controller
       $filename = 'image_tmp.jpeg';
     }
 
-    $data = request()->all();
+    $data = $request->all();
 
     $newUser = User::create([
       'username' => $data['username'],
