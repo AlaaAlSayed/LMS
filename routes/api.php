@@ -100,6 +100,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
         //teacher dashboard  - home page :
         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+
+        Route::post('/materials', [MaterialController::class, 'store']);
+        Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
+        Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
+        Route::get('/materials/{material}', [MaterialController::class, 'show']);
+
+        Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store']);
+        Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
+        Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy']);
     }); // end of IsTeacher
 
     Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom'])->middleware('CheckRole:Admin');
@@ -117,55 +126,41 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/students/upload', [StudentController::class, 'upload']);
 
 
-        // show material as pdf
-        Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow']);
         // download material as pdf
         Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
-    
 
-    // show assignment as pdf
-    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
-
+        // download assignment as pdf
+        Route::get('/assignments/download/{assignmentId}', [AssignmentController::class, 'download']);
     }); // end of IsStudent
 
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+    // show material as pdf
+    Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
+
+    Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+
+    // show assignment as pdf
+    Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow']);
 
 
-    //*******************   MATERIALS  ********************
-    //teacher dashboard  - materials CRUD operations  :
-    Route::get('/materials', [MatrialController::class, 'index']);
-    Route::post('/materials', [MaterialController::class, 'store']);
-    Route::put('/materials/{material}', [MaterialController::class, 'update']);
-    Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
+    // //*******************   MATERIALS  ********************
+    // //teacher dashboard  - materials CRUD operations  :
+    // Route::get('/materials', [MatrialController::class, 'index']);
+    // Route::put('/materials/{material}', [MaterialController::class, 'update']);
 
-    Route::get('/materials/getFile/{material}', [MaterialController::class, 'getFile']);
-    Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
-    Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials']);
+    // Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
+    // Route::get('/materials/subject/{subject}', [MaterialController::class, 'subjectMaterials']);
 
+    // // ***********************     ASSIGNMENTS   *********************
+    // // teacher dashboard  - assignments CRUD operations  :
+    // Route::get('/assignments', [AssignmentController::class, 'index']);
+    // Route::put('/assignments/{assignment}', [AssignmentController::class, 'update']);
 
-    Route::get('/materials/{material}', [MaterialController::class, 'show']);
-
-
-
-    // ***********************     ASSIGNMENTS   *********************
-    // teacher dashboard  - assignments CRUD operations  :
-    Route::get('/assignments', [AssignmentController::class, 'index']);
-    Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show']);
-    Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store']);
-    Route::put('/assignments/{assignment}', [AssignmentController::class, 'update']);
-    Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy']);
-
-    // show assignments of given teacher 
-    Route::get('/assignments/teacher/{teacherId}', [AssignmentController::class, 'teacherAssignments']);
-
-    // download assignment as pdf
-    Route::get('/assignments/download/{assignmentId}', [AssignmentController::class, 'download']);
-    Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
-    Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
-
-
+    // // show assignments of given teacher 
+    // Route::get('/assignments/teacher/{teacherId}', [AssignmentController::class, 'teacherAssignments']);
+    // Route::get('/assignments/studentsUploads', [AssignmentController::class, 'studentsUploads']);
 
 
 
