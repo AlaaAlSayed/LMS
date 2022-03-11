@@ -117,11 +117,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //----------------------------- IsStudent --------------------------------------------
     Route::middleware('IsStudent')->group(function () {
-
-        //student dashboard  - home page :
-        Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
+        
         //student dashboard - profile page :
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
+        //student dashboard  - home page :
+        Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
 
