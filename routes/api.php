@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\SubjectController;
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\MaterialController;
@@ -129,7 +130,7 @@ Route::middleware('auth:sanctum')->group(function () {
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
     }); // end of IsStudent
-    
+
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show']); //->middleware('CheckRole:Teacher,Student');
