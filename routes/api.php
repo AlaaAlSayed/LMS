@@ -28,10 +28,6 @@ use Illuminate\Validation\ValidationException;
 */
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 // *********************************  LOGIN *****************************
 Route::post('/sanctum/token', [UserController::class, 'generateToken']);
 
@@ -44,17 +40,11 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 //***********************************  AUTH **************************** */
 Route::middleware('auth:sanctum')->group(function () {
 
-    // Route::middleware('auth:sanctum')->group(function () {
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
     Route::get('/id', [UserController::class, 'id']);
 
-
-    // Route::middleware('CheckRole:Admin,Student')->group(function (){
-    //     //admin dashboard -  all students page:
-    //     Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-    // });
 
     //----------------------------- IsAdmin --------------------------------------------
     Route::middleware('IsAdmin')->group(function () {
@@ -72,16 +62,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //admin dashboard -  all students page:
         Route::get('/students', [StudentController::class, 'index'])->name('api.students.index');
-        // Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
+        Route::post('/students', [StudentController::class, 'store'])->name('api.students.store');
         Route::put('/students/{student}', [StudentController::class, 'update'])->name('api.students.update');
         Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('api.students.destroy');
 
         //admin dashboard  -  all teachers page :
-        Route::post('/teachers/assign', [TeacherController::class, 'assign']);
         Route::put('/teachers/teachesUpdate/{teacherId}/{subjectId}', [TeacherController::class, 'teachesUpdate']);
-
         Route::get('/teachers', [TeacherController::class, 'index']);
         Route::post('/teachers', [TeacherController::class, 'store']);
+        Route::post('/teachers/assign', [TeacherController::class, 'assign']);
         Route::put('/teachers/{teacherId}', [TeacherController::class, 'update']);
         Route::delete('/teachers/{teacherId}', [TeacherController::class, 'destroy']);
 
@@ -109,14 +98,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/subjects/teacher/{teacher}/classroom/{classroom}', [TeacherController::class, 'classroomSubject']);
         //teacher dashboard  - profile page :
         Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
-
         //teacher dashboard  - home page :
         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+
     }); // end of IsTeacher
 
-    Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom']); //->middleware('CheckRole:Admin');
-    Route::get('/teachers/teaches', [TeacherController::class, 'teaches']); //->middleware('CheckRole:Admin');
-    Route::get('/teachers/{teacherId}', [TeacherController::class, 'show']); //->middleware('CheckRole:Admin,Teacher');
+    Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom'])->middleware('CheckRole:Admin');
+    Route::get('/teachers/teaches', [TeacherController::class, 'teaches'])->middleware('CheckRole:Admin');
+    Route::get('/teachers/{teacherId}', [TeacherController::class, 'show'])->middleware('CheckRole:Admin,Teacher');
 
     //----------------------------- IsStudent --------------------------------------------
     Route::middleware('IsStudent')->group(function () {
@@ -125,14 +114,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
         //student dashboard - profile page :
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
-
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
+        
     }); // end of IsStudent
 
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
-    Route::get('/subjects/{subject}', [SubjectController::class, 'show']); //->middleware('CheckRole:Teacher,Student');
+    Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+    
+    
     //*******************   MATERIALS  ********************
     //teacher dashboard  - materials CRUD operations  :
     Route::get('/materials', [MatrialController::class, 'index']);
