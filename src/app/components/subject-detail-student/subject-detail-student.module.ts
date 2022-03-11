@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UploadassignmentComponent } from './uploadassignment/uploadassignment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { StudentModule } from '../student/student.module';
+// import { StudentModule } from '../student/student.module';
 
 enableProdMode();
 
@@ -43,7 +43,8 @@ const routes: Routes = [
   ],
   imports: [
     
-    CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule,ReactiveFormsModule,StudentModule
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule,ReactiveFormsModule
+    // ,StudentModule
     
   ]
 })

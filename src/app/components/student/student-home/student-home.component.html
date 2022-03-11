@@ -6,7 +6,7 @@
     <div class="bg-gradient pt-5 text-center ms-3 border border-2 border-dark s-class shadow-lg rounded-3 " style="width: 250px; height: 200px;"  *ngFor="let subject of subjects; let currentIndex =index ">
         <!-- [ngClass]="{'s-class': currentIndex%2!=0, 'g-class': currentIndex%2==0}"  -->
         <h1 class="text-dark"> {{subject.name}} </h1>
-        <button class="btn bg-dark bg-gradient mt-2 text-white" routerLink="/subject/{{student.id}}/{{subject.id}} "> Go to Subject</button>
+        <button class="btn bg-dark bg-gradient mt-2 text-white" routerLink="/subject/{{student.id}}/{{subject.id}}"> Go to Subject</button>
     </div>
     <!-- <div class="col-md-4 pt-5 text-center lh-lg border-end shadow-lg rounded s-class" >
         <h1 class="text-dark"> Arabic </h1>

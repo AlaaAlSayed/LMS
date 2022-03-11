@@ -45,15 +45,14 @@ users:any=new Users();
             localStorage.setItem("roleId",this.users.roleId);
             if(this.users.roleId==1){
               this._router.navigate(['/admin/home']);
-              
-              
             }
              else if(this.users.roleId==2){
               this._router.navigate([`/teacher/home/${this.users.id}`]);
             }
-            else if(this.users.roleId==3 && this.users.id==localStorage.getItem("id")){
+            else if(this.users.roleId==3 ){
               
-              this._router.navigate([`/student/home/${localStorage.getItem("id")}`]); 
+              this._router.navigate([`/student/home/${this.users.id}`]); 
+              
             }
             
             

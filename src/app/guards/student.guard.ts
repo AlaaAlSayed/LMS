@@ -19,16 +19,21 @@ export class StudentGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.roleId!=3){
         this._router.navigateByUrl('/user/login');
-        // this.isAble=false;
         alert("you are not able to go here, please login as a student first");
-
         this.isAble= false;
   }
   else if(this.roleId==3){
-    // this._router.navigateByUrl(`/student/home/${this.id}`);
-
-    this.isAble= true;
+    this.isAble= true; 
   }
+  // if(this.roleId==3 || this.roleId==1){
+  //   this._router.navigate([`/student/home/${this.id}`]);
+  //   return true;
+  // }
+  // else{
+  //   return false;
+  // }
+      // this._router.navigateByUrl(`/student/home/${this.id}`);
+
  
       //navigate to student/home/id with this id
 

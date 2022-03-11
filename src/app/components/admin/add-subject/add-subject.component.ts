@@ -33,6 +33,7 @@ export class AddSubjectComponent implements OnInit {
     this._subjectService.post(subject).subscribe(response=>{
       console.log(this.subjects);
       this.subjects.push(subject);
+      alert('Added Successfully');
     })
   }
 

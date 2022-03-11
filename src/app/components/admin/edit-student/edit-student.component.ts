@@ -81,6 +81,7 @@ files:any;
   updateStudent(){
     this._studentService.updateData(this.id, this.formEdit.value).subscribe(response=>{
       console.log(response, 'updated Successfully');
+      alert('updated Successfully');
     }
     )
   }

@@ -10,12 +10,25 @@ import { SharedModule } from '../shared/shared.module';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { AdminGuard } from 'src/app/guards/admin.guard';
 
 const routes: Routes = [
   {path:'header',component:StudentHeaderComponent,canActivate:[AuthGuard,StudentGuard]},
+// data:{
+//   role:[1, 3]
+// }},
   {path:'home/:id',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard]},
+  // ,data:{
+  //   role:[1, 3]
+  // }},
   {path:'profile/:id',component:StudentProfileComponent,canActivate:[AuthGuard,StudentGuard]},
-  {path:'',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard]}
+  // ,data:{
+  //   role:[1, 3]
+  // }},
+  {path:'',component:StudentHomeComponent,canActivate:[AuthGuard,StudentGuard]},
+  // ,data:{
+  //   role:[1, 3]
+  // }}
   ];
 
 @NgModule({

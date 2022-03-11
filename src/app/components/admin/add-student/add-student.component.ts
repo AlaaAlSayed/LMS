@@ -63,6 +63,7 @@ export class AddStudentComponent implements OnInit {
 this._studentService.post(formData).subscribe(response=>{
   this.files=response;
   console.log(this.files);
+  alert('Added Successfully');
 
 })
 }

@@ -43,6 +43,7 @@ export class EditAssignTeacherComponent implements OnInit {
     this._teacherService.updateTeaches(this.id1, this.formEditAssign.value).subscribe(
       response=>{
         console.log(response,'updated successfully');
+        alert('updated Successfully');
       }
     )
   }
