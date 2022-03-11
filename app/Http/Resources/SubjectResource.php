@@ -22,10 +22,9 @@ class SubjectResource extends JsonResource
             'subjectMaterial' => SubjectMaterialResource::collection($this->subjectMaterial),
             'assignments' => AssignmentResource::collection($this->assignments),
             'exams' => ExamResource::collection($this->exams),
+            
             // 'exam' => ExamResource::collection($this->exam),
-            
             // 'studentExam' => StudentTakeExamResource::collection($this->studentExam),
-            
             // 'studentAssignment' => StudentUploadAssignmentResource::collection($this->studentAssignment),
 
         ];

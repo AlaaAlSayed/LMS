@@ -134,7 +134,7 @@ Route::middleware('IsStudent')->group(function () {
     }); // end of IsStudent
     Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
 //student dashboard - single subject page :
-Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+Route::get('/subjects/{subject}', [SubjectController::class, 'show']);//->middleware('CheckRole:Teacher,Student');
 //*******************   MATERIALS  ********************
 //teacher dashboard  - materials CRUD operations  :
 Route::get('/materials', [MaterialController::class, 'index']);
