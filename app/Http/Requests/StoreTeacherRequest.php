@@ -13,7 +13,7 @@ class StoreTeacherRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,9 +32,26 @@ class StoreTeacherRequest extends FormRequest
             'city' => ['required','min:4', 'max:10'],
             'street' => ['required' ,'min:4', 'max:10'],
         
-            'picture_path' => ['required'],
+            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453',
+
             'phone' => ['required',  'min:11', 'max:11','regex:/(01)[0-9]{9}/'],
             'email' => ['required', 'min:10', 'max:30','email','unique:teachers'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'A name is required',
+            'username.required' => 'username is required',
+            'password.required' => 'A password is required',
+            'government.required' => 'A government is required',
+            'city.required' => 'A city is required',
+            'street.required' => 'A street is required',
+
+            'phone.required' => 'A phone is required',
+            'email.required' => 'A email is required',
+
+            
         ];
     }
 }
