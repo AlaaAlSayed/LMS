@@ -111,8 +111,8 @@ const routes: Routes = [
   //   role:[1]
   // }},
   {path: 'addpost/:adminid',component:AddPostComponent, canActivate:[AuthGuard,AdminGuard]},
-  {path: 'posts/editpost/:adminid/:postid',component:EditPostComponent, canActivate:[AuthGuard,AdminGuard]},
-  {path: 'posts/detailpost/:adminid/:postid',component:DetailPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'posts/:adminid/editpost/:adminid/:postid',component:EditPostComponent, canActivate:[AuthGuard,AdminGuard]},
+  {path: 'posts/:adminid/detailpost/:adminid/:postid',component:DetailPostComponent, canActivate:[AuthGuard,AdminGuard]},
 
 
 ]

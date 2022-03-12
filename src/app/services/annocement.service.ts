@@ -16,7 +16,7 @@ export class AnnocementService {
     return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/${id}`);
    }
    getbyid(id:number){
-    return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/showpost/${id}`);
+    return this._HttpClient.get(`${environment.APIURL}/api/annoncemetns/showPost/${id}`);
    }
    getfile(annocementId:number){
     const httpOptions = {

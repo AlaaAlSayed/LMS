@@ -22,9 +22,12 @@ path:any;
     });
     this._annocementservice.getbyid(this.postid).subscribe((response:any)=>{
       this._annocement=response;
+      console.log(this._annocement);
     })
     this._annocementservice.getbyidpic(this.postid).subscribe((response:any)=>{
       this.path=response;
+      console.log(this.path);
+
     })
   }
 

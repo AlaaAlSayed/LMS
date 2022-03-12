@@ -1,18 +1,15 @@
-<div class="container">
-    <div class="row m-5">
-      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-        <h1>header</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur perspiciatis quisquam eaque dolores maxime quibusdam. Saepe harum id, quibusdam pariatur architecto labore obcaecati deleniti! Tenetur veniam atque repellendus ducimus? Laboriosam.</p>
-      </div>
-      <div class="col-lg-6 order-1 order-lg-2 hero-img">
-        <img src="" class="img-fluid" alt="">
-      </div>
-    </div>
+    <div class="row m-5" *ngFor="let annoc of _annocement;let currentIndex=index;">
+      <div class="col-8    justify-content-center ">
+        <h1 class="d-flex  justify-content-center">{{annoc.title}}</h1>
+        <p class="d-flex  justify-content-center">{{annoc.description}}</p>
+        <img src="http://127.0.0.1:8000/storage/assets/{{annoc.media}}" class="img-fluid" alt=""style="height:300px;width:80%" >
 
-   
+      </div>
+</div>
+   <br>
     <div class="row m-5" >
         <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-          <img src="" class="img-fluid" alt="">
+          <img src="http://127.0.0.1:8000/storage/assets/POST_1647018952.jpg" class="img-fluid" alt="" style="height:300px;width:80%">
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <h1 class="pl-3">header</h1>
@@ -21,4 +18,3 @@
           </p>
         </div>
     </div>
-</div>
