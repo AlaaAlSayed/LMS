@@ -40,11 +40,9 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 //***********************************  AUTH **************************** */
 Route::middleware('auth:sanctum')->group(function () {
 
-
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
     Route::get('/id', [UserController::class, 'id']);
-
 
     //----------------------------- IsAdmin --------------------------------------------
     Route::middleware('IsAdmin')->group(function () {
@@ -122,7 +120,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
-
 
         // download material as pdf
         Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
