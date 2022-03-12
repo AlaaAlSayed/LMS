@@ -81,9 +81,8 @@ class StudentController extends Controller
 
     public function update($studentId) //,UpdateStudentRequest $request )
     {
-        $data = request()->all();
 
-        if (isset($data['picture_path'])) {
+        // if (isset($data['picture_path'])) {
             if (request()->hasFile('picture_path')) { //if user choose file
                 request()->validate([
                 'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
@@ -97,7 +96,8 @@ class StudentController extends Controller
                 'picture_path' =>  $filename,
             ]);
             }
-        }
+        // }
+        $data = request()->all();
     
         if (isset($data['password'])) {
             User::where('id', $studentId)->update([
