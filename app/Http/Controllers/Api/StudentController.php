@@ -81,24 +81,24 @@ class StudentController extends Controller
 
     public function update($studentId) //,UpdateStudentRequest $request )
     {
+        request()->validate([
+            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+        ]);
 
         // if (isset($data['picture_path'])) {
-            if (request()->hasFile('picture_path')) { //if user choose file
-                request()->validate([
-                'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-            ]);
-
-                $file = request()->file('picture_path'); //store  uploaded file to variable $file to
-                $extension = $file->getClientOriginalExtension();
-                $filename = 'student-image' . '_' . time() . '.' . $extension;
-                $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-                Student::where('id', $studentId)->update([
+        if (request()->hasFile('picture_path')) { //if user choose file
+          
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'student-image' . '_' . time() . '.' . $extension;
+            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+            Student::where('id', $studentId)->update([
                 'picture_path' =>  $filename,
             ]);
-            }
+        }
         // }
         $data = request()->all();
-    
+
         if (isset($data['password'])) {
             User::where('id', $studentId)->update([
                 'password' => password_hash($data['password'], PASSWORD_DEFAULT),
@@ -149,7 +149,7 @@ class StudentController extends Controller
         if (request()->hasFile('answer')) { //if user choose file
             $file = request()->file('answer'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
-            $filename = 'Answer_' .$data ['studentId'] .  '_' . time() . '.' . $extension;
+            $filename = 'Answer_' . $data['studentId'] .  '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
         } else {
             $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
@@ -157,9 +157,9 @@ class StudentController extends Controller
 
 
         $assignment = StudentUploadAssignment::create([
-            'studentId' =>  $data ['studentId'],
-            'subjectId' =>  $data ['subjectId'],
-            'assignmentId' =>  $data ['assignmentId'],
+            'studentId' =>  $data['studentId'],
+            'subjectId' =>  $data['subjectId'],
+            'assignmentId' =>  $data['assignmentId'],
             'answer' => $filename,
         ]);
 
