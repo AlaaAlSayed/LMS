@@ -121,7 +121,6 @@ Route::middleware('auth:sanctum')->group(function () {
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
 
-
         // download material as pdf
         Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
 
