@@ -80,7 +80,6 @@ class ExamController extends Controller
       
         Exam::where('id', $examId)->update([
            'name'=>$data['name'],
-           'quistionId'=>$data['quistionId']///////////////////////////////////delete
 
        ]);
       
