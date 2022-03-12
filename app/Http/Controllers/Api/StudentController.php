@@ -79,29 +79,35 @@ class StudentController extends Controller
         return  $allStudents;
     }
 
-    public function update($studentId )//,UpdateStudentRequest $request )
+    public function update($studentId) //,UpdateStudentRequest $request )
     {
-        request()->validate([
-            'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-        ]);
+        if (isset($data['picture_path'])) {
+            if (request()->hasFile('picture_path')) { //if user choose file
+                request()->validate([
+                'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+            ]);
 
-
-        if (request()->hasFile('picture_path')) { //if user choose file
-            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
-            $extension = $file->getClientOriginalExtension();
-            $filename = 'student-image' . '_' . time() . '.' . $extension;
-            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-        } else {
-            $filename =  Student::where('id', $studentId)->get('picture_path');
+                $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+                $extension = $file->getClientOriginalExtension();
+                $filename = 'student-image' . '_' . time() . '.' . $extension;
+                $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+                Student::where('id', $studentId)->update([
+                'picture_path' =>  $filename,
+            ]);
+            }
         }
-
+    
         $data = request()->all();
-
+        if (isset($data['password'])) {
+            User::where('id', $studentId)->update([
+                'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            ]);
+        }
 
         User::where('id', $studentId)->update([
             'username' => $data['username'],
             'name' => $data['name'],
-            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            // 'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             // 'roleId' => '3',
             'government' => $data['government'],
             'city' => $data['city'],
@@ -110,7 +116,7 @@ class StudentController extends Controller
 
         Student::where('id', $studentId)->update([
             'phone' => $data['phone'],
-            'picture_path' =>  $filename,
+            // 'picture_path' =>  $filename,
             'classroomId' => $data['classroomId'],
 
         ]);

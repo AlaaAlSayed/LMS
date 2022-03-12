@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { Routes, RouterModule } from '@angular/router'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -21,5 +22,6 @@ const routes: Routes = [
   imports: [
     CommonModule,RouterModule.forChild(routes)
   ]
+
 })
 export class ProfileModule { }

@@ -51,7 +51,7 @@ export class AddPostComponent implements OnInit {
    this._annocementservice.post(formData).subscribe(response=>{
     this.files=response;
     //console.log(this.files);
-    //window.location.href=`http://localhost:4200/classroom/${this.teacherid}/${this.classroomid}/assignment`;
+    window.location.href=`http://localhost:4200/admin/posts/${this.adminid}`;
 
   
   },

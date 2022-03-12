@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MessagesComponent } from './components/messages/messages.component';
+import { ProfileModule } from './components/profile/profile.module';
 
 @NgModule({
   declarations: [
