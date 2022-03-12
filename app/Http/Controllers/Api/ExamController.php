@@ -59,7 +59,6 @@ class ExamController extends Controller
         $data=request()->all();
         $exam= Exam::create([
            'name'=>$data['name'],
-           'quistionId'=>$data['quistionId']///////////////////////////////////delete
         ]);
         
         teacher_makes_exams::create([
