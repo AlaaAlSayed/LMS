@@ -81,6 +81,8 @@ class StudentController extends Controller
 
     public function update($studentId) //,UpdateStudentRequest $request )
     {
+        $data = request()->all();
+
         if (isset($data['picture_path'])) {
             if (request()->hasFile('picture_path')) { //if user choose file
                 request()->validate([
@@ -97,7 +99,6 @@ class StudentController extends Controller
             }
         }
     
-        $data = request()->all();
         if (isset($data['password'])) {
             User::where('id', $studentId)->update([
                 'password' => password_hash($data['password'], PASSWORD_DEFAULT),

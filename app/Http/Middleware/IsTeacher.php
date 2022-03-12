@@ -20,25 +20,11 @@ class IsTeacher
         // $id = $request->id;
         // $user = User::where('id', '=', $id)->first();
 
-        if ( auth()->user()->roleId == 2) {
-            if (null == $request->route('student')||$request->route('student') ==  auth()->user()->id)
-            {
-                return $next($request);
-            }
-        } 
-        // else {
-        //     return redirect()->route('welcome');
-        // }
-        // elseif (auth()->user()->roleId == 1) {
+        if (auth()->user()->roleId == 2) {
 
-        //     return redirect()->route('api.admins.home', auth()->user()->id);
-
-        // } 
-        // elseif (auth()->user()->roleId == 3) {
-            
-        //     return redirect()->route('api.students.home', auth()->user()->id);
-        // }
-        
+            return $next($request);
+        }
+    
         return redirect()->route('home');
     }
 }
