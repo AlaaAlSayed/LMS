@@ -21,7 +21,10 @@ class IsTeacher
         // $user = User::where('id', '=', $id)->first();
 
         if ( auth()->user()->roleId == 2) {
-            return $next($request);
+            if (null == $request->route('student')||$request->route('student') ==  auth()->user()->id)
+            {
+                return $next($request);
+            }
         } 
         // else {
         //     return redirect()->route('welcome');

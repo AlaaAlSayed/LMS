@@ -20,9 +20,8 @@ class IsStudent
         // $id = $request->id;
         // $user = User::where('id', '=', $id)->first();
         if ( auth()->user()->roleId == 3 ) {
-            if (null == $request->route('student')||$request->route('student') ==  auth()->user()->id)
+            if (null == $request->route('id')||$request->route('id') ==  auth()->user()->id)
             {
-                // dd ('passed');
                 return $next($request);
             }
         } 
