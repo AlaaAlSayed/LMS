@@ -14,6 +14,9 @@ import { UpdatematerialComponent } from './updatematerial/updatematerial.compone
 import { UpdateassignmentComponent } from './updateassignment/updateassignment.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { TeacherHeaderComponent } from '../teacher/teacher-header/teacher-header.component';
+import { CreatequizComponent } from './createquiz/createquiz.component';
+import { CreatequestionComponent } from './createquestion/createquestion.component';
+import { CreateoptionComponent } from './createoption/createoption.component';
 
 const routes: Routes = [
   {path:'assignment',component:TechassignmentComponent},
@@ -23,7 +26,13 @@ const routes: Routes = [
   {path:'matrial/creatematrial',component:CreateMatrialComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'assignment/createassignment',component:CreateAssignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'assignment/updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'matrial/updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},];
+  {path:'matrial/updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz/createquiz',component:CreatequizComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz/createquiz/:quizid/createquestion',component:CreatequestionComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz/createquiz/:quizid/:questionid/createoption',component:CreateoptionComponent,canActivate:[AuthGuard,TeacherGuard]},
+
+
+];
 
 
 
@@ -38,7 +47,10 @@ const routes: Routes = [
     CreateMatrialComponent,
     CreateAssignmentComponent,
     UpdatematerialComponent,
-    UpdateassignmentComponent
+    UpdateassignmentComponent,
+    CreatequizComponent,
+    CreatequestionComponent,
+    CreateoptionComponent
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule

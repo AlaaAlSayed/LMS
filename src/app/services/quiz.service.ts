@@ -9,32 +9,32 @@ import { NgModule } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class subjectservice {
+export class quizservice {
 
   constructor(private _HttpClient:HttpClient) { }
   get(){
-    console.log(`${environment.api_URL}/api/exams`);
-    //console.log(this._HttpClient.get(`${environment.api_URL}/api/subjects`));
+    console.log(`${environment.APIURL}/api/exams`);
+    //console.log(this._HttpClient.get(`${environment.APIURL}/api/subjects`));
 
-   return this._HttpClient.get(`${environment.api_URL}/api/exams`);
+   return this._HttpClient.get(`${environment.APIURL}/api/exams`);
   }
    getById(id:number):Observable<subject>{
-    console.log(`${environment.api_URL}/api/subjects/${id}`);
+    console.log(`${environment.APIURL}/api/subjects/${id}`);
 
-    return this._HttpClient.get<subject>(`${environment.api_URL}/api/exams/${id}`);
+    return this._HttpClient.get<subject>(`${environment.APIURL}/api/exams/${id}`);
    }
 
-  post(_subject:subject){
-    return this._HttpClient.post(`${environment.api_URL}/api/exams`,_subject);
+  postquiz(quiz:any,teacherId:number,subjectId:number){
+    return this._HttpClient.post(`${environment.APIURL}/api/exams/${teacherId}/${subjectId}`,quiz);
    }
 
    
   put(_subject:subject){
-    return this._HttpClient.put(`${environment.api_URL}/api/exams`,_subject);
+    return this._HttpClient.put(`${environment.APIURL}/api/exams`,_subject);
    }
 
    delete(id:number){
-    return this._HttpClient.delete(`${environment.api_URL}/api/exams/${id}`);
+    return this._HttpClient.delete(`${environment.APIURL}/api/exams/${id}`);
    } 
 
 }

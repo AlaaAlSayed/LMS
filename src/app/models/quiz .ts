@@ -1,5 +1,9 @@
 export class quiz{
-    id:number=0 ;
-    name:string="";
-    intakes:[]=[];
+  
+    teacherId:number=0;
+    subjectId:number=0;
+    examId:number=0;
+    min_score:number=0;
+    time:any;
+    date:any;
 }
