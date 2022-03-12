@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of students;let currentIndex=index">
+      <tr *ngFor="let student of students | paginate: { itemsPerPage: count, currentPage: p };">
         <th scope="row">{{student.id}}</th>
         <td>{{student.name}}</td>
         <td>{{student.username}}</td>
@@ -28,4 +28,9 @@
       </tr>
     </tbody>
   </table>
+  <!--Including the pagination control.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+<!-- </div> -->
 <!-- </div> -->

@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let teacher of teachers;">
+      <tr *ngFor="let teacher of teachers | paginate: { itemsPerPage: count2, currentPage: p2 };">
         <th scope="row">{{teacher.id}}</th>
         <td>{{teacher.name}}</td>
         <td>{{teacher.email}}</td>
@@ -27,7 +27,9 @@
       </tr>
     </tbody>
   </table>
-
+  <div class="text-right">
+    <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
+  </div>
 <!-- Teacher Teaches Subjects -->
 <table class="table table-striped table-hover mt-5">
   <thead>
@@ -39,7 +41,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of teach;">
+    <tr *ngFor="let item of teach | paginate: { itemsPerPage: count1, currentPage: p1 };">
       <th scope="row">{{item.id}}</th>
       <td>{{item.teacherId}}</td>
       <td>{{item.subjectId}}</td>
@@ -49,4 +51,7 @@
     </tr>
   </tbody>
 </table>
+<div class="text-right">
+  <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+</div>
 

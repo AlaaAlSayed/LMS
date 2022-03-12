@@ -9,7 +9,8 @@ import { EditPostComponent } from '../edit-post/edit-post.component';
   styleUrls: ['./view-posts.component.css']
 })
 export class ViewPostsComponent implements OnInit {
-
+  p: number = 1;
+  count: number = 5;
   constructor( private _annocementservice:AnnocementService,private _activatedRoute:ActivatedRoute) { }
   
   _annocement:annocement[]=[];

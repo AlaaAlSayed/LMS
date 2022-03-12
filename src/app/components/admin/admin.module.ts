@@ -30,6 +30,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { DetailPostComponent } from './detail-post/detail-post.component';
 import { ViewPostsComponent } from './view-posts/view-posts.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const routes: Routes = [
@@ -145,7 +146,7 @@ const routes: Routes = [
   
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),ReactiveFormsModule,FormsModule
+    CommonModule,RouterModule.forChild(routes),ReactiveFormsModule,FormsModule,NgxPaginationModule
   ],
   // providers: [{
   //   provide: HTTP_INTERCEPTORS,

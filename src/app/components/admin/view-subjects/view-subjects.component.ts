@@ -9,6 +9,8 @@ import { Subject } from 'src/models/subject';
   styleUrls: ['./view-subjects.component.css']
 })
 export class ViewSubjectsComponent implements OnInit {
+  p: number = 1;
+  count: number = 5;
   subjects:Subject[]=[];
   constructor(private _subjectService:SubjectService) { }
 

@@ -9,6 +9,9 @@ import { StudentService } from './../../../services/student.service';
 })
 export class ViewStudentsComponent implements OnInit {
   students:Student[]=[];
+  // Pagination parameters.
+  p: number = 1;
+  count: number = 5;
   constructor(private _studentService:StudentService) { }
 
   ngOnInit(): void {

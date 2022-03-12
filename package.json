@@ -24,6 +24,7 @@
     "chart.js": "^3.7.0",
     "font-awesome": "^4.7.0",
     "ng2-charts": "^3.0.8",
+    "ngx-pagination": "^5.1.1",
     "pusher-js": "^7.0.6",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

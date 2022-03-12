@@ -54,9 +54,8 @@ users:any=new Users();
               this._router.navigate([`/student/home/${this.users.id}`]); 
               
             }
-            
-            
             this._userService.logged.next(true);
+            
           })
       },
       error=>{
@@ -89,7 +88,6 @@ users:any=new Users();
   {
     return  this.formLogin.controls[name].invalid && this.formLogin.controls[name].errors?.[error];
   }
-
 }
  // const headers=new HttpHeaders({
       //   Authorization: `Bearer ${result}`

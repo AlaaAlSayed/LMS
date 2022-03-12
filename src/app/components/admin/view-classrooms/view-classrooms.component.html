@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let classroom of classrooms;let currentIndex=index">
+      <tr *ngFor="let classroom of classrooms | paginate: { itemsPerPage: count, currentPage: p };">
         <th scope="row">{{classroom.id}}</th>
         <td>{{classroom.level}}</td>
         <td>{{classroom.code}}</td>
@@ -21,4 +21,6 @@
       </tr>
     </tbody>
   </table>
-
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
