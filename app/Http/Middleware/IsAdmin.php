@@ -29,16 +29,6 @@ class IsAdmin
             return $next($request); 
         } 
        
-        //  elseif (auth()->user()->roleId == 2) {
-
-        //     return redirect()->route('api.teachers.home', auth()->user()->id);
-
-        // } 
-        // elseif (auth()->user()->roleId == 3) {
-            
-        //     return redirect()->route('api.students.home', auth()->user()->id);
-        // }
-
         // //if not admin redirection
         return redirect()->route('home');
     }
