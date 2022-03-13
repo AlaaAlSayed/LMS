@@ -73,7 +73,9 @@ use App\Models\Answer;
         $teacher_makes_exams=teacher_makes_exams::where( 'examId',$exam->id)->get();
         $exam=Exam::where( 'id',$exam->id)->get();
         // dd( $exam[0]->name);
-        return ([$teacher_makes_exams,'name'=>$exam[0]->name]);
+        // return ([$teacher_makes_exams,'name'=>$exam->get('name')]);
+                return ([$teacher_makes_exams->first()->examId,$exam->first()->name]);
+
     }
 
     public function update($examId)
