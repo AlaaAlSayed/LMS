@@ -38,7 +38,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
-// Route::middleware('auth:sanctum')->group(function () {
+ Route::middleware('auth:sanctum')->group(function () {
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
@@ -97,7 +97,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
         Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
         //teacher dashboard  - home page :
 
-        // Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 
         Route::post('/materials', [MaterialController::class, 'store']);
         Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
@@ -215,8 +215,8 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
     Route::delete('/option/{optionId}', [OptionController::class, 'delete'])->name('api.option.delete');
-// });
+
    
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
-// });
+});

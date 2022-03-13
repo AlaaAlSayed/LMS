@@ -72,9 +72,8 @@ use App\Models\Answer;
       // dd($exam->id);
         $teacher_makes_exams=teacher_makes_exams::where( 'examId',$exam->id)->get();
         $exam=Exam::where( 'id',$exam->id)->get();
-        // dd( $exam[0]->name);
-        // return ([$teacher_makes_exams,'name'=>$exam->get('name')]);
-                return ([$teacher_makes_exams->first()->examId,$exam->first()->name]);
+   
+        return (['teacher_makes_exams'=>$teacher_makes_exams->first()->examId,'exam name'=>$exam->first()->name]);
 
     }
 
@@ -123,7 +122,7 @@ foreach ($selectedOptionsArray as $selectedOption)
   $is_correct=Option::where('id',(int)$selectedOption)->get('is_correct');
   
 
-    if($is_correct[0]->is_correct==1)
+    if($is_correct->first()->is_correct==1)
     {
       $result++;
     }
@@ -135,7 +134,7 @@ foreach ($selectedOptionsArray as $selectedOption)
         StudentTakeExam::updateOrCreate(
             ['examId'=> $examId,
             'studentId'=> $studentId ,
-            'subjectId'=> $subjectId[0]->subjectId,
+            'subjectId'=> $subjectId->first()->subjectId,
             'result'=>$result,
             ]);
     }
