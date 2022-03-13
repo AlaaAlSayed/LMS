@@ -25,111 +25,121 @@ use App\Models\Answer;
 
 class ExamController extends Controller
 {
-  public function show($teacherId, $examId)
-  {
+    public function show($teacherId, $examId)
+    {
+     
+
+        $options=[];
+        $correctAnswers=[];
+       $exam=teacher_makes_exams::where([['teacherId',$teacherId],['examId',$examId]])->get();   
+        
+       $quistions=Quistion::where('examId',$exam[0]->id)->get('value');
+     
+
+       $quistionsId=Quistion::where('examId',$exam[0]->id)->get('id');
+
+       foreach(  $quistionsId as   $quistionId )
+      {
+   
+     $options[$quistionId->id ] =Option::where('quistionId',$quistionId->id)->get('value');
+
+     $correctAnswers[$quistionId->id ] =Option::where('quistionId',$quistionId->id)->get('is_correct');
 
 
-    $options = [];
-    $correctAnswers = [];
-    $exam = teacher_makes_exams::where([['teacherId', $teacherId], ['examId', $examId]])->get();
 
-    $quistions = Quistion::where('examId', $exam[0]->id)->get('value');
+       }
 
-
-    $quistionsId = Quistion::where('examId', $exam[0]->id)->get('id');
-
-    foreach ($quistionsId as   $quistionId) {
-
-      $options[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('value');
-
-      $correctAnswers[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('is_correct');
+ 
+        return(['quistions'=>$quistions,'options'=> $options,'correctAnswers'=>$correctAnswers]);
     }
 
+  
+    public function store($teacherId , $subjectId)
+    {
+        $data=request()->all();
+        $exam= Exam::create([
+           'name'=>$data['name'],
+        ]);
+        
+        teacher_makes_exams::create([
+        'teacherId'=>$teacherId,
+        'subjectId'=>$subjectId,
+        'examId'=>$exam->id,
+        'min_score'=>$data['min_score'],
+        'time'=>$data['time'],
+        'date'=>$data['date']
+      ]);
+      
+        $teacher_makes_exams=teacher_makes_exams::all();
+        return ($teacher_makes_exams);
+    }
 
-    return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
-  }
+    public function update($examId)
+    {
+        $data=request()->all();
+      
+        Exam::where('id', $examId)->update([
+           'name'=>$data['name'],
 
+       ]);
+      
+        $teacher=teacher_makes_exams::where('examId', $examId)->update([
+        'min_score'=>$data['min_score'],
+        'time'=>$data['time'],
+        'date'=>$data['date']
+      ]);
 
-  public function store($teacherId, $subjectId)
-  {
-    $data = request()->all();
-    $exam = Exam::create([
-      'name' => $data['name'],
-      // 'quistionId' => $data['quistionId'] ///////////////////////////////////delete
-    ]);
+      return ($teacher);
+    }
 
-    teacher_makes_exams::create([
-      'teacherId' => $teacherId,
-      'subjectId' => $subjectId,
-      'examId' => $exam->id,
-      'min_score' => $data['min_score'],
-      'time' => $data['time'],
-      'date' => $data['date']
-    ]);
-
-    $teacher_makes_exams = teacher_makes_exams::all();
-    return ($teacher_makes_exams);
-  }
-
-  public function update($examId)
-  {
-    $data = request()->all();
-
-    Exam::where('id', $examId)->update([
-      'name' => $data['name'],
-      'quistionId' => $data['quistionId'] ///////////////////////////////////delete
-
-    ]);
-
-    $teacher = teacher_makes_exams::where('examId', $examId)->update([
-      'min_score' => $data['min_score'],
-      'time' => $data['time'],
-      'date' => $data['date']
-    ]);
-
-    return ($teacher);
-  }
-
-  public function destroy($examId)
-  {
-    Exam::where('id', $examId)->delete();
-    teacher_makes_exams::where('examId', $examId)->delete();
-
-    $teacher_makes_exams = teacher_makes_exams::all();
-    return ($teacher_makes_exams);
-  }
-
-
-
-  public function score($examId, $studentId, $selectedOptions)
-  {
-
-
-    $subjectId = Quistion::where('examId', $examId)->get();
-    $selectedOptions = trim($selectedOptions, '[');
-    $selectedOptions = trim($selectedOptions, ']');
-    $selectedOptionsArray =   explode(',', $selectedOptions);
-
-
-    $result = 0;
-    foreach ($selectedOptionsArray as $selectedOption) {
-      $is_correct = Option::where('id', (int)$selectedOption)->get('is_correct');
-
-
-      if ($is_correct[0]->is_correct == 1) {
-        $result++;
-      }
+    public function destroy($examId)
+    {
+        Exam::where('id', $examId)->delete();
+        teacher_makes_exams::where('examId', $examId)->delete();
+        
+        $teacher_makes_exams=teacher_makes_exams::all();
+        return($teacher_makes_exams);
     }
 
 
 
-    StudentTakeExam::updateOrCreate(
-      [
-        'examId' => $examId,
-        'studentId' => $studentId,
-        'subjectId' => $subjectId[0]->subjectId,
-        'result' => $result,
-      ]
-    );
-  }
+    public function score($examId, $studentId,$selectedOptions)
+    {
+      
+
+      $subjectId=Quistion::where('examId',$examId)->get();
+      $selectedOptions=trim($selectedOptions, '[');
+      $selectedOptions=trim($selectedOptions, ']');
+      $selectedOptionsArray=   explode(',', $selectedOptions);
+     
+
+$result=0;
+foreach ($selectedOptionsArray as $selectedOption)
+  {
+  $is_correct=Option::where('id',(int)$selectedOption)->get('is_correct');
+  
+
+    if($is_correct[0]->is_correct==1)
+    {
+      $result++;
+    }
+
+  } 
+
+
+
+        StudentTakeExam::updateOrCreate(
+            ['examId'=> $examId,
+            'studentId'=> $studentId ,
+            'subjectId'=> $subjectId[0]->subjectId,
+            'result'=>$result,
+            ]);
+    }
+    
 }
+
+
+
+
+
+
