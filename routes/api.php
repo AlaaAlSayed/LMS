@@ -120,6 +120,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
         //student dashboard - profile page :
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
         //student dashboard  - home page :
+        Route::get('/students/{studentId}/home', [StudentController::class, 'home'])->name('api.students.home');
 
 
 
