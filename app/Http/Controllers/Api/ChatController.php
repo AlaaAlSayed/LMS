@@ -38,7 +38,7 @@ class ChatController extends Controller
     
     public function chatUsers()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         // dd($user);
         if ($user->roleId == 3) //student
         {

@@ -32,13 +32,13 @@ use Illuminate\Validation\ValidationException;
 Route::post('/sanctum/token', [UserController::class, 'generateToken']);
 
 // *************************  HOME PAGE ******************************
-Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index'])->name('home');
+Route::get('/annoncemetns', [AnnouncementsContoller::class, 'index'])->name('login');
 Route::get('/annoncemetns/showPost/{postId}', [AnnouncementsContoller::class, 'showPost']);
 Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
@@ -212,4 +212,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::delete('/option/{optionId}', [OptionController::class, 'delete'])->name('api.option.delete');
-});
+// });
+   
+    //********************** Notifications ****************** */
+    Route::get('/notifications', [UserController::class, 'notifications']);
+// });

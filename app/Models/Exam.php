@@ -12,17 +12,16 @@ class Exam extends Model
 
     protected $fillable = [
         'name',
-        'quistionId',
     ];
 
     // public function examResult()
     // {
     //     return $this->hasMany(StudentTakeExam::class, 'id');
     // }
-    public function quistions()
-    {
-        return $this->hasMany(Quistion::class, 'quistionId');
-    }
+    // public function quistions()
+    // {
+    //     return $this->hasMany(Quistion::class, 'quistionId');
+    // }
     
         
   
