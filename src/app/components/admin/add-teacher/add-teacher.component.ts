@@ -53,6 +53,8 @@ export class AddTeacherComponent implements OnInit {
       console.log(this.teaches);
       this.teaches.push(teach);
       alert('Added Successfully');
+      window.location.href='http://localhost:4200/admin/view-teachers';
+
     })
 
   }
@@ -92,7 +94,7 @@ this._teacherService.post(formData).subscribe((response:any)=>{
   this.files=response.data;
   console.log(this.files);
   alert('Added Successfully');
-
+  window.location.href='http://localhost:4200/admin/view-teachers';
 })
 }
 

@@ -1,7 +1,19 @@
-<h1>Name: {{teacher.name}}</h1>
+<!-- <h1>Name: {{teacher.name}}</h1>
 <p>ID: {{teacher.id}}</p>
 <p>Email: {{teacher.email}}</p>
 <p>Username: {{teacher.username}}</p>
 <p>Phone: {{teacher.phone}}</p>
-<p>Address: {{teacher.street + ' ' +teacher.city+ ' ' +teacher.government}}</p>
-<button class="btn btn-dark text-white" routerLink="/admin/edit-teacher/{{teacher.id}}">Edit</button>
+<p>Address: {{teacher.street + ' ' +teacher.city+ ' ' +teacher.government}}</p> -->
+<ul class=" mt-5 d-flex flex-column text-center lh-lg" style="list-style-type: none;">
+    <!-- <div class=" mr-5">
+        <img src="{{data}}" width="200px" height="150px" alt="profile picture" class="rounded-circle">
+    </div> -->
+    <li class=" text-danger fw-bold fs-5"> Name: <span class="fw-normal">{{teacher.name}} </span></li>
+    <li class="fw-bold fs-6 mt-3"> <i class="fa fa-user-circle"></i>  Username: <span class="fw-normal">{{teacher.username}} </span></li>
+    <li class="fw-bold fs-6 mt-3"><i class="fa fa-envelope"></i> Email: <span class="fw-normal">{{teacher.email}} </span></li>
+    <li class="fw-bold fs-6 mt-3"><i class="fa fa-phone" ></i> Phone: <span class="fw-normal">{{teacher.phone}} </span></li>
+    <li class="fw-bold fs-6 mt-3"><i class="fa fa-map-marker"></i>  Address: <span class="fw-normal"> {{teacher.street + ' ' + teacher.city + ' ' + teacher.government}} </span></li>
+  <li>  <button class="btn btn-dark btn-lg text-white rounded-pill col-md-2 mt-5" routerLink="/admin/edit-teacher/{{teacher.id}}">Edit</button> </li>
+</ul>
+
+<!-- <button class="btn btn-dark text-white" routerLink="/admin/edit-teacher/{{teacher.id}}">Edit</button> -->

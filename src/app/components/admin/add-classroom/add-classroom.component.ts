@@ -36,6 +36,8 @@ export class AddClassroomComponent implements OnInit {
       console.log(this.classes);
       this.classes.push(classroom);
       alert('Added Successfully');
+      window.location.href='http://localhost:4200/admin/view-classrooms';
+
     })
   }
 

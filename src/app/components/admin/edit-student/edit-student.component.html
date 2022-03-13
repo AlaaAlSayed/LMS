@@ -55,15 +55,15 @@
           <small class="form-text text-danger" *ngIf="isControlHasError('classroomId','required')" >required Class ID</small>
         </div>
       </div> 
-    <div class="col-md-6 form-group">
+    <!-- <div class="col-md-6 form-group">
       <label class="form-label">Picture</label>
-      <input type="file" class="form-control"  formControlName="picture_path" name="picture_path" (change)="uploadImage('$event')" >
+      <input type="file" class="form-control"  formControlName="picture_path" name="picture_path" (change)="uploadImage('$event')" > -->
       <!-- [class.is-invalid]="isInValidAndTouched('picture_path')" [class.is-valid]="isValidControl('picture_path')"  -->
       <!-- <div *ngIf="isInValidAndTouched('picture_path')" >
         <small class="form-text text-danger" *ngIf="isControlHasError('picture_path','required')" >required Picture</small>
       </div> -->
-    </div>
-    <div class="col-md-4 form-group">
+    <!-- </div> -->
+    <div class="col-md-6 form-group">
       <label class="form-label">Government</label>
       <input type="text" class="form-control" formControlName="government" name="government"  [class.is-invalid]="isInValidAndTouched('government')" [class.is-valid]="isValidControl('government')"  >
       <!-- [class.is-invalid]="isInValidAndTouched('government')" [class.is-valid]="isValidControl('government')" -->
@@ -73,7 +73,7 @@
       <small class="form-text text-danger"*ngIf="isControlHasError('government','maxlength')" >max length is 10</small>
       </div>
     </div>
-    <div class="col-md-4 form-group">
+    <div class="col-md-6 form-group">
       <label class="form-label">City</label>
       <input type="text" class="form-control" formControlName="city" name="city" [class.is-invalid]="isInValidAndTouched('city')" [class.is-valid]="isValidControl('city')" >
       <!-- [class.is-invalid]="isInValidAndTouched('city')" [class.is-valid]="isValidControl('city')"  -->
@@ -83,7 +83,7 @@
       <small class="form-text text-danger"*ngIf="isControlHasError('city','maxlength')" >max length is 10</small>
       </div>
     </div>
-    <div class="col-md-4 form-group">
+    <div class="col-md-6 form-group">
       <label class="form-label">Street</label>
       <input type="text" class="form-control" formControlName="street" name="street" [class.is-invalid]="isInValidAndTouched('street')" [class.is-valid]="isValidControl('street')" >
       <!-- [class.is-invalid]="isInValidAndTouched('street')" [class.is-valid]="isValidControl('street')" -->

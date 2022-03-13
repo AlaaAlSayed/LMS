@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 import {Subject} from '../../models/subject';
+import { Notifications } from 'src/models/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,8 @@ export class StudentService {
    }
    updateData(id:number, data:any){
     return this._httpClient.put(`${environment.APIURL}/api/students/${id}`, data);
+   }
+   getNotification(): Observable<Notifications[]>{
+    return this._httpClient.get<Notifications[]>(`${environment.APIURL}/api/notifications`);
    }
 }

@@ -34,6 +34,8 @@ export class AddSubjectComponent implements OnInit {
       console.log(this.subjects);
       this.subjects.push(subject);
       alert('Added Successfully');
+      window.location.href='http://localhost:4200/admin/view-subjects';
+
     })
   }
 
