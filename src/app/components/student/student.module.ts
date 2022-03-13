@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { AdminGuard } from 'src/app/guards/admin.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path:'header',component:StudentHeaderComponent,canActivate:[AuthGuard,StudentGuard]},
@@ -38,7 +38,7 @@ const routes: Routes = [
     StudentProfileComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),SharedModule,ReactiveFormsModule,FormsModule
+    CommonModule,RouterModule.forChild(routes),SharedModule,ReactiveFormsModule,FormsModule,NgbModule
   ],
   exports:[
     StudentHeaderComponent

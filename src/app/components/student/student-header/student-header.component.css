@@ -3,4 +3,5 @@
 }
 .nav-link:hover, .edu:hover{
     color:rgb(0, 0, 0) !important;
+    cursor: pointer;
 }

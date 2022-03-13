@@ -9,7 +9,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MessagesComponent } from './components/messages/messages.component';
-// import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { MessagesComponent } from './components/messages/messages.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // NgxPaginationModule
+    // NgbModule
   ],
   providers: [PusherService,
     {
