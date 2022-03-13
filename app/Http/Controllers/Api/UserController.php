@@ -49,14 +49,13 @@ class UserController extends Controller
         return response()->json($token);
     }
 
-
     public function notifications()
     {
         $user = auth()->user();
         if ($user->roleId == 3) {
             $allNotifications = Student::find($user->id)->notifications;
         }
-        if ($user->roleId == 2) {
+        elseif ($user->roleId == 2) {
             // return $user->id;
             $allNotifications = Teacher::find($user->id)->notifications;
         }
@@ -64,5 +63,22 @@ class UserController extends Controller
             $allNotifications = Admin::find($user->id)->notifications;
         }
         return $allNotifications;
+    }
+    public function studentNotifications()
+    {
+        $user = auth()->user();
+        if ($user->roleId == 3) {
+            $allNotifications = Student::find($user->id)->notifications;
+            return $allNotifications;
+        }
+    }
+    public function teacherNotifications()
+    {
+        $user = auth()->user();
+
+        if ($user->roleId == 2) {
+            $allNotifications = Teacher::find($user->id)->notifications;
+            return $allNotifications;
+        }
     }
 }
