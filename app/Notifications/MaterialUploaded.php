@@ -10,15 +10,19 @@ use Illuminate\Notifications\Notification;
 class MaterialUploaded extends Notification
 {
     use Queueable;
-private $data ;
+    private $subject;
+    private $material;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($subject ,$material )
     {
-        $this->data=$data;
+        $this->subject = $subject;
+        $this->subject = $material;
+
     }
 
     /**
@@ -32,20 +36,7 @@ private $data ;
         return ['database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
-
+   
     /**
      * Get the array representation of the notification.
      *
@@ -55,7 +46,7 @@ private $data ;
     public function toArray($notifiable)
     {
         return [
-            "message"=>"material uploaded ",
+            "message" => "new material ( ".$this->material." )uploaded in subject : ". $this->subject,
         ];
     }
 }

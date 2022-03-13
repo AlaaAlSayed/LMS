@@ -44,4 +44,11 @@ class UserController extends Controller
         $token = $user->createToken($request->password)->plainTextToken;
         return response()->json($token);
     }
+
+
+    public function notifications ()
+    {
+       $user = auth()->user();
+       return $user->notifications ;
+    }
 }
