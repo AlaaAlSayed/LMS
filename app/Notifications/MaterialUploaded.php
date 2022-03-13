@@ -18,10 +18,10 @@ class MaterialUploaded extends Notification
      *
      * @return void
      */
-    public function __construct($subject ,$material )
+    public function __construct($material ,$subject )
     {
         $this->subject = $subject;
-        $this->subject = $material;
+        $this->material = $material;
 
     }
 
