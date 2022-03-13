@@ -7,6 +7,9 @@ use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Models\SubjectMaterial;
 use App\Models\teacher_teaches_subjects;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MaterialUploaded;
+
 class MaterialController extends Controller
 {
     public function index()
@@ -76,11 +79,18 @@ class MaterialController extends Controller
         }
 
         $data = request()->all();
-        SubjectMaterial::create([
+        // $students= Student;
+        // $teacher=teacher_teaches_subjects::where('subjectId','=',$data['subjectId'])->first();
+        $students=SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
             'material' => $filename,
             'name' => $data['name'],
         ]);
+
+
+        Notification::send($students, new MaterialUploaded('math')); //one to many
+        // $students[0]->notifications ;
+        
         $allMaterials = SubjectMaterial::all();
         return $allMaterials->all();
     }
