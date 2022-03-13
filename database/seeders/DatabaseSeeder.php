@@ -19,25 +19,22 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     DB::table('roles')->delete();
-
     $roles = [
       ['id' => 1, 'name' => 'Admin'],
       ['id' => 2, 'name' => 'Teacher'],
       ['id' => 3, 'name' => 'Student'],
-
     ];
-
     Role::insert($roles);
+
     ///////////////////////////////////////////////////
     DB::table('users')->delete();
     $users = [
       [
+
         'id' => '1',
-        'name' => 'fatma',
-        'username' => 'student fatma',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'name' => 'student',
+        'username' => 'stud',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '3',
         //address
@@ -46,28 +43,26 @@ class DatabaseSeeder extends Seeder
         'street' => 'streetName',
       ],
       [
+
         'id' => '2',
-        'name' => 'mohammed ',
-        'username' => 'student mohammed',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'name' => 'Admin ',
+        'username' => 'admn',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
-        'roleId' => '3',
+        'roleId' => '1',
         //address
         'government' => 'country',
         'city' => 'city',
         'street' => 'streetName',
       ],
       [
+
         'id' => '3',
-        'name' => 'mostafa',
-        'username' => 'student mostafa',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'name' => 'teacher',
+        'username' => 'tchr',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
-        'roleId' => '3',
+        'roleId' => '2',
         //address
         'government' => 'country',
         'city' => 'city',
@@ -77,9 +72,7 @@ class DatabaseSeeder extends Seeder
         'id' => '4',
         'name' => 'khaled',
         'username' => 'student khaled',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '3',
         //address
@@ -91,9 +84,7 @@ class DatabaseSeeder extends Seeder
         'id' => '5',
         'name' => 'yassin',
         'username' => 'student yassin',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '3',
         //address
@@ -106,9 +97,7 @@ class DatabaseSeeder extends Seeder
 
         'name' => 'ali',
         'username' => 'student ali',
-        // 'email' =>'tchr@gmail.com',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -120,9 +109,7 @@ class DatabaseSeeder extends Seeder
         'id' => '7',
         'name' => 'gamal',
         'username' => 'teacher gamal',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -134,9 +121,7 @@ class DatabaseSeeder extends Seeder
         'id' => '8',
         'name' => 'alaa',
         'username' => 'teacher alaa',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -148,9 +133,7 @@ class DatabaseSeeder extends Seeder
         'id' => '9',
         'name' => 'mostafa',
         'username' => 'teacher mostafa',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -162,9 +145,7 @@ class DatabaseSeeder extends Seeder
         'id' => '10',
         'name' => 'hadeer',
         'username' => 'teacher hadeer',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
-        // 'email' =>'stud@gmail.com',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -178,9 +159,7 @@ class DatabaseSeeder extends Seeder
 
         'name' => 'ahmed',
         'username' => 'student ahmed',
-        // 'email' =>'tchr@gmail.com',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '2',
         //address
@@ -194,9 +173,7 @@ class DatabaseSeeder extends Seeder
 
         'name' => 'khairy',
         'username' => 'admin khairy',
-        // 'email' =>'tchr@gmail.com',
-        // 'email_verified_at' => now(),
-        'password' => password_hash('pass', PASSWORD_DEFAULT), // password
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '1',
         //address
@@ -206,14 +183,13 @@ class DatabaseSeeder extends Seeder
       ],
 
     ];
-
     \App\Models\User::insert($users);
+
     //////////////////////////////////////////////////////
     DB::table('classrooms')->delete();
     $classrooms = [
       [
         'id' => '1',
-
         'level' => '1',
         'capacity' => '20',
         'code' => '1/1',
@@ -221,7 +197,6 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '2',
-
         'level' => '1',
         'capacity' => '20',
         'code' => '1/2',
@@ -229,7 +204,6 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '3',
-
         'level' => '2',
         'capacity' => '20',
         'code' => '2/1',
@@ -237,7 +211,6 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '4',
-
         'level' => '2',
         'capacity' => '20',
         'code' => '2/2',
@@ -245,14 +218,13 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '5',
-
         'level' => '3',
         'capacity' => '20',
         'code' => '3/1',
 
-      ],  [
+      ],
+      [
         'id' => '6',
-
         'level' => '3',
         'capacity' => '20',
         'code' => '3/2',
@@ -260,7 +232,6 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '7',
-
         'level' => '4',
         'capacity' => '20',
         'code' => '4/1',
@@ -268,7 +239,6 @@ class DatabaseSeeder extends Seeder
       ],
       [
         'id' => '8',
-
         'level' => '4',
         'capacity' => '20',
         'code' => '4/2',
@@ -291,13 +261,6 @@ class DatabaseSeeder extends Seeder
 
     \App\Models\Student::insert($students);
 
-    //////////////////////////////////////////////////////////////
-    // \App\Models\User::factory(10)->create();
-    // \App\Models\Student::factory(10)->create();
-    // \App\Models\Classroom::factory(10)->create();
-    // \App\Models\Subject::factory(10)->create();
-
-    // \App\Models\User::factory(10)->create();
 
 
     DB::table('exams')->delete();
@@ -308,9 +271,7 @@ class DatabaseSeeder extends Seeder
       ['name' => 'english exam', 'id' => '4'],
       ['name' => 'arabic exam', 'id' => '5'],
       ['name' => 'religion exam', 'id' => '6'],
-
     ];
-
     \App\Models\Exam::insert($exam);
 
     ////////////////////////////////////////////////////////////
@@ -363,8 +324,6 @@ class DatabaseSeeder extends Seeder
         'name' => 'math',
         'classroomId' => '3',
       ],
-
-      ///////////////////////////////
       [
         'id' => '10',
         'name' => 'arabic',
@@ -434,73 +393,60 @@ class DatabaseSeeder extends Seeder
 
 
     ];
-
     \App\Models\Subject::insert($subject);
+
     ///////////////////////////////////////////////////////////////////////
     DB::table('teachers')->delete();
     $teachers = [
-
+      [
+        'id' => '3',
+        'email' => 'dsvdsv@gmail.com',
+        'phone' => '01278194322',
+        'picture_path' => 'image',
+      ],
       [
         'id' => '6',
-
-
         'email' => 'ali@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
       [
         'id' => '7',
-
         'email' => 'gamal@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
       [
         'id' => '8',
-
         'email' => 'alaa@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
       [
         'id' => '9',
-
         'email' => 'mostafa@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
       [
         'id' => '10',
-
         'email' => 'hadeer@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
 
       [
         'id' => '11',
-
-
         'email' => 'Ahmed@gmail.com',
-
         'phone' => '01278194322',
         'picture_path' => 'image',
       ],
-
-
     ];
-
     \App\Models\Teacher::insert($teachers);
     //////////////////////////////////////////////////
 
     DB::table('quistions')->delete();
     $question = [
-
       [
         'id' => '1',
         'value' => 'كم تبلغ طول رقبه الزرافه؟',
@@ -519,20 +465,16 @@ class DatabaseSeeder extends Seeder
         'subjectId' => '5',
         'examId' => '1',
       ],
-
-
       [
         'id' => '4',
         'value' => 'ما هي أقصر كلمة موجودة باللغة العربية؟',
         'subjectId' => '5',
         'examId' => '1',
       ],
-      /////////////////////////////////////////////////////////////////////////
-
     ];
     \App\Models\Quistion::insert($question);
-    /////////////////////////////////////////
 
+    /////////////////////////////////////////
     DB::table('options')->delete();
     $option = [
 
@@ -591,8 +533,6 @@ class DatabaseSeeder extends Seeder
         'quistionId' => '3',
         'is_correct' => '0',
       ],
-
-      ///////////////////////////////
       [
         'id' => '10',
         'value' => ' لا',
