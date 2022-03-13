@@ -18,10 +18,10 @@ class Exam extends Model
     // {
     //     return $this->hasMany(StudentTakeExam::class, 'id');
     // }
-    // public function quistions()
-    // {
-    //     return $this->hasMany(Quistion::class, 'quistionId');
-    // }
+    public function quistions()
+    {
+        return $this->hasMany(Quistion::class, 'quistionId');
+    }
     
         
   
