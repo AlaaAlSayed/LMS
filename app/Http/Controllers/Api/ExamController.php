@@ -69,9 +69,11 @@ use App\Models\Answer;
         'time'=>$data['time'],
         'date'=>$data['date']
       ]);
-      
-        $teacher_makes_exams=teacher_makes_exams::all();
-        return ($teacher_makes_exams);
+      // dd($exam->id);
+        $teacher_makes_exams=teacher_makes_exams::where( 'examId',$exam->id)->get();
+        $exam=Exam::where( 'id',$exam->id)->get();
+        // dd( $exam[0]->name);
+        return ([$teacher_makes_exams,'name'=>$exam[0]->name]);
     }
 
     public function update($examId)
