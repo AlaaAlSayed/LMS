@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notification;
 class MaterialUploaded extends Notification
 {
     use Queueable;
+    private $type;
+
     private $subject;
     private $material;
 
@@ -18,8 +20,9 @@ class MaterialUploaded extends Notification
      *
      * @return void
      */
-    public function __construct($material ,$subject )
+    public function __construct($type,$material ,$subject )
     {
+        $this->type = $type;
         $this->subject = $subject;
         $this->material = $material;
 
@@ -46,7 +49,7 @@ class MaterialUploaded extends Notification
     public function toArray($notifiable)
     {
         return [
-            "message" => "new material ( ".$this->material." )uploaded in subject : ". $this->subject,
+            "message" => "new ".$this->type. "( ".$this->material." ) added  in subject : ". $this->subject,
         ];
     }
 }
