@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\Teacher;
+
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
@@ -45,8 +47,6 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
-
-
 
         if ($request->hasFile('picture_path')) { //if user choose file
             $file = $request->file('picture_path'); //store  uploaded file to variable $file to
@@ -169,8 +169,8 @@ class StudentController extends Controller
         $subject=Subject::find ($data['subjectId']);
         $student=User::find ($data['studentId']);
 
-        $teacherId=teacher_teaches_subjects::where([['subjectId',$subject->id] ,['classroomId',$subject->classroomId]])->first()->get('teacherId');    
-        $teacher=User::find ($teacherId);
+        $teacherId=teacher_teaches_subjects::where([['subjectId',$subject->id] ,['classroomId',$subject->classroomId]])->first()->get('teacherId');
+        $teacher=Teacher::find ($teacherId);
         Notification::send($teacher, new AssignmentSubmitted($student->name, $subject->name )); //one to many
         
 

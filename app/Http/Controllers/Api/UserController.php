@@ -56,7 +56,8 @@ class UserController extends Controller
         if ($user->roleId == 3) {
             $allNotifications = Student::find($user->id)->notifications;
         }
-        elseif ($user->roleId == 2) {
+        if ($user->roleId == 2) {
+            // return $user->id;
             $allNotifications = Teacher::find($user->id)->notifications;
         }
         elseif ($user->roleId == 3) {
