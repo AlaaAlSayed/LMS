@@ -23,7 +23,7 @@ use App\Models\Answer;
 
 
 
-class ExamController extends Controller
+   class ExamController extends Controller
 {
     public function show($teacherId, $examId)
     {
@@ -32,11 +32,11 @@ class ExamController extends Controller
         $options=[];
         $correctAnswers=[];
        $exam=teacher_makes_exams::where([['teacherId',$teacherId],['examId',$examId]])->get();   
-        
-       $quistions=Quistion::where('examId',$exam[0]->id)->get('value');
-     
+      //  DD( $exam[0]->examId);
+       $quistions=Quistion::where('examId', $exam[0]->examId)->get('value');
+   
 
-       $quistionsId=Quistion::where('examId',$exam[0]->id)->get('id');
+       $quistionsId=Quistion::where('examId',$exam[0]->examId)->get('id');
 
        foreach(  $quistionsId as   $quistionId )
       {
@@ -137,7 +137,6 @@ foreach ($selectedOptionsArray as $selectedOption)
     }
     
 }
-
 
 
 
