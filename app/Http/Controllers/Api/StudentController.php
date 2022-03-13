@@ -11,7 +11,10 @@ use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Models\Assignment;
 use App\Models\StudentUploadAssignment;
+use App\Models\teacher_teaches_subjects;
 use App\Models\User;
+use App\Notifications\AssignmentSubmitted;
+use Illuminate\Support\Facades\Notification;
 
 class StudentController extends Controller
 {
@@ -155,7 +158,7 @@ class StudentController extends Controller
             $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
         }
 
-
+       
         $assignment = StudentUploadAssignment::create([
             'studentId' =>  $data['studentId'],
             'subjectId' =>  $data['subjectId'],
@@ -163,6 +166,13 @@ class StudentController extends Controller
             'answer' => $filename,
         ]);
 
+        $subject=Subject::find ($data['subjectId']);
+        $student=User::find ($data['studentId']);
+
+        $teacherId=teacher_teaches_subjects::where([['subjectId',$subject->id] ,['classroomId',$subject->classroomId]])->first()->get('teacherId');    
+        $teacher=User::find ($teacherId);
+        Notification::send($teacher, new AssignmentSubmitted($student->name, $subject->name )); //one to many
+        
 
         $StudentsUploadAssignment = StudentUploadAssignment::all();
         return ($StudentsUploadAssignment);
