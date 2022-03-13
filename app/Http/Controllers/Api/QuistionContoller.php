@@ -18,7 +18,7 @@ class QuistionContoller extends Controller
         'value'=>$data['value'],
       ]);
       
-        return ($question);
+        return ($question->id);
     }
 
     public function update($questionId)

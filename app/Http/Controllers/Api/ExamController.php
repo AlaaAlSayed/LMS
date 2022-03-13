@@ -20,6 +20,7 @@ use Symfony\Component\Console\Question\Question;
 use App\Models\Quistion;
 use App\Models\Option;
 use App\Models\Answer;
+use PhpParser\Node\Stmt\Return_;
 
 
 
@@ -137,8 +138,10 @@ foreach ($selectedOptionsArray as $selectedOption)
             'subjectId'=> $subjectId->first()->subjectId,
             'result'=>$result,
             ]);
+
+            return $result;
     }
-    
+   
 }
 
 
