@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quistion;
+use Symfony\Component\Console\Question\Question;
 
 class QuistionContoller extends Controller
 {
@@ -18,7 +19,7 @@ class QuistionContoller extends Controller
         'value'=>$data['value'],
       ]);
       
-        return ($question);
+        return ($question->id);
     }
 
     public function update($questionId)
@@ -33,9 +34,10 @@ class QuistionContoller extends Controller
 
     public function show($questionId)
     {
-       
- $teacher= Quistion::where('id',$questionId)->get();
-     return  $teacher;
+     
+ $Quistion= Quistion::where('id',$questionId)->get();
+
+     return  $Quistion;
     }
 
     public function delete($questionId)

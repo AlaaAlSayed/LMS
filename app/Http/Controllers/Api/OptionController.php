@@ -19,7 +19,7 @@ class OptionController extends Controller
         'value'=>$data['value'],
       ]);
       
-        return ($option);
+        return ($option->id);
     }
 
     public function update($optionId)

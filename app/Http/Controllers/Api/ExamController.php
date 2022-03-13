@@ -20,6 +20,7 @@ use Symfony\Component\Console\Question\Question;
 use App\Models\Quistion;
 use App\Models\Option;
 use App\Models\Answer;
+use PhpParser\Node\Stmt\Return_;
 
 
 
@@ -69,9 +70,12 @@ use App\Models\Answer;
         'time'=>$data['time'],
         'date'=>$data['date']
       ]);
-      
-        $teacher_makes_exams=teacher_makes_exams::all();
-        return ($teacher_makes_exams);
+      // dd($exam->id);
+        $teacher_makes_exams=teacher_makes_exams::where( 'examId',$exam->id)->get();
+        $exam=Exam::where( 'id',$exam->id)->get();
+   
+        return (['teacher_makes_exams'=>$teacher_makes_exams->first()->examId,'exam_name'=>$exam->first()->name]);
+
     }
 
     public function update($examId)
@@ -119,7 +123,7 @@ foreach ($selectedOptionsArray as $selectedOption)
   $is_correct=Option::where('id',(int)$selectedOption)->get('is_correct');
   
 
-    if($is_correct[0]->is_correct==1)
+    if($is_correct->first()->is_correct==1)
     {
       $result++;
     }
@@ -131,11 +135,13 @@ foreach ($selectedOptionsArray as $selectedOption)
         StudentTakeExam::updateOrCreate(
             ['examId'=> $examId,
             'studentId'=> $studentId ,
-            'subjectId'=> $subjectId[0]->subjectId,
+            'subjectId'=> $subjectId->first()->subjectId,
             'result'=>$result,
             ]);
+
+            return $result;
     }
-    
+   
 }
 
 
