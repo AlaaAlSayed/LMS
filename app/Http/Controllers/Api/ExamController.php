@@ -73,7 +73,7 @@ use App\Models\Answer;
         $teacher_makes_exams=teacher_makes_exams::where( 'examId',$exam->id)->get();
         $exam=Exam::where( 'id',$exam->id)->get();
    
-        return (['teacher_makes_exams'=>$teacher_makes_exams->first()->examId,'exam name'=>$exam->first()->name]);
+        return (['teacher_makes_exams'=>$teacher_makes_exams->first()->examId,'exam_name'=>$exam->first()->name]);
 
     }
 
