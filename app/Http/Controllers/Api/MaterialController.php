@@ -82,19 +82,15 @@ class MaterialController extends Controller
         }
 
         $data = request()->all();
-        // $students= Student;
-        // $teacher=teacher_teaches_subjects::where('subjectId','=',$data['subjectId'])->first();
-        $subject=Subject::find ($data['subjectId']);
-
-        $students=Student::where('classroomId',$subject->classroomId)->get()->all();
-        // return( $students);
+        
         SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
             'material' => $filename,
             'name' => $data['name'],
         ]);
 
-    
+        $subject=Subject::find ($data['subjectId']);
+        $students=Student::where('classroomId',$subject->classroomId)->get()->all();
         Notification::send($students, new MaterialUploaded( $data['name'] , $subject->name )); //one to many
         
         
