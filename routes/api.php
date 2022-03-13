@@ -38,7 +38,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
@@ -216,4 +216,4 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
    
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
-// });
+});
