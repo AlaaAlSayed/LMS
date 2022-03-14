@@ -22,6 +22,7 @@ export class AssignmentComponent implements OnInit {
   blob:any;
   showid:number=0;
   myDate = new Date();
+  isok:boolean=true;
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params=>{

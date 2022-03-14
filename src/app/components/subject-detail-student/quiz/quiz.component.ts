@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SubjectService } from 'src/app/services/subject.service';
 import { subject } from 'src/app/models/subject';
 import { quiz } from 'src/app/models/quiz ';
+import { quizservice } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-quiz',
@@ -11,7 +12,7 @@ import { quiz } from 'src/app/models/quiz ';
 })
 export class QuizComponent implements OnInit {
 
-  constructor(private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute) { }
+  constructor(private _quizservice:quizservice,private _activatedRoute:ActivatedRoute) { }
   _subject:subject=new subject();
   _quiz:quiz[]=[];
   ngOnInit(): void {
@@ -20,13 +21,11 @@ export class QuizComponent implements OnInit {
       let id=Number(params.get('id'));
       let student_id=Number(params.get('student_id'));
       
-      this._subjectservice. getSubjectByID(id)
+      this._quizservice.getexams(id)
       .subscribe(
         (response:any)=>{
-          this._subject=response.data;
           //console.log(response.data);
-          console.log(this._subject.exams);
-      this._quiz=this._subject.exams;
+          console.log(response);
 
         },
         (error:any)=>{alert("error");}

@@ -12,11 +12,11 @@ import { NgModule } from '@angular/core';
 export class quizservice {
 
   constructor(private _HttpClient:HttpClient) { }
-  get(){
-    console.log(`${environment.APIURL}/api/exams`);
+  getexams(subjectId:number){
+    //console.log(`${environment.APIURL}/api/exams`);
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/subjects`));
 
-   return this._HttpClient.get(`${environment.APIURL}/api/exams`);
+   return this._HttpClient.get(`${environment.APIURL}/api/subjectExams/${subjectId}`);
   }
    getById(id:number):Observable<subject>{
     console.log(`${environment.APIURL}/api/subjects/${id}`);
@@ -28,7 +28,12 @@ export class quizservice {
     return this._HttpClient.post(`${environment.APIURL}/api/exams/${teacherId}/${subjectId}`,quiz);
    }
 
-   
+   postquestion(ques:any,examId:number,subjectId:number){
+    return this._HttpClient.post(`${environment.APIURL}/api/question/${examId}/${subjectId}`,ques);
+   } 
+   postoption(opt:any,questionId:number){
+    return this._HttpClient.post(`${environment.APIURL}/api/option/${questionId}`,opt);
+   } 
   put(_subject:subject){
     return this._HttpClient.put(`${environment.APIURL}/api/exams`,_subject);
    }

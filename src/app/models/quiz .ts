@@ -6,4 +6,6 @@ export class quiz{
     min_score:number=0;
     time:any;
     date:any;
+    teacher_makes_exams:number=0;
+    exam_name:string="";
 }

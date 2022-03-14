@@ -15,7 +15,7 @@ import { UploadassignmentComponent } from './uploadassignment/uploadassignment.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { StudentModule } from '../student/student.module';
-import { StudentHeaderComponent } from '../student/student-header/student-header.component';
+//import { StudentHeaderComponent } from '../student/student-header/student-header.component';
 // import { StudentModule } from '../student/student.module';
 
 enableProdMode();
@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:'quiz',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'matrial',component:MatrialComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'assignment/uploadassignment/:assignmentid',component:UploadassignmentComponent,canActivate:[AuthGuard,StudentGuard]},
+  //{path:'doexam',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
 
   {path:'',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]}
 

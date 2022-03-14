@@ -1,1 +1,38 @@
-<p>createoption works!</p>
+<div class="row justify-content-center m-5 " >
+    <div class="col-4  " >
+
+        <h1 class="text-center fw-bolder">Create Option</h1>
+        <form class="border p-5" [formGroup]="formAdd"  >
+<div *ngIf= "isappear">
+<div class="form-group" >
+    <label for="option" class="m-2 "> option</label><br>
+    <input type="text" class="form-control " id="option" aria-describedby="emailHelp" placeholder="Enter option" formControlName="option" >
+  </div><br>
+
+  <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="correct" value="1" >
+       Value is True
+      
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="correct"  value="0"  >
+          Value is False
+      
+    </div>
+      <div>
+         <button type="submit" class="btn btn-warning" (click)="createoption()">create </button>
+</div>
+</div>
+<div *ngIf= "!isappear" >
+    <button type="submit" class="btn btn-warning m-3" (click)="createanotheroption()">create another option</button>
+</div>
+<div *ngIf= "!isappear" >
+<button type="submit" class="btn btn-warning m-3" (click)="createanotherques()">create another question</button>
+</div>
+        </form>
+        <div >
+            <button type="submit" class="btn btn-warning m-3" (click)="finish()" >Finish</button>
+            </div>
+</div>
+</div>
+

@@ -25,7 +25,7 @@ id :number=0;
 
     this._activatedRoute.paramMap.subscribe(params=>{
 this.id=Number(params.get('id'));
-let student_id=Number(params.get('student_id'));
+let student_id=Number(params.get('id'));
 console.log(this.id);
 
 this._subjectservice. getSubjectByID(this.id)

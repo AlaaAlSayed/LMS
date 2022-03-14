@@ -1,1 +1,24 @@
-<p>createquestion works!</p>
+    <div class="row justify-content-center m-5  ">
+        <div class="col-4  " >
+
+            <h1 class="text-center fw-bolder">Build Exam</h1>
+    <form class="border p-5" [formGroup]="formAdd" >
+        <div *ngIf="isok">
+      <div class="form-group" >
+        <label for="question" class="mb-2"> question</label><br>
+        <input type="text" class="form-control " id="question" aria-describedby="emailHelp" placeholder="Enter question" formControlName="question" ><br><br>
+      </div>
+          <div>
+             <button type="submit" class="btn btn-warning" (click)="insertques()">create </button>
+    </div>
+</div>
+  
+        </form>
+  
+   
+    </div>
+        <div class="col-8 " >
+            <h1 class="text-center fw-bolder">{{this.quiz_name}}</h1>
+
+        </div>
+    </div>

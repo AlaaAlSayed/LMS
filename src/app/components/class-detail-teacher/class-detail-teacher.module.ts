@@ -28,8 +28,8 @@ const routes: Routes = [
   {path:'assignment/updateassignment/:assignmentid',component:UpdateassignmentComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'matrial/updatematrial/:matrialid',component:UpdatematerialComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'quiz/createquiz',component:CreatequizComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'quiz/createquiz/:quizid/createquestion',component:CreatequestionComponent,canActivate:[AuthGuard,TeacherGuard]},
-  {path:'quiz/createquiz/:quizid/:questionid/createoption',component:CreateoptionComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz/createquiz/:quizid/:quizname/createquestion',component:CreatequestionComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'quiz/createquiz/:quizid/:quizname/createquestion/:questionid/createoption',component:CreateoptionComponent,canActivate:[AuthGuard,TeacherGuard]},
 
 
 ];
