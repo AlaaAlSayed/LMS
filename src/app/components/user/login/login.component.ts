@@ -53,12 +53,14 @@ users:any=new Users();
               this._router.navigate([`/student/home/${this.users.id}`]); 
               
             }
+            
             this._userService.logged.next(true);
             
           })
       },
       error=>{
         console.log(error);
+        
         
       });
       // console.log(this._userService.getLoggedId());
@@ -68,6 +70,7 @@ users:any=new Users();
     },
     error=>{
       console.log(error);
+      alert('username or password is incorrect');
       
     }
     )

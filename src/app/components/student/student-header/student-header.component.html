@@ -20,16 +20,10 @@
           <a  (click)="false" class="fs-6 text-white bg-transparent nav-link" ngbDropdownToggle><i class="fa fa-bell"></i>  Notifications</a>
           <div ngbDropdownMenu  >
             <!-- *ngFor="let subject of subjects" -->
-            <button class="text-wrap lh-base " ngbDropdownItem *ngFor="let notify of notifications; let currentIndex =index;" > {{currentIndex+1}}:- {{notify.data.message}}</button>
+            <button class="text-wrap lh-base " ngbDropdownItem *ngFor="let notification of notifications; let currentIndex =index;" > {{currentIndex+1}}:- {{notification.data.message}}</button>
             <!--  routerLink="/subject/{{student.id}}/{{subject.id}}" -->
             <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span class="visually-hidden">unread messages</span></span> -->
-            <!-- <ul class=" p-2 d-flex flex-column" >
-              <li ngbDropdownItem class="text-dark" > {{notify.data.message}}</li>
-            </ul> -->
-            <!-- <button ngbDropdownItem>Another action</button>
-            <button ngbDropdownItem>Something else here</button> -->
-            <!-- <div class="dropdown-divider"></div>
-            <button ngbDropdownItem>Separated link</button> -->
+            
           </div>
         </li>
           

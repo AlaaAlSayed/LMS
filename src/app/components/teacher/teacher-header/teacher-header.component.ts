@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/models/teacher';
 import { TeacherService } from './../../../services/teacher.service';
 import { ActivatedRoute } from '@angular/router';
+import { Notifications } from 'src/models/notifications';
+import { StudentService } from './../../../services/student.service';
+
 
 @Component({
   selector: 'app-teacher-header',
@@ -10,7 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TeacherHeaderComponent implements OnInit {
   teacher:Teacher= new Teacher();
-  constructor(private _teacherService:TeacherService,private _activatedRoute:ActivatedRoute) { }
+  notifications:Notifications[]=[];
+  constructor(private _teacherService:TeacherService,private _activatedRoute:ActivatedRoute,private _studentService:StudentService) { }
 
   ngOnInit(): void {
     // this._teacherService.get().subscribe (
@@ -29,6 +33,11 @@ export class TeacherHeaderComponent implements OnInit {
     }
 
     )
+    this._studentService.getNotification().subscribe(result=>{
+      this.notifications=result;
+      console.log(result);
+
+    })
   }
 
 }
