@@ -219,10 +219,12 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
     Route::delete('/option/{optionId}', [OptionController::class, 'delete'])->name('api.option.delete');
 
+    Route::get('/subjectExams/{subjectId}', [ExamController::class, 'subjectExams']);
+
    
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
-    Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
-    Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
+    // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
+    // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
 });

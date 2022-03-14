@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {//TeacherTeachesSubject	teacherId	subjectId	classId
         Schema::create('teacher_teaches_subjects', function (Blueprint $table) {
-            $table->id();
-            
+            $table->integer('id')->unique();
+            // $table->unique( ['teacherId', 'subjectId','classroomId'],'id');
+            $table->primary(['teacherId', 'subjectId','classroomId']);
             $table->foreignId('teacherId')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('classroomId')->references('id')->on('classrooms')->onDelete('cascade');

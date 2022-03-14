@@ -159,6 +159,7 @@ class TeacherController extends Controller
       'teacherId' => $data['teacherId'],
       'subjectId' => $data['subjectId'],
       'classroomId' => $data['classroomId'],
+      'id' =>$data['teacherId'].$data['subjectId'].$data['classroomId'],
     ]);
 
     return ($teacher);
