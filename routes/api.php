@@ -221,10 +221,8 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
     Route::get('/subjectExams/{subjectId}', [ExamController::class, 'subjectExams']);
 
-   
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
     // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
-
 });
