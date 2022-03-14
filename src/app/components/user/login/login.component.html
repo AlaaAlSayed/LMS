@@ -13,8 +13,8 @@
               placeholder="Enter a username " [class.is-invalid]="isInValidAndTouched('username')" [class.is-valid]="isValidControl('username')" />
               <div *ngIf="isInValidAndTouched('username')">
                 <small class="form-text text-danger" *ngIf="isControlHasError('username','required')" >required username</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('username','minLength')" >min length is 10</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('username','maxLength')" >max length is 30</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('username','minlength')" >min length is 10</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('username','maxlength')" >max length is 30</small>
               </div>
           </div>
 
@@ -24,19 +24,19 @@
               placeholder="Enter password" [class.is-invalid]="isInValidAndTouched('password')" [class.is-valid]="isValidControl('password')"/>
               <div *ngIf="isInValidAndTouched('password')">
                 <small class="form-text text-danger" *ngIf="isControlHasError('password','required')" >required Password</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('password','minLength')" >min length is 8</small>
-              <small class="form-text text-danger"*ngIf="isControlHasError('password','maxLength')" >max length is 20</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('password','minlength')" >min length is 8</small>
+              <small class="form-text text-danger"*ngIf="isControlHasError('password','maxlength')" >max length is 20</small>
               </div>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
-            <div class="form-check mb-0">
+            <!-- <div class="form-check mb-0">
               <input class="form-check-input me-2" type="checkbox" value="" />
               <label class="form-check-label" >
                 Remember me
               </label>
-            </div>
+            </div> -->
             <!-- <a href="#!" class="text-body">Forgot password?</a> -->
           </div>
 

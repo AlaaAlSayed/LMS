@@ -8,6 +8,8 @@ import { Classroom } from 'src/models/classroom';
   styleUrls: ['./view-classrooms.component.css']
 })
 export class ViewClassroomsComponent implements OnInit {
+  p: number = 1;
+  count: number = 5;
   classrooms:Classroom[]=[];
   constructor(private _classroomService:ClassroomService) { }
 

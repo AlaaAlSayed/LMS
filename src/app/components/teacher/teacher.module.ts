@@ -7,13 +7,14 @@ import { TeacherProfileComponent } from './teacher-profile/teacher-profile.compo
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
-  {path:'header',component:TeacherHeaderComponent,canActivate:[TeacherGuard]},
-  {path:'home/:id',component:TeacherHomeComponent,canActivate:[TeacherGuard]},
+  {path:'header',component:TeacherHeaderComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'home/:id',component:TeacherHomeComponent,canActivate:[AuthGuard,TeacherGuard]},
   // {path:'home',component:TeacherHomeComponent},
-  {path:'profile/:id',component:TeacherProfileComponent,canActivate:[TeacherGuard]},
-  {path:'',component:TeacherHomeComponent,canActivate:[TeacherGuard]}
+  {path:'profile/:id',component:TeacherProfileComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'',component:TeacherHomeComponent,canActivate:[AuthGuard,TeacherGuard]}
   ];
 
 @NgModule({
@@ -23,7 +24,7 @@ const routes: Routes = [
     TeacherProfileComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),SharedModule
+    CommonModule,RouterModule.forChild(routes),SharedModule,NgbModule
     
   ]
 })

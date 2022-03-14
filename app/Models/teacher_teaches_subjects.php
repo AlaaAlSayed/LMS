@@ -13,6 +13,7 @@ class teacher_teaches_subjects extends Model
         'teacherId',
         'subjectId',
         'classroomId',
+        'id'
      ];
  
     

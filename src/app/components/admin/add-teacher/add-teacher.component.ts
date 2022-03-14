@@ -53,7 +53,15 @@ export class AddTeacherComponent implements OnInit {
       console.log(this.teaches);
       this.teaches.push(teach);
       alert('Added Successfully');
-    })
+      window.location.href='http://localhost:4200/admin/view-teachers';
+
+    },
+    error=>{
+      // console.log(error);
+      alert('this teacher already teaches this subject in this class');
+      
+    }
+    )
 
   }
   Add():void
@@ -92,7 +100,7 @@ this._teacherService.post(formData).subscribe((response:any)=>{
   this.files=response.data;
   console.log(this.files);
   alert('Added Successfully');
-
+  window.location.href='http://localhost:4200/admin/view-teachers';
 })
 }
 

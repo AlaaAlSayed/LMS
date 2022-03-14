@@ -11,6 +11,10 @@ use App\Models\StudentUploadAssignment;
 use Illuminate\Support\Facades\Storage;
 use Spatie\FlareClient\Http\Response;
 use App\Http\Resources\AssignmentResource;
+use App\Models\Subject;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MaterialUploaded;
+use App\Models\Student;
 
 class AssignmentController extends Controller
 {
@@ -71,7 +75,7 @@ class AssignmentController extends Controller
     }
 
     $data = request()->all();
-    // $subject = Subject::find($teacherId);
+
     $assignment = Assignment::create([
       'name' => $filename
     ]);
@@ -82,6 +86,12 @@ class AssignmentController extends Controller
       'assignmentId' => $assignment->id,
       'deadline' => $data['deadline']
     ]);
+
+    $subject=Subject::find ($subjectId);
+    $students=Student::where('classroomId',$subject->classroomId)->get()->all();
+    Notification::send($students, new MaterialUploaded( "assignment",$data['name'] , $subject->name )); //one to many
+    
+  
     $teacher_teaches_subjects = teacher_attaches_assignments::all();
     return ($teacher_teaches_subjects);
   }

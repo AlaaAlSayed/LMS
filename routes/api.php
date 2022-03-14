@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\Api\QuistionContoller;
+use App\Http\Controllers\Api\OptionController;
 
 
 /*
@@ -38,13 +40,11 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
-Route::middleware('auth:sanctum')->group(function () {
-
+ Route::middleware('auth:sanctum')->group(function () {
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
     Route::get('/id', [UserController::class, 'id']);
-
 
     //----------------------------- IsAdmin --------------------------------------------
     Route::middleware('IsAdmin')->group(function () {
@@ -98,7 +98,8 @@ Route::middleware('auth:sanctum')->group(function () {
         //teacher dashboard  - profile page :
         Route::get('/teachers/image/{teacherId}', [TeacherController::class, 'showImage']);
         //teacher dashboard  - home page :
-        Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
+
+         Route::get('/teachers/{teacherId}/home', [TeacherController::class, 'home'])->name('api.teachers.home');
 
         Route::post('/materials', [MaterialController::class, 'store']);
         Route::delete('/materials/{material}', [MaterialController::class, 'destroy']);
@@ -119,10 +120,12 @@ Route::middleware('auth:sanctum')->group(function () {
         //student dashboard - profile page :
         Route::get('/students/image/{student}', [StudentController::class, 'showImage']);
         //student dashboard  - home page :
-        Route::get('/students/{student}/home', [StudentController::class, 'home'])->name('api.students.home');
+        Route::get('/students/{studentId}/home', [StudentController::class, 'home'])->name('api.students.home');
+
+
+
         // student dashboard  - upload assignment    :
         Route::post('/students/upload', [StudentController::class, 'upload']);
-
 
         // download material as pdf
         Route::get('/materials/download/{materialId}', [MaterialController::class, 'download']);
@@ -215,4 +218,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::delete('/option/{optionId}', [OptionController::class, 'delete'])->name('api.option.delete');
+
+    Route::get('/subjectExams/{subjectId}', [ExamController::class, 'subjectExams']);
+
+   
+    //********************** Notifications ****************** */
+    Route::get('/notifications', [UserController::class, 'notifications']);
+    // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
+    // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
+
 });

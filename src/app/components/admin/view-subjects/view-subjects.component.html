@@ -7,7 +7,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let subject of subjects;">
+      <tr *ngFor="let subject of subjects | paginate: { itemsPerPage: count, currentPage: p };">
         <th scope="row">{{subject.id}}</th>
         <td>{{subject.name}}</td>
         <td>{{subject.classroomId}}</td>
@@ -17,5 +17,7 @@
       </tr>
     </tbody>
   </table>
-
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 

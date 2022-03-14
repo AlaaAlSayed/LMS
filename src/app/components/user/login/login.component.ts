@@ -34,7 +34,6 @@ users:any=new Users();
     
     this._userService.postLogin(data).subscribe((res:any)=>{
       console.log(res);
-     
       localStorage.setItem("token", res);
       this._userService.getLoggedId().subscribe((result:any)=> 
         {
@@ -55,12 +54,13 @@ users:any=new Users();
               
             }
             
-            
             this._userService.logged.next(true);
+            
           })
       },
       error=>{
         console.log(error);
+        
         
       });
       // console.log(this._userService.getLoggedId());
@@ -70,6 +70,7 @@ users:any=new Users();
     },
     error=>{
       console.log(error);
+      alert('username or password is incorrect');
       
     }
     )
@@ -89,7 +90,11 @@ users:any=new Users();
   {
     return  this.formLogin.controls[name].invalid && this.formLogin.controls[name].errors?.[error];
   }
-
+//   isMatching(){
+// if(!this.formLogin.value.valid){
+//   alert('error');
+// }
+//   }
 }
  // const headers=new HttpHeaders({
       //   Authorization: `Bearer ${result}`

@@ -28,7 +28,7 @@ export class EditAssignTeacherComponent implements OnInit {
       this._teacherService.getTeaches(this.id1).subscribe(
         response=>{
           this.formEditAssign=new FormGroup({
-            id:new FormControl(response['id']),
+            // id:new FormControl(response['id']),
             teacherId:new FormControl(response['teacherId']),
             subjectId:new FormControl(response['subjectId']),
             classroomId:new FormControl(response['classroomId']),

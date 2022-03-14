@@ -14,11 +14,11 @@
         </div> -->
         <ul class="flex-column text-center lh-lg" style="list-style-type: none;">
             <li class=" text-danger fw-bold fs-5"> Name: <span class="fw-normal">{{admin.name}} </span></li>
-            <li class="fw-bold fs-6"> <i class="fa fa-user-circle"></i>  Username: <span class="fw-normal">{{admin.username}} </span></li>
-            <li class="fw-bold fs-6"><i class="fa fa-envelope"></i> Email: <span class="fw-normal">{{admin.email}} </span></li>
-            <li class="fw-bold fs-6"><i class="fa fa-phone" ></i> Phone: <span class="fw-normal">{{admin.phone}} </span></li>
-            <li class="fw-bold fs-6"><i class="fa fa-map-marker"></i>  Address: <span class="fw-normal"> {{admin.street + ' ' + admin.city + ' ' + admin.government}} </span></li>
-            <button type="button" class="btn btn-dark btn-lg text-white rounded-pill col-md-2" routerLink='/admin/edit-admin/{{admin.id}}'>Edit</button>
+            <li class="fw-bold fs-6 mt-3"> <i class="fa fa-user-circle"></i>  Username: <span class="fw-normal">{{admin.username}} </span></li>
+            <li class="fw-bold fs-6 mt-3"><i class="fa fa-envelope"></i> Email: <span class="fw-normal">{{admin.email}} </span></li>
+            <li class="fw-bold fs-6 mt-3"><i class="fa fa-phone" ></i> Phone: <span class="fw-normal">{{admin.phone}} </span></li>
+            <li class="fw-bold fs-6 mt-3"><i class="fa fa-map-marker"></i>  Address: <span class="fw-normal"> {{admin.street + ' ' + admin.city + ' ' + admin.government}} </span></li>
+            <button type="button" class="btn btn-dark btn-lg text-white rounded-pill col-md-2 mt-5" routerLink='/admin/edit-admin/{{admin.id}}'>Edit Profile</button>
         </ul>
     </div>
 </section>

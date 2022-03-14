@@ -24,7 +24,7 @@ export class StudentGuard implements CanActivate {
   }
   else if(this.roleId==3){
     this.isAble= true; 
-  }
+      }
   // if(this.roleId==3 || this.roleId==1){
   //   this._router.navigate([`/student/home/${this.id}`]);
   //   return true;

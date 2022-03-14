@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\SubjectMaterial;
 use App\Models\teacher_teaches_subjects;
+use App\Models\User;
+use App\Models\Subject;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MaterialUploaded;
+
 class MaterialController extends Controller
 {
     public function index()
@@ -76,11 +82,18 @@ class MaterialController extends Controller
         }
 
         $data = request()->all();
+        
         SubjectMaterial::create([
             'subjectId' => $data['subjectId'],
             'material' => $filename,
             'name' => $data['name'],
         ]);
+
+        $subject=Subject::find ($data['subjectId']);
+        $students=Student::where('classroomId',$subject->classroomId)->get()->all();
+        Notification::send($students, new MaterialUploaded( "material",$data['name'] , $subject->name )); //one to many
+        
+        
         $allMaterials = SubjectMaterial::all();
         return $allMaterials->all();
     }

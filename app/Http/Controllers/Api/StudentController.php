@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\Teacher;
+
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
@@ -11,7 +13,10 @@ use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Models\Assignment;
 use App\Models\StudentUploadAssignment;
+use App\Models\teacher_teaches_subjects;
 use App\Models\User;
+use App\Notifications\AssignmentSubmitted;
+use Illuminate\Support\Facades\Notification;
 
 class StudentController extends Controller
 {
@@ -42,8 +47,6 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
-
-
 
         if ($request->hasFile('picture_path')) { //if user choose file
             $file = $request->file('picture_path'); //store  uploaded file to variable $file to
@@ -81,23 +84,24 @@ class StudentController extends Controller
 
     public function update($studentId) //,UpdateStudentRequest $request )
     {
-        if (isset($data['picture_path'])) {
-            if (request()->hasFile('picture_path')) { //if user choose file
-                request()->validate([
-                'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
-            ]);
+        // request()->validate([
+        //     'picture_path' => 'image|mimes:jpeg,pmb,png,jpg|max:88453'
+        // ]);
 
-                $file = request()->file('picture_path'); //store  uploaded file to variable $file to
-                $extension = $file->getClientOriginalExtension();
-                $filename = 'student-image' . '_' . time() . '.' . $extension;
-                $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
-                Student::where('id', $studentId)->update([
+        // if (isset($data['picture_path'])) {
+        if (request()->hasFile('picture_path')) { //if user choose file
+          
+            $file = request()->file('picture_path'); //store  uploaded file to variable $file to
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'student-image' . '_' . time() . '.' . $extension;
+            $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
+            Student::where('id', $studentId)->update([
                 'picture_path' =>  $filename,
             ]);
-            }
         }
-    
+        // }
         $data = request()->all();
+
         if (isset($data['password'])) {
             User::where('id', $studentId)->update([
                 'password' => password_hash($data['password'], PASSWORD_DEFAULT),
@@ -138,30 +142,37 @@ class StudentController extends Controller
 
 
 
-    public function upload($studentId, $assignmentId, $subjectId)
+    public function upload()
     {
         request()->validate([
             'answer' => 'required|mimes:pdf|max:10000'
         ]);
+        $data = request()->all();
 
         if (request()->hasFile('answer')) { //if user choose file
             $file = request()->file('answer'); //store  uploaded file to variable $file to
             $extension = $file->getClientOriginalExtension();
-            $filename = 'Answer_' . $studentId .  '_' . time() . '.' . $extension;
+            $filename = 'Answer_' . $data['studentId'] .  '_' . time() . '.' . $extension;
             $file->storeAs('public/assets', $filename); //make folder assets in public/storage/assets and put file
         } else {
             $filename = 'storage/app/public/assets/Assignment_tmp.pdf';
         }
 
-        $data = request()->all();
-
+       
         $assignment = StudentUploadAssignment::create([
-            'studentId' => $studentId,
-            'subjectId' => $subjectId,
-            'assignmentId' => $assignmentId,
+            'studentId' =>  $data['studentId'],
+            'subjectId' =>  $data['subjectId'],
+            'assignmentId' =>  $data['assignmentId'],
             'answer' => $filename,
         ]);
 
+        $subject=Subject::find ($data['subjectId']);
+        $student=User::find ($data['studentId']);
+
+        $teacherId=teacher_teaches_subjects::where([['subjectId',$subject->id] ,['classroomId',$subject->classroomId]])->first()->get('teacherId');
+        $teacher=Teacher::find ($teacherId);
+        Notification::send($teacher, new AssignmentSubmitted($student->name, $subject->name )); //one to many
+        
 
         $StudentsUploadAssignment = StudentUploadAssignment::all();
         return ($StudentsUploadAssignment);

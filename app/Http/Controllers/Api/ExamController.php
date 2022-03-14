@@ -20,6 +20,7 @@ use Symfony\Component\Console\Question\Question;
 use App\Models\Quistion;
 use App\Models\Option;
 use App\Models\Answer;
+use PhpParser\Node\Stmt\Return_;
 
 
 
@@ -32,11 +33,11 @@ class ExamController extends Controller
     $options = [];
     $correctAnswers = [];
     $exam = teacher_makes_exams::where([['teacherId', $teacherId], ['examId', $examId]])->get();
+    //  DD( $exam[0]->examId);
+    $quistions = Quistion::where('examId', $exam[0]->examId)->get('value');
 
-    $quistions = Quistion::where('examId', $exam[0]->id)->get('value');
 
-
-    $quistionsId = Quistion::where('examId', $exam[0]->id)->get('id');
+    $quistionsId = Quistion::where('examId', $exam[0]->examId)->get('id');
 
     foreach ($quistionsId as   $quistionId) {
 
@@ -55,7 +56,6 @@ class ExamController extends Controller
     $data = request()->all();
     $exam = Exam::create([
       'name' => $data['name'],
-      'quistionId' => $data['quistionId'] ///////////////////////////////////delete
     ]);
 
     teacher_makes_exams::create([
@@ -66,9 +66,11 @@ class ExamController extends Controller
       'time' => $data['time'],
       'date' => $data['date']
     ]);
+    // dd($exam->id);
+    $teacher_makes_exams = teacher_makes_exams::where('examId', $exam->id)->get();
+    $exam = Exam::where('id', $exam->id)->get();
 
-    $teacher_makes_exams = teacher_makes_exams::all();
-    return ($teacher_makes_exams);
+    return (['teacher_makes_exams' => $teacher_makes_exams->first()->examId, 'exam_name' => $exam->first()->name]);
   }
 
   public function update($examId)
@@ -77,7 +79,6 @@ class ExamController extends Controller
 
     Exam::where('id', $examId)->update([
       'name' => $data['name'],
-      'quistionId' => $data['quistionId'] ///////////////////////////////////delete
 
     ]);
 
@@ -116,7 +117,7 @@ class ExamController extends Controller
       $is_correct = Option::where('id', (int)$selectedOption)->get('is_correct');
 
 
-      if ($is_correct[0]->is_correct == 1) {
+      if ($is_correct->first()->is_correct == 1) {
         $result++;
       }
     }
@@ -127,9 +128,18 @@ class ExamController extends Controller
       [
         'examId' => $examId,
         'studentId' => $studentId,
-        'subjectId' => $subjectId[0]->subjectId,
+        'subjectId' => $subjectId->first()->subjectId,
         'result' => $result,
       ]
     );
+
+    return $result;
   }
+
+
+  public function  subjectExams($subjectId){
+    $subject= Subject::find($subjectId)->first();
+    return  $subject->exams ;
+  }
+
 }

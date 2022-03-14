@@ -1,8 +1,11 @@
-import { UserService } from 'src/app/services/user.service';
+import { SubjectService } from 'src/app/services/subject.service';
+import { Subject } from 'src/models/subject';
 import { Student } from './../../../../models/student';
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from './../../../services/student.service';
 import { ActivatedRoute } from '@angular/router';
+import { Notifications } from 'src/models/notifications';
+
 
 @Component({
   selector: 'app-student-header',
@@ -10,10 +13,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./student-header.component.css']
 })
 export class StudentHeaderComponent implements OnInit {
-  isLogged=false;
+  // isLogged=false;
   student:any= new Student();
-  constructor(private _studentService:StudentService,private _activatedRoute:ActivatedRoute
-    , private _userService:UserService) { }
+  subjects:Subject[]=[];
+  notifications:Notifications[]=[];
+  constructor(private _studentService:StudentService,private _activatedRoute:ActivatedRoute,private _subjectService:SubjectService) { }
 
   ngOnInit(): void {
 
@@ -27,8 +31,24 @@ export class StudentHeaderComponent implements OnInit {
       )
     }
     )
-    this._userService.logged.subscribe(status=>{
-      this.isLogged=status;
+    this._activatedRoute.paramMap.subscribe( params=>{
+      let id = Number(params.get('id'));
+      this._studentService.getSubjects(id)
+      .subscribe(
+        response=>{
+          this.subjects=response;
+          console.log(this.subjects);
+        },
+      )
+    }
+    )
+    // this._userService.logged.subscribe(status=>{
+    //   this.isLogged=status;
+    // })
+    this._studentService.getNotification().subscribe(result=>{
+      this.notifications=result;
+      console.log(result);
+
     })
   }
 

@@ -10,6 +10,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-teachers.component.css']
 })
 export class ViewTeachersComponent implements OnInit {
+  p1: number = 1;
+  count1: number = 3;
+  p2: number = 1;
+  count2: number = 5;
   teachers:Teacher[]=[];
   teach:TeacherTeachesSubjects[]= [];
   id:any;

@@ -6,10 +6,11 @@ use App\Http\Resources\AssignmentResource;
 use App\Http\Resources\AssignmentUploadResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Student extends Model
 {
-    use HasFactory;
+    use HasFactory ,Notifiable;
 
     protected $fillable = [
         'id',
