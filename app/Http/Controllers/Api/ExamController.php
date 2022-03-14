@@ -26,13 +26,15 @@ use PhpParser\Node\Stmt\Return_;
 
 class ExamController extends Controller
 {
-  public function show($teacherId, $examId)
+  public function show( $examId)
   {
 
 
     $options = [];
     $correctAnswers = [];
-    $exam = teacher_makes_exams::where([['teacherId', $teacherId], ['examId', $examId]])->get();
+    // $exam = teacher_makes_exams::where([['teacherId', $teacherId], ['examId', $examId]])->get();
+    $exam = teacher_makes_exams::where('examId', $examId)->get();
+
     //  DD( $exam[0]->examId);
     $quistions = Quistion::where('examId', $exam[0]->examId)->get('value');
 

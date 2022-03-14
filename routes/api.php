@@ -202,7 +202,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     // ->withoutMiddleware([EnsureTokenIsValid::class]);
 
     Route::post('/exams/{examId}/{studentId}/{selectedOptions}', [ExamController::class, 'score'])->name('api.exams.score');
-    Route::get('/exams/{teacherId}/{examId}', [ExamController::class, 'show'])->name('api.exams.show');
+    Route::get('/exams/{examId}', [ExamController::class, 'show'])->name('api.exams.show');
     Route::post('/exams/{teacherId}/{subjectId}', [ExamController::class, 'store'])->name('api.exams.store');
     Route::put('/exams/{examId}', [ExamController::class, 'update'])->name('api.exams.update');
     Route::delete('/exams/{examId}', [ExamController::class, 'destroy'])->name('api.exams.destroy');
