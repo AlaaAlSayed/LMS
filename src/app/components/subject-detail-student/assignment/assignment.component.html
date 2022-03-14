@@ -29,7 +29,7 @@
          <th scope="col">Name</th>
          <th scope="col">View</th>
          <th scope="col">Download</th>
-         <th scope="col" *ngIf="!isok">Upload</th>
+         <th scope="col" >Upload</th>
 
 
        </tr>
@@ -48,7 +48,7 @@
                <button class="btn" (click)="downloadid(mat.id,mat.name)" style="background-color:#e9544d;">Download</button> 
             </td>
             <td>
-              <a  *ngIf="!isok" routerLink="uploadassignment/{{mat.id}}">  <button class="btn" style="background-color:#62d166;">Upload</button> </a>
+              <a routerLink="uploadassignment/{{mat.id}}">  <button class="btn" style="background-color:#62d166;">Upload</button> </a>
           
     
             </td>
