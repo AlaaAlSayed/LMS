@@ -43,9 +43,10 @@ class ExamController extends Controller
 
     foreach ($quistionsId as   $quistionId) {
 
-      $options[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('value');
-
-      $correctAnswers[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('is_correct');
+      $option = Option::where('quistionId', $quistionId->id)->get('value');
+      array_push( $options, $option);
+      $correctAnswer = Option::where('quistionId', $quistionId->id)->get('is_correct');
+      array_push( $correctAnswers, $correctAnswer);
     }
 
 
