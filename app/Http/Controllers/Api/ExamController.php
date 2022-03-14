@@ -49,7 +49,9 @@ class ExamController extends Controller
     }
 
 
-    return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+    // return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+        return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+
   }
 
 
@@ -148,4 +150,13 @@ class ExamController extends Controller
 
   }
 
+
+  public function  getExamName($examId){
+    
+    // $subject= Subject::find($subjectId)->first();
+    // return  $subject->exams ;
+    $examName = Exam::where('id', $examId)->get('name');    
+    return   $examName->first()->name ;
+
+  }
 }
