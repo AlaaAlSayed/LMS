@@ -138,8 +138,12 @@ class ExamController extends Controller
 
 
   public function  subjectExams($subjectId){
-    $subject= Subject::find($subjectId)->first();
-    return  $subject->exams ;
+    
+    // $subject= Subject::find($subjectId)->first();
+    // return  $subject->exams ;
+    $allExams= teacher_makes_exams::join('exams', 'exams.id', '=', 'teacher_makes_exams.examId')->where('subjectId',$subjectId)->get()->all();
+    return   $allExams ;
+
   }
 
 }

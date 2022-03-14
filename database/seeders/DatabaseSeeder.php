@@ -29,8 +29,132 @@ class DatabaseSeeder extends Seeder
     ///////////////////////////////////////////////////
     DB::table('users')->delete();
     $users = [
+
       [
 
+        'id' => '1',
+        'name' => 'Admin ',
+        'username' => 'admn',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '1',
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '2',
+        'name' => 'khairy',
+        'username' => 'admin1',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '1',
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      //----------------teachers
+      [
+
+        'id' => '3',
+        'name' => 'teacher',
+        'username' => 'tchr',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+
+
+      [
+        'id' => '4',
+        'name' => 'ali',
+        'username' => 'teacher1',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '5',
+        'name' => 'gamal',
+        'username' => 'teacher2',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '6',
+        'name' => 'alaa',
+        'username' => 'teacher3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '7',
+        'name' => 'mostafa',
+        'username' => 'teacher4',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '8',
+        'name' => 'hadeer',
+        'username' => 'teacher5',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '2',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+
+      //-------------students
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '4',
+        'name' => 'yassin',
+        'username' => 'student2',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
         'id' => '1',
         'name' => 'student',
         'username' => 'stud',
@@ -42,36 +166,11 @@ class DatabaseSeeder extends Seeder
         'city' => 'city',
         'street' => 'streetName',
       ],
-      [
 
-        'id' => '2',
-        'name' => 'Admin ',
-        'username' => 'admn',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '1',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
       [
-
-        'id' => '3',
-        'name' => 'teacher',
-        'username' => 'tchr',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '4',
-        'name' => 'khaled',
-        'username' => 'student khaled',
+        'id' => '13',
+        'name' => 'ahmed',
+        'username' => 'student3',
         'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
         'roleId' => '3',
@@ -80,102 +179,133 @@ class DatabaseSeeder extends Seeder
         'city' => 'city',
         'street' => 'streetName',
       ],
-      [
-        'id' => '5',
-        'name' => 'yassin',
-        'username' => 'student yassin',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '3',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '6',
-
-        'name' => 'ali',
-        'username' => 'student ali',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '7',
-        'name' => 'gamal',
-        'username' => 'teacher gamal',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '8',
-        'name' => 'alaa',
-        'username' => 'teacher alaa',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '9',
-        'name' => 'mostafa',
-        'username' => 'teacher mostafa',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-      [
-        'id' => '10',
-        'name' => 'hadeer',
-        'username' => 'teacher hadeer',
-        'password' => password_hash('password', PASSWORD_DEFAULT), // password
-        'remember_token' => Str::random(10),
-        'roleId' => '2',
-        //address
-        'government' => 'country',
-        'city' => 'city',
-        'street' => 'streetName',
-      ],
-
       [
         'id' => '11',
-
         'name' => 'ahmed',
-        'username' => 'student ahmed',
+        'username' => 'student3',
         'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
-        'roleId' => '2',
+        'roleId' => '3',
         //address
         'government' => 'country',
         'city' => 'city',
         'street' => 'streetName',
       ],
-
       [
-        'id' => '12',
-
-        'name' => 'khairy',
-        'username' => 'admin khairy',
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
         'password' => password_hash('password', PASSWORD_DEFAULT), // password
         'remember_token' => Str::random(10),
-        'roleId' => '1',
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
+        //address
+        'government' => 'country',
+        'city' => 'city',
+        'street' => 'streetName',
+      ],
+      [
+        'id' => '11',
+        'name' => 'ahmed',
+        'username' => 'student3',
+        'password' => password_hash('password', PASSWORD_DEFAULT), // password
+        'remember_token' => Str::random(10),
+        'roleId' => '3',
         //address
         'government' => 'country',
         'city' => 'city',
