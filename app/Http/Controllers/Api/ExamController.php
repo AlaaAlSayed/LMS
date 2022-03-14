@@ -50,7 +50,6 @@ class ExamController extends Controller
     }
 
 
-    // return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
         return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
 
   }
