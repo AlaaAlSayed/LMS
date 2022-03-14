@@ -32,17 +32,20 @@ export class TechquizComponent implements OnInit {
       
       this.matrials=response;
       this.subjectid=this.matrials[0].subjectId;
+      this._quizservice.getexams(this.subjectid)
+      .subscribe(
+        (response:any)=>{
+          
+      this._quiz=response;
+      console.log(this._quiz)
+    
+        },
+        (error:any)=>{alert("error");}
+      )
     
   })
-  this._quizservice.getexams(this.subjectid)
-  .subscribe(
-    (response:any)=>{
-      
-  this._quiz=response;
 
-    },
-    (error:any)=>{alert("error");}
-  )
+ 
         
       
 
