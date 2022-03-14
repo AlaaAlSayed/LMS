@@ -8,4 +8,5 @@ export class quiz{
     date:any;
     teacher_makes_exams:number=0;
     exam_name:string="";
+    name:string="";
 }

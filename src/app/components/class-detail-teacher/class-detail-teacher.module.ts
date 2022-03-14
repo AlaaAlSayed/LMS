@@ -17,6 +17,10 @@ import { TeacherHeaderComponent } from '../teacher/teacher-header/teacher-header
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { CreatequestionComponent } from './createquestion/createquestion.component';
 import { CreateoptionComponent } from './createoption/createoption.component';
+import { HeaderComponent } from './header/header.component';
+import {​​​​​​​​ NgbModule }​​​​​​​​ from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../shared/shared.module';
+
 
 const routes: Routes = [
   {path:'assignment',component:TechassignmentComponent},
@@ -50,10 +54,11 @@ const routes: Routes = [
     UpdateassignmentComponent,
     CreatequizComponent,
     CreatequestionComponent,
-    CreateoptionComponent
+    CreateoptionComponent,
+    HeaderComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule,NgbModule,SharedModule
     
   ],
   exports:[

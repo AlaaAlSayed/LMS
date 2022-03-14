@@ -34,12 +34,12 @@ export class quizservice {
    postoption(opt:any,questionId:number){
     return this._HttpClient.post(`${environment.APIURL}/api/option/${questionId}`,opt);
    } 
-  put(_subject:subject){
-    return this._HttpClient.put(`${environment.APIURL}/api/exams`,_subject);
-   }
+   doexam(examId:number){
+    return this._HttpClient.get(`${environment.APIURL}/api/exams/${examId}`);
+   } 
 
-   delete(id:number){
-    return this._HttpClient.delete(`${environment.APIURL}/api/exams/${id}`);
+   delete(examId:number){
+    return this._HttpClient.delete(`${environment.APIURL}/api/exams/${examId}`);
    } 
 
 }

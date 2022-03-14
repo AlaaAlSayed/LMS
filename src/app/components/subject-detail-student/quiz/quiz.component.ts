@@ -24,8 +24,8 @@ export class QuizComponent implements OnInit {
       this._quizservice.getexams(id)
       .subscribe(
         (response:any)=>{
-          //console.log(response.data);
-          console.log(response);
+          
+      this._quiz=response;
 
         },
         (error:any)=>{alert("error");}

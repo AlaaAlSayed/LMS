@@ -7,7 +7,6 @@ import { AssignmentComponent } from './assignment/assignment.component';
 import { MainSubjectComponent } from './main-subject/main-subject.component';
 import { MatrialComponent } from './matrial/matrial.component';
 import { QuizComponent } from './quiz/quiz.component';
-import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
@@ -15,6 +14,10 @@ import { UploadassignmentComponent } from './uploadassignment/uploadassignment.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { StudentModule } from '../student/student.module';
+import { HeaderComponent } from './header/header.component';
+import { DoexaamComponent } from './doexaam/doexaam.component';
+import {​​​​​​​​ NgbModule} ​​​​​ from '@ng-bootstrap/ng-bootstrap';
+
 //import { StudentHeaderComponent } from '../student/student-header/student-header.component';
 // import { StudentModule } from '../student/student.module';
 
@@ -25,13 +28,14 @@ const routes: Routes = [
     path:'assignment',component:AssignmentComponent,canActivate:[AuthGuard,StudentGuard]
   },
 
-  {path:'result',component:ResultComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'quiz',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'matrial',component:MatrialComponent,canActivate:[AuthGuard,StudentGuard]},
   {path:'assignment/uploadassignment/:assignmentid',component:UploadassignmentComponent,canActivate:[AuthGuard,StudentGuard]},
-  //{path:'doexam',component:QuizComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'quiz/doexam/:examid',component:DoexaamComponent,canActivate:[AuthGuard,StudentGuard]},
 
-  {path:'',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]}
+  {path:'',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]},
+  {path:'header',component:MainSubjectComponent,canActivate:[AuthGuard,StudentGuard]}
+
 
 ];
 @NgModule({
@@ -39,15 +43,16 @@ const routes: Routes = [
     AssignmentComponent,
     QuizComponent,
     MatrialComponent,
-    ResultComponent,
     MainSubjectComponent,
     UploadassignmentComponent,
+    HeaderComponent,
+    DoexaamComponent,
     //StudentHeaderComponent
   ],
   imports: [
     
     CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule,ReactiveFormsModule
-    ,//StudentModule
+    ,NgbModule
     
   ]
 })
