@@ -55,7 +55,13 @@ export class AddTeacherComponent implements OnInit {
       alert('Added Successfully');
       window.location.href='http://localhost:4200/admin/view-teachers';
 
-    })
+    },
+    error=>{
+      // console.log(error);
+      alert('this teacher already teaches this subject in this class');
+      
+    }
+    )
 
   }
   Add():void

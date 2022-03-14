@@ -34,7 +34,7 @@
 <table class="table table-striped table-hover mt-5">
   <thead>
     <tr class="fs-5">
-      <th scope="col">#id</th>
+      <!-- <th scope="col">#id</th> -->
       <th scope="col">Teacher ID</th>
       <th scope="col">Subject ID</th>
       <th scope="col">Classroom ID</th>
@@ -42,7 +42,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of teach | paginate: { itemsPerPage: count1, currentPage: p1 };">
-      <th scope="row">{{item.id}}</th>
+      <!-- <th scope="row">{{item.id}}</th> -->
       <td>{{item.teacherId}}</td>
       <td>{{item.subjectId}}</td>
       <td>{{item.classroomId}}</td>
