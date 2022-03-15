@@ -28,8 +28,6 @@ use App\Http\Controllers\Api\OptionController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/materials', [MaterialController::class, 'index']);
-Route::get('/subjectAssignments/{subjectId}', [AssignmentController::class, 'showAssignment']);
 
 // *********************************  LOGIN *****************************
 Route::post('/sanctum/token', [UserController::class, 'generateToken']);
@@ -41,7 +39,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
- Route::middleware('auth:sanctum')->group(function () {
+//  Route::middleware('auth:sanctum')->group(function () {
 
 
 
@@ -144,6 +142,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
 
     Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+    Route::get('/subjectAssignments/{subjectId}', [AssignmentController::class, 'showAssignment']);
 
     // show assignment as pdf
     Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
@@ -227,4 +226,4 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
     // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
-});
+// });
