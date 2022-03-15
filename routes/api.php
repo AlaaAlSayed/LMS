@@ -225,6 +225,6 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
-    // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
+    Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
 });
