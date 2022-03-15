@@ -141,6 +141,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     Route::get('/materials/showpdf/{materialId}', [MaterialController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
 
     Route::get('/deadline/{assignmentId}', [AssignmentController::class, 'show'])->middleware('CheckRole:Teacher,Student');
+    Route::get('/subjectAssignments/{subjectId}', [AssignmentController::class, 'showAssignment']);
 
     // show assignment as pdf
     Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
@@ -158,7 +159,6 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
     // // ***********************     ASSIGNMENTS   *********************
     // // teacher dashboard  - assignments CRUD operations  :
-    // Route::get('/assignments', [AssignmentController::class, 'index']);
     // Route::put('/assignments/{assignment}', [AssignmentController::class, 'update']);
 
     // // show assignments of given teacher 
@@ -199,7 +199,6 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     Route::put('/exams/{exam}/{student}/{subject}', [ExamController::class, 'take'])->name('api.exams.take');
 
 
-    // ->withoutMiddleware([EnsureTokenIsValid::class]);
     Route::get('/examname/{examId}', [ExamController::class, 'getExamName'])->name('api.getExamName.show');
     Route::post('/exams/{examId}/{studentId}/{selectedOptions}', [ExamController::class, 'score'])->name('api.exams.score');
     Route::get('/exams/{examId}', [ExamController::class, 'show'])->name('api.exams.show');
@@ -225,6 +224,6 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     //********************** Notifications ****************** */
     Route::get('/notifications', [UserController::class, 'notifications']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
-    Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
+    // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
 });

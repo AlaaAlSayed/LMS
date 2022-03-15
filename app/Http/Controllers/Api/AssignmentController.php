@@ -146,5 +146,12 @@ class AssignmentController extends Controller
     return   $allAssignments->all();
   }
 
+  public function showAssignment($subjectId)
+  {
+    $allAssignments = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->where('subjectId',$subjectId)->get();
+    return ($allAssignments); 
+ 
+  }
 
+  
 }
