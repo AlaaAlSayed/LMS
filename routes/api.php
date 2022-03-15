@@ -41,6 +41,9 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 //***********************************  AUTH **************************** */
  Route::middleware('auth:sanctum')->group(function () {
+     
+    Route::get('/materials', [MatrialController::class, 'index']);
+
 
     //general for current authenticated user info
     Route::get('/user', [UserController::class, 'user']);
@@ -151,7 +154,6 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
     // // //*******************   MATERIALS  ********************
     // //teacher dashboard  - materials CRUD operations  :
-    // Route::get('/materials', [MatrialController::class, 'index']);
     // Route::put('/materials/{material}', [MaterialController::class, 'update']);
 
     // Route::get('/materials/classroom/{classroom}/teacher/{teacher}', [MaterialController::class, 'classroomMaterials']);
