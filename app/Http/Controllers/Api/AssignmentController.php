@@ -149,16 +149,16 @@ class AssignmentController extends Controller
 
   public function showAssignment($subjectId)
   {
-    // $allAssignments = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->where('subjectId',$subjectId)->get();
+    $allAssignments = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->where('subjectId',$subjectId)->get();
     // return ($allAssignments); 
-    return response()//->json($allAssignments) 
-    ->header('Accept','application/json')
-    ->header('Access-Control-Allow-Origin ','http://127.0.0.1:*')
-    ->header('Access-Control-Allow-Methods','GET')
-    ->header('Access-Control-Allow-Headers','Content-Type, Authorization')
-    ->header('Access-Control-Allow-Credentials','true')
+    return response()->json($allAssignments) ;
+    // ->header('Accept','application/json')
+    // ->header('Access-Control-Allow-Origin ','http://127.0.0.1:*')
+    // ->header('Access-Control-Allow-Methods','GET')
+    // ->header('Access-Control-Allow-Headers','Content-Type, Authorization')
+    // ->header('Access-Control-Allow-Credentials','true')
 
-    ;
+    // ;
   }
 
   
