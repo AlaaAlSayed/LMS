@@ -43,13 +43,16 @@ class ExamController extends Controller
 
     foreach ($quistionsId as   $quistionId) {
 
-      $options[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('value');
-
-      $correctAnswers[$quistionId->id] = Option::where('quistionId', $quistionId->id)->get('is_correct');
+      $option = Option::where('quistionId', $quistionId->id)->get('value');
+      array_push( $options, $option);
+      $correctAnswer = Option::where('quistionId', $quistionId->id)->get('is_correct');
+      array_push( $correctAnswers, $correctAnswer);
     }
 
 
-    return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+    // return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+        return (['quistions' => $quistions, 'options' => $options, 'correctAnswers' => $correctAnswers]);
+
   }
 
 
@@ -148,4 +151,13 @@ class ExamController extends Controller
 
   }
 
+
+  public function  getExamName($examId){
+    
+    // $subject= Subject::find($subjectId)->first();
+    // return  $subject->exams ;
+    $examName = Exam::where('id', $examId)->get('name');    
+    return   $examName->first()->name ;
+
+  }
 }
