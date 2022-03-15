@@ -41,8 +41,8 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 //***********************************  AUTH **************************** */
  Route::middleware('auth:sanctum')->group(function () {
-     
-    Route::get('/materials', [MatrialController::class, 'index']);
+
+    Route::get('/materials', [MaterialController::class, 'index']);
 
 
     //general for current authenticated user info
