@@ -342,6 +342,71 @@ class DatabaseSeeder extends Seeder
     ];
     \App\Models\Admin::insert($admins);
 
+ //////////////////////CLASSROOMS//////////////////////////////////
+ DB::table('classrooms')->delete();
+ $classrooms = [
+   [
+     'id' => '1',
+     'level' => '1',
+     'capacity' => '20',
+     'code' => '1/1',
+
+   ],
+  //  [
+  //    'id' => '2',
+  //    'level' => '1',
+  //    'capacity' => '20',
+  //    'code' => '1/2',
+
+  //  ],
+   [
+     'id' => '3',
+     'level' => '2',
+     'capacity' => '20',
+     'code' => '2/1',
+
+   ],
+  //  [
+  //    'id' => '4',
+  //    'level' => '2',
+  //    'capacity' => '20',
+  //    'code' => '2/2',
+
+  //  ],
+   [
+     'id' => '5',
+     'level' => '3',
+     'capacity' => '20',
+     'code' => '3/1',
+
+   ],
+  //  [
+  //    'id' => '6',
+  //    'level' => '3',
+  //    'capacity' => '20',
+  //    'code' => '3/2',
+
+  //  ],
+   [
+     'id' => '7',
+     'level' => '4',
+     'capacity' => '20',
+     'code' => '4/1',
+
+   ],
+   [
+     'id' => '8',
+     'level' => '4',
+     'capacity' => '20',
+     'code' => '4/2',
+
+   ],
+ ];
+
+ \App\Models\Classroom::insert($classrooms);
+
+
+
     /////////////////////// STUDENTS ///////////////////////////////
     DB::table('students')->delete();
 
@@ -503,69 +568,7 @@ class DatabaseSeeder extends Seeder
     \App\Models\Teacher::insert($teachers);
 
 
-   //////////////////////CLASSROOMS//////////////////////////////////
-   DB::table('classrooms')->delete();
-   $classrooms = [
-     [
-       'id' => '1',
-       'level' => '1',
-       'capacity' => '20',
-       'code' => '1/1',
-
-     ],
-    //  [
-    //    'id' => '2',
-    //    'level' => '1',
-    //    'capacity' => '20',
-    //    'code' => '1/2',
-
-    //  ],
-     [
-       'id' => '3',
-       'level' => '2',
-       'capacity' => '20',
-       'code' => '2/1',
-
-     ],
-    //  [
-    //    'id' => '4',
-    //    'level' => '2',
-    //    'capacity' => '20',
-    //    'code' => '2/2',
-
-    //  ],
-     [
-       'id' => '5',
-       'level' => '3',
-       'capacity' => '20',
-       'code' => '3/1',
-
-     ],
-    //  [
-    //    'id' => '6',
-    //    'level' => '3',
-    //    'capacity' => '20',
-    //    'code' => '3/2',
-
-    //  ],
-     [
-       'id' => '7',
-       'level' => '4',
-       'capacity' => '20',
-       'code' => '4/1',
-
-     ],
-     [
-       'id' => '8',
-       'level' => '4',
-       'capacity' => '20',
-       'code' => '4/2',
-
-     ],
-   ];
-
-   \App\Models\Classroom::insert($classrooms);
-
+  
     ///////////////////////////SUBJECTS/////////////////////////////////
     DB::table('subjects')->delete();
     $subject = [
@@ -601,7 +604,7 @@ class DatabaseSeeder extends Seeder
 
     //////////////////////// SUBJECT MATERIAL //////////////////////////
  
-    DB::table('materials')->delete();
+    DB::table('subject_materials')->delete();
     $materials = [
 
       ['id' => '1', 'subjectId'=> '1','name' => 'arabic lesson 1', 'material' => 'material_1647144537.pdf',],
@@ -661,11 +664,11 @@ class DatabaseSeeder extends Seeder
       ['id' => '16', 'teacherId' => '4', 'subjectId' => '13','classroomId' => '7'],//science
       ['id' => '17', 'teacherId' => '4', 'subjectId' => '19','classroomId' => '8'],//science
 
-      ['id' => '1', 'teacherId' => '9', 'subjectId' => '14','classroomId' => '7'],//history
-      ['id' => '1', 'teacherId' => '9', 'subjectId' => '20','classroomId' => '8'],//history
+      ['id' => '18', 'teacherId' => '9', 'subjectId' => '14','classroomId' => '7'],//history
+      ['id' => '19', 'teacherId' => '9', 'subjectId' => '20','classroomId' => '8'],//history
 
-      ['id' => '1', 'teacherId' => '5', 'subjectId' => '15','classroomId' => '7'],//religion
-      ['id' => '1', 'teacherId' => '5', 'subjectId' => '21','classroomId' => '8'],//religion
+      ['id' => '20', 'teacherId' => '5', 'subjectId' => '15','classroomId' => '7'],//religion
+      ['id' => '21', 'teacherId' => '5', 'subjectId' => '21','classroomId' => '8'],//religion
 
 
       // ['id' => '1', 'teacherId' => '10', 'subjectId' => '1','classroomId' => '1'],//art
