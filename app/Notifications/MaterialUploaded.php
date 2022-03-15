@@ -11,20 +11,21 @@ class MaterialUploaded extends Notification
 {
     use Queueable;
     private $type;
-
     private $subject;
     private $material;
+    private $subjectId;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($type,$material ,$subject )
+    public function __construct($type,$material ,$subject ,$subjectId)
     {
         $this->type = $type;
         $this->subject = $subject;
         $this->material = $material;
+        $this->subjectId = $subjectId;
 
     }
 
@@ -50,6 +51,7 @@ class MaterialUploaded extends Notification
     {
         return [
             "message" => "new ".$this->type. "( ".$this->material." ) added  in subject : ". $this->subject,
+            "subjectId" => $this->subjectId,
         ];
     }
 }

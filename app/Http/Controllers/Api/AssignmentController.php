@@ -90,7 +90,7 @@ class AssignmentController extends Controller
 
     $subject=Subject::find ($subjectId);
     $students=Student::where('classroomId',$subject->classroomId)->get()->all();
-    Notification::send($students, new MaterialUploaded( "assignment",$data['name'] , $subject->name )); //one to many
+    Notification::send($students, new MaterialUploaded( "assignment",$data['name'] , $subject->name,$subject->id )); //one to many
     
   
     $teacher_teaches_subjects = teacher_attaches_assignments::all();

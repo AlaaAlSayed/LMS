@@ -91,7 +91,7 @@ class MaterialController extends Controller
 
         $subject=Subject::find ($data['subjectId']);
         $students=Student::where('classroomId',$subject->classroomId)->get()->all();
-        Notification::send($students, new MaterialUploaded( "material",$data['name'] , $subject->name )); //one to many
+        Notification::send($students, new MaterialUploaded( "material",$data['name'] , $subject->name ,$subject->id)); //one to many
         
         
         $allMaterials = SubjectMaterial::all();
