@@ -12,6 +12,8 @@ class AssignmentSubmitted extends Notification
     use Queueable;
     private $student;
     private $subject;
+    private $subjectId;
+
     // private $assignment;
 
     /**
@@ -19,11 +21,11 @@ class AssignmentSubmitted extends Notification
      *
      * @return void
      */
-    public function __construct($student, $subject)//,$assignment)
+    public function __construct($student, $subject,$subjectId)
     {
         $this->student = $student;
         $this->subject = $subject;
-        // $this->assignment = $assignment;
+        $this->subjectId = $subjectId;
 
     }
 
@@ -47,6 +49,7 @@ class AssignmentSubmitted extends Notification
     {
         return [
             "message" => "new student ( ".$this->student." ) submitted assignment in subject : ". $this->subject,
+            "subjectId" => $this->subjectId,
         ];
     }
 }

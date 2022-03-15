@@ -171,7 +171,7 @@ class StudentController extends Controller
 
         $teacherId=teacher_teaches_subjects::where([['subjectId',$subject->id] ,['classroomId',$subject->classroomId]])->first()->get('teacherId');
         $teacher=Teacher::find ($teacherId);
-        Notification::send($teacher, new AssignmentSubmitted($student->name, $subject->name )); //one to many
+        Notification::send($teacher, new AssignmentSubmitted($student->name, $subject->name ,$subject->id)); //one to many
         
 
         $StudentsUploadAssignment = StudentUploadAssignment::all();
