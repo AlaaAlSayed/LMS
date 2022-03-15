@@ -18,6 +18,7 @@ use App\Models\Student;
 
 class AssignmentController extends Controller
 {
+  
   public function index()
   {
     $allAssignments = Assignment::all();
@@ -149,8 +150,8 @@ class AssignmentController extends Controller
   public function showAssignment($subjectId)
   {
     $allAssignments = teacher_attaches_assignments::join('assignments','assignments.id', '=','teacher_attaches_assignments.assignmentId')->where('subjectId',$subjectId)->get();
-    return ($allAssignments); 
- 
+    // return ($allAssignments); 
+    return response()->json($allAssignments);
   }
 
   

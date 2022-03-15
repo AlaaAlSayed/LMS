@@ -39,7 +39,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
-//  Route::middleware('auth:sanctum')->group(function () {
+ Route::middleware('auth:sanctum')->group(function () {
 
 
 
@@ -226,4 +226,4 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
     // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
-// });
+});
