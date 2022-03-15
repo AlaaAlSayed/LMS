@@ -40,7 +40,7 @@ class Subject extends Model
         return $this->hasMany(StudentTakeExam::class, 'subjectId');
     }
 
-    public function studentAssignment()
+    public function StudentsUploads()
     {
         return $this->hasMany(StudentUploadAssignment::class, 'subjectId');
     }

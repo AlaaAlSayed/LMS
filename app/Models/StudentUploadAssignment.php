@@ -20,10 +20,10 @@ class StudentUploadAssignment extends Model
     // {
     //     return $this->belongsTo(Student::class,'id');
     // }
-    // public function subject()
-    // {
-    //     return $this->belongsTo(Subject::class,'id');
-    // }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class,'subjectId');
+    }
     // public function assignment()
     // {
     //     return $this->belongsTo(Assignment::class,'id');
