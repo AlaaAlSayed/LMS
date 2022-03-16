@@ -110,6 +110,9 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
         Route::post('/assignments/{teacherId}/{subjectId}', [AssignmentController::class, 'store']);
         Route::get('/assignments/getFile/{assignmentId}', [AssignmentController::class, 'getFile']);
         Route::delete('/assignments/{assignment}', [AssignmentController::class, 'destroy']);
+   
+        Route::post('/assignmentResult/{uploadId}', [AssignmentController::class, 'result']);
+   
     }); // end of IsTeacher
 
     Route::get('/teachers/showClassroom/{teachesId}', [TeacherController::class, 'showClassroom'])->middleware('CheckRole:Admin');
@@ -136,7 +139,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
         Route::get('/assignments/download/{assignmentId}', [AssignmentController::class, 'download']);
     }); // end of IsStudent
 
-    Route::get('/students/{student}', [StudentController::class, 'show'])->middleware('CheckRole:Admin,Student');
+    Route::get('/students/{student}', [StudentController::class, 'show']);//->middleware('CheckRole:Admin,Student');
     //student dashboard - single subject page :
     Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->middleware('CheckRole:Teacher,Student');
     // show material as pdf
@@ -146,6 +149,9 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     Route::get('/subjectAssignments/{subjectId}', [AssignmentController::class, 'showAssignment']);
 
     // show assignment as pdf
+  
+    Route::get('/showAnswer/{uploadId}', [AssignmentController::class, 'teacherShowAnswer'])->middleware('CheckRole:Teacher');
+
     Route::get('/assignments/{assignmentId}', [AssignmentController::class, 'studentshow'])->middleware('CheckRole:Teacher,Student');
     Route::get('/materials/{material}', [MaterialController::class, 'show'])->middleware('CheckRole:Teacher');
 

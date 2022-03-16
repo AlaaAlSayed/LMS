@@ -14,6 +14,7 @@ class StudentUploadAssignment extends Model
         'subjectId',
         'assignmentId',
         'answer',
+        'result',
     ];
 
     // public function student()
