@@ -1,0 +1,55 @@
+<app-header></app-header>
+   <div class="row d-flex justify-content-center  mb-2">
+    <div class="col-12 text-center  rounded  text-dark">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="height: 300px;">
+            <img src="./assets/images/techer.jpeg" alt="pic2" style="  width: 100%;
+            height: 400px;">
+            <div class="carousel-caption d-none d-md-block text-dark">
+             <h1>Assignment</h1>
+
+              <h3></h3>
+            <!--   <p>class</p>
+              <p>teacher</p> -->
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div> 
+
+<div class="row d-flex justify-content-center">
+<div class="col-8  m-3 ">
+ <table class="table justify-content-center ">
+     <thead class="thead-dark">
+       <tr>
+         <th scope="col">#</th>
+         <!-- <th scope="col">student</th> -->
+         <th scope="col">Details</th>
+         
+
+
+       </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let mat of _assignments;let currentIndex=index;">
+             <th scope="row"> {{ currentIndex+1}}</th>
+             <!-- <td>
+              <p>{{mat.name}}</p> 
+           </td> -->
+             <td>
+              <button class="btn"  style="background-color: #bed6bf;">Details</button> 
+            </td>
+            
+            
+     </tr>
+      
+     </tbody>
+   </table>
+   
+ </div>
+</div>
+<app-footer></app-footer>

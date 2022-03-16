@@ -48,8 +48,10 @@
                <button class="btn" (click)="downloadid(mat.id,mat.name)" style="background-color:#e9544d;">Download</button> 
             </td>
             <td>
+              <div *ngIf="deadlinedisable(mat)"> 
               <a routerLink="uploadassignment/{{mat.id}}">  <button class="btn" style="background-color:#62d166;">Upload</button> </a>
-          
+            </div>
+           
     
             </td>
               

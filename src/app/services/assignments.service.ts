@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class assignmentsservice {
 
   constructor(private _HttpClient:HttpClient) { }
-  get(){
-    console.log(`${environment.APIURL}/api/assignments`);
+  get(subjectId:number){
+    console.log(`${environment.APIURL}/api/subjectAssignments/${subjectId}`);
     //console.log(this._HttpClient.get(`${environment.api_URL}/api/subjects`));
 
-   return this._HttpClient.get(`${environment.APIURL}/api/assignments`);
+   return this._HttpClient.get(`${environment.APIURL}/api/subjectAssignments/${subjectId}`);
   }
    getById(assignmentId:number){
     //console.log(`${environment.APIURL}/api/assignments/${id}`);

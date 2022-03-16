@@ -1,6 +1,8 @@
 import { Component, enableProdMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { subject } from 'src/app/models/subject';
+import { DatePipe } from '@angular/common';
+
 import { SubjectService } from 'src/app/services/subject.service';
 import { AttachedAssignment } from 'src/app/models/AttachedAssignment';
 import { assignment } from 'src/app/models/assignment';
@@ -14,34 +16,50 @@ enableProdMode();
   styleUrls: ['./assignment.component.css']
 })
 export class AssignmentComponent implements OnInit {
-
-  constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute,private _assignmentsservice:assignmentsservice) { }
   _subject:subject=new subject();
   _assignment:AttachedAssignment[]=[];
   _classassignment:assignment[]=[];
   blob:any;
   showid:number=0;
-  myDate = new Date();
-  isok:boolean=true;
+  myDate :any;
+  studid:number=0;
+  uploaeded:boolean=false;
+  dead:boolean=false;
 
+  constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute,private _assignmentsservice:assignmentsservice,public datepipe: DatePipe) { }
+  
   ngOnInit(): void {
+    //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+     this.myDate =this.datepipe.transform((new Date), 'yyyy-MM-dd');
+  
     this._activatedRoute.paramMap.subscribe(params=>{
       let id=Number(params.get('id'));
-      let student_id=Number(params.get('student_id'));
-      
-      this._subjectservice. getSubjectByID(id)
+      this.studid=Number(params.get('student_id'));
+      this._subjectservice.getSubjectByID(id).subscribe((response:any)=>{
+       this._assignment=response.data.StudentsUploads;
+
+       console.log( this._assignment)
+      })
+      this._assignmentsservice.get(id)
       .subscribe(
         (response:any)=>{
-          this._subject=response.data;
-         // console.log(response.data);
+          //this._subject=response.data;
+         console.log(response);
+         this._classassignment=response;
+         
+         var splitted1 = this._classassignment[0].deadline.split("-", 3); 
+         var splitted2 = this.myDate.split("-", 3); 
         
-      this._classassignment=this._subject.assignments;
-      console.log(this._classassignment);
+
+         
 
     
         },
+    
         (error:any)=>{alert("error");}
       )
+
+      
       /* this._assignmentsservice.getuploads().subscribe((response:any)=>{
         this._assignment=response;
         console.log(response);
@@ -81,17 +99,48 @@ export class AssignmentComponent implements OnInit {
       }
     )
 }
-  deadlinedisable(assignmentid:number){
-   
+  deadlinedisable(assignment:assignment){
+    
 
-    this._assignmentsservice.getById(assignmentid).subscribe(
-      (response:any)=>{
+    var index = this._classassignment.indexOf(assignment); 
+    var current = this.myDate.split("-", 3); 
+    var deadline = this._classassignment[index].deadline.split("-", 3);
+    var not_valid=false; 
+    //2022    //2021    
+    
 
-        //this.myDate=response.deadline;
-        console.log(this.myDate);
-        //this.myDate = this.datePipe.transform(response.deadline, 'yyyy-MM-dd');
-      }
-    )
+if(current[0]>deadline[0]){
+this.dead=true;
+  not_valid=true; 
+}
+if(current[1]>deadline[1]){
+  this.dead=true;
+
+  not_valid=true; 
+}
+if(current[2]>deadline[2]){
+  this.dead=true;
+  not_valid=true; 
+}
+
+
+for (var char of this._assignment) {
+  if(this.studid==char.studentId &&
+    this._classassignment[index].id==char.assignmentId){
+    this.uploaeded=true;
+    not_valid=true; 
+}
+}
+
+console.log( not_valid)
+
+  if( not_valid==true){
+
+   return false;
+  }
+  else{  return true;
   }
 
+  }
+ 
 }

@@ -1,7 +1,8 @@
 import { StudentGuard } from './../../guards/student.guard';
 // import { StudentModule } from './../student/student.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule,DatePipe } from '@angular/common';
+
 import { RouterModule, Routes} from '@angular/router';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { MainSubjectComponent } from './main-subject/main-subject.component';
@@ -54,6 +55,8 @@ const routes: Routes = [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,SharedModule,ReactiveFormsModule
     ,NgbModule
     
-  ]
+  ],
+  providers: [DatePipe],
+
 })
 export class SubjectDetailStudentModule { }

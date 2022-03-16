@@ -20,6 +20,9 @@ import { CreateoptionComponent } from './createoption/createoption.component';
 import { HeaderComponent } from './header/header.component';
 import {​​​​​​​​ NgbModule }​​​​​​​​ from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { StuedentuploasComponent } from './stuedentuploas/stuedentuploas.component';
+import { UploadassignmentComponent } from '../subject-detail-student/uploadassignment/uploadassignment.component';
+import { DetailofuplodComponent } from './detailofuplod/detailofuplod.component';
 
 
 const routes: Routes = [
@@ -34,6 +37,7 @@ const routes: Routes = [
   {path:'quiz/createquiz',component:CreatequizComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'quiz/createquiz/:quizid/:quizname/createquestion',component:CreatequestionComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'quiz/createquiz/:quizid/:quizname/createquestion/:questionid/createoption',component:CreateoptionComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/uploasassignment/:assignmentid',component:StuedentuploasComponent,canActivate:[AuthGuard,TeacherGuard]},
 
 
 ];
@@ -55,7 +59,9 @@ const routes: Routes = [
     CreatequizComponent,
     CreatequestionComponent,
     CreateoptionComponent,
-    HeaderComponent
+    HeaderComponent,
+    StuedentuploasComponent,
+    DetailofuplodComponent
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule,FormsModule,NgbModule,SharedModule

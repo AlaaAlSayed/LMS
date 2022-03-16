@@ -33,6 +33,8 @@
          <th scope="col">name</th>
          <th scope="col">Show</th>
          <th scope="col">Update</th>
+         <th scope="col">Uploads</th>
+
          <th scope="col">Delete</th>
 
 
@@ -50,6 +52,9 @@
             <td>
            <a routerLink="updateassignment/{{mat.id}}">  <button class="btn" style="background-color: #629db1;">Update</button> </a> 
             </td>
+            <td>
+              <a routerLink="uploasassignment/{{mat.id}}">  <button class="btn" style="background-color: #bcc270;">Uploads</button> </a> 
+               </td>
             <td>
               <button class="btn" (click)="delete(mat.id,currentIndex)" style="background-color:#e9544d;">Delete</button> 
            </td>

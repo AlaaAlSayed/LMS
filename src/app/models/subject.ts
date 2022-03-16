@@ -5,5 +5,5 @@ export class subject{
     assignments:[]=[];
     exams:[]=[];
     subjectMaterial:[]=[];
-
+    StudentsUploads:[]=[];
 }
