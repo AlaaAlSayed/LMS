@@ -67,7 +67,8 @@ class ExamController extends Controller
       'subjectId' => $subjectId,
       'examId' => $exam->id,
       'min_score' => $data['min_score'],
-      'time' => $data['time'],
+      'start' => $data['start'],
+      'finish' => $data['finish'],
       'date' => $data['date']
     ]);
     // dd($exam->id);
@@ -116,13 +117,13 @@ class ExamController extends Controller
     $selectedOptionsArray =   explode(',', $selectedOptions);
 
 
-    $result = 0;
+    $studentResult = 0;
     foreach ($selectedOptionsArray as $selectedOption) {
       $is_correct = Option::where('id', (int)$selectedOption)->get('is_correct');
 
 
       if ($is_correct->first()->is_correct == 1) {
-        $result++;
+        $studentResult++;
       }
     }
 
@@ -133,11 +134,11 @@ class ExamController extends Controller
         'examId' => $examId,
         'studentId' => $studentId,
         'subjectId' => $subjectId->first()->subjectId,
-        'result' => $result,
+        'result' => $studentResult,
       ]
     );
-
-    return $result;
+    $total= Quistion::where('examId', $examId)->get();
+    return $studentResult.'from'.count($total);
   }
 
 

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreignId('subjectId')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('examId')->references('id')->on('exams')->onDelete('cascade');
            
-            $table->time('time');
+            $table->time('start');
+            $table->time('finish');
             $table->date('date');
             $table->float('min_score');
             

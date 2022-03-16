@@ -347,10 +347,11 @@ class DatabaseSeeder extends Seeder
 
     $students = [
       [
+        'classroomId' => '1',
         'id' => '11',
         'phone' => '01255007346',
         'picture_path' => 'student-image_1647224432.png', //boy 
-        'classroomId' => '1',
+        
       ],
       [
         'id' => '12',
@@ -601,7 +602,7 @@ class DatabaseSeeder extends Seeder
 
     //////////////////////// SUBJECT MATERIAL //////////////////////////
  
-    DB::table('materials')->delete();
+    DB::table('subject_materials')->delete();
     $materials = [
 
       ['id' => '1', 'subjectId'=> '1','name' => 'arabic lesson 1', 'material' => 'material_1647144537.pdf',],
@@ -638,7 +639,6 @@ class DatabaseSeeder extends Seeder
     DB::table('teacher_teaches_subjects')->delete();
     $teaches = [
    
-      // ['id' => '1', 'teacherId' => '3', 'subjectId' => '1','classroomId' => '1'],
 
       ['id' => '1', 'teacherId' => '6', 'subjectId' => '1','classroomId' => '1'],//arabic
       ['id' => '2', 'teacherId' => '6', 'subjectId' => '4','classroomId' => '3'],//arabic
@@ -661,11 +661,11 @@ class DatabaseSeeder extends Seeder
       ['id' => '16', 'teacherId' => '4', 'subjectId' => '13','classroomId' => '7'],//science
       ['id' => '17', 'teacherId' => '4', 'subjectId' => '19','classroomId' => '8'],//science
 
-      ['id' => '1', 'teacherId' => '9', 'subjectId' => '14','classroomId' => '7'],//history
-      ['id' => '1', 'teacherId' => '9', 'subjectId' => '20','classroomId' => '8'],//history
+      ['id' => '18', 'teacherId' => '9', 'subjectId' => '14','classroomId' => '7'],//history
+      ['id' => '19', 'teacherId' => '9', 'subjectId' => '20','classroomId' => '8'],//history
 
-      ['id' => '1', 'teacherId' => '5', 'subjectId' => '15','classroomId' => '7'],//religion
-      ['id' => '1', 'teacherId' => '5', 'subjectId' => '21','classroomId' => '8'],//religion
+      ['id' => '20', 'teacherId' => '5', 'subjectId' => '15','classroomId' => '7'],//religion
+      ['id' => '21', 'teacherId' => '5', 'subjectId' => '21','classroomId' => '8'],//religion
 
 
       // ['id' => '1', 'teacherId' => '10', 'subjectId' => '1','classroomId' => '1'],//art

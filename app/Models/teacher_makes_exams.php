@@ -15,7 +15,8 @@ class teacher_makes_exams extends Model
         'subjectId',
         'examId',
         'min_score',
-        'time',
+        'start',
+        'finish',
         'date',
         
      ];
