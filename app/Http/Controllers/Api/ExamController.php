@@ -120,10 +120,9 @@ class ExamController extends Controller
 
     $studentResult = 0;
     foreach ($selectedOptionsArray as $selectedOption) {
-      $is_correct = Option::where('id', (int)$selectedOption)->get('is_correct');
-     
+      $isCorrect = Option::where('id', (int)$selectedOption)->get('is_correct');
 
-      if ($is_correct->first()->is_correct == 1) {
+      if ($isCorrect->first()->is_correct == 1) {
         $studentResult++;
       }
     }
