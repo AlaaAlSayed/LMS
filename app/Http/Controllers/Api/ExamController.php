@@ -121,7 +121,7 @@ class ExamController extends Controller
     $studentResult = 0;
     foreach ($selectedOptionsArray as $selectedOption) {
       $is_correct = Option::where('id', (int)$selectedOption)->get('is_correct');
-
+     
 
       if ($is_correct->first()->is_correct == 1) {
         $studentResult++;
@@ -139,7 +139,7 @@ class ExamController extends Controller
       ]
     );
     $total= Quistion::where('examId', $examId)->get();
-    return $studentResult.'from'.count($total);
+    return [$studentResult,count($total)];
   }
 
 
