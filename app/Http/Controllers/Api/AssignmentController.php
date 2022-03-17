@@ -15,6 +15,11 @@ use App\Models\Subject;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\MaterialUploaded;
 use App\Models\Student;
+use App\Models\User;
+
+use App\Notifications\AssignmentSubmitted;
+use App\Notifications\AssignmnetGraded;
+
 
 class AssignmentController extends Controller
 {
@@ -156,10 +161,17 @@ class AssignmentController extends Controller
   public function result($uploadId)
   {
     $data = request()->all();
-    StudentUploadAssignment::where('id', $uploadId)->update([
+   StudentUploadAssignment::find($uploadId)->update([
       'result' => $data['result'],
     ]);
 
+    $assignmentUpload= StudentUploadAssignment::find($uploadId);
+    $subject=Subject::find ($assignmentUpload->subjectId);
+    $teacherId = teacher_attaches_assignments::where('assignmentId',$assignmentUpload->assignmentId)->get('teacherId');
+    $teacherName=User::find ($teacherId)->first()->name;
+    $student=Student::find($assignmentUpload->studentId)->first();
+    Notification::send($student, new AssignmnetGraded( $assignmentUpload->subjectId,$subject->name,$teacherName  )); 
+    
     $StudentUploadAssignment = StudentUploadAssignment::all();
     return ($StudentUploadAssignment);
   }
