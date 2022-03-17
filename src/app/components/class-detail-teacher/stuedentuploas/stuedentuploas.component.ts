@@ -21,8 +21,10 @@ export class StuedentuploasComponent implements OnInit {
   teacherid:number=0;
   _assignments:AttachedAssignment[]=[];
   assignments:assignment[]=[];
-  names:any[]=[];
+  f_assignments:AttachedAssignment[]=[];
 
+  names:any=[];
+  assignmentid:number=0;
   _subject:subject=new subject();
   myStudent:any= new Student();
 
@@ -32,6 +34,8 @@ export class StuedentuploasComponent implements OnInit {
     this._activatedRoute.paramMap.subscribe(params=>{
       this.classroomid=Number(params.get('classroomid'));
       this.teacherid=Number(params.get('teacherid'));
+      this.assignmentid=Number(params.get('assignmentid'));
+
     })
 
     this._matrialservice.getSubjectById(this.teacherid,this.classroomid).subscribe(
@@ -48,23 +52,37 @@ export class StuedentuploasComponent implements OnInit {
           this._subject=response.data;
         
       this._assignments=this._subject.StudentsUploads;
-      //console.log(this._assignments);
+      console.log(this._assignments);
+      for (var char of this._assignments) {
+        if(char.assignmentId==this.assignmentid){
+          this.f_assignments.push(char);
+        }
 
-
-     /*  for (var char of this._assignments) {
+      }
+      for (var char of this._assignments) {
         var stud=char.studentId;
         this._studentService.getStudentByID(stud)
         .subscribe(
           response=>{
             this.myStudent=response;
-            this.names.push(this.myStudent)
+            this.names.push(this.myStudent.name)
             console.log( this.names)
           },
         )
-      } */
+      }
+
+      
         })
       })
-  
+     
+    
   }
-
+  redirect(id:number){
+    this._assignmentsservice.showupload(id).subscribe(
+      (response:any)=>{
+    window.open (response,'_blank') ;
+      },
+      (error:any)=>{alert("error");}
+    )
+      }
 }

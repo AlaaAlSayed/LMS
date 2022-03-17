@@ -30,6 +30,7 @@
          <th scope="col">View</th>
          <th scope="col">Download</th>
          <th scope="col" >Upload</th>
+         <th scope="col" >Results</th>
 
 
        </tr>
@@ -50,11 +51,11 @@
             <td>
               <div *ngIf="deadlinedisable(mat)"> 
               <a routerLink="uploadassignment/{{mat.id}}">  <button class="btn" style="background-color:#62d166;">Upload</button> </a>
-            </div>
-           
-    
+            </div>  
             </td>
-              
+            <td>
+              <p class="fw-bold text-center m-2">{{result(mat.id)}}</p> 
+           </td>
      </tr>
       
      </tbody>

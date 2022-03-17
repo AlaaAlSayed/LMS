@@ -41,5 +41,9 @@ export class quizservice {
    delete(examId:number){
     return this._HttpClient.delete(`${environment.APIURL}/api/exams/${examId}`);
    } 
+post(examId:number,studentId:number,selectedOptions:any){
+ // /exams/{examId}/{studentId}/{selectedOptions}
+ return this._HttpClient.post(`${environment.APIURL}/api/exams/${examId}/${studentId}/${selectedOptions}`,selectedOptions);
 
+}
 }

@@ -27,21 +27,25 @@
      <thead class="thead-dark">
        <tr>
          <th scope="col">#</th>
-         <!-- <th scope="col">student</th> -->
-         <th scope="col">Details</th>
-         
+         <th scope="col">student</th>
+         <th scope="col">View</th>
+         <th scope="col">Result</th>
+
 
 
        </tr>
      </thead>
      <tbody>
-         <tr *ngFor="let mat of _assignments;let currentIndex=index;">
+         <tr *ngFor="let mat of f_assignments;let currentIndex=index;">
              <th scope="row"> {{ currentIndex+1}}</th>
-             <!-- <td>
-              <p>{{mat.name}}</p> 
-           </td> -->
              <td>
-              <button class="btn"  style="background-color: #bed6bf;">Details</button> 
+               <p>{{names[currentIndex]}}</p>
+       </td> 
+       <td>
+        <button class="btn"  style="background-color: #bed6bf;" (click)="redirect(mat.id)">View</button>
+        </td>
+             <td>
+            <a routerLink="detail/{{mat.id}}">  <button class="btn"  style="background-color: #bed6bf;">Result</button> </a>
             </td>
             
             

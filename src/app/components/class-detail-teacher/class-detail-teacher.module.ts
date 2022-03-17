@@ -38,6 +38,7 @@ const routes: Routes = [
   {path:'quiz/createquiz/:quizid/:quizname/createquestion',component:CreatequestionComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'quiz/createquiz/:quizid/:quizname/createquestion/:questionid/createoption',component:CreateoptionComponent,canActivate:[AuthGuard,TeacherGuard]},
   {path:'assignment/uploasassignment/:assignmentid',component:StuedentuploasComponent,canActivate:[AuthGuard,TeacherGuard]},
+  {path:'assignment/uploasassignment/:assignmentid/detail/:upid',component:DetailofuplodComponent,canActivate:[AuthGuard,TeacherGuard]},
 
 
 ];

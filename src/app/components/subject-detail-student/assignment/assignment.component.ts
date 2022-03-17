@@ -25,7 +25,7 @@ export class AssignmentComponent implements OnInit {
   studid:number=0;
   uploaeded:boolean=false;
   dead:boolean=false;
-
+  results:any;
   constructor( private _subjectservice:SubjectService,private _activatedRoute:ActivatedRoute,private _assignmentsservice:assignmentsservice,public datepipe: DatePipe) { }
   
   ngOnInit(): void {
@@ -47,8 +47,6 @@ export class AssignmentComponent implements OnInit {
          console.log(response);
          this._classassignment=response;
          
-         var splitted1 = this._classassignment[0].deadline.split("-", 3); 
-         var splitted2 = this.myDate.split("-", 3); 
         
 
          
@@ -141,6 +139,22 @@ console.log( not_valid)
   else{  return true;
   }
 
+  }
+
+  result(id:number){
+    var k=0;
+    for (var char of this._assignment) {
+      if(this.studid==char.studentId &&id==char.assignmentId){
+   this.results=char.result;
+  console.log(char)
+  console.log(char.assignmentId)
+
+      }
+       
+    }
+    
+    
+    return this.results
   }
  
 }

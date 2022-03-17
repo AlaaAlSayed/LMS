@@ -24,6 +24,11 @@ export class assignmentsservice {
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/showpdf/${matrialid}`));
    return this._HttpClient.get(`${environment.APIURL}/api/assignments/${assignmentid}`);
   }
+  showupload(uploadId:number){
+    //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/showpdf/${matrialid}`));
+   return this._HttpClient.get(`${environment.APIURL}/api/showAnswer/${uploadId}`);
+  }
+
 
   download(assignmentid:number){
    const httpOptions = {
@@ -57,5 +62,12 @@ export class assignmentsservice {
     };
     //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`));
    return this._HttpClient.get(`${environment.APIURL}/api/assignments/getFile/${assignmentId}`,httpOptions);
+  }
+
+
+ putresult(uploadId:number,result:any){
+    
+    //console.log(this._HttpClient.get(`${environment.APIURL}/api/materials/download/${matrialid}`));
+   return this._HttpClient.post(`${environment.APIURL}/api/assignmentResult/${uploadId}`,result);
   }
 }

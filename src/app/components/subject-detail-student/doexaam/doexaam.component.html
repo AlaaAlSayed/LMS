@@ -8,7 +8,7 @@
      
         <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options" *ngFor="let mats of options;let currentIndexs=index;"> 
             <label class="options" >{{mats.value}}{{values[currentIndexs].is_correct}}
-            <input type="radio" name="radio" formControlName="correct" value="{{values[currentIndexs].is_correct}}"> <span class="checkmark" ></span> </label>
+            <input type="radio" name="radio" formControlName="correct" value="{{currentIndexs}}"> <span class="checkmark" ></span> </label>
          
                     </div>
     </div>
@@ -17,7 +17,7 @@
         <div class="ml-auto mr-sm-5" *ngIf="quesid >0"> <button class="btn btn-success m-3" (click)="Previous()">Previous</button> </div>
 
         <div class="ml-auto mr-sm-5" *ngIf="quesid < l"> <button class="btn btn-success" (click)="Next()">Next</button> </div>
-        <div class="ml-auto mr-sm-5" *ngIf="quesid==l"> <button class="btn btn-success" (click)="Next()">Finish</button> </div>
+        <div class="ml-auto mr-sm-5" *ngIf="quesid==l"> <button class="btn btn-success" (click)="finish()">Finish</button> </div>
 
     </div>
     

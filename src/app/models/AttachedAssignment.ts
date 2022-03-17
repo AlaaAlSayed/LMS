@@ -5,4 +5,5 @@ export class AttachedAssignment{
     assignmentId:number=0;
     name:any;
     answer:string="";
+    result:any;
 }
