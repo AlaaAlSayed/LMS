@@ -39,7 +39,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
 //***********************************  AUTH **************************** */
- Route::middleware('auth:sanctum')->group(function () {
+//  Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/materials', [MaterialController::class, 'index']);
 
@@ -207,7 +207,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
     Route::get('/examname/{examId}', [ExamController::class, 'getExamName'])->name('api.getExamName.show');
-    Route::post('/exams/{examId}/{studentId}/{selectedOptions}', [ExamController::class, 'score'])->name('api.exams.score');
+    Route::get('/exams/{examId}/{studentId}/{selectedOptions}', [ExamController::class, 'score'])->name('api.exams.score');
     Route::get('/exams/{examId}', [ExamController::class, 'show'])->name('api.exams.show');
     Route::post('/exams/{teacherId}/{subjectId}', [ExamController::class, 'store'])->name('api.exams.store');
     Route::put('/exams/{examId}', [ExamController::class, 'update'])->name('api.exams.update');
@@ -233,4 +233,4 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
     // Route::get('/teacherNotifications', [UserController::class, 'teacherNotifications']);
     // Route::get('/studentNotifications', [UserController::class, 'studentNotifications']);
 
-});
+// });

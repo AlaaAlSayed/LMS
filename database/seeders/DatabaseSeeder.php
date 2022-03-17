@@ -412,10 +412,11 @@ class DatabaseSeeder extends Seeder
 
     $students = [
       [
+        'classroomId' => '1',
         'id' => '11',
         'phone' => '01255007346',
         'picture_path' => 'student-image_1647224432.png', //boy 
-        'classroomId' => '1',
+        
       ],
       [
         'id' => '12',
@@ -641,7 +642,6 @@ class DatabaseSeeder extends Seeder
     DB::table('teacher_teaches_subjects')->delete();
     $teaches = [
    
-      // ['id' => '1', 'teacherId' => '3', 'subjectId' => '1','classroomId' => '1'],
 
       ['id' => '1', 'teacherId' => '6', 'subjectId' => '1','classroomId' => '1'],//arabic
       ['id' => '2', 'teacherId' => '6', 'subjectId' => '4','classroomId' => '3'],//arabic
