@@ -107,9 +107,10 @@ class ExamController extends Controller
 
 
 
-  public function score($examId, $studentId, $selectedOptions)
+  public function score($examId, $studentId )
   {
 
+    $selectedOptions=request()->get('selectedOptions');
 
     $subjectId = Quistion::where('examId', $examId)->get();
     $selectedOptions = trim($selectedOptions, '[');
