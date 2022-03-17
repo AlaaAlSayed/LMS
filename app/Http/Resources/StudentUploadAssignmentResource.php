@@ -20,7 +20,7 @@ class StudentUploadAssignmentResource extends JsonResource
             'subjectId' => $this->subjectId ,
             'assignmentId'=> $this->assignmentId ,
             'answer'=> $this->answer ,
-
+            'result'=> $this->result ,
 
             // 'student' => StudentUploadAssignmentResource::collection($this->student),
             // 'assignment' => StudentUploadAssignmentResource::collection($this->assignment),
