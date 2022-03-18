@@ -105,41 +105,98 @@ class ExamController extends Controller
     return ($teacher_makes_exams);
   }
 
-
-
   public function score($examId, $studentId )
-  {
+    {
+  
+      $result=request()->get('result');
+      $subjectId = Quistion::where('examId', $examId)->get();
 
-    $selectedOptions=request()->get('selectedOptions');
+    
 
-    $subjectId = Quistion::where('examId', $examId)->get();
-    $selectedOptions = trim($selectedOptions, '[');
-    $selectedOptions = trim($selectedOptions, ']');
-    $selectedOptionsArray =   explode(',', $selectedOptions);
+              $is_exist= StudentTakeExam::where(
+                  [
+                    'examId' => $examId,
+                    'studentId' => $studentId,
+                    'subjectId' => $subjectId->first()->subjectId,
+                    
+                  ])->get();
+            
+                  if($is_exist->first()!= null)
+                  {
+                    StudentTakeExam::where(
+                      [
+                        'examId' => $examId,
+                        'studentId' => $studentId,
+                        'subjectId' => $subjectId->first()->subjectId,
+                        
+                      ])->update([
+                        'result' => $result,
+                      ]);
+                
+                  }
 
-
-    $studentResult = 0;
-    foreach ($selectedOptionsArray as $selectedOption) {
-      $isCorrect = Option::where('id', (int)$selectedOption)->get('is_correct');
-
-      if ($isCorrect->first()->is_correct == 1) {
-        $studentResult++;
-      }
+                else {
+                  StudentTakeExam::UpdateOrCreate(
+                    [
+                      'examId' => $examId,
+                      'studentId' => $studentId,
+                      'subjectId' => $subjectId->first()->subjectId,
+                      'result' => $result,
+                    ]);
+                  }
     }
 
+//   public function score($examId, $studentId )
+//   {
+
+//     $selectedOptions=request()->get('selectedOptions');
+
+//     $subjectId = Quistion::where('examId', $examId)->get();
+//     $selectedOptions = trim($selectedOptions, '[');
+//     $selectedOptions = trim($selectedOptions, ']');
+//     $selectedOptionsArray =   explode(',', $selectedOptions);
 
 
-    StudentTakeExam::updateOrCreate(
-      [
-        'examId' => $examId,
-        'studentId' => $studentId,
-        'subjectId' => $subjectId->first()->subjectId,
-        'result' => $studentResult,
-      ]
-    );
-    $total= Quistion::where('examId', $examId)->get();
-    return [$studentResult,count($total)];
-  }
+//     $studentResult = 0;
+//     foreach ($selectedOptionsArray as $selectedOption) {
+//       $isCorrect = Option::where('id', (int)$selectedOption)->get('is_correct');
+
+//       if ($isCorrect->first()->is_correct == 1) {
+//         $studentResult++;
+//       }
+//     }
+
+//  $is_exist= StudentTakeExam::where(
+//   [
+//     'examId' => $examId,
+//     'studentId' => $studentId,
+//     'subjectId' => $subjectId->first()->subjectId,
+    
+//   ])->get();
+
+//   if($is_exist->first()!= null)
+//   {
+//     StudentTakeExam::where(
+//       [
+//         'examId' => $examId,
+//         'studentId' => $studentId,
+//         'subjectId' => $subjectId->first()->subjectId,
+//       ]
+//     )->delete();
+//   }
+// else {
+//     StudentTakeExam::Create(
+//       [
+//         'examId' => $examId,
+//         'studentId' => $studentId,
+//         'subjectId' => $subjectId->first()->subjectId,
+//         'result' => $studentResult,
+//       ]
+//     );
+//   }
+//     $total= Quistion::where('examId', $examId)->get();
+//     return [$studentResult,count($total)];
+//   }
 
 
   public function  subjectExams($subjectId){
