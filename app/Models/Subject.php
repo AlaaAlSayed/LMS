@@ -35,7 +35,7 @@ class Subject extends Model
     // }
 
 
-    public function studentExam()
+    public function studentsExam()
     {
         return $this->hasMany(StudentTakeExam::class, 'subjectId');
     }

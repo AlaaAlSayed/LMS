@@ -24,7 +24,7 @@ class SubjectResource extends JsonResource
             'exams' => ExamResource::collection($this->exams),
             
             // 'exam' => ExamResource::collection($this->exam),
-            // 'studentExam' => StudentTakeExamResource::collection($this->studentExam),
+            'studentsExam' => StudentTakeExamResource::collection($this->studentsExam),
             'StudentsUploads' => StudentUploadAssignmentResource::collection($this->StudentsUploads),
 
         ];
