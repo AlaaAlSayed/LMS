@@ -30,7 +30,7 @@ export class AssignmentComponent implements OnInit {
   
   ngOnInit(): void {
     //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-     this.myDate =this.datepipe.transform((new Date), 'yyyy-MM-dd');
+     this.myDate =this.datepipe.transform((new Date),'yyyy-MM-dd');
   
     this._activatedRoute.paramMap.subscribe(params=>{
       let id=Number(params.get('id'));

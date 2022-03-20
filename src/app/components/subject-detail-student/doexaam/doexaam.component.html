@@ -1,5 +1,8 @@
 
 <app-header></app-header>
+<div class="row justify-content-center ">
+    <div class="col-4">
+        <h1 class="text-center fw-bolder">{{name}}</h1>
 <form [formGroup]="formAdd">
 <div class="container mt-sm-5 my-1">
     <div class="question ml-sm-5 pl-sm-5 pt-2"  >
@@ -7,8 +10,8 @@
         </div>
      
         <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options" *ngFor="let mats of options;let currentIndexs=index;"> 
-            <label class="options" >{{mats.value}}{{values[currentIndexs].is_correct}}
-            <input type="radio" name="radio" formControlName="correct" value="{{currentIndexs}}"> <span class="checkmark" ></span> </label>
+            <label class="options" >{{mats.value}}
+            <input type="radio" name="radio" formControlName="correct" value="{{currentIndexs+1}}"> <span class="checkmark" ></span> </label>
          
                     </div>
     </div>
@@ -24,4 +27,6 @@
 </div>
 </div>
 </form>
+</div>
+</div>
 <app-footer></app-footer>

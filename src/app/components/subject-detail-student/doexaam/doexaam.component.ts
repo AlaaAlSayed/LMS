@@ -16,13 +16,16 @@ quistions:any;
 _quistions:any;
 formAdd = new FormGroup({});
 answers:number[]=[];
+answers_2:number[]=[];
+result:number=0;
 values:any;
 options:any;
 quesid:number=0;
 l:number=0;
 examId:number=0;
 student_id:number=0;
-
+name:string="";
+subjectid:number=0;
 @Input()  currentIndex!: number | string;
 
   constructor(private _quizservice:quizservice,private _activatedRoute:ActivatedRoute,private _formBuilder:FormBuilder) { }
@@ -30,8 +33,10 @@ student_id:number=0;
   ngOnInit(): void {
 
     this._activatedRoute.paramMap.subscribe(params=>{
-      let id=Number(params.get('id'));
+      //let id=Number(params.get('id'));
     this. student_id=Number(params.get('student_id'));
+    this. subjectid=Number(params.get('id'));
+
      this.quesid=Number(params.get('quesid'));
      this.examId=Number(params.get('examid'));
 
@@ -45,6 +50,7 @@ student_id:number=0;
           this.quistions=this.exam.quistions[this.quesid];
           this.options=this.exam.options[this.quesid];
           this.values=this.exam.correctAnswers[this.quesid];
+          console.log(this.exam)
 
         },
         (error:any)=>{alert("error");}
@@ -56,7 +62,13 @@ student_id:number=0;
             correct:['']
         
           })
+    /*       this._quizservice.doexamnm(this.examId)
+          .subscribe(
+            (response:any)=>{
 
+this.name=response;
+console.log(response)
+            }) */
 
   }
   Next(){
@@ -79,7 +91,7 @@ student_id:number=0;
 
     
 
-      this.answers[this.quesid]=this.formAdd.value.correct;
+      this.answers[this.quesid]=Number(this.formAdd.value.correct);
 
       this.quesid=this.quesid+1;
       this.formAdd = this._formBuilder.group({
@@ -110,16 +122,33 @@ student_id:number=0;
       correct:[this.answers[this.quesid]]
   
     })
-    this.answers[this.quesid]=this.formAdd.value.correct;
+    this.answers[this.quesid]=Number(this.formAdd.value.correct);
      
    
     
   }
 finish(){
-  this.answers[this.quesid]=this.formAdd.value.correct;
-this._quizservice.post(this.examId,this.student_id,this.answers).subscribe(
+  this.answers[this.quesid]=Number(this.formAdd.value.correct);
+
+  console.log(this.answers)
+   for (let i=0;i<this.answers.length;i++) {
+    console.log(this.values[this.answers[i]-1].is_correct)
+
+    if(this.values[this.answers[i]-1].is_correct==1){
+      this.result=this.result+1;
+    }
+    console.log(this.result)
+
+  }
+
+  let formData= new FormData();
+   formData.append("result",String (this.result)); 
+  //console.log(this.answers)
+ this._quizservice.post(this.examId,this.student_id,formData).subscribe(
   (response:any)=>{
-  console.log(response)
+  //console.log(response)
+  window.location.href=`http://localhost:4200/subject/${this.student_id}/${this.subjectid}/quiz`;
+
 })
 }
 }

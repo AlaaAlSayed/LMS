@@ -23,11 +23,15 @@
             <input type="date" class="form-control" id="date" aria-describedby="emailHelp" placeholder="Enter date" formControlName="date" ><br>
           </div>
           <div class="form-group ">
-            <label for="time">time</label><br>
-            <input type="time" class="form-control" id="date" aria-describedby="emailHelp" placeholder="Enter time" formControlName="time" ><br>
+            <label for="start">start</label><br>
+            <input type="time" class="form-control" id="start" aria-describedby="emailHelp" placeholder="Enter start" formControlName="start" ><br>
           </div>
-        
+          <div class="form-group ">
+            <label for="start">end</label><br>
+            <input type="time" class="form-control" id="end" aria-describedby="emailHelp" placeholder="Enter end" formControlName="end" ><br>
+          </div>
           <div>
+            
              <button type="submit" class="btn btn-warning" (click)="insertquiz()">create question</button>
     </div>
       </form>

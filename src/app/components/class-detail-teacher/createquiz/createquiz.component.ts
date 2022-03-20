@@ -49,8 +49,8 @@ export class CreatequizComponent implements OnInit {
 
     min_score:['' , [Validators.required]],
     date:['' , [Validators.required]],
-    time:['' , [Validators.required]]
-
+    start:['' , [Validators.required]],
+    end:['' , [Validators.required]]
 
   })
 
@@ -58,7 +58,9 @@ export class CreatequizComponent implements OnInit {
   insertquiz(){
     let formData= new FormData();
    formData.append("min_score",this.formAdd.value.min_score);
-   formData.append("time",this.formAdd.value.time);
+   formData.append("start",this.formAdd.value.start);
+   formData.append("finish",this.formAdd.value.end);
+
    formData.append("date",this.formAdd.value.date);
    //formData.append("examId",this.formAdd.value.examId);
    formData.append("name",this.formAdd.value.name);

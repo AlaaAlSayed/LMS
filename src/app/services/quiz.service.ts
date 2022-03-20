@@ -43,7 +43,10 @@ export class quizservice {
    } 
 post(examId:number,studentId:number,selectedOptions:any){
  // /exams/{examId}/{studentId}/{selectedOptions}
- return this._HttpClient.post(`${environment.APIURL}/api/exams/${examId}/${studentId}/${selectedOptions}`,selectedOptions);
+ return this._HttpClient.post(`${environment.APIURL}/api/exams/${examId}/${studentId}`,selectedOptions);
 
 }
+doexamnm(examId:number){
+  return this._HttpClient.get(`${environment.APIURL}/api/examname/${examId}`);
+ } 
 }
