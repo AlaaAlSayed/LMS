@@ -121,8 +121,7 @@ class ExamController extends Controller
                     
                   ])->get();
             
-                  if($is_exist->first()!= null)
-                  {
+                  if($is_exist->first()!= null)                  {
                     StudentTakeExam::where(
                       [
                         'examId' => $examId,
@@ -213,8 +212,8 @@ class ExamController extends Controller
     
     // $subject= Subject::find($subjectId)->first();
     // return  $subject->exams ;
-    $examName = Exam::where('id', $examId)->get('name');    
-    return   $examName->first()->name ;
+    $examName = teacher_makes_exams::where('examId', $examId)->get();    
+    return   $examName ;
 
   }
 }
