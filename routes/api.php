@@ -207,7 +207,7 @@ Route::get('/annoncemetns/{postId}', [AnnouncementsContoller::class, 'show']);
 
 
     Route::get('/examDetails/{examId}', [ExamController::class, 'getExamName'])->name('api.getExamDetails.show');
-    Route::post('/exams/{examId}/{studentId}', [ExamController::class, 'score'])->name('api.exams.score');
+    Route::post('/examScore/{examId}/{studentId}', [ExamController::class, 'score'])->name('api.exams.score');
     Route::get('/exams/{examId}', [ExamController::class, 'show'])->name('api.exams.show');
     Route::post('/exams/{teacherId}/{subjectId}', [ExamController::class, 'store'])->name('api.exams.store');
     Route::put('/exams/{examId}', [ExamController::class, 'update'])->name('api.exams.update');
