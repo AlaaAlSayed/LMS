@@ -1,0 +1,6 @@
+.nav-link{
+    transition: all 1s !important;
+}
+.nav-link:hover{
+    color:rgb(0, 0, 0) !important;
+}

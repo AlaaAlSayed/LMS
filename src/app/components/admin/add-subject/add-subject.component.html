@@ -1,0 +1,24 @@
+<h1 class="border-bottom mt-5"> Add New Subject: </h1>
+<div [formGroup]="formAdd" >
+<div class="row g-3">
+    <div class="col-md-6" hidden>
+        <label  class="form-label">ID</label>
+        <input type="number" formControlName="id" name="id" class="form-control" >
+      </div>
+
+    <div class="col-md-6">
+        <label  class="form-label" >name</label>
+        <input type="text" #inputName class="form-control" formControlName="name" name="name">
+       
+      </div>
+      <div class="col-md-6">
+        <label  class="form-label" >Classroom ID</label>
+        <input type="number" #inputClass class="form-control" formControlName="classroomId" name="classroomId" >
+        
+      </div>
+  
+      <div class="col-12">
+        <button type="button" class="btn btn-primary" [disabled]="formAdd.invalid" (click)="insertSubject(inputName.value, inputClass.valueAsNumber)" >Add Subject</button>
+      </div>
+  </div>
+  </div>
